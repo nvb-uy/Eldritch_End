@@ -25,7 +25,6 @@ public class FeatureRegistry {
     public static PlacedFeature PRIMORDIAL_ABYSS_SURFACE_PLACED = new PlacedFeature(
             RegistryEntry.of(
                 PRIMORDIAL_ABYSS_SURFACE_CONFIGURED
-//                    the SquarePlacementModifier makes the feature generate a cluster of pillars each time
             ), List.of(SquarePlacementModifier.of())
     );
 

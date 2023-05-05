@@ -16,7 +16,7 @@ public class EldritchEnd implements ModInitializer {
 	public static final String MODID = "eldritch_end";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MODID);
 	
-	private static boolean START_CFG = ConfigBuilder.start(); 
+	private static boolean CFG_STARTED = ConfigBuilder.hasStarted(); 
 	public static PrimordialAbyssConfig BIOME_PRIMORDIAL_CFG = ConfigBuilder.loadPrimordialAbyss();
 
 	// public static final ItemGroup EldritchEnd = FabricItemGroupBuilder.create(
@@ -29,7 +29,9 @@ public class EldritchEnd implements ModInitializer {
 	public void onInitialize() {
 		ServerLifecycleEvents.END_DATA_PACK_RELOAD.register((server, resourceManager, success)
 		->  {
-			BIOME_PRIMORDIAL_CFG = ConfigBuilder.loadPrimordialAbyss();
+			if (CFG_STARTED) {
+				BIOME_PRIMORDIAL_CFG = ConfigBuilder.loadPrimordialAbyss();
+			}
 			
 		});
 		LOGGER.info("Eldritch End's Config Loaded!");

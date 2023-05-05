@@ -19,8 +19,9 @@ public class ConfigBuilder {
 
     // Files
     public static final Path PrimordialAbyss = BiomeFolder.resolve("primordial_abyss.json");
+    public static final Path HasturianWastes = BiomeFolder.resolve("hasturian_wastes.json");
     
-    public static boolean start() {
+    public static boolean hasStarted() {
         createFolders();
         
         return true;
@@ -31,6 +32,7 @@ public class ConfigBuilder {
             if (Files.notExists(PrimordialAbyss)) {
                 PrimordialAbyssConfig defaultCfg = new PrimordialAbyssConfig();
                 
+                defaultCfg.spawn_endermen = false;
                 defaultCfg.biome_weight = 5.0F;
 
                 String defaultJson = BUILDER.toJson(defaultCfg);
