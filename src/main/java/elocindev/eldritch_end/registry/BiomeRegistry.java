@@ -16,5 +16,7 @@ public class BiomeRegistry {
         PrimordialAbyss.register();
 
         TheEndBiomes.addHighlandsBiome(PRIMORDIAL_ABYSS, 5.0);
+
+        PrimordialAbyss.registerModifications();
     }
 }

@@ -1,11 +1,10 @@
 package elocindev.eldritch_end.biome;
 
-import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.registry.BiomeRegistry;
+import elocindev.eldritch_end.registry.FeatureRegistry;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.sound.BiomeMoodSound;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
@@ -20,12 +19,6 @@ import net.minecraft.world.gen.feature.EndPlacedFeatures;
 public class PrimordialAbyss {
 	public static void register() {
 		Registry.register(BuiltinRegistries.BIOME, BiomeRegistry.PRIMORDIAL_ABYSS.getValue(), createPrimordialAbyss());
-
-		BiomeModifications.addFeature(
-			BiomeSelectors.includeByKey(BiomeRegistry.PRIMORDIAL_ABYSS),
-			GenerationStep.Feature.VEGETAL_DECORATION,
-			RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(EldritchEnd.MODID, "patch"))
-	);
 	}
 	
 	private static Biome createPrimordialAbyss() {
@@ -36,6 +29,7 @@ public class PrimordialAbyss {
 
 	private static Biome compose(GenerationSettings.Builder builder) {
 		SpawnSettings.Builder settings = new SpawnSettings.Builder();
+		
 		DefaultBiomeFeatures.addEndMobs(settings);
 
 		return (new Biome.Builder())
@@ -45,4 +39,12 @@ public class PrimordialAbyss {
 		.moodSound(BiomeMoodSound.CAVE).build()).spawnSettings(settings.build())
 		.generationSettings(builder.build()).build();
 	}
+
+    public static void registerModifications() {
+		BiomeModifications.addFeature(
+            BiomeSelectors.includeByKey(BiomeRegistry.PRIMORDIAL_ABYSS),
+            GenerationStep.Feature.TOP_LAYER_MODIFICATION,
+            RegistryKey.of(Registry.PLACED_FEATURE_KEY, FeatureRegistry.PRIMORDIAL_ABYSS_SURFACE_ID)
+        );
+    }
 }

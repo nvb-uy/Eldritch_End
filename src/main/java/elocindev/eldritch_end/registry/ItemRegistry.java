@@ -15,9 +15,6 @@ public class ItemRegistry {
     
     // private static Item.Settings discSettings = new Item.Settings().rarity(Rarity.RARE).maxCount(1).group(ProminentLoader.ProminentTab);
     
-    
-
-
     public static Item reg(Item instance, String id) {
         
         return Registry.register(Registry.ITEM, new Identifier(EldritchEnd.MODID, id), instance);
