@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "eldritch_end",
+  "version": "1.0.1",
+
+  "name": "Prominent",
+  "description": "Custom Content for the Prominence Modpack",
+  "authors": [
+    "ElocinDev"
+  ],
+  "contact": {
+    "homepage": "https://curseforge.com/members/elocindev/projects",
+    "sources": "https://github.com/nvb-uy/prominent"
+  },
+  "icon":"icon.png",
+  "license": "AGNYA License",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "elocindev.prominent.fabric_quilt.EldritchEnd"
+    ]
+  },
+  "mixins": [
+    "prominent.fabricmixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.14.19",
+    "java": ">=17"
+  }
+}

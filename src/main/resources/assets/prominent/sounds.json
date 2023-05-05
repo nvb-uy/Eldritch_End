@@ -1,0 +1,11 @@
+{
+    "music_disc.coniferus_forest": {
+      "category": "neutral",
+      "sounds": [
+        {
+          "name": "prominent:records/coniferus_forest",
+          "stream": true
+        }
+      ]
+    }
+}
