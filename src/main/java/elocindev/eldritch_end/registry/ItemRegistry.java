@@ -1,12 +1,13 @@
-package elocindev.prominent.fabric_quilt.registry;
+package elocindev.eldritch_end.registry;
 
-import elocindev.prominent.fabric_quilt.EldritchEnd;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import elocindev.eldritch_end.EldritchEnd;
 
 public class ItemRegistry {
     private static final Logger LOGGER = LoggerFactory.getLogger(EldritchEnd.MODID);

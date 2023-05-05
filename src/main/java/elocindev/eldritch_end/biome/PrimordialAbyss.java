@@ -1,9 +1,14 @@
-package elocindev.prominent.fabric_quilt.biome;
+package elocindev.eldritch_end.biome;
 
-import elocindev.prominent.fabric_quilt.registry.BiomeRegistry;
+import elocindev.eldritch_end.EldritchEnd;
+import elocindev.eldritch_end.registry.BiomeRegistry;
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.sound.BiomeMoodSound;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.GenerationSettings;
@@ -15,6 +20,12 @@ import net.minecraft.world.gen.feature.EndPlacedFeatures;
 public class PrimordialAbyss {
 	public static void register() {
 		Registry.register(BuiltinRegistries.BIOME, BiomeRegistry.PRIMORDIAL_ABYSS.getValue(), createPrimordialAbyss());
+
+		BiomeModifications.addFeature(
+			BiomeSelectors.includeByKey(BiomeRegistry.PRIMORDIAL_ABYSS),
+			GenerationStep.Feature.VEGETAL_DECORATION,
+			RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(EldritchEnd.MODID, "patch"))
+	);
 	}
 	
 	private static Biome createPrimordialAbyss() {

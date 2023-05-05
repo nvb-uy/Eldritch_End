@@ -1,4 +1,4 @@
-package elocindev.prominent.fabric_quilt;
+package elocindev.eldritch_end;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
@@ -6,10 +6,10 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import elocindev.prominent.fabric_quilt.config.ServerConfig;
-import elocindev.prominent.fabric_quilt.config.ServerEntries;
-import elocindev.prominent.fabric_quilt.registry.BiomeRegistry;
-import elocindev.prominent.fabric_quilt.registry.ItemRegistry;
+import elocindev.eldritch_end.config.ServerConfig;
+import elocindev.eldritch_end.config.ServerEntries;
+import elocindev.eldritch_end.registry.BiomeRegistry;
+import elocindev.eldritch_end.registry.ItemRegistry;
 
 public class EldritchEnd implements ModInitializer {
 	public static final String MODID = "eldritch_end";

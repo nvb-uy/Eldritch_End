@@ -1,11 +1,11 @@
-package elocindev.prominent.fabric_quilt.registry;
+package elocindev.eldritch_end.registry;
 
+import elocindev.eldritch_end.biome.PrimordialAbyss;
+import elocindev.eldritch_end.EldritchEnd;
 import net.fabricmc.fabric.api.biome.v1.TheEndBiomes;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
-import elocindev.prominent.fabric_quilt.EldritchEnd;
-import elocindev.prominent.fabric_quilt.biome.PrimordialAbyss;
 import net.minecraft.world.biome.Biome;
 
 public class BiomeRegistry {

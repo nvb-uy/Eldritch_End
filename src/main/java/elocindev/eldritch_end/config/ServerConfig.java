@@ -1,4 +1,4 @@
-package elocindev.prominent.fabric_quilt.config;
+package elocindev.eldritch_end.config;
 
 import java.io.IOException;
 import java.nio.file.Files;
