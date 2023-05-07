@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import elocindev.eldritch_end.config.ConfigBuilder;
 import elocindev.eldritch_end.config.entries.PrimordialAbyssConfig;
 import elocindev.eldritch_end.registry.BiomeRegistry;
+import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.registry.FeatureRegistry;
 import elocindev.eldritch_end.registry.ItemRegistry;
 
@@ -38,6 +39,7 @@ public class EldritchEnd implements ModInitializer {
 
 		FeatureRegistry.register();
 		BiomeRegistry.register();
-		ItemRegistry.registerItems();
+		BlockRegistry.register();
+		ItemRegistry.register();
 	}
 }

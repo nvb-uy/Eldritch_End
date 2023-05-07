@@ -13,12 +13,12 @@ import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 
-public class PrimordialAbyssSurface extends Feature<SurfaceConfig> {
-    public PrimordialAbyssSurface(Codec<SurfaceConfig> configCodec) {
+public class BiomeSurfaceGeneration extends Feature<SurfaceConfig> {
+    public BiomeSurfaceGeneration(Codec<SurfaceConfig> configCodec) {
       super(configCodec);
     }
 
-    public boolean isEndstone(StructureWorldAccess world, BlockPos position) {
+    public boolean canPlace(StructureWorldAccess world, BlockPos position) {
         return world.getBlockState(position).getBlock() == Blocks.END_STONE;
     }
    
@@ -50,7 +50,7 @@ public class PrimordialAbyssSurface extends Feature<SurfaceConfig> {
                     testPos = testPos.up();
                     if (world.getBlockState(testPos.up()).getBlock() != Blocks.AIR) continue;
     
-                    if (isEndstone(world, testPos)) {
+                    if (canPlace(world, testPos)) {
                         world.setBlockState(testPos, blockState, 0x10);
                         replaced = true;
                     }

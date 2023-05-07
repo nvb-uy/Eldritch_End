@@ -1,5 +1,6 @@
 package elocindev.eldritch_end.biome;
 
+import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.registry.BiomeRegistry;
 import elocindev.eldritch_end.registry.FeatureRegistry;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
@@ -33,9 +34,11 @@ public class PrimordialAbyss {
 		DefaultBiomeFeatures.addEndMobs(settings);
 
 		return (new Biome.Builder())
-		.precipitation(Biome.Precipitation.NONE).temperature(0.5F).downfall(0.5F)
+		.precipitation(Biome.Precipitation.NONE)
+		.temperature(EldritchEnd.BIOME_PRIMORDIAL_CFG.biome_temperature)
+		.downfall(0.5F)
 		.effects((new BiomeEffects.Builder())
-		.waterColor(5920890).waterFogColor(2949228).fogColor(8809921).skyColor(0)
+		.waterColor(5920890).waterFogColor(2949228).fogColor(8809921).skyColor(494054)
 		.moodSound(BiomeMoodSound.CAVE).build()).spawnSettings(settings.build())
 		.generationSettings(builder.build()).build();
 	}

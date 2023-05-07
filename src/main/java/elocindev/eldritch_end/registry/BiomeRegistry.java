@@ -15,7 +15,8 @@ public class BiomeRegistry {
     public static void register() {
         PrimordialAbyss.register();
 
-        TheEndBiomes.addHighlandsBiome(PRIMORDIAL_ABYSS, 5.0);
+        TheEndBiomes.addHighlandsBiome(PRIMORDIAL_ABYSS, EldritchEnd.BIOME_PRIMORDIAL_CFG.biome_weight);
+        TheEndBiomes.addMidlandsBiome(PRIMORDIAL_ABYSS, PRIMORDIAL_ABYSS, EldritchEnd.BIOME_PRIMORDIAL_CFG.biome_weight);
 
         PrimordialAbyss.registerModifications();
     }
