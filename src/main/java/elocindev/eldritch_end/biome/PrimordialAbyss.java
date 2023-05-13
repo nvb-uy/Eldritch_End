@@ -5,12 +5,16 @@ import elocindev.eldritch_end.registry.BiomeRegistry;
 import elocindev.eldritch_end.registry.FeatureRegistry;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.minecraft.client.particle.Particle;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.BiomeMoodSound;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeEffects;
+import net.minecraft.world.biome.BiomeParticleConfig;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.gen.GenerationStep;
@@ -33,13 +37,20 @@ public class PrimordialAbyss {
 		
 		DefaultBiomeFeatures.addEndMobs(settings);
 
+		ParticleEffect ambientParticle = ParticleTypes.ASH;
+
 		return (new Biome.Builder())
 		.precipitation(Biome.Precipitation.NONE)
 		.temperature(EldritchEnd.BIOME_PRIMORDIAL_CFG.biome_temperature)
-		.downfall(0.5F)
+		.downfall(0.1F)
+
 		.effects((new BiomeEffects.Builder())
-		.waterColor(5920890).waterFogColor(2949228).fogColor(8809921).skyColor(494054)
-		.moodSound(BiomeMoodSound.CAVE).build()).spawnSettings(settings.build())
+			.waterColor(2367016).waterFogColor(2949228).fogColor(2758197).skyColor(1312788)
+			.moodSound(BiomeMoodSound.CAVE)
+			.particleConfig(new BiomeParticleConfig(ambientParticle, 0.3f))
+			.build())
+
+		.spawnSettings(settings.build())	
 		.generationSettings(builder.build()).build();
 	}
 

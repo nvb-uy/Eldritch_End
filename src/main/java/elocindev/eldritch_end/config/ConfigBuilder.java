@@ -33,8 +33,8 @@ public class ConfigBuilder {
                 PrimordialAbyssConfig defaultCfg = new PrimordialAbyssConfig();
                 
                 defaultCfg.spawn_endermen = false;
-                defaultCfg.biome_weight = 5.0F;
-                defaultCfg.biome_temperature = 0.2F;
+                defaultCfg.biome_weight = 1.5F;
+                defaultCfg.biome_temperature = 0.0085F;
 
                 String defaultJson = BUILDER.toJson(defaultCfg);
                 Files.writeString(PrimordialAbyss, defaultJson);
