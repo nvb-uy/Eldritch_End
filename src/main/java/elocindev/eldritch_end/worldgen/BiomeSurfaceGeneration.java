@@ -1,17 +1,20 @@
 package elocindev.eldritch_end.worldgen;
 
-
 import com.mojang.serialization.Codec;
 
 import elocindev.eldritch_end.worldgen.feature.SurfaceConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.Heightmap;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
+
+// So this has become a little messy and unreadable, so I tried commenting stuff, though I don't usually do
+// Primordial Algorithm v1.0
 
 public class BiomeSurfaceGeneration extends Feature<SurfaceConfig> {
     public BiomeSurfaceGeneration(Codec<SurfaceConfig> configCodec) {
@@ -24,41 +27,47 @@ public class BiomeSurfaceGeneration extends Feature<SurfaceConfig> {
    
     @Override
     public boolean generate(FeatureContext<SurfaceConfig> context) {
+        boolean generated = false;
         StructureWorldAccess world = context.getWorld();
         BlockPos origin = context.getOrigin();
-    
+        
+        // Get chunk coordinates
+        int chunkX = origin.getX() >> 4;
+        int chunkZ = origin.getZ() >> 4;
+        ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
+        
         SurfaceConfig config = context.getConfig();
-        Identifier blockID = config.blockID();
-        BlockState blockState = Registry.BLOCK.get(blockID).getDefaultState();
-    
-        if (blockState == null) throw new IllegalStateException(blockID + " could not be parsed to a valid block identifier!");
-    
-        boolean replaced = false;
-    
-        int centerX = world.getRandom().nextInt(16); int centerZ = world.getRandom().nextInt(16);
+        BlockState blockState = Registry.BLOCK.get(config.blockID()).getDefaultState();
+        
+        // Generate a random circle within the chunk
+        int centerX = world.getRandom().nextInt(16);
+        int centerZ = world.getRandom().nextInt(16);
         int radius = world.getRandom().nextInt(10) + 4;
-        BlockPos center = new BlockPos(origin.getX() + centerX, 0, origin.getZ() + centerZ);
-    
+        BlockPos center = chunkPos.getCenterAtY(origin.getY());
+
         for (int x = centerX - radius; x <= centerX + radius; x++) {
             for (int z = centerZ - radius; z <= centerZ + radius; z++) {
-                BlockPos testPos = new BlockPos(origin.getX() + x, 0, origin.getZ() + z);
-    
-                double distance = center.getSquaredDistance(testPos.getX(), center.getY(), testPos.getZ());
-                if (distance > radius * radius) continue;
-    
-                for (int y = 0; y < world.getHeight(); y++) {
-                    testPos = testPos.up();
-                    if (world.getBlockState(testPos.up()).getBlock() != Blocks.AIR) continue;
-    
-                    if (canPlace(world, testPos)) {
-                        world.setBlockState(testPos, blockState, 0x10);
-                        replaced = true;
-                    }
+                BlockPos pos = new BlockPos(origin.getX() + x, 0, origin.getZ() + z);
+                
+                // Check if the position is within the circle
+                double distance = center.getSquaredDistance(pos.getX(), center.getY(), pos.getZ());
+                if (distance > radius * radius) {
+                    continue;
+                }
+                
+                // Find the highest solid block at the position
+                int y = world.getTopY(Heightmap.Type.WORLD_SURFACE, pos.getX(), pos.getZ());
+                BlockPos topPos = new BlockPos(pos.getX(), y, pos.getZ());
+                BlockState topState = world.getBlockState(topPos);
+                
+                // Check if the block can be replaced
+                if (topState.isAir() || topState.getMaterial().isReplaceable()) {
+                    world.setBlockState(topPos, blockState, 3);
+                    generated = true;
                 }
             }
         }
-    
-        return replaced;
+        
+        return generated;
     }
-    
-  }
+}
