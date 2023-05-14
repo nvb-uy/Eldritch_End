@@ -1,6 +1,8 @@
 package elocindev.eldritch_end.registry;
 
 import elocindev.eldritch_end.EldritchEnd;
+import elocindev.eldritch_end.block.AbysmalFronds;
+import elocindev.eldritch_end.block.SuspiciousFronds;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
@@ -12,16 +14,16 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class BlockRegistry {
-    public static final Block ABYSMAL_FRONDS = new Block(FabricBlockSettings
-        .copyOf(Blocks.END_STONE)
-        .sounds(BlockSoundGroup.NYLIUM));
-
+    public static final Block ABYSMAL_FRONDS = new AbysmalFronds();
     public static final BlockItem ABYSMAL_FRONDS_ITEM = new BlockItem(ABYSMAL_FRONDS, new FabricItemSettings());
+
+    public static final Block SUSPICIOUS_FRONDS = new SuspiciousFronds();
+    public static final BlockItem SUSPICIOUS_FRONDS_ITEM = new BlockItem(SUSPICIOUS_FRONDS, new FabricItemSettings());
 
     public static final Block PRIMORDIAL_LOG = new PillarBlock(FabricBlockSettings
         .copyOf(Blocks.OAK_LOG)
         .sounds(BlockSoundGroup.STEM));
-    
+
     public static final BlockItem PRIMORDIAL_LOG_ITEM = new BlockItem(PRIMORDIAL_LOG, new FabricItemSettings());
 
     public static void registerFullBlock(String identifier, Block blockInstance, BlockItem itemInstance) {
@@ -32,6 +34,7 @@ public class BlockRegistry {
     public static void register() {
         registerFullBlock("abysmal_fronds", ABYSMAL_FRONDS, ABYSMAL_FRONDS_ITEM);
         registerFullBlock("primordial_log", PRIMORDIAL_LOG, PRIMORDIAL_LOG_ITEM);
+        registerFullBlock("suspicious_fronds", SUSPICIOUS_FRONDS, SUSPICIOUS_FRONDS_ITEM);
 
         // Grass Overhaul Compatibility
         // if (FabricLoader.getInstance().isModLoaded("grassoverhaul") || FabricLoader.getInstance().isModLoaded("sod")) {
