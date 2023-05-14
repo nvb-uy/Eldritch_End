@@ -5,7 +5,6 @@ import elocindev.eldritch_end.registry.BiomeRegistry;
 import elocindev.eldritch_end.registry.FeatureRegistry;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
-import net.minecraft.client.particle.Particle;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.BiomeMoodSound;
