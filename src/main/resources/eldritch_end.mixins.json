@@ -4,6 +4,7 @@
   "package": "elocindev.eldritch_end.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "BackgroundRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

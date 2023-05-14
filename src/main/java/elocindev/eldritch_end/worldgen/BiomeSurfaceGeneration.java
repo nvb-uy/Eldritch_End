@@ -30,44 +30,43 @@ public class BiomeSurfaceGeneration extends Feature<SurfaceConfig> {
         boolean generated = false;
         StructureWorldAccess world = context.getWorld();
         BlockPos origin = context.getOrigin();
-        
+    
         // Get chunk coordinates
         int chunkX = origin.getX() >> 4;
         int chunkZ = origin.getZ() >> 4;
         ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
-        
+    
         SurfaceConfig config = context.getConfig();
         BlockState blockState = Registry.BLOCK.get(config.blockID()).getDefaultState();
-        
+    
         // Generate a random circle within the chunk
         int centerX = world.getRandom().nextInt(16);
         int centerZ = world.getRandom().nextInt(16);
         int radius = world.getRandom().nextInt(10) + 4;
         BlockPos center = chunkPos.getCenterAtY(origin.getY());
-
+    
         for (int x = centerX - radius; x <= centerX + radius; x++) {
             for (int z = centerZ - radius; z <= centerZ + radius; z++) {
                 BlockPos pos = new BlockPos(origin.getX() + x, 0, origin.getZ() + z);
-                
+    
                 // Check if the position is within the circle
                 double distance = center.getSquaredDistance(pos.getX(), center.getY(), pos.getZ());
                 if (distance > radius * radius) {
                     continue;
                 }
-                
+    
                 // Find the highest solid block at the position
-                int y = world.getTopY(Heightmap.Type.WORLD_SURFACE, pos.getX(), pos.getZ());
-                BlockPos topPos = new BlockPos(pos.getX(), y, pos.getZ());
-                BlockState topState = world.getBlockState(topPos);
-                
+                BlockPos topPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE, pos);
+    
                 // Check if the block can be replaced
-                if (topState.isAir() || topState.getMaterial().isReplaceable()) {
-                    world.setBlockState(topPos, blockState, 3);
+                if (canPlace(world, topPos.down())) {
+                    world.setBlockState(topPos.down(), blockState, 3);
                     generated = true;
                 }
             }
         }
-        
+    
         return generated;
     }
+    
 }
