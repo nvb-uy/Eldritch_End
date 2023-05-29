@@ -12,14 +12,8 @@ public class SuspiciousFronds extends AbysmalFronds {
 
     @Override
     public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
-        if (!world.isClient) {
-            int steps = 0;
-            while (!entity.isSneaking()) {
-                for (steps = 0; steps < 10; steps++) {
-                    entity.teleport(entity.getX(), entity.getY() - 0.2f, entity.getZ());
-                }
-                break;
-            }
+        if (!world.isClient && !entity.isSneaking()) {
+                entity.teleport(entity.getX(), entity.getY() - 1f, entity.getZ());
         }
     }
 }
