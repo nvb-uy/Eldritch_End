@@ -1,6 +1,6 @@
 package elocindev.eldritch_end.biome;
 
-import elocindev.eldritch_end.EldritchEnd;
+import elocindev.eldritch_end.config.Configs;
 import elocindev.eldritch_end.registry.BiomeRegistry;
 import elocindev.eldritch_end.registry.FeatureRegistry;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
@@ -40,7 +40,7 @@ public class PrimordialAbyss {
 
 		return (new Biome.Builder())
 		.precipitation(Biome.Precipitation.NONE)
-		.temperature(EldritchEnd.BIOME_PRIMORDIAL_CFG.biome_temperature)
+		.temperature(Configs.BIOME_PRIMORDIAL_ABYSS.biome_temperature)
 		.downfall(0.1F)
 
 		.effects((new BiomeEffects.Builder())

@@ -1,6 +1,7 @@
 package elocindev.eldritch_end.registry;
 
 import elocindev.eldritch_end.biome.PrimordialAbyss;
+import elocindev.eldritch_end.config.Configs;
 import elocindev.eldritch_end.EldritchEnd;
 import net.fabricmc.fabric.api.biome.v1.TheEndBiomes;
 import net.minecraft.util.Identifier;
@@ -15,8 +16,8 @@ public class BiomeRegistry {
     public static void register() {
         PrimordialAbyss.register();
 
-        TheEndBiomes.addHighlandsBiome(PRIMORDIAL_ABYSS, EldritchEnd.BIOME_PRIMORDIAL_CFG.biome_weight);
-        TheEndBiomes.addMidlandsBiome(PRIMORDIAL_ABYSS, PRIMORDIAL_ABYSS, EldritchEnd.BIOME_PRIMORDIAL_CFG.biome_weight);
+        TheEndBiomes.addHighlandsBiome(PRIMORDIAL_ABYSS, Configs.BIOME_PRIMORDIAL_ABYSS.biome_weight);
+        TheEndBiomes.addMidlandsBiome(PRIMORDIAL_ABYSS, PRIMORDIAL_ABYSS, Configs.BIOME_PRIMORDIAL_ABYSS.biome_weight);
 
         PrimordialAbyss.registerModifications();
     }
