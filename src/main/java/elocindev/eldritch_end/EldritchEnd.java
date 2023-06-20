@@ -1,7 +1,11 @@
 package elocindev.eldritch_end;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.Identifier;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,11 +24,15 @@ public class EldritchEnd implements ModInitializer {
 	private static boolean CFG_STARTED = ConfigBuilder.hasStarted(); 
 	public static PrimordialAbyssConfig BIOME_PRIMORDIAL_CFG = ConfigBuilder.loadPrimordialAbyss();
 
-	// public static final ItemGroup EldritchEnd = FabricItemGroupBuilder.create(
-	// 	new Identifier(MODID, "tab"))
-	// 	.icon(() -> new ItemStack(ItemRegistry.ICON))
-	// 	.appendItems(stacks -> { stacks.add(new ItemStack(ItemRegistry.MAINMENU_DISC));})
-	// 	.build();
+	public static final ItemGroup EldritchEnd = FabricItemGroupBuilder.create(
+		new Identifier(MODID, "tab"))
+		.icon(() -> new ItemStack(BlockRegistry.ABYSMAL_FRONDS_ITEM))
+		.appendItems(stacks -> { 
+			stacks.add(new ItemStack(BlockRegistry.ABYSMAL_FRONDS_ITEM)); 
+			stacks.add(new ItemStack(BlockRegistry.SUSPICIOUS_FRONDS_ITEM));
+			stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_LOG_ITEM));
+		})
+		.build();
 
 	@Override
 	public void onInitialize() {
