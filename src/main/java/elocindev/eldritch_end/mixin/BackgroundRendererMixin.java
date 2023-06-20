@@ -1,7 +1,6 @@
 package elocindev.eldritch_end.mixin;
 import com.mojang.blaze3d.systems.RenderSystem;
 
-import elocindev.eldritch_end.registry.BiomeRegistry;
 import elocindev.eldritch_end.registry.BlockRegistry;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.BackgroundRenderer;
@@ -11,10 +10,6 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.registry.RegistryKey;
-import net.minecraft.world.biome.Biome;
-
-import java.util.Optional;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -31,10 +26,8 @@ public abstract class BackgroundRendererMixin {
 		MinecraftClient client = MinecraftClient.getInstance();
 		ClientWorld world = client.world;
 
-		Optional<RegistryKey<Biome>> biomeKey = world.getBiome(camera.getBlockPos()).getKey();
-		if (world == null || !camera.getSubmersionType().equals(CameraSubmersionType.NONE))
-			return;
-		
+		if (world == null || client.player == null || !camera.getSubmersionType().equals(CameraSubmersionType.NONE)) return;
+
 		Vec3d pos = client.player.getPos();
 		for (int i = 0; i < 8; i++) {
 			var bp = new BlockPos(pos.add(0, -i, 0));
