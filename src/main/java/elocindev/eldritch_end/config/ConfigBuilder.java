@@ -32,7 +32,9 @@ public class ConfigBuilder {
             if (Files.notExists(PrimordialAbyss)) {
                 PrimordialAbyssConfig defaultCfg = new PrimordialAbyssConfig();
                 
+                defaultCfg.enabled = true;
                 defaultCfg.spawn_endermen = false;
+                defaultCfg.spawn_aberrations = true;
                 defaultCfg.biome_weight = 1.5F;
                 defaultCfg.biome_temperature = 0.0085F;
 
