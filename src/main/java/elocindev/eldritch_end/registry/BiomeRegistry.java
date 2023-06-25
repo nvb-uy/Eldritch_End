@@ -1,7 +1,7 @@
 package elocindev.eldritch_end.registry;
 
-import elocindev.eldritch_end.biome.PrimordialAbyss;
 import elocindev.eldritch_end.config.Configs;
+import elocindev.eldritch_end.worldgen.biome.PrimordialAbyss;
 import elocindev.eldritch_end.EldritchEnd;
 import net.fabricmc.fabric.api.biome.v1.TheEndBiomes;
 import net.minecraft.util.Identifier;

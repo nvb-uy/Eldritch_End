@@ -1,4 +1,4 @@
-package elocindev.eldritch_end.biome;
+package elocindev.eldritch_end.worldgen.biome;
 
 import elocindev.eldritch_end.config.Configs;
 import elocindev.eldritch_end.registry.BiomeRegistry;
