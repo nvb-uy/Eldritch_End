@@ -15,6 +15,7 @@ import elocindev.eldritch_end.registry.BiomeRegistry;
 import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.registry.FeatureRegistry;
 import elocindev.eldritch_end.registry.ItemRegistry;
+import software.bernie.geckolib3.GeckoLib;
 
 public class EldritchEnd implements ModInitializer {
 	public static final String MODID = "eldritch_end";
@@ -39,6 +40,7 @@ public class EldritchEnd implements ModInitializer {
 	public void onInitialize() {
 		ConfigLoader.init(config);
 
+		GeckoLib.initialize();
 		FeatureRegistry.register();
 		BiomeRegistry.register();
 		BlockRegistry.register();
