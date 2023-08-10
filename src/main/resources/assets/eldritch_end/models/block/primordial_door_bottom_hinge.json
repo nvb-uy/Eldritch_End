@@ -1,0 +1,7 @@
+{
+  "parent": "block/door_bottom_rh",
+  "textures": {
+    "bottom": "eldritch_end:block/primordial_door_bottom",
+    "top": "eldritch_end:block/primordial_door_top"
+  }
+}

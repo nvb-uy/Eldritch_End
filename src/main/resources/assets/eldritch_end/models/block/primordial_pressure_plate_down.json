@@ -1,0 +1,6 @@
+{
+  "parent": "block/pressure_plate_down",
+  "textures": {
+    "texture": "eldritch_end:block/primordial_planks"
+  }
+}

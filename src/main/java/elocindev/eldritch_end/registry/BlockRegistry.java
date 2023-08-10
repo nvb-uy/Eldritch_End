@@ -7,8 +7,10 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.DoorBlock;
 import net.minecraft.block.PillarBlock;
 import net.minecraft.block.SignBlock;
+import net.minecraft.block.SlabBlock;
 import net.minecraft.block.WallSignBlock;
 import net.minecraft.block.AbstractBlock.Settings;
 import net.minecraft.item.BlockItem;
@@ -31,6 +33,18 @@ public class BlockRegistry {
 
     public static final BlockItem PRIMORDIAL_LOG_ITEM = new BlockItem(PRIMORDIAL_LOG, new FabricItemSettings());
 
+    public static final Block STRIPPED_PRIMORDIAL_LOG = new PillarBlock(FabricBlockSettings
+        .copyOf(Blocks.OAK_LOG)
+        .sounds(BlockSoundGroup.STEM));
+
+    public static final BlockItem STRIPPED_PRIMORDIAL_LOG_ITEM = new BlockItem(STRIPPED_PRIMORDIAL_LOG, new FabricItemSettings());
+    
+    public static final Block PRIMORDIAL_WOOD = new PillarBlock(FabricBlockSettings
+        .copyOf(Blocks.OAK_LOG)
+        .sounds(BlockSoundGroup.STEM));
+
+    public static final BlockItem PRIMORDIAL_WOOD_ITEM = new BlockItem(PRIMORDIAL_WOOD, new FabricItemSettings());
+
     //
 
     public static final Block PRIMORDIAL_PLANKS = new Block(FabricBlockSettings
@@ -39,7 +53,19 @@ public class BlockRegistry {
 
     public static final BlockItem PRIMORDIAL_PLANKS_ITEM = new BlockItem(PRIMORDIAL_PLANKS, new FabricItemSettings());
 
-    //
+    public static final Block PRIMORDIAL_SLAB = new SlabBlock(FabricBlockSettings
+        .copyOf(Blocks.OAK_SLAB)
+        .sounds(BlockSoundGroup.WOOD));
+
+    public static final BlockItem PRIMORDIAL_SLAB_ITEM = new BlockItem(PRIMORDIAL_SLAB, new FabricItemSettings());
+
+    // 
+
+    public static final Block PRIMORDIAL_DOOR = new DoorBlock(FabricBlockSettings
+        .copyOf(Blocks.OAK_DOOR)
+        .sounds(BlockSoundGroup.WOOD));
+
+    public static final BlockItem PRIMORDIAL_DOOR_ITEM = new BlockItem(PRIMORDIAL_DOOR, new FabricItemSettings());
 
     public static final SignBlock PRIMORDIAL_SIGN = new SignBlock(FabricBlockSettings
         .copyOf(Blocks.OAK_SIGN)
@@ -55,11 +81,15 @@ public class BlockRegistry {
 
     public static void register() {
         registerFullBlock("abysmal_fronds", ABYSMAL_FRONDS, ABYSMAL_FRONDS_ITEM);
+        registerFullBlock("suspicious_fronds", SUSPICIOUS_FRONDS, SUSPICIOUS_FRONDS_ITEM);
 
         // Primordial woodset
         registerFullBlock("primordial_log", PRIMORDIAL_LOG, PRIMORDIAL_LOG_ITEM);
-        registerFullBlock("suspicious_fronds", SUSPICIOUS_FRONDS, SUSPICIOUS_FRONDS_ITEM);
+        registerFullBlock("stripped_primordial_log", STRIPPED_PRIMORDIAL_LOG, STRIPPED_PRIMORDIAL_LOG_ITEM);
+        registerFullBlock("primordial_wood", PRIMORDIAL_WOOD, PRIMORDIAL_WOOD_ITEM);
         registerFullBlock("primordial_planks", PRIMORDIAL_PLANKS, PRIMORDIAL_PLANKS_ITEM);
+        registerFullBlock("primordial_slab", PRIMORDIAL_SLAB, PRIMORDIAL_SLAB_ITEM);
+        registerFullBlock("primordial_door", PRIMORDIAL_DOOR, PRIMORDIAL_DOOR_ITEM);
         registerSign("primordial", PRIMORDIAL_SIGN, PRIMORDIAL_WALL_SIGN);
 
     }

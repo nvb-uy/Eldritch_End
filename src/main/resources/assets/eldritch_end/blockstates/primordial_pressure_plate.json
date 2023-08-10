@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "eldritch_end:block/primordial_pressure_plate"
+    },
+    "powered=true": {
+      "model": "eldritch_end:block/primordial_pressure_plate_down"
+    }
+  }
+}
