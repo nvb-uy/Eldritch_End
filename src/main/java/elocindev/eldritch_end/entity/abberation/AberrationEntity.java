@@ -1,10 +1,9 @@
-package elocindev.eldritch_end.entity;
+package elocindev.eldritch_end.entity.abberation;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.world.World;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -14,10 +13,10 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class AbberationEntity extends HostileEntity implements IAnimatable {
+public class AberrationEntity extends HostileEntity implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
 
-    protected AbberationEntity(EntityType<? extends HostileEntity> entityType, World world) {
+    public AberrationEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
     }
 
@@ -35,7 +34,7 @@ public class AbberationEntity extends HostileEntity implements IAnimatable {
         data.addAnimationController(new AnimationController<>(this, "controller", 0, this::animationPredicate));
     }
 
-    protected <E extends AbberationEntity> PlayState animationPredicate(final AnimationEvent<E> event) {
+    protected <E extends AberrationEntity> PlayState animationPredicate(final AnimationEvent<E> event) {
         if (event.isMoving()) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
             return PlayState.CONTINUE;

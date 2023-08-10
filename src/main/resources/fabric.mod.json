@@ -19,6 +19,9 @@
   "entrypoints": {
     "main": [
       "elocindev.eldritch_end.EldritchEnd"
+    ],
+    "client": [
+      "elocindev.eldritch_end.EldritchEndClient"
     ]
   },
   "mixins": [
