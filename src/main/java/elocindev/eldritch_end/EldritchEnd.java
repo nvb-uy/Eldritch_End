@@ -1,6 +1,6 @@
 package elocindev.eldritch_end;
 
-import elocindev.eldritch_end.entity.ModEntities;
+import elocindev.eldritch_end.registry.EntityRegistry;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
@@ -42,7 +42,7 @@ public class EldritchEnd implements ModInitializer {
 		ConfigLoader.init(config);
 
 		GeckoLib.initialize();
-		ModEntities.register();
+		EntityRegistry.register();
 		FeatureRegistry.register();
 		BiomeRegistry.register();
 		BlockRegistry.register();
