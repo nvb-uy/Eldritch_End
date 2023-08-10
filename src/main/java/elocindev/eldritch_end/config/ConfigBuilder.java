@@ -86,8 +86,10 @@ public class ConfigBuilder {
                 
                 defaultCfg.HEALTH = 20.0;
                 defaultCfg.MOVEMENT_SPEED = 0.15;
+                defaultCfg.CHASE_SPEED = 1.20;
                 defaultCfg.ATTACK_DAMAGE = 4.0;
                 defaultCfg.ATTACK_SPEED = 1.0;
+                defaultCfg.initital_corruption_duration_ticks = 200;
 
                 String defaultJson = BUILDER.toJson(defaultCfg);
                 Files.writeString(Aberration, defaultJson);

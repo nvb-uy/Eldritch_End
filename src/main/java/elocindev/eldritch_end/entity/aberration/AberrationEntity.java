@@ -33,8 +33,8 @@ public class AberrationEntity extends HostileEntity implements IAnimatable {
 
     @Override
     protected void initGoals() {
-        this.goalSelector.add(2, new MeleeAttackGoal(this, 1.2D, false));
-        this.goalSelector.add(7, new WanderAroundFarGoal(this,  1));
+        this.goalSelector.add(2, new MeleeAttackGoal(this, Configs.ENTITY_ABERRATION.CHASE_SPEED, false));
+        this.goalSelector.add(7, new WanderAroundFarGoal(this,  2));
         this.goalSelector.add(8, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.add(8, new LookAroundGoal(this));
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
@@ -57,7 +57,7 @@ public class AberrationEntity extends HostileEntity implements IAnimatable {
             if (victim.hasStatusEffect(effect))
                 victim.addStatusEffect(new StatusEffectInstance(effect, victim.getStatusEffect(effect).getDuration(), victim.getStatusEffect(effect).getAmplifier() + 1));
             else
-                victim.addStatusEffect(new StatusEffectInstance(effect, 200, 0));
+                victim.addStatusEffect(new StatusEffectInstance(effect, Configs.ENTITY_ABERRATION.initital_corruption_duration_ticks, 0));
         }
 
         return super.tryAttack(target);
