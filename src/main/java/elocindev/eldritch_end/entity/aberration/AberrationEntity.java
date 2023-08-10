@@ -7,6 +7,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -54,9 +55,13 @@ public class AberrationEntity extends HostileEntity implements IAnimatable {
         if (target instanceof PlayerEntity victim) {
             StatusEffect effect = StatusEffects.SLOWNESS; // TODO: Replace with corruption effect
 
-            if (victim.hasStatusEffect(effect))
+            if (victim.hasStatusEffect(effect)) {
                 victim.addStatusEffect(new StatusEffectInstance(effect, victim.getStatusEffect(effect).getDuration(), victim.getStatusEffect(effect).getAmplifier() + 1));
-            else
+                
+                float extradamage = ((float) Configs.ENTITY_ABERRATION.ATTACK_DAMAGE_ATTRIBUTE / 0.25f) * (victim.getStatusEffect(effect).getAmplifier() + 1);
+                
+                victim.damage(DamageSource.mob(this), extradamage);
+            } else
                 victim.addStatusEffect(new StatusEffectInstance(effect, Configs.ENTITY_ABERRATION.initital_corruption_duration_ticks, 0));
         }
 
