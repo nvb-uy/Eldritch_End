@@ -1,9 +1,14 @@
 package elocindev.eldritch_end.entity.abberation;
 
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ai.goal.ActiveTargetGoal;
+import net.minecraft.entity.ai.goal.LookAroundGoal;
+import net.minecraft.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.entity.ai.goal.WanderAroundFarGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -20,6 +25,14 @@ public class AberrationEntity extends HostileEntity implements IAnimatable {
         super(entityType, world);
     }
 
+    @Override
+    protected void initGoals() {
+        this.goalSelector.add(2, new MeleeAttackGoal(this, 1.2D, false));
+        this.goalSelector.add(3, new WanderAroundFarGoal(this, 0.75f, 1));
+        this.goalSelector.add(4, new LookAroundGoal(this));
+        this.targetSelector.add(2, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
+    }
+
     // Todo: replace with desired stats
     public static DefaultAttributeContainer.Builder setAttributes() {
         return HostileEntity.createMobAttributes()
@@ -34,6 +47,7 @@ public class AberrationEntity extends HostileEntity implements IAnimatable {
         data.addAnimationController(new AnimationController<>(this, "controller", 0, this::animationPredicate));
     }
 
+    // Todo: set up animation states etc
     protected <E extends AberrationEntity> PlayState animationPredicate(final AnimationEvent<E> event) {
         if (event.isMoving()) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));

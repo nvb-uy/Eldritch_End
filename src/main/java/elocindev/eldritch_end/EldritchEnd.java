@@ -42,7 +42,6 @@ public class EldritchEnd implements ModInitializer {
 		ConfigLoader.init(config);
 
 		GeckoLib.initialize();
-
 		ModEntities.register();
 		FeatureRegistry.register();
 		BiomeRegistry.register();
