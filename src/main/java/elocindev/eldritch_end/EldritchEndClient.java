@@ -1,7 +1,7 @@
 package elocindev.eldritch_end;
 
 import elocindev.eldritch_end.registry.EntityRegistry;
-import elocindev.eldritch_end.entity.abberation.AberrationRenderer;
+import elocindev.eldritch_end.entity.client.aberration.AberrationRenderer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 
