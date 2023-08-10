@@ -1,4 +1,4 @@
-package elocindev.eldritch_end.entity.abberation;
+package elocindev.eldritch_end.entity.aberration;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.ActiveTargetGoal;
@@ -10,6 +10,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
+import software.bernie.geckolib3.core.AnimationState;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -44,7 +45,8 @@ public class AberrationEntity extends HostileEntity implements IAnimatable {
 
     @Override
     public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController<>(this, "controller", 0, this::animationPredicate));
+        data.addAnimationController(new AnimationController<>(this, "controller", 10, this::animationPredicate));
+        data.addAnimationController(new AnimationController<>(this, "attackController", 10, this::attackAnimationPredicate));
     }
 
     // Todo: set up animation states etc
@@ -55,7 +57,17 @@ public class AberrationEntity extends HostileEntity implements IAnimatable {
         }
 
         event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
-        return PlayState.STOP;
+        return PlayState.CONTINUE;
+    }
+
+    protected <E extends AberrationEntity> PlayState attackAnimationPredicate(final AnimationEvent<E> event) {
+        if (this.handSwinging && event.getController().getAnimationState().equals(AnimationState.Stopped)) {
+            event.getController().markNeedsReload();
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", false));
+            this.handSwinging = false;
+        }
+
+        return PlayState.CONTINUE;
     }
 
     @Override
