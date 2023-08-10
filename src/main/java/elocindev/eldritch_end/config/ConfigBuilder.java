@@ -9,6 +9,7 @@ import com.google.gson.GsonBuilder;
 
 import elocindev.eldritch_end.config.entries.ClientConfig;
 import elocindev.eldritch_end.config.entries.PrimordialAbyssConfig;
+import elocindev.eldritch_end.config.entries.entities.AberrationConfig;
 import net.fabricmc.loader.api.FabricLoader;
 
 public class ConfigBuilder {
@@ -17,11 +18,17 @@ public class ConfigBuilder {
     // Folders
     public static final Path Folder = FabricLoader.getInstance().getConfigDir().resolve("eldritch_end");
     public static final Path BiomeFolder = Folder.resolve("biomes");
+    public static final Path EntityFolder = Folder.resolve("entities");
 
     // Files
     public static final Path ClientConfig = Folder.resolve("eldritch_end-client.json");
+
+        // Biomes
     public static final Path PrimordialAbyss = BiomeFolder.resolve("primordial_abyss.json");
     public static final Path HasturianWastes = BiomeFolder.resolve("hasturian_wastes.json");
+        
+        // Entities
+    public static final Path Aberration = EntityFolder.resolve("aberration.json");
     
     public static boolean hasStarted() {
         return createFolders();
@@ -70,12 +77,36 @@ public class ConfigBuilder {
         }
     }
 
+    // ENTITIES
+
+    public static AberrationConfig loadAberration() {
+        try {            
+            if (Files.notExists(Aberration)) {
+                AberrationConfig defaultCfg = new AberrationConfig();
+                
+                defaultCfg.HEALTH = 20.0;
+                defaultCfg.MOVEMENT_SPEED = 0.15;
+                defaultCfg.ATTACK_DAMAGE = 4.0;
+                defaultCfg.ATTACK_SPEED = 1.0;
+
+                String defaultJson = BUILDER.toJson(defaultCfg);
+                Files.writeString(Aberration, defaultJson);
+            }
+
+            return BUILDER.fromJson(Files.readString(Aberration), AberrationConfig.class);
+
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
+
     // MISC
 
     public static boolean createFolders() {
         try {
             if (Files.notExists(Folder)) Files.createDirectory(Folder);
             if (Files.notExists(BiomeFolder)) Files.createDirectory(BiomeFolder);
+            if (Files.notExists(EntityFolder)) Files.createDirectory(EntityFolder);
 
             return true;
         } catch (IOException exception) {
