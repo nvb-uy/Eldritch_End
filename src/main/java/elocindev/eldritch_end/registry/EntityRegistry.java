@@ -11,9 +11,10 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class EntityRegistry {
+    // Todo: Mob spawn egg?
     public static final EntityType<AberrationEntity> ABERRATION = Registry.register(
         Registry.ENTITY_TYPE, new Identifier(EldritchEnd.MODID, "aberration"),
-            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, AberrationEntity::new).dimensions(EntityDimensions.fixed(1, 1)).build());
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, AberrationEntity::new).dimensions(EntityDimensions.fixed(1, 2)).build());
 
     // Initialize attributes here
     public static void register() {

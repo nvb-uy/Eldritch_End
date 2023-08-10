@@ -1,10 +1,7 @@
 package elocindev.eldritch_end.entity.aberration;
 
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.goal.ActiveTargetGoal;
-import net.minecraft.entity.ai.goal.LookAroundGoal;
-import net.minecraft.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.entity.ai.goal.WanderAroundFarGoal;
+import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.HostileEntity;
@@ -29,8 +26,9 @@ public class AberrationEntity extends HostileEntity implements IAnimatable {
     @Override
     protected void initGoals() {
         this.goalSelector.add(2, new MeleeAttackGoal(this, 1.2D, false));
-        this.goalSelector.add(3, new WanderAroundFarGoal(this, 0.75f, 1));
-        this.goalSelector.add(4, new LookAroundGoal(this));
+        this.goalSelector.add(7, new WanderAroundFarGoal(this,  1));
+        this.goalSelector.add(8, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
+        this.goalSelector.add(8, new LookAroundGoal(this));
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
     }
 
@@ -49,7 +47,6 @@ public class AberrationEntity extends HostileEntity implements IAnimatable {
         data.addAnimationController(new AnimationController<>(this, "attackController", 10, this::attackAnimationPredicate));
     }
 
-    // Todo: set up animation states etc
     protected <E extends AberrationEntity> PlayState animationPredicate(final AnimationEvent<E> event) {
         if (event.isMoving()) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
@@ -63,7 +60,7 @@ public class AberrationEntity extends HostileEntity implements IAnimatable {
     protected <E extends AberrationEntity> PlayState attackAnimationPredicate(final AnimationEvent<E> event) {
         if (this.handSwinging && event.getController().getAnimationState().equals(AnimationState.Stopped)) {
             event.getController().markNeedsReload();
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", false));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("attack", false));
             this.handSwinging = false;
         }
 
