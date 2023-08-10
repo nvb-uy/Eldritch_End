@@ -34,7 +34,7 @@ public class AberrationEntity extends HostileEntity implements IAnimatable {
     @Override
     protected void initGoals() {
         this.goalSelector.add(2, new MeleeAttackGoal(this, Configs.ENTITY_ABERRATION.CHASE_SPEED, false));
-        this.goalSelector.add(7, new WanderAroundFarGoal(this,  2));
+        this.goalSelector.add(7, new WanderAroundFarGoal(this, Configs.ENTITY_ABERRATION.WANDER_SPEED));
         this.goalSelector.add(8, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.add(8, new LookAroundGoal(this));
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
@@ -65,10 +65,10 @@ public class AberrationEntity extends HostileEntity implements IAnimatable {
 
     public static DefaultAttributeContainer.Builder setAttributes() {
         return HostileEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, Configs.ENTITY_ABERRATION.HEALTH)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, Configs.ENTITY_ABERRATION.MOVEMENT_SPEED)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, Configs.ENTITY_ABERRATION.ATTACK_DAMAGE)
-                .add(EntityAttributes.GENERIC_ATTACK_SPEED, Configs.ENTITY_ABERRATION.ATTACK_SPEED);
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, Configs.ENTITY_ABERRATION.HEALTH_ATTRIBUTE)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, Configs.ENTITY_ABERRATION.MOVEMENT_SPEED_ATTRIBUTE)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, Configs.ENTITY_ABERRATION.ATTACK_DAMAGE_ATTRIBUTE)
+                .add(EntityAttributes.GENERIC_ATTACK_SPEED, Configs.ENTITY_ABERRATION.ATTACK_SPEED_ATTRIBUTE);
     }
 
     @Override
