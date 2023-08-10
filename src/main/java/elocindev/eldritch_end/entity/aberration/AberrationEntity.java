@@ -51,7 +51,8 @@ public class AberrationEntity extends HostileEntity implements IAnimatable {
 
     protected <E extends AberrationEntity> PlayState animationPredicate(final AnimationEvent<E> event) {
         if (event.isMoving() && this.isOnGround()) {
-            event.getController().animationSpeed = 1.0F + this.getVelocity().length() * 2.0F;
+            // TODO: Make this scale with the movement attribute
+            event.getController().animationSpeed = 3.0F;
 
             event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", ILoopType.EDefaultLoopTypes.LOOP));
             return PlayState.CONTINUE;
