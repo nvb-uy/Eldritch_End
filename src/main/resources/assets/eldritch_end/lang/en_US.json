@@ -5,5 +5,8 @@
     "block.eldritch_end.suspicious_fronds":"Suspicious Fronds",
     "block.eldritch_end.primordial_log":"Primordial Log",
     "block.eldritch_end.primordial_planks":"Primordial Planks",
-    "block.eldritch_end.primordial_sign":"Primordial Sign"
+    "block.eldritch_end.primordial_sign":"Primordial Sign",
+
+    "entity.eldritch_end.aberration":"Aberration",
+    "item.eldritch_end.aberration_spawn_egg": "Aberration Spawn Egg"
 }

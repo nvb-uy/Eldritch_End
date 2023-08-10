@@ -34,6 +34,8 @@ public class EldritchEnd implements ModInitializer {
 			
 			stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_PLANKS_ITEM));
 			stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_SIGN_ITEM));
+
+			stacks.add(new ItemStack(ItemRegistry.ABERRATION_SPAWN_EGG));
 		})
 		.build();
 
