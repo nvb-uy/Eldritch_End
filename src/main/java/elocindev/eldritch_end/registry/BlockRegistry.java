@@ -9,6 +9,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.block.PillarBlock;
+import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.block.SignBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.WallSignBlock;
@@ -38,12 +39,20 @@ public class BlockRegistry {
         .sounds(BlockSoundGroup.STEM));
 
     public static final BlockItem STRIPPED_PRIMORDIAL_LOG_ITEM = new BlockItem(STRIPPED_PRIMORDIAL_LOG, new FabricItemSettings());
-    
+
+
     public static final Block PRIMORDIAL_WOOD = new PillarBlock(FabricBlockSettings
         .copyOf(Blocks.OAK_LOG)
         .sounds(BlockSoundGroup.STEM));
 
     public static final BlockItem PRIMORDIAL_WOOD_ITEM = new BlockItem(PRIMORDIAL_WOOD, new FabricItemSettings());
+
+
+    public static final Block STRIPPED_PRIMORDIAL_WOOD = new PillarBlock(FabricBlockSettings
+        .copyOf(Blocks.OAK_LOG)
+        .sounds(BlockSoundGroup.STEM));
+
+    public static final BlockItem STRIPPED_PRIMORDIAL_WOOD_ITEM = new BlockItem(STRIPPED_PRIMORDIAL_WOOD, new FabricItemSettings());
 
     //
 
@@ -58,6 +67,12 @@ public class BlockRegistry {
         .sounds(BlockSoundGroup.WOOD));
 
     public static final BlockItem PRIMORDIAL_SLAB_ITEM = new BlockItem(PRIMORDIAL_SLAB, new FabricItemSettings());
+
+    public static Block PRIMORDIAL_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings
+        .copyOf(Blocks.OAK_PRESSURE_PLATE)
+        .sounds(BlockSoundGroup.WOOD));
+
+    public static final BlockItem PRIMORDIAL_PRESSURE_PLATE_ITEM = new BlockItem(PRIMORDIAL_PRESSURE_PLATE, new FabricItemSettings());
 
     // 
 
@@ -85,10 +100,12 @@ public class BlockRegistry {
 
         // Primordial woodset
         registerFullBlock("primordial_log", PRIMORDIAL_LOG, PRIMORDIAL_LOG_ITEM);
-        registerFullBlock("stripped_primordial_log", STRIPPED_PRIMORDIAL_LOG, STRIPPED_PRIMORDIAL_LOG_ITEM);
         registerFullBlock("primordial_wood", PRIMORDIAL_WOOD, PRIMORDIAL_WOOD_ITEM);
+        registerFullBlock("stripped_primordial_log", STRIPPED_PRIMORDIAL_LOG, STRIPPED_PRIMORDIAL_LOG_ITEM);
+        registerFullBlock("stripped_primordial_wood", STRIPPED_PRIMORDIAL_WOOD, STRIPPED_PRIMORDIAL_WOOD_ITEM);
         registerFullBlock("primordial_planks", PRIMORDIAL_PLANKS, PRIMORDIAL_PLANKS_ITEM);
         registerFullBlock("primordial_slab", PRIMORDIAL_SLAB, PRIMORDIAL_SLAB_ITEM);
+        registerFullBlock("primordial_pressure_plate", PRIMORDIAL_PRESSURE_PLATE, PRIMORDIAL_PRESSURE_PLATE_ITEM);
         registerFullBlock("primordial_door", PRIMORDIAL_DOOR, PRIMORDIAL_DOOR_ITEM);
         registerSign("primordial", PRIMORDIAL_SIGN, PRIMORDIAL_WALL_SIGN);
 
