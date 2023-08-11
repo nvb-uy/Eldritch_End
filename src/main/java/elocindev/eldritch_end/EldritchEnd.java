@@ -38,10 +38,13 @@ public class EldritchEnd implements ModInitializer {
 			stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_PLANKS_ITEM));
 			stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_SLAB_ITEM));
 			stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_PRESSURE_PLATE_ITEM));
-			// stairs
+			// todo: stairs
 			stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_DOOR_ITEM));
 			stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_SIGN_ITEM));
 
+			stacks.add(new ItemStack(ItemRegistry.SILVER_KEY));
+
+			// -- ENTITY EGGS --
 			stacks.add(new ItemStack(ItemRegistry.ABERRATION_SPAWN_EGG));
 		})
 		.build();
