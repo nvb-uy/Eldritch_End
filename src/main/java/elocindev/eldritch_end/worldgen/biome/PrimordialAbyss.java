@@ -33,7 +33,7 @@ public class PrimordialAbyss {
 	}
 
 	public static void addAberrations(SpawnSettings.Builder builder) {
-    	builder.spawn(SpawnGroup.MONSTER, new SpawnEntry(EntityRegistry.ABERRATION, 1, 1, 3));
+    	builder.spawn(SpawnGroup.MONSTER, new SpawnEntry(EntityRegistry.ABERRATION, 2, 1, 3));
     }
 
 	private static Biome compose(GenerationSettings.Builder builder) {
@@ -46,7 +46,8 @@ public class PrimordialAbyss {
 		return (new Biome.Builder())
 		.precipitation(Biome.Precipitation.NONE)
 		.temperature(Configs.BIOME_PRIMORDIAL_ABYSS.biome_temperature)
-
+		.downfall(0.1F)
+		
 		.effects((new BiomeEffects.Builder())
 			.waterColor(2367016).waterFogColor(2949228).fogColor(2758197).skyColor(1312788)
 			.particleConfig(new BiomeParticleConfig(ambientParticle, 0.1f))
