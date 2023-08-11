@@ -1,6 +1,7 @@
 package elocindev.eldritch_end.datagen;
 
 import elocindev.eldritch_end.registry.BlockRegistry;
+import elocindev.eldritch_end.registry.ItemRegistry;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.client.BlockStateModelGenerator;
@@ -19,6 +20,6 @@ public class ModelGenerator extends FabricModelProvider {
 
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
-
+        itemModelGenerator.register(ItemRegistry.SILVER_KEY, Models.GENERATED);
     }
 }
