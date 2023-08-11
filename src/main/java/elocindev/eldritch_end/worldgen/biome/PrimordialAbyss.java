@@ -33,13 +33,14 @@ public class PrimordialAbyss {
 	}
 
 	public static void addAberrations(SpawnSettings.Builder builder) {
-    	builder.spawn(SpawnGroup.MONSTER, new SpawnEntry(EntityRegistry.ABERRATION, 2, 1, 3));
+    	builder.spawn(SpawnGroup.MONSTER, new SpawnEntry(EntityRegistry.ABERRATION, 1, 1, 3));
     }
 
 	private static Biome compose(GenerationSettings.Builder builder) {
 		SpawnSettings.Builder settings = new SpawnSettings.Builder();
-		
-		addAberrations(settings);
+
+		if (Configs.BIOME_PRIMORDIAL_ABYSS.spawn_aberrations)
+			addAberrations(settings);
 
 		ParticleEffect ambientParticle = ParticleTypes.ASH;
 
