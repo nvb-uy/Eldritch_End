@@ -16,6 +16,7 @@ public class ModelGenerator extends FabricModelProvider {
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
         blockStateModelGenerator.registerSimpleCubeAll(BlockRegistry.PRIMORDIAL_PLANKS);
+        blockStateModelGenerator.registerDoor(BlockRegistry.PRIMORDIAL_DOOR);
     }
 
     @Override
