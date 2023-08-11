@@ -66,7 +66,7 @@ public class PrimordialAbyss {
 
 		BiomeModifications.addFeature(
             BiomeSelectors.includeByKey(BiomeRegistry.PRIMORDIAL_ABYSS),
-            GenerationStep.Feature.VEGETAL_DECORATION,
+            GenerationStep.Feature.SURFACE_STRUCTURES,
             RegistryKey.of(Registry.PLACED_FEATURE_KEY, FeatureRegistry.PRIMORDIAL_TREES_ID)
         );
     }

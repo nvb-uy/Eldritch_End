@@ -1,12 +1,13 @@
-package elocindev.eldritch_end.worldgen;
+package elocindev.eldritch_end.worldgen.feature;
 
 import com.mojang.serialization.Codec;
 
 import elocindev.eldritch_end.registry.BlockRegistry;
-import elocindev.eldritch_end.worldgen.feature.TreeConfig;
+import elocindev.eldritch_end.worldgen.util.TreeFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.Heightmap;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
@@ -29,29 +30,19 @@ public class PrimordialTreeFeature extends Feature<TreeConfig> {
         TreeConfig config = context.getConfig();
         BlockState primordial_log = Registry.BLOCK.get(config.blockID()).getDefaultState();
 
-        int treeHeight = 5 + world.getRandom().nextInt(5);
 
-        for (int y = 1; y <= treeHeight; y++) {
-            BlockPos currentPos = origin.up(y);
+        BlockPos topPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, new BlockPos(origin.getX(), 0, origin.getZ()));
+        
+        if (canPlace(world, topPos.down())) {
+            TreeFactory.placeSmallDeadTree(world, topPos, primordial_log); // REPLACE WITH MEDIUM TREE LATER
 
-            if (canPlace(world, currentPos)) {
-                world.setBlockState(currentPos, primordial_log, 3);
-                generated = true;
+            int ranX = world.getRandom().nextBetween(-9, 9);
+            int ranZ = world.getRandom().nextBetween(-9, 9);
 
-                if (y > 2 && world.getRandom().nextFloat() < 0.3f) {
-                    int numBranches = world.getRandom().nextInt(2) + 1;
-                    for (int i = 0; i < numBranches; i++) {
-                        int xOffset = world.getRandom().nextInt(3) - 1;
-                        int zOffset = world.getRandom().nextInt(3) - 1;
-
-                        BlockPos branchPos = currentPos.add(xOffset, 0, zOffset);
-                        
-                        if (canPlace(world, branchPos)) {
-                            world.setBlockState(branchPos, primordial_log, 3);
-                        }
-                    }
-                }
-            }
+            TreeFactory.placeSmallDeadTree(world, 
+                world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, new BlockPos(origin.getX() + ranX, 0, origin.getZ() + ranZ)), primordial_log);
+            
+            generated = true;
         }
 
         return generated;

@@ -30,10 +30,10 @@ public class BiomeSurfaceGeneration extends Feature<SurfaceConfig> {
         SurfaceConfig config = context.getConfig();
         BlockState blockState = Registry.BLOCK.get(config.blockID()).getDefaultState();
 
-        int centerX = origin.getX() + world.getRandom().nextInt(6);
-        int centerZ = origin.getZ() + world.getRandom().nextInt(6);
+        int centerX = origin.getX() + world.getRandom().nextInt(4);
+        int centerZ = origin.getZ() + world.getRandom().nextInt(4);
         
-        int radius = world.getRandom().nextInt(6) + 6;
+        int radius = world.getRandom().nextInt(8) + 6;
         int radiusX = radius; int radiusZ = radius;
         
         if (world.getRandom().nextBoolean()) {
