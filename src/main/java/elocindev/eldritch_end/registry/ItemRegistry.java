@@ -10,11 +10,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import elocindev.eldritch_end.EldritchEnd;
+import elocindev.eldritch_end.item.SilverKey;
 
 public class ItemRegistry {
     private static final Logger LOGGER = LoggerFactory.getLogger(EldritchEnd.MODID);
 
     public static final Item ABERRATION_SPAWN_EGG = new SpawnEggItem(EntityRegistry.ABERRATION, 0x54496f, 0x726f76, new FabricItemSettings());
+    
+    public static final Item SILVER_KEY = new SilverKey(new FabricItemSettings());
 
     public static Item reg(Item instance, String id) {
         return Registry.register(Registry.ITEM, new Identifier(EldritchEnd.MODID, id), instance);
@@ -23,5 +26,6 @@ public class ItemRegistry {
     public static void register() {
         LOGGER.info("Registered Prominent Items");
         reg(ABERRATION_SPAWN_EGG, "aberration_spawn_egg");
+        reg(SILVER_KEY, "silver_key");
     }
 }
