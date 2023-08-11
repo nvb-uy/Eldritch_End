@@ -59,5 +59,11 @@ public class PrimordialAbyss {
             GenerationStep.Feature.TOP_LAYER_MODIFICATION,
             RegistryKey.of(Registry.PLACED_FEATURE_KEY, FeatureRegistry.PRIMORDIAL_ABYSS_SURFACE_ID)
         );
+
+		BiomeModifications.addFeature(
+            BiomeSelectors.includeByKey(BiomeRegistry.PRIMORDIAL_ABYSS),
+            GenerationStep.Feature.VEGETAL_DECORATION,
+            RegistryKey.of(Registry.PLACED_FEATURE_KEY, FeatureRegistry.PRIMORDIAL_TREES_ID)
+        );
     }
 }

@@ -27,19 +27,19 @@ public class BiomeSurfaceGeneration extends Feature<SurfaceConfig> {
         boolean generated = false;
         StructureWorldAccess world = context.getWorld();
         BlockPos origin = context.getOrigin();
-    
+
         int chunkX = origin.getX() >> 4;
         int chunkZ = origin.getZ() >> 4;
         ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
-    
+
         SurfaceConfig config = context.getConfig();
         BlockState blockState = Registry.BLOCK.get(config.blockID()).getDefaultState();
-    
+
         int centerX = world.getRandom().nextInt(16);
         int centerZ = world.getRandom().nextInt(16);
         int radius = world.getRandom().nextInt(10) + 6;
         BlockPos center = chunkPos.getCenterAtY(origin.getY());
-    
+
         for (int x = centerX - radius; x <= centerX + radius; x++) {
             for (int z = centerZ - radius; z <= centerZ + radius; z++) {
                 BlockPos pos = new BlockPos(origin.getX() + x, 0, origin.getZ() + z);
@@ -48,16 +48,19 @@ public class BiomeSurfaceGeneration extends Feature<SurfaceConfig> {
                 if (distance > radius * radius) {
                     continue;
                 }
-    
+
                 BlockPos topPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE, pos);
-    
+
                 if (canPlace(world, topPos.down())) {
-                    world.setBlockState(topPos.down(), blockState, 3);
+                    int yOffset = world.getRandom().nextInt(3) - 1;
+                    BlockPos targetPos = topPos.down(yOffset);
+
+                    world.setBlockState(targetPos, blockState, 3);
                     generated = true;
                 }
             }
         }
-    
+
         return generated;
     }
     
