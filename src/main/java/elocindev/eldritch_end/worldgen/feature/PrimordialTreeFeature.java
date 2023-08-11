@@ -36,11 +36,11 @@ public class PrimordialTreeFeature extends Feature<TreeConfig> {
         if (canPlace(world, topPos.down())) {
             TreeFactory.placeSmallDeadTree(world, topPos, primordial_log); // REPLACE WITH MEDIUM TREE LATER
 
-            int ranX = world.getRandom().nextBetween(-9, 9);
-            int ranZ = world.getRandom().nextBetween(-9, 9);
+            int ranX = world.getRandom().nextBetween(-9, 9); int ranZ = world.getRandom().nextBetween(-9, 9);
+            BlockPos smallTreePos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, new BlockPos(origin.getX() + ranX, 0, origin.getZ() + ranZ));
 
-            TreeFactory.placeSmallDeadTree(world, 
-                world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, new BlockPos(origin.getX() + ranX, 0, origin.getZ() + ranZ)), primordial_log);
+            if (canPlace(world, smallTreePos.down()))
+                TreeFactory.placeSmallDeadTree(world, smallTreePos, primordial_log);
             
             generated = true;
         }
