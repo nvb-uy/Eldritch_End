@@ -46,7 +46,6 @@ public class PrimordialAbyss {
 		return (new Biome.Builder())
 		.precipitation(Biome.Precipitation.NONE)
 		.temperature(Configs.BIOME_PRIMORDIAL_ABYSS.biome_temperature)
-		.downfall(0.1F)
 
 		.effects((new BiomeEffects.Builder())
 			.waterColor(2367016).waterFogColor(2949228).fogColor(2758197).skyColor(1312788)
