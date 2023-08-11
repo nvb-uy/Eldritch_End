@@ -35,8 +35,8 @@ public abstract class BackgroundRendererMixin {
 		for (int i = 0; i < 8; i++) {
 			var bp = new BlockPos(pos.add(0, -i, 0));
 			if (world.getBlockState(bp).getBlock() == BlockRegistry.ABYSMAL_FRONDS || world.getBlockState(bp).getBlock() == BlockRegistry.SUSPICIOUS_FRONDS) {
-				RenderSystem.setShaderFogStart(MathHelper.lerp(1.0f, vanillaFogStart(viewDistance), 0f + 0.0f));
-				RenderSystem.setShaderFogEnd(MathHelper.lerp(1.0f, viewDistance, viewDistance / 3 + 0.0f));
+				RenderSystem.setShaderFogStart(MathHelper.lerp(1.0f, vanillaFogStart(viewDistance), 0f));
+				RenderSystem.setShaderFogEnd(MathHelper.lerp(1.0f, viewDistance, viewDistance / 3));
 				break;
 			}
 		}
