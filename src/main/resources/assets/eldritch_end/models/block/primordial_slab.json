@@ -1,8 +1,0 @@
-{
-  "parent": "block/slab",
-  "textures": {
-    "bottom": "eldritch_end:block/primordial_planks",
-    "top": "eldritch_end:block/primordial_planks",
-    "side": "eldritch_end:block/primordial_planks"
-  }
-}
