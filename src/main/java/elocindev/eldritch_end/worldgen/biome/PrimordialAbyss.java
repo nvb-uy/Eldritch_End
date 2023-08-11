@@ -2,12 +2,13 @@ package elocindev.eldritch_end.worldgen.biome;
 
 import elocindev.eldritch_end.config.Configs;
 import elocindev.eldritch_end.registry.BiomeRegistry;
+import elocindev.eldritch_end.registry.EntityRegistry;
 import elocindev.eldritch_end.registry.FeatureRegistry;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.minecraft.entity.SpawnGroup;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.sound.BiomeMoodSound;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
@@ -16,8 +17,8 @@ import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.BiomeParticleConfig;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
+import net.minecraft.world.biome.SpawnSettings.SpawnEntry;
 import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
 import net.minecraft.world.gen.feature.EndPlacedFeatures;
 
 public class PrimordialAbyss {
@@ -31,10 +32,14 @@ public class PrimordialAbyss {
 		return compose(builder);
 	}
 
+	public static void addAberrations(SpawnSettings.Builder builder) {
+    	builder.spawn(SpawnGroup.MONSTER, new SpawnEntry(EntityRegistry.ABERRATION, 1, 1, 3));
+    }
+
 	private static Biome compose(GenerationSettings.Builder builder) {
 		SpawnSettings.Builder settings = new SpawnSettings.Builder();
 		
-		DefaultBiomeFeatures.addEndMobs(settings);
+		addAberrations(settings);
 
 		ParticleEffect ambientParticle = ParticleTypes.ASH;
 
@@ -45,8 +50,7 @@ public class PrimordialAbyss {
 
 		.effects((new BiomeEffects.Builder())
 			.waterColor(2367016).waterFogColor(2949228).fogColor(2758197).skyColor(1312788)
-			.moodSound(BiomeMoodSound.CAVE)
-			.particleConfig(new BiomeParticleConfig(ambientParticle, 0.3f))
+			.particleConfig(new BiomeParticleConfig(ambientParticle, 0.1f))
 			.build())
 
 		.spawnSettings(settings.build())	
@@ -58,6 +62,12 @@ public class PrimordialAbyss {
             BiomeSelectors.includeByKey(BiomeRegistry.PRIMORDIAL_ABYSS),
             GenerationStep.Feature.TOP_LAYER_MODIFICATION,
             RegistryKey.of(Registry.PLACED_FEATURE_KEY, FeatureRegistry.PRIMORDIAL_ABYSS_SURFACE_ID)
+        );
+
+		BiomeModifications.addFeature(
+            BiomeSelectors.includeByKey(BiomeRegistry.PRIMORDIAL_ABYSS),
+            GenerationStep.Feature.VEGETAL_DECORATION,
+            RegistryKey.of(Registry.PLACED_FEATURE_KEY, FeatureRegistry.PRIMORDIAL_TREES_ID)
         );
     }
 }

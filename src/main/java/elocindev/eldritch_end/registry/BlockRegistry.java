@@ -12,6 +12,7 @@ import net.minecraft.block.PillarBlock;
 import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.block.SignBlock;
 import net.minecraft.block.SlabBlock;
+import net.minecraft.block.TrapdoorBlock;
 import net.minecraft.block.WallSignBlock;
 import net.minecraft.block.AbstractBlock.Settings;
 import net.minecraft.item.BlockItem;
@@ -82,6 +83,12 @@ public class BlockRegistry {
 
     public static final BlockItem PRIMORDIAL_DOOR_ITEM = new BlockItem(PRIMORDIAL_DOOR, new FabricItemSettings());
 
+    public static final Block PRIMORDIAL_TRAPDOOR = new TrapdoorBlock(FabricBlockSettings
+        .copyOf(Blocks.OAK_TRAPDOOR)
+        .sounds(BlockSoundGroup.WOOD));
+
+    public static final BlockItem PRIMORDIAL_TRAPDOOR_ITEM = new BlockItem(PRIMORDIAL_TRAPDOOR, new FabricItemSettings());
+
     public static final SignBlock PRIMORDIAL_SIGN = new SignBlock(FabricBlockSettings
         .copyOf(Blocks.OAK_SIGN)
         .sounds(BlockSoundGroup.WOOD), EldritchProperties.PRIMORDIAL_SIGN_TYPE);
@@ -107,6 +114,7 @@ public class BlockRegistry {
         registerFullBlock("primordial_slab", PRIMORDIAL_SLAB, PRIMORDIAL_SLAB_ITEM);
         registerFullBlock("primordial_pressure_plate", PRIMORDIAL_PRESSURE_PLATE, PRIMORDIAL_PRESSURE_PLATE_ITEM);
         registerFullBlock("primordial_door", PRIMORDIAL_DOOR, PRIMORDIAL_DOOR_ITEM);
+        registerFullBlock("primordial_trapdoor", PRIMORDIAL_TRAPDOOR, PRIMORDIAL_TRAPDOOR_ITEM);
         registerSign("primordial", PRIMORDIAL_SIGN, PRIMORDIAL_WALL_SIGN);
 
     }

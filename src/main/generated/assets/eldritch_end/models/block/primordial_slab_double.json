@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "eldritch_end:block/primordial_planks",
+    "side": "eldritch_end:block/primordial_planks"
+  }
+}
