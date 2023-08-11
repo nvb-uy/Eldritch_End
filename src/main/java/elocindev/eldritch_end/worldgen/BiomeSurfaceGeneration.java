@@ -32,13 +32,21 @@ public class BiomeSurfaceGeneration extends Feature<SurfaceConfig> {
 
         int centerX = origin.getX() + world.getRandom().nextInt(6);
         int centerZ = origin.getZ() + world.getRandom().nextInt(6);
+        
         int radius = world.getRandom().nextInt(6) + 6;
+        int radiusX = radius; int radiusZ = radius;
+        
+        if (world.getRandom().nextBoolean()) {
+            radiusX += world.getRandom().nextInt(2) + 1;
+        } else {
+            radiusZ += world.getRandom().nextInt(2) + 1;
+        }
 
-        for (int x = centerX - radius; x <= centerX + radius; x++) {
-            for (int z = centerZ - radius; z <= centerZ + radius; z++) {
+        for (int x = centerX - radiusX; x <= centerX + radiusX; x++) {
+            for (int z = centerZ - radiusZ; z <= centerZ + radiusZ; z++) {
                 double distanceSq = (x - centerX) * (x - centerX) + (z - centerZ) * (z - centerZ);
 
-                if (distanceSq <= radius * radius) {
+                if (distanceSq <= radiusX * radiusX && distanceSq <= radiusZ * radiusZ) {
                     BlockPos topPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE, new BlockPos(x, 0, z));
                     BlockPos targetPos = topPos.down();
 
@@ -52,5 +60,6 @@ public class BiomeSurfaceGeneration extends Feature<SurfaceConfig> {
 
         return generated;
     }
+
 
 }
