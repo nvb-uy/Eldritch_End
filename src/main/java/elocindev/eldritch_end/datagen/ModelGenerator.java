@@ -21,15 +21,17 @@ public class ModelGenerator extends FabricModelProvider {
     }
 
     @Override
-    public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
-        blockStateModelGenerator.registerSimpleCubeAll(BlockRegistry.PRIMORDIAL_PLANKS);
-        blockStateModelGenerator.registerDoor(BlockRegistry.PRIMORDIAL_DOOR);
-        registerSlab(BlockRegistry.PRIMORDIAL_SLAB, BlockRegistry.PRIMORDIAL_PLANKS, blockStateModelGenerator.modelCollector, blockStateModelGenerator.blockStateCollector);
+    public void generateBlockStateModels(BlockStateModelGenerator generator) {
+        generator.registerSimpleCubeAll(BlockRegistry.PRIMORDIAL_PLANKS);
+        generator.registerDoor(BlockRegistry.PRIMORDIAL_DOOR);
+        generator.registerTrapdoor(BlockRegistry.PRIMORDIAL_TRAPDOOR);
+        
+        registerSlab(BlockRegistry.PRIMORDIAL_SLAB, BlockRegistry.PRIMORDIAL_PLANKS, generator.modelCollector, generator.blockStateCollector);
     }
 
     @Override
-    public void generateItemModels(ItemModelGenerator itemModelGenerator) {
-        itemModelGenerator.register(ItemRegistry.SILVER_KEY, Models.GENERATED);
+    public void generateItemModels(ItemModelGenerator generator) {
+        generator.register(ItemRegistry.SILVER_KEY, Models.GENERATED);
     }
 
     /** Takes in the slab block as well as a plank block which acts as the texture. */

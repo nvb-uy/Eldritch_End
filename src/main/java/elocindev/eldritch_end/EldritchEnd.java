@@ -40,6 +40,7 @@ public class EldritchEnd implements ModInitializer {
 			stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_PRESSURE_PLATE_ITEM));
 			// todo: stairs
 			stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_DOOR_ITEM));
+			stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_TRAPDOOR_ITEM));
 			stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_SIGN_ITEM));
 
 			stacks.add(new ItemStack(ItemRegistry.SILVER_KEY));
