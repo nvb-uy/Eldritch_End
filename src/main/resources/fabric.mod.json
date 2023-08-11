@@ -17,6 +17,9 @@
 
   "environment": "*",
   "entrypoints": {
+    "fabric-datagen": [
+      "elocindev.eldritch_end.datagen.DataGeneration"
+    ],
     "main": [
       "elocindev.eldritch_end.EldritchEnd"
     ],
