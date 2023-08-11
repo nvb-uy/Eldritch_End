@@ -25,7 +25,7 @@ public class ModelGenerator extends FabricModelProvider {
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
         blockStateModelGenerator.registerSimpleCubeAll(BlockRegistry.PRIMORDIAL_PLANKS);
         blockStateModelGenerator.registerDoor(BlockRegistry.PRIMORDIAL_DOOR);
-        registerPrimordialSlab(blockStateModelGenerator.modelCollector, blockStateModelGenerator.blockStateCollector);
+        registerSlab(BlockRegistry.PRIMORDIAL_SLAB, BlockRegistry.PRIMORDIAL_PLANKS, blockStateModelGenerator.modelCollector, blockStateModelGenerator.blockStateCollector);
     }
 
     @Override
@@ -33,15 +33,16 @@ public class ModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(ItemRegistry.SILVER_KEY, Models.GENERATED);
     }
 
-    private void registerPrimordialSlab(BiConsumer<Identifier, Supplier<JsonElement>> modelCollector, Consumer<BlockStateSupplier> blockStateCollector) {
-        TextureMap textureMap = TextureMap.all(BlockRegistry.PRIMORDIAL_PLANKS);
-        TextureMap textureMap2 = TextureMap.sideEnd(TextureMap.getSubId(BlockRegistry.PRIMORDIAL_PLANKS, ""), textureMap.getTexture(TextureKey.TOP));
+    /** Takes in the slab block as well as a plank block which acts as the texture. */
+    private void registerSlab(Block slabBlock, Block plankBlock, BiConsumer<Identifier, Supplier<JsonElement>> modelCollector, Consumer<BlockStateSupplier> blockStateCollector) {
+        TextureMap textureMap = TextureMap.all(plankBlock);
+        TextureMap textureMap2 = TextureMap.sideEnd(TextureMap.getSubId(plankBlock, ""), textureMap.getTexture(TextureKey.TOP));
 
-        Identifier identifier = Models.SLAB.upload(BlockRegistry.PRIMORDIAL_SLAB, textureMap2, modelCollector);
-        Identifier identifier2 = Models.SLAB_TOP.upload(BlockRegistry.PRIMORDIAL_SLAB, textureMap2, modelCollector);
-        Identifier identifier3 = Models.CUBE_COLUMN.uploadWithoutVariant(BlockRegistry.PRIMORDIAL_SLAB, "_double", textureMap2, modelCollector);
+        Identifier identifier = Models.SLAB.upload(slabBlock, textureMap2, modelCollector);
+        Identifier identifier2 = Models.SLAB_TOP.upload(slabBlock, textureMap2, modelCollector);
+        Identifier identifier3 = Models.CUBE_COLUMN.uploadWithoutVariant(slabBlock, "_double", textureMap2, modelCollector);
 
-        blockStateCollector.accept(createSlabBlockState(BlockRegistry.PRIMORDIAL_SLAB, identifier, identifier2, identifier3));
+        blockStateCollector.accept(createSlabBlockState(slabBlock, identifier, identifier2, identifier3));
     }
 
     public static BlockStateSupplier createSlabBlockState(Block slabBlock, Identifier bottomModelId, Identifier topModelId, Identifier fullModelId) {
