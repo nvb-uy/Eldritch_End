@@ -6,7 +6,6 @@ import elocindev.eldritch_end.worldgen.feature.SurfaceConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.StructureWorldAccess;
@@ -28,40 +27,30 @@ public class BiomeSurfaceGeneration extends Feature<SurfaceConfig> {
         StructureWorldAccess world = context.getWorld();
         BlockPos origin = context.getOrigin();
 
-        int chunkX = origin.getX() >> 4;
-        int chunkZ = origin.getZ() >> 4;
-        ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
-
         SurfaceConfig config = context.getConfig();
         BlockState blockState = Registry.BLOCK.get(config.blockID()).getDefaultState();
 
-        int centerX = world.getRandom().nextInt(16);
-        int centerZ = world.getRandom().nextInt(16);
+        int centerX = origin.getX() + world.getRandom().nextInt(16);
+        int centerZ = origin.getZ() + world.getRandom().nextInt(16);
         int radius = world.getRandom().nextInt(10) + 6;
-        BlockPos center = chunkPos.getCenterAtY(origin.getY());
 
         for (int x = centerX - radius; x <= centerX + radius; x++) {
             for (int z = centerZ - radius; z <= centerZ + radius; z++) {
-                BlockPos pos = new BlockPos(origin.getX() + x, 0, origin.getZ() + z);
+                double distanceSq = (x - centerX) * (x - centerX) + (z - centerZ) * (z - centerZ);
 
-                double distance = center.getSquaredDistance(pos.getX(), center.getY(), pos.getZ());
-                if (distance > radius * radius) {
-                    continue;
-                }
+                if (distanceSq <= radius * radius) {
+                    BlockPos topPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE, new BlockPos(x, 0, z));
+                    BlockPos targetPos = topPos.down();
 
-                BlockPos topPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE, pos);
-
-                if (canPlace(world, topPos.down())) {
-                    int yOffset = world.getRandom().nextInt(3) - 1;
-                    BlockPos targetPos = topPos.down(yOffset);
-
-                    world.setBlockState(targetPos, blockState, 3);
-                    generated = true;
+                    if (canPlace(world, targetPos)) {
+                        world.setBlockState(targetPos, blockState, 3);
+                        generated = true;
+                    }
                 }
             }
         }
 
         return generated;
     }
-    
+
 }
