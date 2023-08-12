@@ -3,15 +3,12 @@ import com.mojang.blaze3d.systems.RenderSystem;
 
 import elocindev.eldritch_end.config.Configs;
 import elocindev.eldritch_end.registry.BiomeRegistry;
-import elocindev.eldritch_end.registry.BlockRegistry;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.BackgroundRenderer;
 import net.minecraft.client.render.Camera;
 import net.minecraft.client.render.CameraSubmersionType;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

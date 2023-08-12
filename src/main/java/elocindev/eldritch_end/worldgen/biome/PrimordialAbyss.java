@@ -38,8 +38,9 @@ public class PrimordialAbyss {
 
 	private static Biome compose(GenerationSettings.Builder builder) {
 		SpawnSettings.Builder settings = new SpawnSettings.Builder();
-		
-		addAberrations(settings);
+
+		if (Configs.BIOME_PRIMORDIAL_ABYSS.spawn_aberrations)
+			addAberrations(settings);
 
 		ParticleEffect ambientParticle = ParticleTypes.ASH;
 
@@ -47,7 +48,7 @@ public class PrimordialAbyss {
 		.precipitation(Biome.Precipitation.NONE)
 		.temperature(Configs.BIOME_PRIMORDIAL_ABYSS.biome_temperature)
 		.downfall(0.1F)
-
+		
 		.effects((new BiomeEffects.Builder())
 			.waterColor(2367016).waterFogColor(2949228).fogColor(2758197).skyColor(1312788)
 			.particleConfig(new BiomeParticleConfig(ambientParticle, 0.1f))
@@ -66,7 +67,7 @@ public class PrimordialAbyss {
 
 		BiomeModifications.addFeature(
             BiomeSelectors.includeByKey(BiomeRegistry.PRIMORDIAL_ABYSS),
-            GenerationStep.Feature.VEGETAL_DECORATION,
+            GenerationStep.Feature.SURFACE_STRUCTURES,
             RegistryKey.of(Registry.PLACED_FEATURE_KEY, FeatureRegistry.PRIMORDIAL_TREES_ID)
         );
     }

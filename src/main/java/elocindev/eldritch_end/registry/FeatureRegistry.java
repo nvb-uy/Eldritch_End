@@ -4,7 +4,7 @@ import java.util.List;
 
 import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.worldgen.BiomeSurfaceGeneration;
-import elocindev.eldritch_end.worldgen.PrimordialTreeFeature;
+import elocindev.eldritch_end.worldgen.feature.PrimordialTreeFeature;
 import elocindev.eldritch_end.worldgen.feature.SurfaceConfig;
 import elocindev.eldritch_end.worldgen.feature.TreeConfig;
 import net.minecraft.util.Identifier;
@@ -17,7 +17,7 @@ import net.minecraft.world.gen.feature.PlacedFeature;
 import net.minecraft.world.gen.placementmodifier.SquarePlacementModifier;
 
 public class FeatureRegistry {
-    public static final Identifier PRIMORDIAL_ABYSS_SURFACE_ID = new Identifier(EldritchEnd.MODID, "primordial_abyss_surface");
+    public static final Identifier PRIMORDIAL_ABYSS_SURFACE_ID = new Identifier(EldritchEnd.MODID, "abyssal_surface");
     public static Feature<SurfaceConfig> PRIMORDIAL_ABYSS_SURFACE = new BiomeSurfaceGeneration(SurfaceConfig.CODEC);
     public static ConfiguredFeature<SurfaceConfig, BiomeSurfaceGeneration> PRIMORDIAL_ABYSS_SURFACE_CONFIGURED = new ConfiguredFeature<>(
                     (BiomeSurfaceGeneration) PRIMORDIAL_ABYSS_SURFACE,
@@ -30,7 +30,7 @@ public class FeatureRegistry {
             ), List.of(SquarePlacementModifier.of())
     );
 
-    public static final Identifier PRIMORDIAL_TREES_ID = new Identifier(EldritchEnd.MODID, "primordial_abyss_surface");
+    public static final Identifier PRIMORDIAL_TREES_ID = new Identifier(EldritchEnd.MODID, "primordial_tree");
 
     public static Feature<TreeConfig> PRIMORDIAL_TREES = new PrimordialTreeFeature(TreeConfig.CODEC);
     public static ConfiguredFeature<TreeConfig, PrimordialTreeFeature> PRIMORDIAL_TREE_CONFIGURED = new ConfiguredFeature<>(
@@ -48,5 +48,9 @@ public class FeatureRegistry {
         Registry.register(Registry.FEATURE, PRIMORDIAL_ABYSS_SURFACE_ID, PRIMORDIAL_ABYSS_SURFACE);
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, PRIMORDIAL_ABYSS_SURFACE_ID, PRIMORDIAL_ABYSS_SURFACE_CONFIGURED);
         Registry.register(BuiltinRegistries.PLACED_FEATURE, PRIMORDIAL_ABYSS_SURFACE_ID, PRIMORDIAL_ABYSS_SURFACE_PLACED);
+        
+        Registry.register(Registry.FEATURE, PRIMORDIAL_TREES_ID, PRIMORDIAL_TREES);
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, PRIMORDIAL_TREES_ID, PRIMORDIAL_TREE_CONFIGURED);
+        Registry.register(BuiltinRegistries.PLACED_FEATURE, PRIMORDIAL_TREES_ID, PRIMORDIAL_TREE_PLACED);
     }
 }
