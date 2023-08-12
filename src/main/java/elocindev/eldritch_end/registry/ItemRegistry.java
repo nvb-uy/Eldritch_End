@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import elocindev.eldritch_end.EldritchEnd;
+import elocindev.eldritch_end.item.Necronomicon;
 import elocindev.eldritch_end.item.SilverKey;
 
 public class ItemRegistry {
@@ -17,6 +18,7 @@ public class ItemRegistry {
 
     public static final Item ABERRATION_SPAWN_EGG = new SpawnEggItem(EntityRegistry.ABERRATION, 0x54496f, 0x726f76, new FabricItemSettings());
     
+    public static final Item NECRONOMICON = new Necronomicon(new FabricItemSettings());
     public static final Item SILVER_KEY = new SilverKey(new FabricItemSettings());
 
     public static Item reg(Item instance, String id) {
@@ -24,7 +26,10 @@ public class ItemRegistry {
     }
 
     public static void register() {
+        
         reg(ABERRATION_SPAWN_EGG, "aberration_spawn_egg");
+        reg(NECRONOMICON, "necronomicon");
         reg(SILVER_KEY, "silver_key");
+        LOGGER.info("Registered Eldritch End's items");
     }
 }

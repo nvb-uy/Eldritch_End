@@ -32,6 +32,7 @@ public class ModelGenerator extends FabricModelProvider {
     @Override
     public void generateItemModels(ItemModelGenerator generator) {
         generator.register(ItemRegistry.SILVER_KEY, Models.GENERATED);
+        generator.register(ItemRegistry.NECRONOMICON, Models.GENERATED);
     }
 
     /** Takes in the slab block as well as a plank block which acts as the texture. */

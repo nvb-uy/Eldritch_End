@@ -28,6 +28,9 @@ public class EldritchEnd implements ModInitializer {
 		new Identifier(MODID, "tab"))
 		.icon(() -> new ItemStack(BlockRegistry.ABYSMAL_FRONDS_ITEM))
 		.appendItems(stacks -> { 
+			stacks.add(new ItemStack(ItemRegistry.NECRONOMICON));
+
+			// -- BLOCKS --
 			stacks.add(new ItemStack(BlockRegistry.ABYSMAL_FRONDS_ITEM)); 
 			stacks.add(new ItemStack(BlockRegistry.SUSPICIOUS_FRONDS_ITEM));
 
@@ -43,6 +46,7 @@ public class EldritchEnd implements ModInitializer {
 			stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_TRAPDOOR_ITEM));
 			stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_SIGN_ITEM));
 
+			// -- ARTIFACTS --
 			stacks.add(new ItemStack(ItemRegistry.SILVER_KEY));
 
 			// -- ENTITY EGGS --
