@@ -11,6 +11,17 @@ public class TreeFactory {
     //        DEAD TREES
     // *------------------------*
 
+    public static void addRandomMedium(StructureWorldAccess world, BlockPos pos, BlockState block) {
+        switch (world.getRandom().nextInt(2)) {
+            case 0:
+                placeMediumDeadTree1(world, pos, block);
+                break;
+            case 1:
+                placeMediumDeadTree2(world, pos, block);
+                break;
+        }
+    }
+
     // -- SMALL --
     public static void placeSmallDeadTree(StructureWorldAccess world, BlockPos pos, BlockState block) {
         
@@ -47,6 +58,41 @@ public class TreeFactory {
 
         for (int i = 0; i < branches_vertical.length; i++) {
             world.setBlockState(branches_vertical[i], block, 3);
+        }
+        
+        world.setBlockState(pos.north().up(2), block.with(PillarBlock.AXIS, Direction.NORTH.getAxis()), 3);
+        world.setBlockState(pos.south().west().up(4), block.with(PillarBlock.AXIS, Direction.WEST.getAxis()), 3);
+    }
+    // -- MEDIUM 2 --
+    public static void placeMediumDeadTree2(StructureWorldAccess world, BlockPos pos, BlockState block) {
+        BlockPos[] branches_vertical = {
+            pos.east().up(2),
+            pos.west().up(2),
+            pos.west().up(3),
+            pos.west().up(4),
+            pos.west().up(5),
+            pos.west().up(6),
+            pos.south(2).up(5),
+            pos.south(2).up(6),
+            pos.south(2).up(7),
+            pos.south(2).up(8)
+        };
+
+        BlockPos[] branches_horizontal_ns = {
+            pos.north().west().up(4),
+            pos.south().west().up(4),
+            pos.south(2).west().up(4)
+        };
+
+        for (int i = 0; i < 2; i++) {
+            world.setBlockState(pos.up(i), block, 3);
+        }
+
+        for (int i = 0; i < branches_vertical.length; i++) {
+            world.setBlockState(branches_vertical[i], block, 3);
+        }
+        for (int i = 0; i < branches_horizontal_ns.length; i++) {
+            world.setBlockState(branches_horizontal_ns[i], block.with(PillarBlock.AXIS, Direction.SOUTH.getAxis()), 3);
         }
         
         world.setBlockState(pos.north().up(2), block.with(PillarBlock.AXIS, Direction.NORTH.getAxis()), 3);

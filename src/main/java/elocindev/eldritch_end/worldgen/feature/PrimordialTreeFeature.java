@@ -34,7 +34,7 @@ public class PrimordialTreeFeature extends Feature<TreeConfig> {
         BlockPos topPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, new BlockPos(origin.getX(), 0, origin.getZ()));
         
         if (canPlace(world, topPos.down())) {
-            TreeFactory.placeMediumDeadTree1(world, topPos, primordial_log); // REPLACE WITH MEDIUM TREE LATER
+            TreeFactory.addRandomMedium(world, topPos, primordial_log); // REPLACE WITH MEDIUM TREE LATER
 
             int ranX = world.getRandom().nextBetween(-9, 9); int ranZ = world.getRandom().nextBetween(-9, 9);
             BlockPos smallTreePos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, new BlockPos(origin.getX() + ranX, 0, origin.getZ() + ranZ));
