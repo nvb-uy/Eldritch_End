@@ -24,7 +24,6 @@ public class ItemRegistry {
     }
 
     public static void register() {
-        LOGGER.info("Registered Prominent Items");
         reg(ABERRATION_SPAWN_EGG, "aberration_spawn_egg");
         reg(SILVER_KEY, "silver_key");
     }
