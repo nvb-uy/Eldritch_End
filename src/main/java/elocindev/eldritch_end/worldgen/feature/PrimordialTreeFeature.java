@@ -17,7 +17,7 @@ public class PrimordialTreeFeature extends Feature<TreeConfig> {
       super(configCodec);
     }
 
-    public boolean canPlace(StructureWorldAccess world, BlockPos position) {
+    public static boolean canBePlaced(StructureWorldAccess world, BlockPos position) {
         return world.getBlockState(position).getBlock() == BlockRegistry.ABYSMAL_FRONDS;
     }
    
@@ -33,13 +33,13 @@ public class PrimordialTreeFeature extends Feature<TreeConfig> {
 
         BlockPos topPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, new BlockPos(origin.getX(), 0, origin.getZ()));
         
-        if (canPlace(world, topPos.down())) {
+        if (canBePlaced(world, topPos.down())) {
             TreeFactory.addRandomMedium(world, topPos, primordial_log);
 
             int ranX = world.getRandom().nextBetween(-9, 9); int ranZ = world.getRandom().nextBetween(-9, 9);
             BlockPos smallTreePos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, new BlockPos(origin.getX() + ranX, 0, origin.getZ() + ranZ));
 
-            if (canPlace(world, smallTreePos.down()))
+            if (canBePlaced(world, smallTreePos.down()))
                 TreeFactory.placeSmallDeadTree(world, smallTreePos, primordial_log);
             
             generated = true;
