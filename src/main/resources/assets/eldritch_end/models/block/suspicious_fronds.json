@@ -2,7 +2,7 @@
     "parent": "minecraft:block/cube_bottom_top",
     "textures": {
       "bottom": "minecraft:block/end_stone",
-      "side": "eldritch_end:block/abysmal_fronds",
+      "side": "eldritch_end:block/suspicious_fronds",
       "top": "eldritch_end:block/suspicious_fronds_top"
     }
 }
