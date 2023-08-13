@@ -14,6 +14,7 @@ import elocindev.eldritch_end.config.ConfigBuilder;
 import elocindev.eldritch_end.config.ConfigLoader;
 import elocindev.eldritch_end.registry.BiomeRegistry;
 import elocindev.eldritch_end.registry.BlockRegistry;
+import elocindev.eldritch_end.registry.EffectRegistry;
 import elocindev.eldritch_end.registry.FeatureRegistry;
 import elocindev.eldritch_end.registry.ItemRegistry;
 import software.bernie.geckolib3.GeckoLib;
@@ -59,10 +60,12 @@ public class EldritchEnd implements ModInitializer {
 		ConfigLoader.init(config);
 
 		GeckoLib.initialize();
+		
+		BlockRegistry.register();
+		ItemRegistry.register();
 		EntityRegistry.register();
 		FeatureRegistry.register();
 		BiomeRegistry.register();
-		BlockRegistry.register();
-		ItemRegistry.register();
+		EffectRegistry.register();
 	}
 }
