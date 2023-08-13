@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "eldritch_end:block/abysmal_fronds"
+    },
+    "facing=east": {
+      "model": "eldritch_end:block/abysmal_fronds",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "eldritch_end:block/abysmal_fronds",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "eldritch_end:block/abysmal_fronds",
+      "y": 270
+    }
+  }
+}

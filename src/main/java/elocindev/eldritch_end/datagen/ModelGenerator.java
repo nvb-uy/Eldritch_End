@@ -11,7 +11,6 @@ import net.minecraft.block.enums.SlabType;
 import net.minecraft.data.client.*;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.Direction;
 
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
@@ -28,7 +27,6 @@ public class ModelGenerator extends FabricModelProvider {
         generator.registerDoor(BlockRegistry.PRIMORDIAL_DOOR);
         generator.registerTrapdoor(BlockRegistry.PRIMORDIAL_TRAPDOOR);
 
-        registerFronds(BlockRegistry.ABYSMAL_FRONDS, generator.modelCollector, generator.blockStateCollector);
         registerSlab(BlockRegistry.PRIMORDIAL_SLAB, BlockRegistry.PRIMORDIAL_PLANKS, generator.modelCollector, generator.blockStateCollector);
     }
 
@@ -53,7 +51,7 @@ public class ModelGenerator extends FabricModelProvider {
 
     public final void registerFronds(Block block, BiConsumer<Identifier, Supplier<JsonElement>> modelCollector, Consumer<BlockStateSupplier> blockStateCollector) {
         TextureMap textureMap = (new TextureMap()).put(TextureKey.BOTTOM, TextureMap.getId(Blocks.END_STONE)).put(TextureKey.TOP, TextureMap.getSubId(block, "_top")).put(TextureKey.SIDE, TextureMap.getSubId(block, ""));
-        blockStateCollector.accept(createSingletonBlockState(block, Models.CUBE_BOTTOM_TOP.upload(block, textureMap, modelCollector)));
+        blockStateCollector.accept(createSingletonBlockState(block, Models.CUBE_COLUMN_HORIZONTAL.upload(block, textureMap, modelCollector)));
     }
 
     public static VariantsBlockStateSupplier createSingletonBlockState(Block block, Identifier modelId) {
