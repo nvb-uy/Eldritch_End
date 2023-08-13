@@ -44,7 +44,7 @@ public class BiomeSurfaceGeneration extends Feature<SurfaceConfig> {
         if (Configs.BIOME_PRIMORDIAL_ABYSS.enable_tendril_patches && world.getRandom().nextInt(100) <= Configs.BIOME_PRIMORDIAL_ABYSS.tendril_patch_chance) {
             BlockPos targetPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, new BlockPos(centerX, 0, centerZ)).down();
 
-            TendrilFactory.placeTendrilBig(world, targetPos, BlockRegistry.ABYSMAL_TENDRILS.getDefaultState(), BlockRegistry.SUSPICIOUS_FRONDS.getDefaultState());
+            TendrilFactory.genRandomShape(world, targetPos, BlockRegistry.ABYSMAL_TENDRILS.getDefaultState(), BlockRegistry.SUSPICIOUS_FRONDS.getDefaultState());
         }
 
         int radius = world.getRandom().nextInt(10) + 6;

@@ -8,6 +8,17 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.StructureWorldAccess;
 
 public class TendrilFactory {
+    public static void genRandomShape(StructureWorldAccess world, BlockPos pos, BlockState tendril, BlockState susfrond) {
+        switch (world.getRandom().nextInt(2)) {
+            case 0:
+                placeTendrilBig(world, pos, tendril, susfrond);
+                break;
+            case 1:
+                placeTendrilMedium(world, pos, tendril, susfrond);
+                break;
+        }
+    }
+    
     public static void place(StructureWorldAccess world, BlockPos[] tendrilPos, BlockPos[] susPos, BlockState tendril, BlockState susfrond) {
 
         for (BlockPos position : tendrilPos) {
