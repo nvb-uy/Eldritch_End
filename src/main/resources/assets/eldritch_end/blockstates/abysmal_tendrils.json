@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "eldritch_end:block/abysmal_tendrils"
+    },
+    "facing=east": {
+      "model": "eldritch_end:block/abysmal_tendrils",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "eldritch_end:block/abysmal_tendrils",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "eldritch_end:block/abysmal_tendrils",
+      "y": 270
+    }
+  }
+}

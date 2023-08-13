@@ -2,6 +2,7 @@ package elocindev.eldritch_end.registry;
 
 import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.block.AbysmalFronds;
+import elocindev.eldritch_end.block.AbysmalTendrils;
 import elocindev.eldritch_end.block.SuspiciousFronds;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -28,6 +29,9 @@ public class BlockRegistry {
 
     public static final Block SUSPICIOUS_FRONDS = new SuspiciousFronds();
     public static final BlockItem SUSPICIOUS_FRONDS_ITEM = new BlockItem(SUSPICIOUS_FRONDS, new FabricItemSettings());
+
+    public static final Block ABYSMAL_TENDRILS = new AbysmalTendrils();
+    public static final BlockItem ABYSMAL_TENDRILS_ITEM = new BlockItem(ABYSMAL_TENDRILS, new FabricItemSettings());
 
     public static final Block PRIMORDIAL_LOG = new PillarBlock(FabricBlockSettings
         .copyOf(Blocks.OAK_LOG)
@@ -104,6 +108,7 @@ public class BlockRegistry {
     public static void register() {
         registerFullBlock("abysmal_fronds", ABYSMAL_FRONDS, ABYSMAL_FRONDS_ITEM);
         registerFullBlock("suspicious_fronds", SUSPICIOUS_FRONDS, SUSPICIOUS_FRONDS_ITEM);
+        registerFullBlock("abysmal_tendrils", ABYSMAL_TENDRILS, ABYSMAL_TENDRILS_ITEM);
 
         // Primordial woodset
         registerFullBlock("primordial_log", PRIMORDIAL_LOG, PRIMORDIAL_LOG_ITEM);

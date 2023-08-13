@@ -34,6 +34,7 @@ public class EldritchEnd implements ModInitializer {
 			// -- BLOCKS --
 			stacks.add(new ItemStack(BlockRegistry.ABYSMAL_FRONDS_ITEM)); 
 			stacks.add(new ItemStack(BlockRegistry.SUSPICIOUS_FRONDS_ITEM));
+			stacks.add(new ItemStack(BlockRegistry.ABYSMAL_TENDRILS_ITEM));
 
 			stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_LOG_ITEM));
 			stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_WOOD_ITEM));
