@@ -10,7 +10,7 @@
   ],
   "contact": {
     "homepage": "https://curseforge.com/members/elocindev/projects",
-    "sources": "https://github.com/nvb-uy/prominent"
+    "sources": "https://github.com/nvb-uy/EldritchEnd"
   },
   "icon":"icon.png",
   "license": "AGNYA License",
@@ -33,6 +33,7 @@
 
   "depends": {
     "fabricloader": ">=0.14.19",
-    "java": ">=17"
+    "java": ">=17",
+    "geckolib3": "*"
   }
 }

@@ -18,11 +18,10 @@ public class Necronomicon extends Item {
     }
     
     String[] TOOLTIP_NORMAL = {
+        "",
         "\u00A77A forbidden tome unveiling eldritch secrets and cosmic horrors.",
         "\u00A77Delve into its pages to grasp unimaginable power,",
         "\u00A77but risk losing sanity to the abyss of the forbidden knowledge.",
-        " ",
-        "&8[SHIFT]",
         "",
         "\u00A74Not implemented in survival yet!"
     };
