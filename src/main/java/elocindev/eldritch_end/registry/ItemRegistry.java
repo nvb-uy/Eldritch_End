@@ -12,11 +12,12 @@ import org.slf4j.LoggerFactory;
 import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.item.Necronomicon;
 import elocindev.eldritch_end.item.SilverKey;
+import elocindev.eldritch_end.item.spawneggs.AberrationEgg;
 
 public class ItemRegistry {
     private static final Logger LOGGER = LoggerFactory.getLogger(EldritchEnd.MODID);
 
-    public static final Item ABERRATION_SPAWN_EGG = new SpawnEggItem(EntityRegistry.ABERRATION, 0x54496f, 0x726f76, new FabricItemSettings());
+    public static final Item ABERRATION_SPAWN_EGG = new AberrationEgg(EntityRegistry.ABERRATION, 0x54496f, 0x726f76, new FabricItemSettings());
     
     public static final Item NECRONOMICON = new Necronomicon(new FabricItemSettings());
     public static final Item SILVER_KEY = new SilverKey(new FabricItemSettings());
