@@ -57,13 +57,13 @@ public class AberrationEntity extends HostileEntity implements IAnimatable {
             StatusEffect effect = EffectRegistry.CORRUPTION; // TODO: Replace with corruption effect
 
             if (victim.hasStatusEffect(effect)) {
-                victim.addStatusEffect(new StatusEffectInstance(effect, victim.getStatusEffect(effect).getDuration(), victim.getStatusEffect(effect).getAmplifier() + 1));
+                victim.addStatusEffect(new StatusEffectInstance(effect, victim.getStatusEffect(effect).getDuration(), victim.getStatusEffect(effect).getAmplifier() + 1, false, false));
                 
                 float extradamage = ((float) Configs.ENTITY_ABERRATION.ATTACK_DAMAGE_ATTRIBUTE * 0.25f) * (victim.getStatusEffect(effect).getAmplifier() + 1);
                 
                 victim.damage(DamageSource.mob(this), extradamage);
             } else
-                victim.addStatusEffect(new StatusEffectInstance(effect, Configs.ENTITY_ABERRATION.initital_corruption_duration_ticks, 0));
+                victim.addStatusEffect(new StatusEffectInstance(effect, Configs.ENTITY_ABERRATION.initital_corruption_duration_ticks, 0, false, false));
         }
 
         return super.tryAttack(target);
