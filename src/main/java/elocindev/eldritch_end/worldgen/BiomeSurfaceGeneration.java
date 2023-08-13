@@ -2,6 +2,7 @@ package elocindev.eldritch_end.worldgen;
 
 import com.mojang.serialization.Codec;
 
+import elocindev.eldritch_end.block.AbysmalFronds;
 import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.worldgen.feature.PrimordialTreeFeature;
 import elocindev.eldritch_end.worldgen.feature.SurfaceConfig;
@@ -9,6 +10,7 @@ import elocindev.eldritch_end.worldgen.util.TreeFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.StructureWorldAccess;
@@ -54,7 +56,10 @@ public class BiomeSurfaceGeneration extends Feature<SurfaceConfig> {
                     BlockPos targetPos = topPos.down();
 
                     if (canPlace(world, targetPos)) {
-                        world.setBlockState(targetPos, blockState, 3);
+                        if (world.getRandom().nextBoolean())
+                            world.setBlockState(targetPos, blockState, 3);
+                        else
+                            world.setBlockState(targetPos, blockState.with(AbysmalFronds.FACING, Direction.EAST), 3);
                         generated = true;
                     }
                 }
