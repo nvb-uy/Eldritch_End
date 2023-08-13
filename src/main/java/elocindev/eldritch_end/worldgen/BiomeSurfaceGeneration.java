@@ -6,6 +6,7 @@ import elocindev.eldritch_end.block.AbysmalFronds;
 import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.worldgen.feature.PrimordialTreeFeature;
 import elocindev.eldritch_end.worldgen.feature.SurfaceConfig;
+import elocindev.eldritch_end.worldgen.util.TendrilFactory;
 import elocindev.eldritch_end.worldgen.util.TreeFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -38,6 +39,14 @@ public class BiomeSurfaceGeneration extends Feature<SurfaceConfig> {
         int centerX = origin.getX() + world.getRandom().nextInt(4);
         int centerZ = origin.getZ() + world.getRandom().nextInt(4);
         
+        // 10% chance
+        if (world.getRandom().nextInt(10) == 0) {
+            BlockPos topPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, new BlockPos(centerX, 0, centerZ));
+            BlockPos targetPos = topPos.down();
+
+            TendrilFactory.placeTendrilBig(world, targetPos, BlockRegistry.ABYSMAL_TENDRILS.getDefaultState(), BlockRegistry.SUSPICIOUS_FRONDS.getDefaultState());
+        }
+
         int radius = world.getRandom().nextInt(10) + 6;
         int radiusX = radius; int radiusZ = radius;
         
