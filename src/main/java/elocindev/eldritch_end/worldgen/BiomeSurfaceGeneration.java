@@ -3,6 +3,7 @@ package elocindev.eldritch_end.worldgen;
 import com.mojang.serialization.Codec;
 
 import elocindev.eldritch_end.block.AbysmalFronds;
+import elocindev.eldritch_end.config.Configs;
 import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.worldgen.feature.PrimordialTreeFeature;
 import elocindev.eldritch_end.worldgen.feature.SurfaceConfig;
@@ -39,10 +40,9 @@ public class BiomeSurfaceGeneration extends Feature<SurfaceConfig> {
         int centerX = origin.getX() + world.getRandom().nextInt(4);
         int centerZ = origin.getZ() + world.getRandom().nextInt(4);
         
-        // 10% chance
-        if (world.getRandom().nextInt(10) == 0) {
-            BlockPos topPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, new BlockPos(centerX, 0, centerZ));
-            BlockPos targetPos = topPos.down();
+        // Tendril Generation
+        if (Configs.BIOME_PRIMORDIAL_ABYSS.enable_tendril_patches && world.getRandom().nextInt(100) <= Configs.BIOME_PRIMORDIAL_ABYSS.tendril_patch_chance) {
+            BlockPos targetPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, new BlockPos(centerX, 0, centerZ)).down();
 
             TendrilFactory.placeTendrilBig(world, targetPos, BlockRegistry.ABYSMAL_TENDRILS.getDefaultState(), BlockRegistry.SUSPICIOUS_FRONDS.getDefaultState());
         }

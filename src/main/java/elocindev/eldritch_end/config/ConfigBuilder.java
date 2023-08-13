@@ -64,7 +64,9 @@ public class ConfigBuilder {
                 defaultCfg.spawn_endermen = false;
                 defaultCfg.spawn_aberrations = true;
                 defaultCfg.biome_weight = 1.5F;
-                defaultCfg.biome_temperature = 0.0085F;
+                defaultCfg.biome_temperature = 1.0F;
+                defaultCfg.enable_tendril_patches = true;
+                defaultCfg.tendril_patch_chance = 10;
 
                 String defaultJson = BUILDER.toJson(defaultCfg);
                 Files.writeString(PrimordialAbyss, defaultJson);
