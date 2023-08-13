@@ -12,8 +12,6 @@ public class SuspiciousFronds extends AbysmalFronds {
 
     @Override
     public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
-        if (!world.isClient && !entity.isSneaking()) {
-                entity.teleport(entity.getX(), entity.getY() - 1f, entity.getZ());
-        }
+        // add a boo scary tentacle popping from the floor and them BOOM player goes pheeeew to the air and then BAM to the floor and the tentacle starts attacking epicly
     }
 }

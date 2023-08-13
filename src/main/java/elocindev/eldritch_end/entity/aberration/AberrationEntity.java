@@ -2,6 +2,7 @@ package elocindev.eldritch_end.entity.aberration;
 
 import elocindev.eldritch_end.config.Configs;
 import elocindev.eldritch_end.registry.BlockRegistry;
+import elocindev.eldritch_end.registry.EffectRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
@@ -53,16 +54,16 @@ public class AberrationEntity extends HostileEntity implements IAnimatable {
     @Override
     public boolean tryAttack(Entity target) {
         if (target instanceof PlayerEntity victim) {
-            StatusEffect effect = StatusEffects.SLOWNESS; // TODO: Replace with corruption effect
+            StatusEffect effect = EffectRegistry.CORRUPTION; // TODO: Replace with corruption effect
 
             if (victim.hasStatusEffect(effect)) {
-                victim.addStatusEffect(new StatusEffectInstance(effect, victim.getStatusEffect(effect).getDuration(), victim.getStatusEffect(effect).getAmplifier() + 1));
+                victim.addStatusEffect(new StatusEffectInstance(effect, victim.getStatusEffect(effect).getDuration(), victim.getStatusEffect(effect).getAmplifier() + 1, false, false));
                 
-                float extradamage = ((float) Configs.ENTITY_ABERRATION.ATTACK_DAMAGE_ATTRIBUTE / 0.25f) * (victim.getStatusEffect(effect).getAmplifier() + 1);
+                float extradamage = ((float) Configs.ENTITY_ABERRATION.ATTACK_DAMAGE_ATTRIBUTE * 0.25f) * (victim.getStatusEffect(effect).getAmplifier() + 1);
                 
                 victim.damage(DamageSource.mob(this), extradamage);
             } else
-                victim.addStatusEffect(new StatusEffectInstance(effect, Configs.ENTITY_ABERRATION.initital_corruption_duration_ticks, 0));
+                victim.addStatusEffect(new StatusEffectInstance(effect, Configs.ENTITY_ABERRATION.initital_corruption_duration_ticks, 0, false, false));
         }
 
         return super.tryAttack(target);
