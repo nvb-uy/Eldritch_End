@@ -3,6 +3,7 @@ package elocindev.eldritch_end.entity.aberration;
 import elocindev.eldritch_end.config.Configs;
 import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.registry.EffectRegistry;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
@@ -76,6 +77,10 @@ public class AberrationEntity extends HostileEntity implements IAnimatable {
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, Configs.ENTITY_ABERRATION.ATTACK_DAMAGE_ATTRIBUTE)
                 .add(EntityAttributes.GENERIC_ATTACK_SPEED, Configs.ENTITY_ABERRATION.ATTACK_SPEED_ATTRIBUTE);
     }
+
+    @Override
+    protected void playStepSound(BlockPos pos, BlockState state) { }
+
 
     @Override
     public void registerControllers(AnimationData data) {
