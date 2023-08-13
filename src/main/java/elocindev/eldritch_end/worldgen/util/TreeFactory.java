@@ -1,6 +1,7 @@
 package elocindev.eldritch_end.worldgen.util;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.PillarBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -68,6 +69,8 @@ public class TreeFactory {
     }
     // -- MEDIUM 2 --
     public static void placeMediumDeadTree2(StructureWorldAccess world, BlockPos pos, BlockState block) {
+        if (world.getBlockState(pos.down()).getBlock() == Blocks.AIR) return;
+
         BlockPos[] branches_vertical = {
             pos.east().up(2),
             pos.west().up(2),
