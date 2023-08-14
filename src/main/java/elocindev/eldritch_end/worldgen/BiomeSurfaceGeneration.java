@@ -69,6 +69,10 @@ public class BiomeSurfaceGeneration extends Feature<SurfaceConfig> {
                             world.setBlockState(targetPos, blockState, 3);
                         else
                             world.setBlockState(targetPos, blockState.with(AbysmalFronds.FACING, Direction.EAST), 3);
+                    
+                        if (Configs.BIOME_PRIMORDIAL_ABYSS.enable_roots_generation && world.getRandom().nextInt(100) <= Configs.BIOME_PRIMORDIAL_ABYSS.roots_generation_chance)
+                            world.setBlockState(targetPos.up(), BlockRegistry.ABYSMAL_ROOTS.getDefaultState(), 3);
+
                         generated = true;
                     }
                 }

@@ -9,4 +9,5 @@ public class PrimordialAbyssConfig {
   public boolean enable_tendril_patches = true;
   public int tendril_patch_chance = 10;
   public boolean enable_roots_generation = true;
+  public int roots_generation_chance = 10;
 }
