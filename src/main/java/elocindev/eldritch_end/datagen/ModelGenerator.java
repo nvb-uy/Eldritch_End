@@ -58,12 +58,13 @@ public class ModelGenerator extends FabricModelProvider {
 
     private void registerButton(Block buttonBlock, Block plankBlock, BiConsumer<Identifier, Supplier<JsonElement>> modelCollector, Consumer<BlockStateSupplier> blockStateCollector) {
         TextureMap textureMap = TextureMap.all(plankBlock);
-        //TextureMap textureMap2 = TextureMap.sideEnd(TextureMap.getId(plankBlock), textureMap.getTexture(TextureKey.TEXTURE));
 
         Identifier identifier = Models.BUTTON.upload(buttonBlock, textureMap, modelCollector);
         Identifier identifier2 = Models.BUTTON_PRESSED.upload(buttonBlock, textureMap, modelCollector);
+        Identifier identifier3 = Models.BUTTON_INVENTORY.upload(buttonBlock, textureMap, modelCollector);
 
         blockStateCollector.accept(createButtonBlockState(buttonBlock, identifier, identifier2));
+        registerParentedItemModel(buttonBlock, identifier3, modelCollector);
     }
 
     private void registerStairs(Block stairBlock, Block plankBlock, BiConsumer<Identifier, Supplier<JsonElement>> modelCollector, Consumer<BlockStateSupplier> blockStateCollector) {
@@ -71,8 +72,6 @@ public class ModelGenerator extends FabricModelProvider {
         TextureMap textureMap2 = TextureMap.sideEnd(TextureMap.getSubId(plankBlock, ""), textureMap.getTexture(TextureKey.TOP));
 
         Identifier identifier = Models.STAIRS.upload(stairBlock, textureMap2, modelCollector);
-        //Identifier identifier2 = Models.INNER_STAIRS.upload(stairBlock, textureMap2, modelCollector);
-        //Identifier identifier3 = Models.OUTER_STAIRS.uploadWithoutVariant(stairBlock, "", textureMap2, modelCollector);
 
         blockStateCollector.accept(createStairsBlockState(stairBlock, identifier, identifier, identifier));
     }
@@ -96,5 +95,9 @@ public class ModelGenerator extends FabricModelProvider {
 
     public static BlockStateSupplier createButtonBlockState(Block buttonBlock, Identifier regularModelId, Identifier pressedModelId) {
         return VariantsBlockStateSupplier.create(buttonBlock).coordinate(BlockStateVariantMap.create(Properties.POWERED).register(false, BlockStateVariant.create().put(VariantSettings.MODEL, regularModelId)).register(true, BlockStateVariant.create().put(VariantSettings.MODEL, pressedModelId))).coordinate(BlockStateVariantMap.create(Properties.WALL_MOUNT_LOCATION, Properties.HORIZONTAL_FACING).register(WallMountLocation.FLOOR, Direction.EAST, BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R90)).register(WallMountLocation.FLOOR, Direction.WEST, BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R270)).register(WallMountLocation.FLOOR, Direction.SOUTH, BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R180)).register(WallMountLocation.FLOOR, Direction.NORTH, BlockStateVariant.create()).register(WallMountLocation.WALL, Direction.EAST, BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R90).put(VariantSettings.X, VariantSettings.Rotation.R90).put(VariantSettings.UVLOCK, true)).register(WallMountLocation.WALL, Direction.WEST, BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R270).put(VariantSettings.X, VariantSettings.Rotation.R90).put(VariantSettings.UVLOCK, true)).register(WallMountLocation.WALL, Direction.SOUTH, BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R180).put(VariantSettings.X, VariantSettings.Rotation.R90).put(VariantSettings.UVLOCK, true)).register(WallMountLocation.WALL, Direction.NORTH, BlockStateVariant.create().put(VariantSettings.X, VariantSettings.Rotation.R90).put(VariantSettings.UVLOCK, true)).register(WallMountLocation.CEILING, Direction.EAST, BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R270).put(VariantSettings.X, VariantSettings.Rotation.R180)).register(WallMountLocation.CEILING, Direction.WEST, BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R90).put(VariantSettings.X, VariantSettings.Rotation.R180)).register(WallMountLocation.CEILING, Direction.SOUTH, BlockStateVariant.create().put(VariantSettings.X, VariantSettings.Rotation.R180)).register(WallMountLocation.CEILING, Direction.NORTH, BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R180).put(VariantSettings.X, VariantSettings.Rotation.R180)));
+    }
+
+    public void registerParentedItemModel(Block block, Identifier parentModelId, BiConsumer<Identifier, Supplier<JsonElement>> modelCollector) {
+        modelCollector.accept(ModelIds.getItemModelId(block.asItem()), new SimpleModelSupplier(parentModelId));
     }
 }
