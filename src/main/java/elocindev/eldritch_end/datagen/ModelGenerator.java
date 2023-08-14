@@ -27,6 +27,8 @@ public class ModelGenerator extends FabricModelProvider {
         generator.registerDoor(BlockRegistry.PRIMORDIAL_DOOR);
         generator.registerTrapdoor(BlockRegistry.PRIMORDIAL_TRAPDOOR);
 
+        //generator.registerPlantPart(BlockRegistry.PRIMORDIAL_ROOTS, "primordial_roots");
+
         registerSlab(BlockRegistry.PRIMORDIAL_SLAB, BlockRegistry.PRIMORDIAL_PLANKS, generator.modelCollector, generator.blockStateCollector);
     }
 
