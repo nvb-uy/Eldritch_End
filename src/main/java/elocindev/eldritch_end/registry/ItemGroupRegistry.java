@@ -16,12 +16,14 @@ public class ItemGroupRegistry {
             stacks.add(new ItemStack(BlockRegistry.ABYSMAL_FRONDS_ITEM)); 
             stacks.add(new ItemStack(BlockRegistry.SUSPICIOUS_FRONDS_ITEM));
             stacks.add(new ItemStack(BlockRegistry.ABYSMAL_TENDRILS_ITEM));
+            stacks.add(new ItemStack(BlockRegistry.ABYSMAL_ROOTS_ITEM));
 
             stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_LOG_ITEM));
             stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_WOOD_ITEM));
             stacks.add(new ItemStack(BlockRegistry.STRIPPED_PRIMORDIAL_LOG_ITEM));
             stacks.add(new ItemStack(BlockRegistry.STRIPPED_PRIMORDIAL_WOOD_ITEM));
             stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_PLANKS_ITEM));
+            stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_STAIRS_ITEM));
             stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_SLAB_ITEM));
             stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_PRESSURE_PLATE_ITEM));
             // todo: stairs
