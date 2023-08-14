@@ -26,6 +26,9 @@ public class ItemGroupRegistry {
             stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_STAIRS_ITEM));
             stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_SLAB_ITEM));
             stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_PRESSURE_PLATE_ITEM));
+
+            stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_BUTTON_ITEM));
+
             // todo: stairs
             stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_DOOR_ITEM));
             stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_TRAPDOOR_ITEM));
