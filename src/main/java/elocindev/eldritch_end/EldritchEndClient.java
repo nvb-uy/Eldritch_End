@@ -17,6 +17,7 @@ public class EldritchEndClient implements ClientModInitializer {
         EntityRendererRegistry.register(EntityRegistry.ABERRATION, AberrationRenderer::new);
 
         BlockRenderLayerMap.INSTANCE.putBlock(BlockRegistry.PRIMORDIAL_TRAPDOOR, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(BlockRegistry.ABYSMAL_ROOTS, RenderLayer.getCutout());
 
     }
 }

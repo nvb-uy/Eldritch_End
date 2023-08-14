@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "eldritch_end:block/abysmal_roots"
+  }
+}
