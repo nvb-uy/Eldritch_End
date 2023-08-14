@@ -25,10 +25,13 @@
 
     "item.eldritch_end.necronomicon": "\u00A72Necronomicon",
     "item.eldritch_end.silver_key": "Silver Key",
+
     "item.eldritch_end.aberration_spawn_egg": "Aberration Spawn Egg",
+    "item.eldritch_end.tentacle_spawn_egg": "Tentacle Spawn Egg",
     "item.eldritch_end.chorb_spawn_egg": "Chorb Spawn Egg",
 
     "effect.eldritch_end.corruption": "Corruption",
     
-    "entity.eldritch_end.aberration": "Aberration"
+    "entity.eldritch_end.aberration": "Aberration",
+    "entity.eldritch_end.tentacle": "Tentacle"
 }
