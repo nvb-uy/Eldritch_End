@@ -102,13 +102,16 @@ public class BlockRegistry {
     public static final StairsBlock PRIMORDIAL_STAIRS = new StairsBlock(PRIMORDIAL_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
     public static final BlockItem PRIMORDIAL_STAIRS_ITEM = new BlockItem(PRIMORDIAL_STAIRS, new FabricItemSettings());
 
+    public static final WoodenButtonBlock PRIMORDIAL_BUTTON = new WoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
+    public static final BlockItem PRIMORDIAL_BUTTON_ITEM = new BlockItem(PRIMORDIAL_BUTTON, new FabricItemSettings());
+
 //
     public static void register() {
         registerFullBlock("abysmal_fronds", ABYSMAL_FRONDS, ABYSMAL_FRONDS_ITEM);
         registerFullBlock("suspicious_fronds", SUSPICIOUS_FRONDS, SUSPICIOUS_FRONDS_ITEM);
         registerFullBlock("abysmal_tendrils", ABYSMAL_TENDRILS, ABYSMAL_TENDRILS_ITEM);
         registerFullBlock("abysmal_roots", ABYSMAL_ROOTS, ABYSMAL_ROOTS_ITEM);
-
+        registerFullBlock("primordial_button", PRIMORDIAL_BUTTON, PRIMORDIAL_BUTTON_ITEM);
 
         // Primordial woodset
         registerFullBlock("primordial_log", PRIMORDIAL_LOG, PRIMORDIAL_LOG_ITEM);
