@@ -67,6 +67,7 @@ public class ConfigBuilder {
                 defaultCfg.biome_temperature = 1.0F;
                 defaultCfg.enable_tendril_patches = true;
                 defaultCfg.tendril_patch_chance = 10;
+                defaultCfg.enable_roots_generation = true;
 
                 String defaultJson = BUILDER.toJson(defaultCfg);
                 Files.writeString(PrimordialAbyss, defaultJson);

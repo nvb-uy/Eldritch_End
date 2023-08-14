@@ -8,4 +8,5 @@ public class PrimordialAbyssConfig {
   public float biome_temperature = 1.0F;
   public boolean enable_tendril_patches = true;
   public int tendril_patch_chance = 10;
+  public boolean enable_roots_generation = true;
 }
