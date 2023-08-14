@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "eldritch_end:block/hasturian_moss"
+    },
+    "facing=east": {
+      "model": "eldritch_end:block/hasturian_moss",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "eldritch_end:block/hasturian_moss",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "eldritch_end:block/hasturian_moss",
+      "y": 270
+    }
+  }
+}

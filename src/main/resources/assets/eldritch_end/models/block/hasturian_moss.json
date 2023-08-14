@@ -1,0 +1,8 @@
+{
+    "parent": "minecraft:block/cube_bottom_top",
+    "textures": {
+      "bottom": "minecraft:block/end_stone",
+      "side": "eldritch_end:block/hasturian_moss",
+      "top": "eldritch_end:block/hasturian_moss_top"
+    }
+}

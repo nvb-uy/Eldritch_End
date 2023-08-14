@@ -4,6 +4,7 @@ import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.block.AbysmalFronds;
 import elocindev.eldritch_end.block.AbysmalRoots;
 import elocindev.eldritch_end.block.AbysmalTendrils;
+import elocindev.eldritch_end.block.HasturianMoss;
 import elocindev.eldritch_end.block.SuspiciousFronds;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -105,6 +106,9 @@ public class BlockRegistry {
     public static final WoodenButtonBlock PRIMORDIAL_BUTTON = new WoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
     public static final BlockItem PRIMORDIAL_BUTTON_ITEM = new BlockItem(PRIMORDIAL_BUTTON, new FabricItemSettings());
 
+    public static final Block HASTURIAN_MOSS = new HasturianMoss();
+    public static final BlockItem HASTURIAN_MOSS_ITEM = new BlockItem(HASTURIAN_MOSS, new FabricItemSettings());
+
 //
     public static void register() {
         registerFullBlock("abysmal_fronds", ABYSMAL_FRONDS, ABYSMAL_FRONDS_ITEM);
@@ -125,6 +129,8 @@ public class BlockRegistry {
         registerFullBlock("primordial_door", PRIMORDIAL_DOOR, PRIMORDIAL_DOOR_ITEM);
         registerFullBlock("primordial_trapdoor", PRIMORDIAL_TRAPDOOR, PRIMORDIAL_TRAPDOOR_ITEM);
         registerSign("primordial", PRIMORDIAL_SIGN, PRIMORDIAL_WALL_SIGN);
+    
+        registerFullBlock("hasturian_moss", HASTURIAN_MOSS, HASTURIAN_MOSS_ITEM);
     }
 
     public static void registerFullBlock(String identifier, Block blockInstance, BlockItem itemInstance) {
