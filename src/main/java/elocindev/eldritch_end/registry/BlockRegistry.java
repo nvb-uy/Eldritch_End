@@ -6,15 +6,7 @@ import elocindev.eldritch_end.block.AbysmalTendrils;
 import elocindev.eldritch_end.block.SuspiciousFronds;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.DoorBlock;
-import net.minecraft.block.PillarBlock;
-import net.minecraft.block.PressurePlateBlock;
-import net.minecraft.block.SignBlock;
-import net.minecraft.block.SlabBlock;
-import net.minecraft.block.TrapdoorBlock;
-import net.minecraft.block.WallSignBlock;
+import net.minecraft.block.*;
 import net.minecraft.block.AbstractBlock.Settings;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -101,14 +93,16 @@ public class BlockRegistry {
 
     public static final BlockItem PRIMORDIAL_SIGN_ITEM = new SignItem(new Item.Settings().maxCount(16), PRIMORDIAL_SIGN, PRIMORDIAL_WALL_SIGN);
 
-    //
 
+    public static final StairsBlock PRIMORDIAL_STAIRS = new StairsBlock(PRIMORDIAL_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
+    public static final BlockItem PRIMORDIAL_STAIRS_ITEM = new BlockItem(PRIMORDIAL_STAIRS, new FabricItemSettings());
 
 
     public static void register() {
         registerFullBlock("abysmal_fronds", ABYSMAL_FRONDS, ABYSMAL_FRONDS_ITEM);
         registerFullBlock("suspicious_fronds", SUSPICIOUS_FRONDS, SUSPICIOUS_FRONDS_ITEM);
         registerFullBlock("abysmal_tendrils", ABYSMAL_TENDRILS, ABYSMAL_TENDRILS_ITEM);
+        registerFullBlock("primordial_stairs", PRIMORDIAL_STAIRS, PRIMORDIAL_STAIRS_ITEM);
 
         // Primordial woodset
         registerFullBlock("primordial_log", PRIMORDIAL_LOG, PRIMORDIAL_LOG_ITEM);
@@ -121,7 +115,6 @@ public class BlockRegistry {
         registerFullBlock("primordial_door", PRIMORDIAL_DOOR, PRIMORDIAL_DOOR_ITEM);
         registerFullBlock("primordial_trapdoor", PRIMORDIAL_TRAPDOOR, PRIMORDIAL_TRAPDOOR_ITEM);
         registerSign("primordial", PRIMORDIAL_SIGN, PRIMORDIAL_WALL_SIGN);
-
     }
 
     public static void registerFullBlock(String identifier, Block blockInstance, BlockItem itemInstance) {
