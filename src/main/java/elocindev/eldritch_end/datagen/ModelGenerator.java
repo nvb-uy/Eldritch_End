@@ -26,6 +26,7 @@ public class ModelGenerator extends FabricModelProvider {
         generator.registerSimpleCubeAll(BlockRegistry.PRIMORDIAL_PLANKS);
         generator.registerDoor(BlockRegistry.PRIMORDIAL_DOOR);
         generator.registerTrapdoor(BlockRegistry.PRIMORDIAL_TRAPDOOR);
+        generator.registerTintableCross(BlockRegistry.ABYSMAL_ROOTS, BlockStateModelGenerator.TintType.NOT_TINTED);
 
         registerSlab(BlockRegistry.PRIMORDIAL_SLAB, BlockRegistry.PRIMORDIAL_PLANKS, generator.modelCollector, generator.blockStateCollector);
     }
