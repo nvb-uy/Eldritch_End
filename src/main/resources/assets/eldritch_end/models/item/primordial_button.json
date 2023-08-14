@@ -1,6 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "eldritch_end:item/primordial_button"
-  }
-}
