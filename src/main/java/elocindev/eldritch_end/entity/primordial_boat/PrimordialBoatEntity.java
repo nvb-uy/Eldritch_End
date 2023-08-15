@@ -25,6 +25,11 @@ public class PrimordialBoatEntity extends BoatEntity {
         this.dataTracker.set(BOAT_TYPE, type.ordinal());
     }
 
+    @Override
+    protected void initDataTracker() {
+        super.initDataTracker();
+        this.dataTracker.set(BOAT_TYPE, PrimordialBoatEntity.Type.PRIMORDIAL.ordinal());
+    }
 
     public static enum Type {
         PRIMORDIAL(BlockRegistry.PRIMORDIAL_PLANKS, "primordial");
