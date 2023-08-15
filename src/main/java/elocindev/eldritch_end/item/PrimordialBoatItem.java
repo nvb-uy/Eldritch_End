@@ -1,13 +1,10 @@
 package elocindev.eldritch_end.item;
 
-import elocindev.eldritch_end.entity.primordial_boat.PrimordialBoatEntity;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.entity.vehicle.ChestBoatEntity;
 import net.minecraft.item.BoatItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.stat.Stats;
@@ -24,17 +21,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class PrimordialBoatItem extends Item {
+public class PrimordialBoatItem extends BoatItem {
     private static final Predicate<Entity> RIDERS;
-    private final PrimordialBoatEntity.Type type;
+    private final BoatEntity.Type type;
     private final boolean chest;
 
-    public PrimordialBoatItem(boolean chest, PrimordialBoatEntity.Type type, Settings settings) {
-        super(settings);
-        this.type = type;
+    public PrimordialBoatItem(boolean chest, BoatEntity.Type type, Settings settings) {
+        super(chest, type, settings);
         this.chest = chest;
+        this.type = type;
     }
-
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
@@ -60,8 +56,8 @@ public class PrimordialBoatItem extends Item {
             }
 
             if (hitResult.getType() == net.minecraft.util.hit.HitResult.Type.BLOCK) {
-                PrimordialBoatEntity boatEntity = (PrimordialBoatEntity) this.createEntity(world, hitResult);
-                boatEntity.setCustomBoatType(this.type);
+                BoatEntity boatEntity = this.createEntity(world, hitResult);
+                boatEntity.setBoatType(this.type);
                 boatEntity.setYaw(user.getYaw());
                 if (!world.isSpaceEmpty(boatEntity, boatEntity.getBoundingBox())) {
                     return TypedActionResult.fail(itemStack);
@@ -84,7 +80,7 @@ public class PrimordialBoatItem extends Item {
     }
 
     private BoatEntity createEntity(World world, HitResult hitResult) {
-        return (BoatEntity)(this.chest ? new ChestBoatEntity(world, hitResult.getPos().x, hitResult.getPos().y, hitResult.getPos().z) : new PrimordialBoatEntity(world, hitResult.getPos().x, hitResult.getPos().y, hitResult.getPos().z));
+        return (BoatEntity)(this.chest ? new ChestBoatEntity(world, hitResult.getPos().x, hitResult.getPos().y, hitResult.getPos().z) : new BoatEntity(world, hitResult.getPos().x, hitResult.getPos().y, hitResult.getPos().z));
     }
 
     static {
