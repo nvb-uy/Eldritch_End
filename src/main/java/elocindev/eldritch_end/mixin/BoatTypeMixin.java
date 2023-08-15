@@ -19,13 +19,6 @@ import java.util.Arrays;
 
 @Mixin(BoatEntity.Type.class)
 public class BoatTypeMixin {
-    /*
-     * This file looks very scary and ugly, but what it basically does is add our boat into the vanilla enum found in BoatEntity.java
-     *
-     * While it works and should work with any other mod that does the same thing, adding to enums is not recommended.
-     * For any future situations where you are required to add to an enum, look into Fabric-ASM: https://github.com/Chocohead/Fabric-ASM
-     */
-
     @SuppressWarnings("InvokerTarget")
     @Invoker("<init>")
     private static BoatEntity.Type newType(String internalName, int internalId, Block baseBlock, String name) {
