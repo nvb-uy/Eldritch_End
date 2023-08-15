@@ -29,12 +29,13 @@ public class ItemGroupRegistry {
 
             stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_BUTTON_ITEM));
 
-            // todo: stairs
             stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_DOOR_ITEM));
             stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_TRAPDOOR_ITEM));
+            stacks.add(new ItemStack(ItemRegistry.PRIMORDIAL_BOAT));
             stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_SIGN_ITEM));
 
             stacks.add(new ItemStack(BlockRegistry.HASTURIAN_MOSS_ITEM));
+            stacks.add(new ItemStack(BlockRegistry.SPIRE_STONE_ITEM));
 
             // -- ARTIFACTS --
             stacks.add(new ItemStack(ItemRegistry.SILVER_KEY));
@@ -43,7 +44,7 @@ public class ItemGroupRegistry {
             stacks.add(new ItemStack(ItemRegistry.ABERRATION_SPAWN_EGG));
             stacks.add(new ItemStack(ItemRegistry.TENTACLE_SPAWN_EGG));
 
-            stacks.add(new ItemStack(ItemRegistry.PRIMORDIAL_BOAT));
+            
     })
     .build().setTexture("eldritchend.png").hideName();
 
