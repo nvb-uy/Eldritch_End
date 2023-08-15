@@ -17,6 +17,8 @@
     "block.eldritch_end.primordial_fence_gate":"Primordial Fence Gate",
     "block.eldritch_end.primordial_door":"Primordial Door",
     "block.eldritch_end.primordial_trapdoor":"Primordial Trapdoor",
+    "item.eldritch_end.primordial_boat": "Primordial Boat",
+    "item.eldritch_end.primordial_chest_boat": "Primordial Chest Boat",
     "block.eldritch_end.primordial_pressure_plate":"Primordial Pressure Plate",
     "block.eldritch_end.primordial_button":"Primordial Button",
     "block.eldritch_end.primordial_ladder":"Primordial Ladder",
