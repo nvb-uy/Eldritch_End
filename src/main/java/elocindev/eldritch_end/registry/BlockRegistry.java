@@ -109,6 +109,11 @@ public class BlockRegistry {
     public static final Block HASTURIAN_MOSS = new HasturianMoss();
     public static final BlockItem HASTURIAN_MOSS_ITEM = new BlockItem(HASTURIAN_MOSS, new FabricItemSettings());
 
+    public static final Block SPIRE_STONE = new Block(FabricBlockSettings
+        .copyOf(Blocks.STONE)
+        .sounds(BlockSoundGroup.STONE));
+    public static final BlockItem SPIRE_STONE_ITEM = new BlockItem(SPIRE_STONE, new FabricItemSettings());
+
 //
     public static void register() {
         registerFullBlock("abysmal_fronds", ABYSMAL_FRONDS, ABYSMAL_FRONDS_ITEM);
@@ -131,6 +136,7 @@ public class BlockRegistry {
         registerSign("primordial", PRIMORDIAL_SIGN, PRIMORDIAL_WALL_SIGN);
     
         registerFullBlock("hasturian_moss", HASTURIAN_MOSS, HASTURIAN_MOSS_ITEM);
+        registerFullBlock("spire_stone", SPIRE_STONE, SPIRE_STONE_ITEM);
     }
 
     public static void registerFullBlock(String identifier, Block blockInstance, BlockItem itemInstance) {
