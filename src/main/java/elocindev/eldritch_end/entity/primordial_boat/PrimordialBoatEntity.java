@@ -12,6 +12,12 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.world.World;
 
 public class PrimordialBoatEntity extends BoatEntity {
+    private static final TrackedData<Integer> DAMAGE_WOBBLE_TICKS;
+    private static final TrackedData<Integer> DAMAGE_WOBBLE_SIDE;
+    private static final TrackedData<Float> DAMAGE_WOBBLE_STRENGTH;
+    private static final TrackedData<Boolean> LEFT_PADDLE_MOVING;
+    private static final TrackedData<Boolean> RIGHT_PADDLE_MOVING;
+    private static final TrackedData<Integer> BUBBLE_WOBBLE_TICKS;
     private static final TrackedData<Integer> BOAT_TYPE;
 
     public PrimordialBoatEntity(EntityType<? extends BoatEntity> entityType, World world) {
@@ -28,8 +34,13 @@ public class PrimordialBoatEntity extends BoatEntity {
 
     @Override
     protected void initDataTracker() {
-        super.initDataTracker();
+        this.dataTracker.startTracking(DAMAGE_WOBBLE_TICKS, 0);
+        this.dataTracker.startTracking(DAMAGE_WOBBLE_SIDE, 1);
+        this.dataTracker.startTracking(DAMAGE_WOBBLE_STRENGTH, 0.0F);
         this.dataTracker.set(BOAT_TYPE, PrimordialBoatEntity.Type.PRIMORDIAL.ordinal());
+        this.dataTracker.startTracking(LEFT_PADDLE_MOVING, false);
+        this.dataTracker.startTracking(RIGHT_PADDLE_MOVING, false);
+        this.dataTracker.startTracking(BUBBLE_WOBBLE_TICKS, 0);
     }
 
 
@@ -95,6 +106,12 @@ public class PrimordialBoatEntity extends BoatEntity {
     }
 
     static {
+        DAMAGE_WOBBLE_TICKS = DataTracker.registerData(BoatEntity.class, TrackedDataHandlerRegistry.INTEGER);
+        DAMAGE_WOBBLE_SIDE = DataTracker.registerData(BoatEntity.class, TrackedDataHandlerRegistry.INTEGER);
+        DAMAGE_WOBBLE_STRENGTH = DataTracker.registerData(BoatEntity.class, TrackedDataHandlerRegistry.FLOAT);
         BOAT_TYPE = DataTracker.registerData(BoatEntity.class, TrackedDataHandlerRegistry.INTEGER);
+        LEFT_PADDLE_MOVING = DataTracker.registerData(BoatEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+        RIGHT_PADDLE_MOVING = DataTracker.registerData(BoatEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+        BUBBLE_WOBBLE_TICKS = DataTracker.registerData(BoatEntity.class, TrackedDataHandlerRegistry.INTEGER);
     }
 }
