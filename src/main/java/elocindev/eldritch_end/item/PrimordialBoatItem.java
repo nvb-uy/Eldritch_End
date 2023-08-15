@@ -18,6 +18,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
+import net.minecraft.entity.vehicle.BoatEntity.Type;
 
 import java.util.Iterator;
 import java.util.List;
@@ -25,11 +26,11 @@ import java.util.function.Predicate;
 
 public class PrimordialBoatItem extends BoatItem {
     private static final Predicate<Entity> RIDERS;
-    private final String type;
+    private final Type type;
     private final boolean chest;
 
-    public PrimordialBoatItem(boolean chest, String type, Settings settings) {
-        super(chest, BoatEntity.Type.valueOf(type), settings);
+    public PrimordialBoatItem(boolean chest, Type type, Settings settings) {
+        super(chest, type, settings);
         this.type = type;
         this.chest = chest;
     }
@@ -59,7 +60,7 @@ public class PrimordialBoatItem extends BoatItem {
 
             if (hitResult.getType() == net.minecraft.util.hit.HitResult.Type.BLOCK) {
                 PrimordialBoatEntity boatEntity = (PrimordialBoatEntity) this.createEntity(world, hitResult);
-                boatEntity.setBoatType(BoatEntity.Type.getType(this.type));
+                boatEntity.setBoatType(this.type);
                 boatEntity.setYaw(user.getYaw());
                 if (!world.isSpaceEmpty(boatEntity, boatEntity.getBoundingBox())) {
                     return TypedActionResult.fail(itemStack);
