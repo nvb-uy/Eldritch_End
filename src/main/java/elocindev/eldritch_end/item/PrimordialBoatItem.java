@@ -61,7 +61,7 @@ public class PrimordialBoatItem extends Item {
 
             if (hitResult.getType() == net.minecraft.util.hit.HitResult.Type.BLOCK) {
                 PrimordialBoatEntity boatEntity = (PrimordialBoatEntity) this.createEntity(world, hitResult);
-                boatEntity.setBoatType(this.type);
+                boatEntity.setCustomBoatType(this.type);
                 boatEntity.setYaw(user.getYaw());
                 if (!world.isSpaceEmpty(boatEntity, boatEntity.getBoundingBox())) {
                     return TypedActionResult.fail(itemStack);
