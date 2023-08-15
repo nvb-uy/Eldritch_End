@@ -8,6 +8,7 @@ import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.vehicle.BoatEntity;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.world.World;
 
 public class PrimordialBoatEntity extends BoatEntity {
@@ -29,6 +30,23 @@ public class PrimordialBoatEntity extends BoatEntity {
     protected void initDataTracker() {
         super.initDataTracker();
         this.dataTracker.set(BOAT_TYPE, PrimordialBoatEntity.Type.PRIMORDIAL.ordinal());
+    }
+
+
+    public PrimordialBoatEntity.Type getCustomType() {
+        return PrimordialBoatEntity.Type.getType((Integer)this.dataTracker.get(BOAT_TYPE));
+    }
+
+    @Override
+    protected void writeCustomDataToNbt(NbtCompound nbt) {
+        nbt.putString("Type", this.getCustomType().getName());
+    }
+
+    @Override
+    protected void readCustomDataFromNbt(NbtCompound nbt) {
+        if (nbt.contains("Type", 8)) {
+            this.setBoatType(PrimordialBoatEntity.Type.getType(nbt.getString("Type")));
+        }
     }
 
     public static enum Type {
