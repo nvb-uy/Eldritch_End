@@ -2,7 +2,6 @@ package elocindev.eldritch_end.mixin;
 
 import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.registry.EntityRegistry;
-import elocindev.eldritch_end.registry.ItemRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.vehicle.BoatEntity;
 import org.objectweb.asm.Opcodes;
