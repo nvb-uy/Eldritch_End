@@ -1,8 +1,11 @@
 package elocindev.eldritch_end.registry;
 
+import elocindev.eldritch_end.item.PrimordialBoatItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -25,6 +28,8 @@ public class ItemRegistry {
     public static final Item NECRONOMICON = new Necronomicon(new FabricItemSettings());
     public static final Item SILVER_KEY = new SilverKey(new FabricItemSettings());
 
+    public static final Item PRIMORDIAL_BOAT = new PrimordialBoatItem(false, "primordial", new FabricItemSettings());
+
     // Hello random person of the internet, if you are here after EE has come out publicly, you may be wondering why the chorb spawn egg is here.
     // Well that's because this is an easter egg. Please don't tell anyone and just enjoy it ingame :thisisthesunglassescat:
     public static final Item CHORB_SPAWN_EGG = new Chorb(EntityType.GIANT, 0xfcba03, 0xfce703, new FabricItemSettings());
@@ -41,6 +46,8 @@ public class ItemRegistry {
         reg(NECRONOMICON, "necronomicon");
         reg(SILVER_KEY, "silver_key");
         reg(CHORB_SPAWN_EGG, "chorb_spawn_egg");
+
+        reg(PRIMORDIAL_BOAT, "primordial_boat");
         LOGGER.info("Registered Eldritch End's items");
     }
 }

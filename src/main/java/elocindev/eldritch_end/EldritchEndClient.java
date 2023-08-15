@@ -1,5 +1,6 @@
 package elocindev.eldritch_end;
 
+import elocindev.eldritch_end.entity.client.primordial_boat.PrimordialBoatRenderer;
 import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.registry.EntityRegistry;
 import elocindev.eldritch_end.config.ConfigLoader;
@@ -17,6 +18,7 @@ public class EldritchEndClient implements ClientModInitializer {
 
         EntityRendererRegistry.register(EntityRegistry.ABERRATION, AberrationRenderer::new);
         EntityRendererRegistry.register(EntityRegistry.TENTACLE, TentacleRenderer::new);
+        EntityRendererRegistry.register(EntityRegistry.PRIMORDIAL_BOAT, PrimordialBoatRenderer::new);
 
         BlockRenderLayerMap.INSTANCE.putBlock(BlockRegistry.PRIMORDIAL_TRAPDOOR, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(BlockRegistry.ABYSMAL_ROOTS, RenderLayer.getCutout());

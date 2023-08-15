@@ -42,6 +42,8 @@ public class ItemGroupRegistry {
             // -- ENTITY EGGS --
             stacks.add(new ItemStack(ItemRegistry.ABERRATION_SPAWN_EGG));
             stacks.add(new ItemStack(ItemRegistry.TENTACLE_SPAWN_EGG));
+
+            stacks.add(new ItemStack(ItemRegistry.PRIMORDIAL_BOAT));
     })
     .build().setTexture("eldritchend.png").hideName();
 
