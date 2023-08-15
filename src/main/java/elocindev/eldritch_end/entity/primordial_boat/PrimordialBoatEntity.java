@@ -37,7 +37,7 @@ public class PrimordialBoatEntity extends BoatEntity {
         this.dataTracker.startTracking(DAMAGE_WOBBLE_TICKS, 0);
         this.dataTracker.startTracking(DAMAGE_WOBBLE_SIDE, 1);
         this.dataTracker.startTracking(DAMAGE_WOBBLE_STRENGTH, 0.0F);
-        this.dataTracker.set(BOAT_TYPE, PrimordialBoatEntity.Type.PRIMORDIAL.ordinal());
+        this.dataTracker.startTracking(BOAT_TYPE, PrimordialBoatEntity.Type.PRIMORDIAL.ordinal());
         this.dataTracker.startTracking(LEFT_PADDLE_MOVING, false);
         this.dataTracker.startTracking(RIGHT_PADDLE_MOVING, false);
         this.dataTracker.startTracking(BUBBLE_WOBBLE_TICKS, 0);
