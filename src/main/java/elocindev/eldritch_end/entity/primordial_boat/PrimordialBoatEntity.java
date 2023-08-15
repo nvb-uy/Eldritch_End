@@ -22,7 +22,7 @@ public class PrimordialBoatEntity extends BoatEntity {
         super(world, x, y, z);
     }
 
-    public void setBoatType(PrimordialBoatEntity.Type type) {
+    public void setCustomBoatType(PrimordialBoatEntity.Type type) {
         this.dataTracker.set(BOAT_TYPE, type.ordinal());
     }
 
@@ -45,7 +45,7 @@ public class PrimordialBoatEntity extends BoatEntity {
     @Override
     protected void readCustomDataFromNbt(NbtCompound nbt) {
         if (nbt.contains("Type", 8)) {
-            this.setBoatType(PrimordialBoatEntity.Type.getType(nbt.getString("Type")));
+            this.setCustomBoatType(PrimordialBoatEntity.Type.getType(nbt.getString("Type")));
         }
     }
 
