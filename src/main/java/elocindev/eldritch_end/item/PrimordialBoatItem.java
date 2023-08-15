@@ -7,6 +7,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.entity.vehicle.ChestBoatEntity;
 import net.minecraft.item.BoatItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.stat.Stats;
@@ -18,22 +19,22 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
-import net.minecraft.entity.vehicle.BoatEntity.Type;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class PrimordialBoatItem extends BoatItem {
+public class PrimordialBoatItem extends Item {
     private static final Predicate<Entity> RIDERS;
-    private final Type type;
+    private final PrimordialBoatEntity.Type type;
     private final boolean chest;
 
-    public PrimordialBoatItem(boolean chest, Type type, Settings settings) {
-        super(chest, type, settings);
+    public PrimordialBoatItem(boolean chest, PrimordialBoatEntity.Type type, Settings settings) {
+        super(settings);
         this.type = type;
         this.chest = chest;
     }
+
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
