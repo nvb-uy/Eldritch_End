@@ -84,7 +84,8 @@ public class TentacleEntity extends HostileEntity implements IAnimatable {
         
             return PlayState.CONTINUE;
         }
-        if (this.isAttacking()) {
+        if (this.handSwinging) {
+            this.handSwinging = false;
             event.getController().setAnimation(new AnimationBuilder().addAnimation("attack", ILoopType.EDefaultLoopTypes.LOOP));
         
             return PlayState.CONTINUE;
