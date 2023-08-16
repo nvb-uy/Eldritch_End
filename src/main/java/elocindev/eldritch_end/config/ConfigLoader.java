@@ -12,6 +12,7 @@ public class ConfigLoader {
 
 				Configs.BIOME_PRIMORDIAL_ABYSS = ConfigBuilder.loadPrimordialAbyss();
                 Configs.ENTITY_ABERRATION = ConfigBuilder.loadAberration();
+                Configs.ENTITY_TENTACLE = ConfigBuilder.loadTentacle();
 			}
 			
 		});

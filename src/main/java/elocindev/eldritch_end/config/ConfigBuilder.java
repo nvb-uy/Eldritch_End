@@ -10,6 +10,7 @@ import com.google.gson.GsonBuilder;
 import elocindev.eldritch_end.config.entries.ClientConfig;
 import elocindev.eldritch_end.config.entries.PrimordialAbyssConfig;
 import elocindev.eldritch_end.config.entries.entities.AberrationConfig;
+import elocindev.eldritch_end.config.entries.entities.TentacleConfig;
 import net.fabricmc.loader.api.FabricLoader;
 
 public class ConfigBuilder {
@@ -29,6 +30,7 @@ public class ConfigBuilder {
         
         // Entities
     public static final Path Aberration = EntityFolder.resolve("aberration.json");
+    public static final Path Tentacle = EntityFolder.resolve("tentacle.json");
     
     public static boolean hasStarted() {
         return createFolders();
@@ -101,6 +103,26 @@ public class ConfigBuilder {
             }
 
             return BUILDER.fromJson(Files.readString(Aberration), AberrationConfig.class);
+
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
+
+    public static TentacleConfig loadTentacle() {
+        try {            
+            if (Files.notExists(Tentacle)) {
+                TentacleConfig defaultCfg = new TentacleConfig();
+                
+                defaultCfg.HEALTH_ATTRIBUTE = 20.0;
+                defaultCfg.ATTACK_DAMAGE_ATTRIBUTE = 6.0;
+                defaultCfg.ATTACK_SPEED_ATTRIBUTE = 1.0;
+
+                String defaultJson = BUILDER.toJson(defaultCfg);
+                Files.writeString(Tentacle, defaultJson);
+            }
+
+            return BUILDER.fromJson(Files.readString(Tentacle), TentacleConfig.class);
 
         } catch (IOException exception) {
             throw new RuntimeException(exception);
