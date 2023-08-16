@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import elocindev.eldritch_end.config.entries.ClientConfig;
+import elocindev.eldritch_end.config.entries.HasturianWastesConfig;
 import elocindev.eldritch_end.config.entries.PrimordialAbyssConfig;
 import elocindev.eldritch_end.config.entries.entities.AberrationConfig;
 import elocindev.eldritch_end.config.entries.entities.TentacleConfig;
@@ -77,6 +78,26 @@ public class ConfigBuilder {
             }
 
             return BUILDER.fromJson(Files.readString(PrimordialAbyss), PrimordialAbyssConfig.class);
+
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
+
+    public static HasturianWastesConfig loadHasturianWastes() {
+        try {            
+            if (Files.notExists(HasturianWastes)) {
+                HasturianWastesConfig defaultCfg = new HasturianWastesConfig();
+                
+                defaultCfg.enabled = true;
+                defaultCfg.biome_weight = 1.5F;
+                defaultCfg.biome_temperature = 1.0F;
+
+                String defaultJson = BUILDER.toJson(defaultCfg);
+                Files.writeString(HasturianWastes, defaultJson);
+            }
+
+            return BUILDER.fromJson(Files.readString(HasturianWastes), HasturianWastesConfig.class);
 
         } catch (IOException exception) {
             throw new RuntimeException(exception);
