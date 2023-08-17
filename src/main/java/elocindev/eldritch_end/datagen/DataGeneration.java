@@ -9,5 +9,6 @@ public class DataGeneration implements DataGeneratorEntrypoint {
         fabricDataGenerator.addProvider(ModelGenerator::new);
         fabricDataGenerator.addProvider(BlockLootTableGenerator::new);
         fabricDataGenerator.addProvider(RecipeGenerator::new);
+        fabricDataGenerator.addProvider(TagGenerator::new);
     }
 }
