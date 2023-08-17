@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "#": {
-      "tag": "eldritch_end:primordial_log"
+      "item": "eldritch_end:primordial_log"
     }
   },
   "pattern": [
