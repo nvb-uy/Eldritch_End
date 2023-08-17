@@ -1,7 +1,7 @@
 {
     "parent": "minecraft:block/cube_bottom_top",
     "textures": {
-      "bottom": "minecraft:block/spire_stone_top",
+      "bottom": "eldritch_end:block/spire_stone_top",
       "side": "eldritch_end:block/spire_stone",
       "top": "eldritch_end:block/spire_stone_top"
     }
