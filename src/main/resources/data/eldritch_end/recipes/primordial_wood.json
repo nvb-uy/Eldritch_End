@@ -1,18 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "building",
   "key": {
     "#": {
-      "item": "eldritch_end:primordial_planks"
+      "tag": "eldritch_end:primordial_log"
     }
   },
   "pattern": [
-    "##",
     "##",
     "##"
   ],
   "result": {
     "count": 3,
-    "item": "eldritch_end:primordial_door"
+    "item": "eldritch_end:primordial_wood"
   }
 }
