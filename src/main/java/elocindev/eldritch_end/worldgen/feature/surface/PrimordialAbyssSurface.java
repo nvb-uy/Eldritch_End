@@ -1,4 +1,4 @@
-package elocindev.eldritch_end.worldgen;
+package elocindev.eldritch_end.worldgen.feature.surface;
 
 import com.mojang.serialization.Codec;
 
@@ -19,8 +19,8 @@ import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 
-public class BiomeSurfaceGeneration extends Feature<SurfaceConfig> {
-    public BiomeSurfaceGeneration(Codec<SurfaceConfig> configCodec) {
+public class PrimordialAbyssSurface extends Feature<SurfaceConfig> {
+    public PrimordialAbyssSurface(Codec<SurfaceConfig> configCodec) {
       super(configCodec);
     }
 
@@ -88,6 +88,4 @@ public class BiomeSurfaceGeneration extends Feature<SurfaceConfig> {
 
         return generated;
     }
-
-
 }

@@ -2,8 +2,12 @@ package elocindev.eldritch_end.worldgen.biome;
 
 import elocindev.eldritch_end.config.Configs;
 import elocindev.eldritch_end.registry.BiomeRegistry;
+import elocindev.eldritch_end.registry.FeatureRegistry;
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.GenerationSettings;
@@ -39,12 +43,10 @@ public class HasturianWastes {
 	}
 
     public static void registerModifications() {
-		// TODO: Add features
-
-		// BiomeModifications.addFeature(
-        //     BiomeSelectors.includeByKey(BiomeRegistry.PRIMORDIAL_ABYSS),
-        //     GenerationStep.Feature.TOP_LAYER_MODIFICATION,
-        //     RegistryKey.of(Registry.PLACED_FEATURE_KEY, FeatureRegistry.PRIMORDIAL_ABYSS_SURFACE_ID)
-        // );
+		BiomeModifications.addFeature(
+            BiomeSelectors.includeByKey(BiomeRegistry.HASTURIAN_WASTES),
+            GenerationStep.Feature.TOP_LAYER_MODIFICATION,
+            RegistryKey.of(Registry.PLACED_FEATURE_KEY, FeatureRegistry.HASTURIAN_WASTES_SURFACE_ID)
+        );
     }
 }
