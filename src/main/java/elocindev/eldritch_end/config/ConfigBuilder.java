@@ -90,8 +90,8 @@ public class ConfigBuilder {
                 HasturianWastesConfig defaultCfg = new HasturianWastesConfig();
                 
                 defaultCfg.enabled = true;
-                defaultCfg.biome_weight = 1.5F;
-                defaultCfg.biome_temperature = 2.0F;
+                defaultCfg.biome_weight = 3.0F;
+                defaultCfg.biome_temperature = 5.0F;
 
                 String defaultJson = BUILDER.toJson(defaultCfg);
                 Files.writeString(HasturianWastes, defaultJson);

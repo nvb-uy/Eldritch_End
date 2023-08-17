@@ -3,6 +3,7 @@ package elocindev.eldritch_end.worldgen.feature.surface;
 import com.mojang.serialization.Codec;
 
 import elocindev.eldritch_end.block.HasturianMoss;
+import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.worldgen.feature.SurfaceConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -20,7 +21,7 @@ public class HasturianWastesSurface extends Feature<SurfaceConfig> {
     }
 
     public boolean canPlace(StructureWorldAccess world, BlockPos position) {
-        return world.getBlockState(position).getBlock() == Blocks.END_STONE;
+        return world.getBlockState(position).getBlock() == Blocks.END_STONE || world.getBlockState(position).getBlock() == BlockRegistry.ABYSMAL_FRONDS;
     }
    
     @Override
@@ -58,6 +59,8 @@ public class HasturianWastesSurface extends Feature<SurfaceConfig> {
                         else
                             world.setBlockState(targetPos, blockState.with(HasturianMoss.FACING, Direction.EAST), 3);
 
+                        if (world.getBlockState(targetPos.up()).getBlock() == BlockRegistry.ABYSMAL_ROOTS)
+                            world.setBlockState(targetPos.up(), Blocks.AIR.getDefaultState(), 3);
 
                         generated = true;
                     }

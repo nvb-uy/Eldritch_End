@@ -23,9 +23,9 @@ public class BiomeRegistry {
 
         TheEndBiomes.addHighlandsBiome(PRIMORDIAL_ABYSS, Configs.BIOME_PRIMORDIAL_ABYSS.biome_weight);
         TheEndBiomes.addMidlandsBiome(PRIMORDIAL_ABYSS, PRIMORDIAL_ABYSS, Configs.BIOME_PRIMORDIAL_ABYSS.biome_weight);
-        TheEndBiomes.addHighlandsBiome(HASTURIAN_WASTES, Configs.BIOME_HASTURIAN_WASTES.biome_weight);
-        TheEndBiomes.addMidlandsBiome(HASTURIAN_WASTES, HASTURIAN_WASTES, Configs.BIOME_HASTURIAN_WASTES.biome_weight);
 
+        TheEndBiomes.addHighlandsBiome(HASTURIAN_WASTES, Configs.BIOME_HASTURIAN_WASTES.biome_weight);
+        
         PrimordialAbyss.registerModifications();
         HasturianWastes.registerModifications();
     }
