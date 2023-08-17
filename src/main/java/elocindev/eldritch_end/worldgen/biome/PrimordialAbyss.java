@@ -61,7 +61,7 @@ public class PrimordialAbyss {
     public static void registerModifications() {
 		BiomeModifications.addFeature(
             BiomeSelectors.includeByKey(BiomeRegistry.PRIMORDIAL_ABYSS),
-            GenerationStep.Feature.TOP_LAYER_MODIFICATION,
+            GenerationStep.Feature.RAW_GENERATION,
             RegistryKey.of(Registry.PLACED_FEATURE_KEY, FeatureRegistry.PRIMORDIAL_ABYSS_SURFACE_ID)
         );
 

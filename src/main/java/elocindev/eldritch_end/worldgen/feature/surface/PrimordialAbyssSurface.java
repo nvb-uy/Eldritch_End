@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 
 import elocindev.eldritch_end.block.AbysmalFronds;
 import elocindev.eldritch_end.config.Configs;
+import elocindev.eldritch_end.registry.BiomeRegistry;
 import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.worldgen.feature.PrimordialTreeFeature;
 import elocindev.eldritch_end.worldgen.feature.SurfaceConfig;
@@ -47,7 +48,7 @@ public class PrimordialAbyssSurface extends Feature<SurfaceConfig> {
             TendrilFactory.genRandomShape(world, targetPos, BlockRegistry.ABYSMAL_TENDRILS.getDefaultState(), BlockRegistry.SUSPICIOUS_FRONDS.getDefaultState());
         }
 
-        int radius = world.getRandom().nextInt(10) + 6;
+        int radius = world.getRandom().nextInt(11) + 6;
         int radiusX = radius; int radiusZ = radius;
         
         if (world.getRandom().nextBoolean()) {
@@ -64,7 +65,10 @@ public class PrimordialAbyssSurface extends Feature<SurfaceConfig> {
                     BlockPos topPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, new BlockPos(x, 0, z));
                     BlockPos targetPos = topPos.down();
 
+                    if (world.getBiome(targetPos) == BiomeRegistry.HASTURIAN_WASTES) continue;
+
                     if (canPlace(world, targetPos)) {
+                        
                         if (world.getRandom().nextBoolean())
                             world.setBlockState(targetPos, blockState, 3);
                         else
