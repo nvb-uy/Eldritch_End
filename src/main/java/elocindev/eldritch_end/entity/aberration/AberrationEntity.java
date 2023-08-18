@@ -90,9 +90,8 @@ public class AberrationEntity extends HostileEntity implements IAnimatable {
 
     protected <E extends AberrationEntity> PlayState animationPredicate(final AnimationEvent<E> event) {
         if (this.handSwinging) {
-            this.handSwinging = false;
             event.getController().setAnimation(new AnimationBuilder().addAnimation("attack", ILoopType.EDefaultLoopTypes.PLAY_ONCE));
-        
+            this.handSwinging = false;
             return PlayState.CONTINUE;
         }
         
