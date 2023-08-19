@@ -45,7 +45,7 @@ public class HasturianWastes {
     public static void registerModifications() {
 		BiomeModifications.addFeature(
             BiomeSelectors.includeByKey(BiomeRegistry.HASTURIAN_WASTES),
-            GenerationStep.Feature.TOP_LAYER_MODIFICATION,
+            GenerationStep.Feature.LOCAL_MODIFICATIONS,
             RegistryKey.of(Registry.PLACED_FEATURE_KEY, FeatureRegistry.HASTURIAN_WASTES_SURFACE_ID)
         );
 
