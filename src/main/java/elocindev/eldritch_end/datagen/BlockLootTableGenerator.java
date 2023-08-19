@@ -24,5 +24,6 @@ public class BlockLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(BlockRegistry.PRIMORDIAL_DOOR, drops(BlockRegistry.PRIMORDIAL_DOOR_ITEM));
         addDrop(BlockRegistry.PRIMORDIAL_TRAPDOOR, drops(BlockRegistry.PRIMORDIAL_TRAPDOOR_ITEM));
         addDrop(BlockRegistry.PRIMORDIAL_SIGN, drops(BlockRegistry.PRIMORDIAL_WALL_SIGN));
+        addDrop(BlockRegistry.ETYR_ORE, drops(BlockRegistry.ETYR_ORE_ITEM));
     }
 }
