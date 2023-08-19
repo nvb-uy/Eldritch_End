@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "experience": 0.7,
+  "group": "etyr_ingot",
+  "ingredient": {
+    "item": "eldritch_end:raw_etyr"
+  },
+  "result": "eldritch_end:etyr_ingot"
+}
