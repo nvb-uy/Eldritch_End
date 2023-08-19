@@ -31,6 +31,7 @@ public class TreeFactory {
 
     // -- SMALL --
     public static void placeSmallDeadTree(StructureWorldAccess world, BlockPos pos, BlockState block) {
+        if (world.getBlockState(pos.down()).getBlock() != BlockRegistry.ABYSMAL_FRONDS) return;
         
         for (int i = 0; i < 4; i++) {
             if (world.getRandom().nextBoolean() && i == 4) {
@@ -49,6 +50,8 @@ public class TreeFactory {
 
     // -- MEDIUM 1 --
     public static void placeMediumDeadTree1(StructureWorldAccess world, BlockPos pos, BlockState block) {
+        if (world.getBlockState(pos.down()).getBlock() != BlockRegistry.ABYSMAL_FRONDS) return;
+
         BlockPos[] branches_vertical = {
             pos.south().up(4),
             pos.south().east().up(5),
@@ -72,7 +75,9 @@ public class TreeFactory {
     }
     // -- MEDIUM 2 --
     public static void placeMediumDeadTree2(StructureWorldAccess world, BlockPos pos, BlockState block) {
-        if (world.getBlockState(pos.down()).getBlock() == Blocks.AIR) return;
+        if (world.getBlockState(pos.down()).getBlock() != BlockRegistry.ABYSMAL_FRONDS) return;
+
+        pos = pos.up();
 
         BlockPos[] branches_vertical = {
             pos.east().up(2),
@@ -107,6 +112,7 @@ public class TreeFactory {
 
     // -- MEDIUM 3 --
     public static void placeMediumDeadTree3(StructureWorldAccess world, BlockPos pos, BlockState block) {
+        if (world.getBlockState(pos.down()).getBlock() != BlockRegistry.ABYSMAL_FRONDS) return;
         pos = pos.up();
         
         BlockPos[] branches_vertical = {
