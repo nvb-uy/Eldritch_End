@@ -3,7 +3,6 @@ package elocindev.eldritch_end.worldgen.feature;
 import com.mojang.serialization.Codec;
 import elocindev.eldritch_end.registry.BlockRegistry;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;

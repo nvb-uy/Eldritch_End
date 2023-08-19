@@ -48,5 +48,11 @@ public class HasturianWastes {
             GenerationStep.Feature.TOP_LAYER_MODIFICATION,
             RegistryKey.of(Registry.PLACED_FEATURE_KEY, FeatureRegistry.HASTURIAN_WASTES_SURFACE_ID)
         );
+
+		BiomeModifications.addFeature(
+            BiomeSelectors.includeByKey(BiomeRegistry.HASTURIAN_WASTES),
+            GenerationStep.Feature.SURFACE_STRUCTURES,
+            RegistryKey.of(Registry.PLACED_FEATURE_KEY, FeatureRegistry.HASTURIAN_SPIKES_ID)
+        );
     }
 }
