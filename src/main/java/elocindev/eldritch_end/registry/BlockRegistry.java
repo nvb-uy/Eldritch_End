@@ -114,7 +114,7 @@ public class BlockRegistry {
         .sounds(BlockSoundGroup.STONE));
     public static final BlockItem SPIRE_STONE_ITEM = new BlockItem(SPIRE_STONE, new FabricItemSettings());
 
-    public static final Block ETYR_ORE = new OreBlock(Settings.copy(Blocks.IRON_ORE).requiresTool());
+    public static final Block ETYR_ORE = new OreBlock(Settings.of(Material.STONE).requiresTool().strength(3f, 3f));
     public static final BlockItem ETYR_ORE_ITEM = new BlockItem(ETYR_ORE, new FabricItemSettings());
 
 //
