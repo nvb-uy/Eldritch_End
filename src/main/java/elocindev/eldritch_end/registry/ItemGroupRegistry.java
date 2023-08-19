@@ -12,6 +12,9 @@ public class ItemGroupRegistry {
         .appendItems(stacks -> { 
             stacks.add(new ItemStack(ItemRegistry.NECRONOMICON));
 
+            stacks.add(new ItemStack(ItemRegistry.RAW_ETYR));
+            stacks.add(new ItemStack(ItemRegistry.ETYR_INGOT));
+
             // -- BLOCKS --
             stacks.add(new ItemStack(BlockRegistry.ABYSMAL_FRONDS_ITEM)); 
             stacks.add(new ItemStack(BlockRegistry.SUSPICIOUS_FRONDS_ITEM));
@@ -38,14 +41,15 @@ public class ItemGroupRegistry {
             stacks.add(new ItemStack(BlockRegistry.HASTURIAN_MOSS_ITEM));
             stacks.add(new ItemStack(BlockRegistry.SPIRE_STONE_ITEM));
 
-            // -- ARTIFACTS --
+            stacks.add(new ItemStack(BlockRegistry.ETYR_ORE_ITEM));
+
+                // -- ARTIFACTS --
             stacks.add(new ItemStack(ItemRegistry.SILVER_KEY));
 
             // -- ENTITY EGGS --
             stacks.add(new ItemStack(ItemRegistry.ABERRATION_SPAWN_EGG));
             stacks.add(new ItemStack(ItemRegistry.TENTACLE_SPAWN_EGG));
 
-            
     })
     .build().setTexture("eldritchend.png").hideName();
 
