@@ -3,9 +3,11 @@ package elocindev.eldritch_end.worldgen.feature;
 import com.mojang.serialization.Codec;
 import elocindev.eldritch_end.registry.BlockRegistry;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.world.Heightmap;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
@@ -25,13 +27,19 @@ public class HasturianSpikeFeature extends Feature<DefaultFeatureConfig> {
         BlockPos blockPos = context.getOrigin();
         Random random = context.getRandom();
 
-        StructureWorldAccess structureWorldAccess;
-        for(structureWorldAccess = context.getWorld(); structureWorldAccess.isAir(blockPos) && blockPos.getY() > structureWorldAccess.getBottomY() + 2; blockPos = blockPos.down()) {
-        }
+        BlockState block = BlockRegistry.SPIRE_STONE.getDefaultState();
 
-        if (!canBePlaced(structureWorldAccess, blockPos)) {
+        StructureWorldAccess world = context.getWorld();
+        
+        blockPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, blockPos);
+
+        if (!canBePlaced(world, blockPos.down())) {
             return false;
+
         } else {
+            if (world.getBlockState(blockPos.down()).getBlock() == Blocks.AIR) return false;
+            blockPos = blockPos.down(2);
+
             blockPos = blockPos.up(random.nextInt(4));
             int i = random.nextInt(4) + 7;
             int j = i / 4 + random.nextInt(2);
@@ -51,17 +59,17 @@ public class HasturianSpikeFeature extends Feature<DefaultFeatureConfig> {
                     for(int n = -l; n <= l; ++n) {
                         float h = (float)MathHelper.abs(n) - 0.25F;
                         if ((m == 0 && n == 0 || !(g * g + h * h > f * f)) && (m != -l && m != l && n != -l && n != l || !(random.nextFloat() > 0.75F))) {
-                            BlockState blockState = structureWorldAccess.getBlockState(blockPos.add(m, k, n));
+                            BlockState blockState = world.getBlockState(blockPos.add(m, k, n));
                             if (blockState.isAir() || isSoil(blockState) || blockState.isOf(BlockRegistry.HASTURIAN_MOSS)) {
-                                this.setBlockState(structureWorldAccess, blockPos.add(m, k, n), BlockRegistry.SPIRE_STONE.getDefaultState());
+                                this.setBlockState(world, blockPos.add(m, k, n), block);
                             }
 
-//                            if (k != 0 && l > 1) {
-//                                blockState = structureWorldAccess.getBlockState(blockPos.add(m, -k, n));
-//                                if (blockState.isAir() || isSoil(blockState) || blockState.isOf(Blocks.SNOW_BLOCK) || blockState.isOf(Blocks.ICE)) {
-//                                    this.setBlockState(structureWorldAccess, blockPos.add(m, -k, n), BlockRegistry.SPIRE_STONE.getDefaultState());
-//                                }
-//                            }
+                           if (k != 0 && l > 1) {
+                               blockState = world.getBlockState(blockPos.add(m, -k, n));
+                               if (blockState.isAir()) {
+                                   this.setBlockState(world, blockPos.add(m, -k, n), block);
+                               }
+                           }
                         }
                     }
                 }
@@ -83,12 +91,12 @@ public class HasturianSpikeFeature extends Feature<DefaultFeatureConfig> {
                     }
 
                     while(blockPos2.getY() > 50) {
-                        BlockState blockState2 = structureWorldAccess.getBlockState(blockPos2);
+                        BlockState blockState2 = world.getBlockState(blockPos2);
                         if (!blockState2.isAir() && !isSoil(blockState2) && !blockState2.isOf(BlockRegistry.HASTURIAN_MOSS) && !blockState2.isOf(BlockRegistry.SPIRE_STONE)) {
                             break;
                         }
 
-                        this.setBlockState(structureWorldAccess, blockPos2, BlockRegistry.SPIRE_STONE.getDefaultState());
+                        this.setBlockState(world, blockPos2, block);
                         blockPos2 = blockPos2.down();
                         --p;
                         if (p <= 0) {
