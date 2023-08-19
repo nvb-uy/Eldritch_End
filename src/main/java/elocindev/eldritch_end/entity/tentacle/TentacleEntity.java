@@ -58,10 +58,10 @@ public class TentacleEntity extends HostileEntity implements IAnimatable {
 
     public static DefaultAttributeContainer.Builder setAttributes() {
         return HostileEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, Configs.ENTITY_ABERRATION.HEALTH_ATTRIBUTE)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, Configs.ENTITY_TENTACLE.HEALTH_ATTRIBUTE)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, Configs.ENTITY_ABERRATION.ATTACK_DAMAGE_ATTRIBUTE)
-                .add(EntityAttributes.GENERIC_ATTACK_SPEED, Configs.ENTITY_ABERRATION.ATTACK_SPEED_ATTRIBUTE)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, Configs.ENTITY_TENTACLE.ATTACK_DAMAGE_ATTRIBUTE)
+                .add(EntityAttributes.GENERIC_ATTACK_SPEED, Configs.ENTITY_TENTACLE.ATTACK_SPEED_ATTRIBUTE)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 100)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 2);
     }

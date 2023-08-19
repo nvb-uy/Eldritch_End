@@ -9,11 +9,11 @@ public class ConfigLoader {
         ServerLifecycleEvents.END_DATA_PACK_RELOAD.register((server, resourceManager, success)
 		->  {
 			if (started) {                  
-
 				Configs.BIOME_PRIMORDIAL_ABYSS = ConfigBuilder.loadPrimordialAbyss();
+                Configs.BIOME_HASTURIAN_WASTES = ConfigBuilder.loadHasturianWastes();
                 Configs.ENTITY_ABERRATION = ConfigBuilder.loadAberration();
+                Configs.ENTITY_TENTACLE = ConfigBuilder.loadTentacle();
 			}
-			
 		});
 		
         EldritchEnd.LOGGER.info("Eldritch End's Config Loaded!");

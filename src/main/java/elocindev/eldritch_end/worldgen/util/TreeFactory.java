@@ -1,5 +1,6 @@
 package elocindev.eldritch_end.worldgen.util;
 
+import elocindev.eldritch_end.registry.BlockRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.PillarBlock;
@@ -13,6 +14,8 @@ public class TreeFactory {
     // *------------------------*
 
     public static void addRandomMedium(StructureWorldAccess world, BlockPos pos, BlockState block) {
+        if (world.getBlockState(pos).getBlock() != BlockRegistry.ABYSMAL_FRONDS) return;
+        
         switch (world.getRandom().nextInt(3)) {
             case 0:
                 placeMediumDeadTree1(world, pos, block);
@@ -104,6 +107,8 @@ public class TreeFactory {
 
     // -- MEDIUM 3 --
     public static void placeMediumDeadTree3(StructureWorldAccess world, BlockPos pos, BlockState block) {
+        pos = pos.up();
+        
         BlockPos[] branches_vertical = {
             pos.east().up(4),
             pos.east().up(5),

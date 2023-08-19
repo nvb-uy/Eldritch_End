@@ -53,6 +53,8 @@ public class AberrationEntity extends HostileEntity implements IAnimatable {
 
     @Override
     public boolean tryAttack(Entity target) {
+        this.handSwinging = true;
+
         if (target instanceof PlayerEntity victim) {
             StatusEffect effect = EffectRegistry.CORRUPTION; // TODO: Replace with corruption effect
 
@@ -84,10 +86,15 @@ public class AberrationEntity extends HostileEntity implements IAnimatable {
     @Override
     public void registerControllers(AnimationData data) {
         data.addAnimationController(new AnimationController<>(this, "controller", 10, this::animationPredicate));
-        data.addAnimationController(new AnimationController<>(this, "attackController", 10, this::attackAnimationPredicate));
     }
 
     protected <E extends AberrationEntity> PlayState animationPredicate(final AnimationEvent<E> event) {
+        if (this.handSwinging) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("attack", ILoopType.EDefaultLoopTypes.PLAY_ONCE));
+            this.handSwinging = false;
+            return PlayState.CONTINUE;
+        }
+        
         if (event.isMoving() && this.isOnGround()) {
             // TODO: Make this scale with the movement attribute
             event.getController().animationSpeed = 3.0F;
@@ -98,15 +105,6 @@ public class AberrationEntity extends HostileEntity implements IAnimatable {
 
         event.getController().animationSpeed = 1.0F;
         event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", ILoopType.EDefaultLoopTypes.LOOP));
-        return PlayState.CONTINUE;
-    }
-
-    protected <E extends AberrationEntity> PlayState attackAnimationPredicate(final AnimationEvent<E> event) {
-        if (this.isAttacking()) {
-            event.getController().markNeedsReload();
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("attack", ILoopType.EDefaultLoopTypes.PLAY_ONCE));
-        }
-        
         return PlayState.CONTINUE;
     }
 

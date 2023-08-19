@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "eldritch_end:primordial_planks"
+    }
+  ],
+  "result": {
+    "item": "eldritch_end:primordial_button"
+  }
+}

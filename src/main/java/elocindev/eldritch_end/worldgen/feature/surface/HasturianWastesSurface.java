@@ -1,14 +1,10 @@
-package elocindev.eldritch_end.worldgen;
+package elocindev.eldritch_end.worldgen.feature.surface;
 
 import com.mojang.serialization.Codec;
 
-import elocindev.eldritch_end.block.AbysmalFronds;
-import elocindev.eldritch_end.config.Configs;
+import elocindev.eldritch_end.block.HasturianMoss;
 import elocindev.eldritch_end.registry.BlockRegistry;
-import elocindev.eldritch_end.worldgen.feature.PrimordialTreeFeature;
 import elocindev.eldritch_end.worldgen.feature.SurfaceConfig;
-import elocindev.eldritch_end.worldgen.util.TendrilFactory;
-import elocindev.eldritch_end.worldgen.util.TreeFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -19,13 +15,13 @@ import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 
-public class BiomeSurfaceGeneration extends Feature<SurfaceConfig> {
-    public BiomeSurfaceGeneration(Codec<SurfaceConfig> configCodec) {
+public class HasturianWastesSurface extends Feature<SurfaceConfig> {
+    public HasturianWastesSurface(Codec<SurfaceConfig> configCodec) {
       super(configCodec);
     }
 
     public boolean canPlace(StructureWorldAccess world, BlockPos position) {
-        return world.getBlockState(position).getBlock() == Blocks.END_STONE;
+        return world.getBlockState(position).getBlock() == Blocks.END_STONE || world.getBlockState(position).getBlock() == BlockRegistry.ABYSMAL_FRONDS;
     }
    
     @Override
@@ -39,13 +35,6 @@ public class BiomeSurfaceGeneration extends Feature<SurfaceConfig> {
 
         int centerX = origin.getX() + world.getRandom().nextInt(4);
         int centerZ = origin.getZ() + world.getRandom().nextInt(4);
-        
-        // Tendril Generation
-        if (Configs.BIOME_PRIMORDIAL_ABYSS.enable_tendril_patches && world.getRandom().nextInt(100) <= Configs.BIOME_PRIMORDIAL_ABYSS.tendril_patch_chance) {
-            BlockPos targetPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, new BlockPos(centerX, 0, centerZ)).down();
-
-            TendrilFactory.genRandomShape(world, targetPos, BlockRegistry.ABYSMAL_TENDRILS.getDefaultState(), BlockRegistry.SUSPICIOUS_FRONDS.getDefaultState());
-        }
 
         int radius = world.getRandom().nextInt(10) + 6;
         int radiusX = radius; int radiusZ = radius;
@@ -68,10 +57,10 @@ public class BiomeSurfaceGeneration extends Feature<SurfaceConfig> {
                         if (world.getRandom().nextBoolean())
                             world.setBlockState(targetPos, blockState, 3);
                         else
-                            world.setBlockState(targetPos, blockState.with(AbysmalFronds.FACING, Direction.EAST), 3);
-                    
-                        if (Configs.BIOME_PRIMORDIAL_ABYSS.enable_roots_generation && world.getRandom().nextInt(100) <= Configs.BIOME_PRIMORDIAL_ABYSS.roots_generation_chance)
-                            world.setBlockState(targetPos.up(), BlockRegistry.ABYSMAL_ROOTS.getDefaultState(), 3);
+                            world.setBlockState(targetPos, blockState.with(HasturianMoss.FACING, Direction.EAST), 3);
+
+                        if (world.getBlockState(targetPos.up()).getBlock() == BlockRegistry.ABYSMAL_ROOTS)
+                            world.setBlockState(targetPos.up(), Blocks.AIR.getDefaultState(), 3);
 
                         generated = true;
                     }
@@ -79,15 +68,6 @@ public class BiomeSurfaceGeneration extends Feature<SurfaceConfig> {
             }
         }
 
-        int zOffset = world.getRandom().nextBetween(-4, 4); int xOffset = world.getRandom().nextBetween(-4, 4);
-
-        BlockPos treeTarget = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, new BlockPos(centerX, 0, centerZ)).down();
-        
-        if (PrimordialTreeFeature.canBePlaced(world, treeTarget)) TreeFactory.addRandomMedium(world, treeTarget.add(xOffset, 0, zOffset), BlockRegistry.PRIMORDIAL_LOG.getDefaultState());
-    
-
         return generated;
     }
-
-
 }
