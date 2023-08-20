@@ -25,9 +25,12 @@
 
     "block.eldritch_end.hasturian_moss":"Hasturian Moss",
     "block.eldritch_end.spire_stone":"Spire Stone",
+    "block.eldritch_end.etyr_ore":"Etyr Ore",
 
     "item.eldritch_end.necronomicon": "\u00A72Necronomicon",
     "item.eldritch_end.silver_key": "Silver Key",
+    "item.eldritch_end.raw_etyr": "Raw Etyr",
+    "item.eldritch_end.etyr_ingot": "Etyr Ingot",    
 
     "item.eldritch_end.aberration_spawn_egg": "Aberration Spawn Egg",
     "item.eldritch_end.tentacle_spawn_egg": "Tentacle Spawn Egg",
