@@ -2,7 +2,6 @@ package elocindev.eldritch_end.worldgen.util;
 
 import elocindev.eldritch_end.registry.BlockRegistry;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.PillarBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -14,7 +13,7 @@ public class TreeFactory {
     // *------------------------*
 
     public static void addRandomMedium(StructureWorldAccess world, BlockPos pos, BlockState block) {
-        if (world.getBlockState(pos).getBlock() != BlockRegistry.ABYSMAL_FRONDS) return;
+        if (world.getBlockState(pos.down()).getBlock() != BlockRegistry.ABYSMAL_FRONDS) return;
         
         switch (world.getRandom().nextInt(3)) {
             case 0:
@@ -73,11 +72,10 @@ public class TreeFactory {
         world.setBlockState(pos.north().up(2), block.with(PillarBlock.AXIS, Direction.NORTH.getAxis()), 3);
         world.setBlockState(pos.south().west().up(4), block.with(PillarBlock.AXIS, Direction.WEST.getAxis()), 3);
     }
+    
     // -- MEDIUM 2 --
     public static void placeMediumDeadTree2(StructureWorldAccess world, BlockPos pos, BlockState block) {
         if (world.getBlockState(pos.down()).getBlock() != BlockRegistry.ABYSMAL_FRONDS) return;
-
-        pos = pos.up();
 
         BlockPos[] branches_vertical = {
             pos.east().up(2),
@@ -113,7 +111,6 @@ public class TreeFactory {
     // -- MEDIUM 3 --
     public static void placeMediumDeadTree3(StructureWorldAccess world, BlockPos pos, BlockState block) {
         if (world.getBlockState(pos.down()).getBlock() != BlockRegistry.ABYSMAL_FRONDS) return;
-        pos = pos.up();
         
         BlockPos[] branches_vertical = {
             pos.east().up(4),
