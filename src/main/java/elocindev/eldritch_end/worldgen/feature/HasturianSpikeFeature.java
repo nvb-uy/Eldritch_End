@@ -1,6 +1,8 @@
 package elocindev.eldritch_end.worldgen.feature;
 
 import com.mojang.serialization.Codec;
+
+import elocindev.eldritch_end.config.Configs;
 import elocindev.eldritch_end.registry.BlockRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -33,6 +35,10 @@ public class HasturianSpikeFeature extends Feature<DefaultFeatureConfig> {
         
         blockPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, blockPos);
 
+        if (!Configs.BIOME_HASTURIAN_WASTES.enable_spike_generation) return false;
+
+        if (random.nextInt(100) >= Configs.BIOME_HASTURIAN_WASTES.spike_generation_chance) return false;
+
         if (!canBePlaced(world, blockPos.down()))
             return false;
 
@@ -46,8 +52,7 @@ public class HasturianSpikeFeature extends Feature<DefaultFeatureConfig> {
             blockPos = blockPos.up(10 + random.nextInt(30));
         }
 
-        int k;
-        int l;
+        int k; int l;
         for(k = 0; k < i; ++k) {
             float f = (1.0F - (float)k / (float)i) * (float)j;
             l = MathHelper.ceil(f);
@@ -59,8 +64,11 @@ public class HasturianSpikeFeature extends Feature<DefaultFeatureConfig> {
                     float h = (float)MathHelper.abs(n) - 0.25F;
                     if ((m == 0 && n == 0 || !(g * g + h * h > f * f)) && (m != -l && m != l && n != -l && n != l || !(random.nextFloat() > 0.75F))) {
                         BlockState blockState = world.getBlockState(blockPos.add(m, k, n));
-                        if (blockState.isAir() || isSoil(blockState) || blockState.isOf(BlockRegistry.HASTURIAN_MOSS)) {
-                            this.setBlockState(world, blockPos.add(m, k, n), block);
+                        if (blockState.isAir() || blockState.isOf(BlockRegistry.HASTURIAN_MOSS)) {
+                            if (random.nextInt(100) <= Configs.BIOME_HASTURIAN_WASTES.etyr_spawn_chance_per_block)
+                                this.setBlockState(world, blockPos.add(m, k, n), BlockRegistry.ETYR_ORE.getDefaultState());
+                            else
+                                this.setBlockState(world, blockPos.add(m, k, n), block);
                         }
 
                         if (k != 0 && l > 1) {
