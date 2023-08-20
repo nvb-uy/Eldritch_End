@@ -92,6 +92,9 @@ public class ConfigBuilder {
                 defaultCfg.enabled = true;
                 defaultCfg.biome_weight = 3.0F;
                 defaultCfg.biome_temperature = 5.0F;
+                defaultCfg.enable_spike_generation = true;
+                defaultCfg.spike_generation_chance = 100;
+                defaultCfg.etyr_spawn_chance_per_block = 2;
 
                 String defaultJson = BUILDER.toJson(defaultCfg);
                 Files.writeString(HasturianWastes, defaultJson);

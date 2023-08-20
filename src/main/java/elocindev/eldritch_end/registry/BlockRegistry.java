@@ -114,6 +114,10 @@ public class BlockRegistry {
         .sounds(BlockSoundGroup.STONE));
     public static final BlockItem SPIRE_STONE_ITEM = new BlockItem(SPIRE_STONE, new FabricItemSettings());
 
+
+    public static final Block ETYR_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE));
+    public static final BlockItem ETYR_ORE_ITEM = new BlockItem(ETYR_ORE, new FabricItemSettings());
+
 //
     public static void register() {
         registerFullBlock("abysmal_fronds", ABYSMAL_FRONDS, ABYSMAL_FRONDS_ITEM);
@@ -137,6 +141,8 @@ public class BlockRegistry {
     
         registerFullBlock("hasturian_moss", HASTURIAN_MOSS, HASTURIAN_MOSS_ITEM);
         registerFullBlock("spire_stone", SPIRE_STONE, SPIRE_STONE_ITEM);
+
+        registerFullBlock("etyr_ore", ETYR_ORE, ETYR_ORE_ITEM);
     }
 
     public static void registerFullBlock(String identifier, Block blockInstance, BlockItem itemInstance) {

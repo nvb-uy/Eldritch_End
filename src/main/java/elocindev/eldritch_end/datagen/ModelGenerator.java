@@ -35,13 +35,16 @@ public class ModelGenerator extends FabricModelProvider {
         registerSlab(BlockRegistry.PRIMORDIAL_SLAB, BlockRegistry.PRIMORDIAL_PLANKS, generator.modelCollector, generator.blockStateCollector);
         registerStairs(BlockRegistry.PRIMORDIAL_STAIRS, BlockRegistry.PRIMORDIAL_PLANKS, generator.modelCollector, generator.blockStateCollector);
         registerButton(BlockRegistry.PRIMORDIAL_BUTTON, BlockRegistry.PRIMORDIAL_PLANKS, generator.modelCollector, generator.blockStateCollector);
+
+        generator.registerSimpleCubeAll(BlockRegistry.ETYR_ORE);
     }
 
     @Override
     public void generateItemModels(ItemModelGenerator generator) {
         generator.register(ItemRegistry.SILVER_KEY, Models.GENERATED);
         generator.register(ItemRegistry.NECRONOMICON, Models.GENERATED);
-        
+        generator.register(ItemRegistry.RAW_ETYR, Models.GENERATED);
+        generator.register(ItemRegistry.ETYR_INGOT, Models.GENERATED);
     }
 
     /** Takes in the slab block as well as a plank block which acts as the texture. */

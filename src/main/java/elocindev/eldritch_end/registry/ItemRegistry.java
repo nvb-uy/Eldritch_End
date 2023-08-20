@@ -33,6 +33,9 @@ public class ItemRegistry {
     // Well that's because this is an easter egg. Please don't tell anyone and just enjoy it ingame :thisisthesunglassescat:
     public static final Item CHORB_SPAWN_EGG = new Chorb(EntityType.GIANT, 0xfcba03, 0xfce703, new FabricItemSettings());
 
+    public static final Item RAW_ETYR = new Item(new FabricItemSettings());
+    public static final Item ETYR_INGOT = new Item(new FabricItemSettings());
+
     public static Item reg(Item instance, String id) {
         return Registry.register(Registry.ITEM, new Identifier(EldritchEnd.MODID, id), instance);
     }
@@ -48,6 +51,9 @@ public class ItemRegistry {
 
         reg(PRIMORDIAL_BOAT, "primordial_boat");
         reg(PRIMORDIAL_CHEST_BOAT, "primordial_chest_boat");
+
+        reg(RAW_ETYR, "raw_etyr");
+        reg(ETYR_INGOT, "etyr_ingot");
         LOGGER.info("Registered Eldritch End's items");
     }
 }
