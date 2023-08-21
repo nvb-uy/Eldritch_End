@@ -1,0 +1,20 @@
+{
+  "replace": false,
+  "values": [
+    "eldritch_end:primordial_log",
+    "eldritch_end:stripped_primordial_log",
+    "eldritch_end:primordial_wood",
+    "eldritch_end:stripped_primordial_wood",
+    "eldritch_end:primordial_planks",
+    "eldritch_end:primordial_stairs",
+    "eldritch_end:primordial_slab",
+    "eldritch_end:primordial_fence",
+    "eldritch_end:primordial_fence_gate",
+    "eldritch_end:primordial_door",
+    "eldritch_end:primordial_trapdoor",
+    "eldritch_end:primordial_button",
+    "eldritch_end:primordial_pressure_plate",
+    "eldritch_end:primordial_sign",
+    "eldritch_end:primordial_wall_sign"
+  ]
+}

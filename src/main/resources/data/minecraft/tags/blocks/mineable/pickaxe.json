@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "eldritch_end:etyr_ore",
+    "eldritch_end:spire_stone",
+    "eldritch_end:hasturian_moss",
+    "eldritch_end:abysmal_fronds",
+    "eldritch_end:suspicious_fronds"
+  ]
+}
