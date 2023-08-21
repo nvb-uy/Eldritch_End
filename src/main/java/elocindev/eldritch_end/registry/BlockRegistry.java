@@ -121,6 +121,9 @@ public class BlockRegistry {
     public static final Block PRIMORDIAL_FENCE = new FenceBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD));
     public static final BlockItem PRIMORDIAL_FENCE_ITEM = new BlockItem(PRIMORDIAL_FENCE, new FabricItemSettings());
 
+    public static final Block PRIMORDIAL_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD));
+    public static final BlockItem PRIMORDIAL_FENCE_GATE_ITEM = new BlockItem(PRIMORDIAL_FENCE_GATE, new FabricItemSettings());
+
 //
     public static void register() {
         registerFullBlock("abysmal_fronds", ABYSMAL_FRONDS, ABYSMAL_FRONDS_ITEM);
@@ -141,6 +144,7 @@ public class BlockRegistry {
         registerFullBlock("primordial_door", PRIMORDIAL_DOOR, PRIMORDIAL_DOOR_ITEM);
         registerFullBlock("primordial_trapdoor", PRIMORDIAL_TRAPDOOR, PRIMORDIAL_TRAPDOOR_ITEM);
         registerFullBlock("primordial_fence", PRIMORDIAL_FENCE, PRIMORDIAL_FENCE_ITEM);
+        registerFullBlock("primordial_fence_gate", PRIMORDIAL_FENCE_GATE, PRIMORDIAL_FENCE_GATE_ITEM);
         registerSign("primordial", PRIMORDIAL_SIGN, PRIMORDIAL_WALL_SIGN);
     
         registerFullBlock("hasturian_moss", HASTURIAN_MOSS, HASTURIAN_MOSS_ITEM);

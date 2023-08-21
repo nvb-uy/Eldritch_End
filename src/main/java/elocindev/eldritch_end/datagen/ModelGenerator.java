@@ -36,6 +36,7 @@ public class ModelGenerator extends FabricModelProvider {
         registerStairs(BlockRegistry.PRIMORDIAL_STAIRS, BlockRegistry.PRIMORDIAL_PLANKS, generator.modelCollector, generator.blockStateCollector);
         registerButton(BlockRegistry.PRIMORDIAL_BUTTON, BlockRegistry.PRIMORDIAL_PLANKS, generator.modelCollector, generator.blockStateCollector);
         registerFence(BlockRegistry.PRIMORDIAL_FENCE, BlockRegistry.PRIMORDIAL_PLANKS, generator.modelCollector, generator.blockStateCollector);
+        registerFenceGate(BlockRegistry.PRIMORDIAL_FENCE_GATE, BlockRegistry.PRIMORDIAL_PLANKS, generator.modelCollector, generator.blockStateCollector);
     }
 
     @Override
@@ -53,6 +54,16 @@ public class ModelGenerator extends FabricModelProvider {
         blockStateCollector.accept(BlockStateModelGenerator.createFenceBlockState(fenceBlock, identifier, identifier2));
         Identifier identifier3 = Models.FENCE_INVENTORY.upload(fenceBlock, textureMap, modelCollector);
         registerParentedItemModel(fenceBlock, identifier3, modelCollector);
+    }
+
+    private void registerFenceGate(Block fenceGateBlock, Block plankBlock, BiConsumer<Identifier, Supplier<JsonElement>> modelCollector, Consumer<BlockStateSupplier> blockStateCollector) {
+        TextureMap textureMap = TextureMap.all(plankBlock);
+        Identifier identifier = Models.TEMPLATE_FENCE_GATE_OPEN.upload(fenceGateBlock, textureMap, modelCollector);
+        Identifier identifier2 = Models.TEMPLATE_FENCE_GATE.upload(fenceGateBlock, textureMap,modelCollector);
+        Identifier identifier3 = Models.TEMPLATE_FENCE_GATE_WALL_OPEN.upload(fenceGateBlock, textureMap, modelCollector);
+        Identifier identifier4 = Models.TEMPLATE_FENCE_GATE_WALL.upload(fenceGateBlock, textureMap, modelCollector);
+        blockStateCollector.accept(BlockStateModelGenerator.createFenceGateBlockState(fenceGateBlock, identifier, identifier2, identifier3, identifier4));
+        registerParentedItemModel(fenceGateBlock, identifier3, modelCollector);
     }
 
     /** Takes in the slab block as well as a plank block which acts as the texture. */
