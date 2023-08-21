@@ -35,8 +35,7 @@ public class ModelGenerator extends FabricModelProvider {
         registerSlab(BlockRegistry.PRIMORDIAL_SLAB, BlockRegistry.PRIMORDIAL_PLANKS, generator.modelCollector, generator.blockStateCollector);
         registerStairs(BlockRegistry.PRIMORDIAL_STAIRS, BlockRegistry.PRIMORDIAL_PLANKS, generator.modelCollector, generator.blockStateCollector);
         registerButton(BlockRegistry.PRIMORDIAL_BUTTON, BlockRegistry.PRIMORDIAL_PLANKS, generator.modelCollector, generator.blockStateCollector);
-
-        generator.registerSimpleCubeAll(BlockRegistry.ETYR_ORE);
+        registerFence(BlockRegistry.PRIMORDIAL_FENCE, BlockRegistry.PRIMORDIAL_PLANKS, generator.modelCollector, generator.blockStateCollector);
     }
 
     @Override
@@ -45,6 +44,15 @@ public class ModelGenerator extends FabricModelProvider {
         generator.register(ItemRegistry.NECRONOMICON, Models.GENERATED);
         generator.register(ItemRegistry.RAW_ETYR, Models.GENERATED);
         generator.register(ItemRegistry.ETYR_INGOT, Models.GENERATED);
+    }
+
+    private void registerFence(Block fenceBlock, Block plankBlock, BiConsumer<Identifier, Supplier<JsonElement>> modelCollector, Consumer<BlockStateSupplier> blockStateCollector) {
+        TextureMap textureMap = TextureMap.all(plankBlock);
+        Identifier identifier = Models.FENCE_POST.upload(fenceBlock, textureMap, modelCollector);
+        Identifier identifier2 = Models.FENCE_SIDE.upload(fenceBlock, textureMap, modelCollector);
+        blockStateCollector.accept(BlockStateModelGenerator.createFenceBlockState(fenceBlock, identifier, identifier2));
+        Identifier identifier3 = Models.FENCE_INVENTORY.upload(fenceBlock, textureMap, modelCollector);
+        registerParentedItemModel(fenceBlock, identifier3, modelCollector);
     }
 
     /** Takes in the slab block as well as a plank block which acts as the texture. */
