@@ -6,7 +6,6 @@ import elocindev.eldritch_end.block.AbysmalRoots;
 import elocindev.eldritch_end.block.AbysmalTendrils;
 import elocindev.eldritch_end.block.HasturianMoss;
 import elocindev.eldritch_end.block.SuspiciousFronds;
-import net.fabricmc.fabric.api.block.v1.FabricBlock;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
