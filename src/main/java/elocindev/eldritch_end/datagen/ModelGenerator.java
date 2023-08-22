@@ -37,6 +37,8 @@ public class ModelGenerator extends FabricModelProvider {
         registerButton(BlockRegistry.PRIMORDIAL_BUTTON, BlockRegistry.PRIMORDIAL_PLANKS, generator.modelCollector, generator.blockStateCollector);
         registerFence(BlockRegistry.PRIMORDIAL_FENCE, BlockRegistry.PRIMORDIAL_PLANKS, generator.modelCollector, generator.blockStateCollector);
         registerFenceGate(BlockRegistry.PRIMORDIAL_FENCE_GATE, BlockRegistry.PRIMORDIAL_PLANKS, generator.modelCollector, generator.blockStateCollector);
+
+        generator.registerSimpleCubeAll(BlockRegistry.ETYR_ORE);
     }
 
     @Override
