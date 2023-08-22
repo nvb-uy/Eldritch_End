@@ -65,7 +65,9 @@ public class ModelGenerator extends FabricModelProvider {
         Identifier identifier3 = Models.TEMPLATE_FENCE_GATE_WALL_OPEN.upload(fenceGateBlock, textureMap, modelCollector);
         Identifier identifier4 = Models.TEMPLATE_FENCE_GATE_WALL.upload(fenceGateBlock, textureMap, modelCollector);
         blockStateCollector.accept(BlockStateModelGenerator.createFenceGateBlockState(fenceGateBlock, identifier, identifier2, identifier3, identifier4));
-        registerParentedItemModel(fenceGateBlock, identifier3, modelCollector);
+
+        Identifier identifier5 = Models.FENCE_INVENTORY.upload(fenceGateBlock, textureMap, modelCollector);
+        registerParentedItemModel(fenceGateBlock, identifier5, modelCollector);
     }
 
     /** Takes in the slab block as well as a plank block which acts as the texture. */
