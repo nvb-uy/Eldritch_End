@@ -29,5 +29,6 @@ public class BlockLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(BlockRegistry.PRIMORDIAL_FENCE_GATE, drops(BlockRegistry.PRIMORDIAL_FENCE_GATE_ITEM));
 
         addDrop(BlockRegistry.ETYR_ORE, (blockx) -> oreDrops(blockx, ItemRegistry.RAW_ETYR));
+        addDrop(BlockRegistry.ETYR_BLOCK, drops(BlockRegistry.ETYR_BLOCK_ITEM));
     }
 }

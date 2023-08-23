@@ -118,6 +118,9 @@ public class BlockRegistry {
     public static final Block ETYR_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE));
     public static final BlockItem ETYR_ORE_ITEM = new BlockItem(ETYR_ORE, new FabricItemSettings());
 
+    public static final Block ETYR_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK));
+    public static final BlockItem ETYR_BLOCK_ITEM = new BlockItem(ETYR_ORE, new FabricItemSettings());
+
     public static final Block PRIMORDIAL_FENCE = new FenceBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD));
     public static final BlockItem PRIMORDIAL_FENCE_ITEM = new BlockItem(PRIMORDIAL_FENCE, new FabricItemSettings());
 
@@ -151,6 +154,7 @@ public class BlockRegistry {
         registerFullBlock("spire_stone", SPIRE_STONE, SPIRE_STONE_ITEM);
 
         registerFullBlock("etyr_ore", ETYR_ORE, ETYR_ORE_ITEM);
+        registerFullBlock("etyr_block", ETYR_BLOCK, ETYR_BLOCK_ITEM);
     }
 
     public static void registerFullBlock(String identifier, Block blockInstance, BlockItem itemInstance) {
