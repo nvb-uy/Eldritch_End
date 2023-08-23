@@ -119,7 +119,27 @@ public class BlockRegistry {
     public static final BlockItem ETYR_ORE_ITEM = new BlockItem(ETYR_ORE, new FabricItemSettings());
 
     public static final Block ETYR_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK));
-    public static final BlockItem ETYR_BLOCK_ITEM = new BlockItem(ETYR_ORE, new FabricItemSettings());
+    public static final BlockItem ETYR_BLOCK_ITEM = new BlockItem(ETYR_BLOCK, new FabricItemSettings());
+
+    public static final Block ETYR_BARS = new PaneBlock(FabricBlockSettings.copyOf(Blocks.IRON_BARS));
+    public static final BlockItem ETYR_BARS_ITEM = new BlockItem(ETYR_BARS, new FabricItemSettings());
+
+    public static final Block ETYR_DOOR = new DoorBlock(FabricBlockSettings
+            .copyOf(Blocks.IRON_DOOR)
+            .sounds(BlockSoundGroup.METAL));
+    public static final BlockItem ETYR_DOOR_ITEM = new BlockItem(ETYR_DOOR, new FabricItemSettings());
+
+    public static final Block ETYR_PILLAR = new PillarBlock(FabricBlockSettings.copyOf(Blocks.QUARTZ_PILLAR));
+    public static final BlockItem ETYR_PILLAR_ITEM = new BlockItem(ETYR_PILLAR, new FabricItemSettings());
+
+    public static final Block ETYR_TILES = new Block(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK));
+    public static final BlockItem ETYR_TILES_ITEM = new BlockItem(ETYR_TILES, new FabricItemSettings());
+
+    public static final Block ETYR_TRAPDOOR = new TrapdoorBlock(FabricBlockSettings
+            .copyOf(Blocks.IRON_TRAPDOOR)
+            .sounds(BlockSoundGroup.METAL));
+
+    public static final BlockItem ETYR_TRAPDOOR_ITEM = new BlockItem(ETYR_TRAPDOOR, new FabricItemSettings());
 
     public static final Block PRIMORDIAL_FENCE = new FenceBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD));
     public static final BlockItem PRIMORDIAL_FENCE_ITEM = new BlockItem(PRIMORDIAL_FENCE, new FabricItemSettings());
@@ -155,6 +175,11 @@ public class BlockRegistry {
 
         registerFullBlock("etyr_ore", ETYR_ORE, ETYR_ORE_ITEM);
         registerFullBlock("etyr_block", ETYR_BLOCK, ETYR_BLOCK_ITEM);
+        registerFullBlock("etyr_bars", ETYR_BARS, ETYR_BARS_ITEM);
+        registerFullBlock("etyr_door", ETYR_DOOR, ETYR_DOOR_ITEM);
+        registerFullBlock("etyr_pillar", ETYR_PILLAR, ETYR_PILLAR_ITEM);
+        registerFullBlock("etyr_tiles", ETYR_TILES, ETYR_TILES_ITEM);
+        registerFullBlock("etyr_trapdoor", ETYR_TRAPDOOR, ETYR_TRAPDOOR_ITEM);
     }
 
     public static void registerFullBlock(String identifier, Block blockInstance, BlockItem itemInstance) {
