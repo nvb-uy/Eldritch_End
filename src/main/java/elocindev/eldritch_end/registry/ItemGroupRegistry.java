@@ -36,6 +36,7 @@ public class ItemGroupRegistry {
             stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_TRAPDOOR_ITEM));
             stacks.add(new ItemStack(ItemRegistry.PRIMORDIAL_BOAT));
             stacks.add(new ItemStack(ItemRegistry.PRIMORDIAL_CHEST_BOAT));
+            stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_FENCE_ITEM));
             stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_SIGN_ITEM));
 
             stacks.add(new ItemStack(BlockRegistry.HASTURIAN_MOSS_ITEM));
