@@ -30,5 +30,10 @@ public class BlockLootTableGenerator extends FabricBlockLootTableProvider {
 
         addDrop(BlockRegistry.ETYR_ORE, (blockx) -> oreDrops(blockx, ItemRegistry.RAW_ETYR));
         addDrop(BlockRegistry.ETYR_BLOCK, drops(BlockRegistry.ETYR_BLOCK_ITEM));
+        addDrop(BlockRegistry.ETYR_BARS, drops(BlockRegistry.ETYR_BARS_ITEM));
+        addDrop(BlockRegistry.ETYR_DOOR, drops(BlockRegistry.ETYR_DOOR_ITEM));
+        addDrop(BlockRegistry.ETYR_PILLAR, drops(BlockRegistry.ETYR_PILLAR_ITEM));
+        addDrop(BlockRegistry.ETYR_TILES, drops(BlockRegistry.ETYR_TILES_ITEM));
+        addDrop(BlockRegistry.ETYR_TRAPDOOR, drops(BlockRegistry.ETYR_TRAPDOOR_ITEM));
     }
 }
