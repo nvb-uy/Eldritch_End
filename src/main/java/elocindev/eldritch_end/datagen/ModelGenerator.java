@@ -40,6 +40,14 @@ public class ModelGenerator extends FabricModelProvider {
 
         generator.registerSimpleCubeAll(BlockRegistry.ETYR_ORE);
         generator.registerSimpleCubeAll(BlockRegistry.ETYR_BLOCK);
+        generator.registerDoor(BlockRegistry.ETYR_DOOR);
+        generator.registerTrapdoor(BlockRegistry.ETYR_TRAPDOOR);
+
+        /* Todo
+        registerFullBlock("etyr_bars", ETYR_BARS, ETYR_BARS_ITEM);
+        registerFullBlock("etyr_pillar", ETYR_PILLAR, ETYR_PILLAR_ITEM);
+        registerFullBlock("etyr_tiles", ETYR_TILES, ETYR_TILES_ITEM);
+         */
     }
 
     @Override
