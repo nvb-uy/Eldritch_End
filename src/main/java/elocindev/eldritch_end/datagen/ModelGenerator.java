@@ -12,6 +12,8 @@ import net.minecraft.block.enums.SlabType;
 import net.minecraft.block.enums.StairShape;
 import net.minecraft.block.enums.WallMountLocation;
 import net.minecraft.data.client.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
@@ -40,14 +42,11 @@ public class ModelGenerator extends FabricModelProvider {
 
         generator.registerSimpleCubeAll(BlockRegistry.ETYR_ORE);
         generator.registerSimpleCubeAll(BlockRegistry.ETYR_BLOCK);
+        generator.registerSimpleCubeAll(BlockRegistry.ETYR_TILES);
         generator.registerDoor(BlockRegistry.ETYR_DOOR);
         generator.registerTrapdoor(BlockRegistry.ETYR_TRAPDOOR);
-
-        /* Todo
-        registerFullBlock("etyr_bars", ETYR_BARS, ETYR_BARS_ITEM);
-        registerFullBlock("etyr_pillar", ETYR_PILLAR, ETYR_PILLAR_ITEM);
-        registerFullBlock("etyr_tiles", ETYR_TILES, ETYR_TILES_ITEM);
-         */
+        registerBars(BlockRegistry.ETYR_BARS, generator.modelCollector, generator.blockStateCollector);
+        generator.registerAxisRotated(BlockRegistry.ETYR_PILLAR, TexturedModel.END_FOR_TOP_CUBE_COLUMN, TexturedModel.END_FOR_TOP_CUBE_COLUMN_HORIZONTAL);
     }
 
     @Override
@@ -56,6 +55,24 @@ public class ModelGenerator extends FabricModelProvider {
         generator.register(ItemRegistry.NECRONOMICON, Models.GENERATED);
         generator.register(ItemRegistry.RAW_ETYR, Models.GENERATED);
         generator.register(ItemRegistry.ETYR_INGOT, Models.GENERATED);
+    }
+
+    private void registerBars(Block barBlock, BiConsumer<Identifier, Supplier<JsonElement>> modelCollector, Consumer<BlockStateSupplier> blockStateCollector) {
+        Identifier identifier = ModelIds.getBlockSubModelId(barBlock, "_post_ends");
+        Identifier identifier2 = ModelIds.getBlockSubModelId(barBlock, "_post");
+        Identifier identifier3 = ModelIds.getBlockSubModelId(barBlock, "_cap");
+        Identifier identifier4 = ModelIds.getBlockSubModelId(barBlock, "_cap_alt");
+        Identifier identifier5 = ModelIds.getBlockSubModelId(barBlock, "_side");
+        Identifier identifier6 = ModelIds.getBlockSubModelId(barBlock, "_side_alt");
+        blockStateCollector.accept(MultipartBlockStateSupplier.create(barBlock).with(BlockStateVariant.create().put(VariantSettings.MODEL, identifier)).with(When.create().set(Properties.NORTH, false).set(Properties.EAST, false).set(Properties.SOUTH, false).set(Properties.WEST, false), BlockStateVariant.create().put(VariantSettings.MODEL, identifier2)).with(When.create().set(Properties.NORTH, true).set(Properties.EAST, false).set(Properties.SOUTH, false).set(Properties.WEST, false), BlockStateVariant.create().put(VariantSettings.MODEL, identifier3)).with(When.create().set(Properties.NORTH, false).set(Properties.EAST, true).set(Properties.SOUTH, false).set(Properties.WEST, false), BlockStateVariant.create().put(VariantSettings.MODEL, identifier3).put(VariantSettings.Y, VariantSettings.Rotation.R90)).with(When.create().set(Properties.NORTH, false).set(Properties.EAST, false).set(Properties.SOUTH, true).set(Properties.WEST, false), BlockStateVariant.create().put(VariantSettings.MODEL, identifier4)).with(When.create().set(Properties.NORTH, false).set(Properties.EAST, false).set(Properties.SOUTH, false).set(Properties.WEST, true), BlockStateVariant.create().put(VariantSettings.MODEL, identifier4).put(VariantSettings.Y, VariantSettings.Rotation.R90)).with(When.create().set(Properties.NORTH, true), BlockStateVariant.create().put(VariantSettings.MODEL, identifier5)).with(When.create().set(Properties.EAST, true), BlockStateVariant.create().put(VariantSettings.MODEL, identifier5).put(VariantSettings.Y, VariantSettings.Rotation.R90)).with(When.create().set(Properties.SOUTH, true), BlockStateVariant.create().put(VariantSettings.MODEL, identifier6)).with(When.create().set(Properties.WEST, true), BlockStateVariant.create().put(VariantSettings.MODEL, identifier6).put(VariantSettings.Y, VariantSettings.Rotation.R90)));
+        registerItemModel(barBlock);
+    }
+
+    public final void registerItemModel(Block block, BiConsumer<Identifier, Supplier<JsonElement>> modelCollector) {
+        Item item = block.asItem();
+        if (item != Items.AIR) {
+            Models.GENERATED.upload(ModelIds.getItemModelId(item), TextureMap.layer0(block), modelCollector);
+        }
     }
 
     private void registerFence(Block fenceBlock, Block plankBlock, BiConsumer<Identifier, Supplier<JsonElement>> modelCollector, Consumer<BlockStateSupplier> blockStateCollector) {
