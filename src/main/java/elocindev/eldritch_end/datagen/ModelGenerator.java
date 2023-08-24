@@ -33,9 +33,9 @@ public class ModelGenerator extends FabricModelProvider {
         generator.registerDoor(BlockRegistry.PRIMORDIAL_DOOR);
         generator.registerTrapdoor(BlockRegistry.PRIMORDIAL_TRAPDOOR);
         generator.registerTintableCross(BlockRegistry.ABYSMAL_ROOTS, BlockStateModelGenerator.TintType.NOT_TINTED);
+        generator.registerSimpleState(BlockRegistry.HASTURIAN_CACTUS);
 
         generator.registerTintableCross(BlockRegistry.HASTURIAN_GRASS, BlockStateModelGenerator.TintType.NOT_TINTED);
-        generator.registerSimpleState(BlockRegistry.HASTURIAN_CACTUS);
         generator.registerRotatable(BlockRegistry.HASTURIAN_DUNE_SAND);
         generator.registerSimpleCubeAll(BlockRegistry.HASTURIAN_DUNE_SOIL);
 
