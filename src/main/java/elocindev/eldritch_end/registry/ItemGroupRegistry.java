@@ -15,6 +15,8 @@ public class ItemGroupRegistry {
             stacks.add(new ItemStack(ItemRegistry.RAW_ETYR));
             stacks.add(new ItemStack(ItemRegistry.ETYR_INGOT));
 
+            // -- ARTIFACTS --
+
             // -- BLOCKS --
             stacks.add(new ItemStack(BlockRegistry.ABYSMAL_FRONDS_ITEM)); 
             stacks.add(new ItemStack(BlockRegistry.SUSPICIOUS_FRONDS_ITEM));
@@ -53,9 +55,6 @@ public class ItemGroupRegistry {
             stacks.add(new ItemStack(BlockRegistry.HASTURIAN_DUNE_SAND_ITEM));
             stacks.add(new ItemStack(BlockRegistry.HASTURIAN_CACTUS_ITEM));
             stacks.add(new ItemStack(BlockRegistry.HASTURIAN_GRASS_ITEM));
-
-                // -- ARTIFACTS --
-            stacks.add(new ItemStack(ItemRegistry.SILVER_KEY));
 
             // -- ENTITY EGGS --
             stacks.add(new ItemStack(ItemRegistry.ABERRATION_SPAWN_EGG));
