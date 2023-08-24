@@ -2,13 +2,11 @@ package elocindev.eldritch_end.worldgen.feature.surface;
 
 import com.mojang.serialization.Codec;
 
-import elocindev.eldritch_end.block.HasturianMoss;
 import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.worldgen.feature.SurfaceConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Heightmap;
@@ -64,19 +62,13 @@ public class HasturianWastesSurface extends Feature<SurfaceConfig> {
 
                     if (canPlace(world, targetPos)) {
 
-                        if (!isSand) {
-                            if (random.nextBoolean())
-                                world.setBlockState(targetPos, blockState, 3);
-                            else
-                                world.setBlockState(targetPos, blockState.with(HasturianMoss.FACING, Direction.EAST), 3);
-                        } else {
-                            world.setBlockState(targetPos, blockState, 3);
+                        world.setBlockState(targetPos, blockState, 3);
+                        
+                        if (isSand) {
                             for (int i = 0; i < 4; i++)
-                                if (canPlace(world, targetPos.down(i))) world.setBlockState(targetPos.down(i), BlockRegistry.HASTURIAN_SAND.getDefaultState(), 3);
+                                if (canPlace(world, targetPos.down(i)) && world.getBlockState(targetPos.down(i+1)).getBlock() != Blocks.AIR) world.setBlockState(targetPos.down(i), BlockRegistry.HASTURIAN_SAND.getDefaultState(), 3);
                         }
                         
-
-
                         if (world.getBlockState(targetPos.up()).getBlock() == BlockRegistry.ABYSMAL_ROOTS)
                             world.setBlockState(targetPos.up(), Blocks.AIR.getDefaultState(), 3);
 
