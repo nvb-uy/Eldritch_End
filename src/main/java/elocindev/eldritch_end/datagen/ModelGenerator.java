@@ -36,7 +36,7 @@ public class ModelGenerator extends FabricModelProvider {
         generator.registerSimpleState(BlockRegistry.HASTURIAN_CACTUS);
 
         generator.registerTintableCross(BlockRegistry.HASTURIAN_GRASS, BlockStateModelGenerator.TintType.NOT_TINTED);
-        generator.registerRotatable(BlockRegistry.HASTURIAN_DUNE_SAND);
+        generator.registerSimpleCubeAll(BlockRegistry.HASTURIAN_DUNE_SAND);
         generator.registerSimpleCubeAll(BlockRegistry.HASTURIAN_SAND);
 
         registerSlab(BlockRegistry.PRIMORDIAL_SLAB, BlockRegistry.PRIMORDIAL_PLANKS, generator.modelCollector, generator.blockStateCollector);
