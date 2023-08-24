@@ -147,6 +147,18 @@ public class BlockRegistry {
     public static final Block PRIMORDIAL_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD));
     public static final BlockItem PRIMORDIAL_FENCE_GATE_ITEM = new BlockItem(PRIMORDIAL_FENCE_GATE, new FabricItemSettings());
 
+    public static final Block HASTURIAN_DUNE_SAND = new FallingBlock(FabricBlockSettings.copyOf(Blocks.SAND));
+    public static final BlockItem HASTURIAN_DUNE_SAND_ITEM = new BlockItem(HASTURIAN_DUNE_SAND, new FabricItemSettings());
+
+    public static final Block HASTURIAN_DUNE_SOIL = new FallingBlock(FabricBlockSettings.copyOf(Blocks.SAND));
+    public static final BlockItem HASTURIAN_DUNE_SOIL_ITEM = new BlockItem(HASTURIAN_DUNE_SOIL, new FabricItemSettings());
+
+    public static final Block HASTURIAN_CACTUS = new CactusBlock(FabricBlockSettings.copyOf(Blocks.CACTUS));
+    public static final BlockItem HASTURIAN_CACTUS_ITEM = new BlockItem(HASTURIAN_CACTUS, new FabricItemSettings());
+
+    public static final Block HASTURIAN_GRASS = new FernBlock(FabricBlockSettings.copyOf(Blocks.GRASS).sounds(BlockSoundGroup.ROOTS));
+    public static final BlockItem HASTURIAN_GRASS_ITEM = new BlockItem(HASTURIAN_GRASS, new FabricItemSettings());
+
 //
     public static void register() {
         registerFullBlock("abysmal_fronds", ABYSMAL_FRONDS, ABYSMAL_FRONDS_ITEM);
@@ -180,6 +192,11 @@ public class BlockRegistry {
         registerFullBlock("etyr_pillar", ETYR_PILLAR, ETYR_PILLAR_ITEM);
         registerFullBlock("etyr_tiles", ETYR_TILES, ETYR_TILES_ITEM);
         registerFullBlock("etyr_trapdoor", ETYR_TRAPDOOR, ETYR_TRAPDOOR_ITEM);
+
+        registerFullBlock("hasturian_dune_sand", HASTURIAN_DUNE_SAND, HASTURIAN_DUNE_SAND_ITEM);
+        registerFullBlock("hasturian_dune_soil", HASTURIAN_DUNE_SOIL, HASTURIAN_DUNE_SOIL_ITEM);
+        registerFullBlock("hasturian_cactus", HASTURIAN_CACTUS, HASTURIAN_CACTUS_ITEM);
+        registerFullBlock("hasturian_grass", HASTURIAN_GRASS, HASTURIAN_GRASS_ITEM);
     }
 
     public static void registerFullBlock(String identifier, Block blockInstance, BlockItem itemInstance) {
