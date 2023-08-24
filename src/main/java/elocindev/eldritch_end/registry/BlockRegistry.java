@@ -150,8 +150,8 @@ public class BlockRegistry {
     public static final Block HASTURIAN_DUNE_SAND = new FallingBlock(FabricBlockSettings.copyOf(Blocks.SAND));
     public static final BlockItem HASTURIAN_DUNE_SAND_ITEM = new BlockItem(HASTURIAN_DUNE_SAND, new FabricItemSettings());
 
-    public static final Block HASTURIAN_DUNE_SOIL = new FallingBlock(FabricBlockSettings.copyOf(Blocks.SAND));
-    public static final BlockItem HASTURIAN_DUNE_SOIL_ITEM = new BlockItem(HASTURIAN_DUNE_SOIL, new FabricItemSettings());
+    public static final Block HASTURIAN_SAND = new FallingBlock(FabricBlockSettings.copyOf(Blocks.SAND));
+    public static final BlockItem HASTURIAN_SAND_ITEM = new BlockItem(HASTURIAN_SAND, new FabricItemSettings());
 
     public static final Block HASTURIAN_CACTUS = new CactusBlock(FabricBlockSettings.copyOf(Blocks.CACTUS));
     public static final BlockItem HASTURIAN_CACTUS_ITEM = new BlockItem(HASTURIAN_CACTUS, new FabricItemSettings());
@@ -204,8 +204,8 @@ public class BlockRegistry {
         registerFullBlock("etyr_stairs", ETYR_STAIRS, ETYR_STAIRS_ITEM);
         registerFullBlock("etyr_slab", ETYR_SLAB, ETYR_SLAB_ITEM);
 
+        registerFullBlock("hasturian_sand", HASTURIAN_SAND, HASTURIAN_SAND_ITEM);
         registerFullBlock("hasturian_dune_sand", HASTURIAN_DUNE_SAND, HASTURIAN_DUNE_SAND_ITEM);
-        registerFullBlock("hasturian_dune_soil", HASTURIAN_DUNE_SOIL, HASTURIAN_DUNE_SOIL_ITEM);
         registerFullBlock("hasturian_cactus", HASTURIAN_CACTUS, HASTURIAN_CACTUS_ITEM);
         registerFullBlock("hasturian_grass", HASTURIAN_GRASS, HASTURIAN_GRASS_ITEM);
     }
