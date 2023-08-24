@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "eldritch_end:block/hasturian_dune_sand"
+      },
+      {
+        "model": "eldritch_end:block/hasturian_dune_sand",
+        "y": 90
+      },
+      {
+        "model": "eldritch_end:block/hasturian_dune_sand",
+        "y": 180
+      },
+      {
+        "model": "eldritch_end:block/hasturian_dune_sand",
+        "y": 270
+      }
+    ]
+  }
+}
