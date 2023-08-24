@@ -1,4 +1,4 @@
-// 1.19.2	2023-08-24T11:44:04.321458566	Models
+// 1.19.2	2023-08-24T12:41:03.23774045	Models
 87c2cc8ef4d086d335fd1b929002bf3c923ec175 assets/eldritch_end/models/block/primordial_fence_gate_inventory.json
 4ef83cd3a3547c6ea0769c5410f64732b3593fdb assets/eldritch_end/models/block/primordial_stairs.json
 027de9987431d3b9bf276004f3ca2cf2375e2348 assets/eldritch_end/blockstates/etyr_trapdoor.json
@@ -69,7 +69,7 @@ dab9e2160783511e8bdea6197066babf7d39b7d4 assets/eldritch_end/models/block/hastur
 aeb89448b6e35fc72f4ad5bdbd2573b80751072f assets/eldritch_end/models/block/primordial_trapdoor_bottom.json
 8988c043326df2efd090c308e7202b982b427bd8 assets/eldritch_end/models/block/etyr_door_bottom_right.json
 b4110a91c3d11c5992533316c881582643a2663f assets/eldritch_end/models/item/primordial_planks.json
-2d0f81d5882326565ae5e6a8d3e27771da724c11 assets/eldritch_end/blockstates/hasturian_dune_sand.json
+e28453b61523997c4f18ae606b3980b653f43525 assets/eldritch_end/blockstates/hasturian_dune_sand.json
 fbf8b02aae9660c3a8b0b8bc307e2d42d57a9f8c assets/eldritch_end/models/block/etyr_stairs.json
 908c80109c2278385cae601a4b301a4f10b514c7 assets/eldritch_end/models/item/primordial_fence_gate.json
 8a3906c93d17bd6da130d4af209c831859fe92a4 assets/eldritch_end/models/item/etyr_trapdoor.json
