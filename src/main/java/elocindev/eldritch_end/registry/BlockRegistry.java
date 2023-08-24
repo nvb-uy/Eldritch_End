@@ -4,6 +4,7 @@ import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.block.AbysmalFronds;
 import elocindev.eldritch_end.block.AbysmalRoots;
 import elocindev.eldritch_end.block.AbysmalTendrils;
+import elocindev.eldritch_end.block.HasturianGrass;
 import elocindev.eldritch_end.block.HasturianMoss;
 import elocindev.eldritch_end.block.SuspiciousFronds;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -156,7 +157,7 @@ public class BlockRegistry {
     public static final Block HASTURIAN_CACTUS = new CactusBlock(FabricBlockSettings.copyOf(Blocks.CACTUS));
     public static final BlockItem HASTURIAN_CACTUS_ITEM = new BlockItem(HASTURIAN_CACTUS, new FabricItemSettings());
 
-    public static final Block HASTURIAN_GRASS = new FernBlock(FabricBlockSettings.copyOf(Blocks.GRASS).sounds(BlockSoundGroup.ROOTS));
+    public static final Block HASTURIAN_GRASS = new HasturianGrass(FabricBlockSettings.copyOf(BlockRegistry.ABYSMAL_ROOTS).sounds(BlockSoundGroup.ROOTS));
     public static final BlockItem HASTURIAN_GRASS_ITEM = new BlockItem(HASTURIAN_GRASS, new FabricItemSettings());
 
     public static final Block ETYR_SLAB = new SlabBlock(FabricBlockSettings
