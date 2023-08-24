@@ -49,8 +49,8 @@ public class ItemGroupRegistry {
             stacks.add(new ItemStack(BlockRegistry.ETYR_PILLAR_ITEM));
             stacks.add(new ItemStack(BlockRegistry.ETYR_TILES_ITEM));
             stacks.add(new ItemStack(BlockRegistry.ETYR_TRAPDOOR_ITEM));
+            stacks.add(new ItemStack(BlockRegistry.HASTURIAN_SAND_ITEM));
             stacks.add(new ItemStack(BlockRegistry.HASTURIAN_DUNE_SAND_ITEM));
-            stacks.add(new ItemStack(BlockRegistry.HASTURIAN_DUNE_SOIL_ITEM));
             stacks.add(new ItemStack(BlockRegistry.HASTURIAN_CACTUS_ITEM));
             stacks.add(new ItemStack(BlockRegistry.HASTURIAN_GRASS_ITEM));
 
