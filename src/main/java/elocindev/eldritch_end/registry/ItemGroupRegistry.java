@@ -45,7 +45,7 @@ public class ItemGroupRegistry {
             stacks.add(new ItemStack(BlockRegistry.HASTURIAN_GRASS_ITEM));
             stacks.add(new ItemStack(BlockRegistry.HASTURIAN_SAND_ITEM));
             stacks.add(new ItemStack(BlockRegistry.HASTURIAN_DUNE_SAND_ITEM));
-            stacks.add(new ItemStack(BlockRegistry.HASTURIAN_CACTUS_ITEM));
+            //stacks.add(new ItemStack(BlockRegistry.HASTURIAN_CACTUS_ITEM));
             stacks.add(new ItemStack(BlockRegistry.SPIRE_STONE_ITEM));            
 
             stacks.add(new ItemStack(BlockRegistry.ETYR_ORE_ITEM));
