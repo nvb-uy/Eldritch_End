@@ -112,7 +112,7 @@ public class TentacleEntity extends HostileEntity implements IAnimatable {
 
     protected <E extends TentacleEntity> PlayState attackAnimationPredicate(final AnimationEvent<E> event) {
         if (this.isAttacking()) {
-            event.getController().animationSpeed = 2.0F;
+            event.getController().animationSpeed = 4.0F;
 
             event.getController().markNeedsReload();
             event.getController().setAnimation(new AnimationBuilder().addAnimation("attack", ILoopType.EDefaultLoopTypes.PLAY_ONCE));

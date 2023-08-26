@@ -95,6 +95,8 @@ public class ConfigBuilder {
                 defaultCfg.enable_spike_generation = true;
                 defaultCfg.spike_generation_chance = 100;
                 defaultCfg.etyr_spawn_chance_per_block = 2;
+                defaultCfg.enable_grass_generation = true;
+                defaultCfg.grass_generation_chance = 10;
 
                 String defaultJson = BUILDER.toJson(defaultCfg);
                 Files.writeString(HasturianWastes, defaultJson);
