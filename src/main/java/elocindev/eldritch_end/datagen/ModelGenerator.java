@@ -59,6 +59,14 @@ public class ModelGenerator extends FabricModelProvider {
         registerEtyrVariant(generator, BlockRegistry.DECADENT_ETYR_ORE, BlockRegistry.DECADENT_ETYR_BLOCK, BlockRegistry.DECADENT_ETYR_TILES,
                 BlockRegistry.DECADENT_ETYR_DOOR, BlockRegistry.DECADENT_ETYR_TRAPDOOR, BlockRegistry.DECADENT_ETYR_BARS, BlockRegistry.DECADENT_ETYR_PILLAR,
                 BlockRegistry.DECADENT_ETYR_SLAB, BlockRegistry.DECADENT_ETYR_STAIRS);
+
+        registerEtyrVariant(generator, BlockRegistry.PERTURBATED_ETYR_ORE, BlockRegistry.PERTURBATED_ETYR_BLOCK, BlockRegistry.PERTURBATED_ETYR_TILES,
+                BlockRegistry.PERTURBATED_ETYR_DOOR, BlockRegistry.PERTURBATED_ETYR_TRAPDOOR, BlockRegistry.PERTURBATED_ETYR_BARS, BlockRegistry.PERTURBATED_ETYR_PILLAR,
+                BlockRegistry.PERTURBATED_ETYR_SLAB, BlockRegistry.PERTURBATED_ETYR_STAIRS);
+
+        registerEtyrVariant(generator, BlockRegistry.CORRUPTED_ETYR_ORE, BlockRegistry.CORRUPTED_ETYR_BLOCK, BlockRegistry.CORRUPTED_ETYR_TILES,
+                BlockRegistry.CORRUPTED_ETYR_DOOR, BlockRegistry.CORRUPTED_ETYR_TRAPDOOR, BlockRegistry.CORRUPTED_ETYR_BARS, BlockRegistry.CORRUPTED_ETYR_PILLAR,
+                BlockRegistry.CORRUPTED_ETYR_SLAB, BlockRegistry.CORRUPTED_ETYR_STAIRS);
     }
 
     private void registerEtyrVariant(BlockStateModelGenerator generator, Block ore, Block block, Block tiles, Block door, Block trapdoor, Block bars, Block pillar, Block slab, Block stairs) {
