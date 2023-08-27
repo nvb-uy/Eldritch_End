@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "eldritch_end:block/corrupted_etyr_block"
+  }
+}

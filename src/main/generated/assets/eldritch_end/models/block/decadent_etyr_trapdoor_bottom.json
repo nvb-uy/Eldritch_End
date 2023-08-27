@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_trapdoor_bottom",
+  "textures": {
+    "texture": "eldritch_end:block/decadent_etyr_trapdoor"
+  }
+}
