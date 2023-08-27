@@ -60,9 +60,9 @@ public class ModelGenerator extends FabricModelProvider {
                 BlockRegistry.DECADENT_ETYR_DOOR, BlockRegistry.DECADENT_ETYR_TRAPDOOR, BlockRegistry.DECADENT_ETYR_BARS, BlockRegistry.DECADENT_ETYR_PILLAR,
                 BlockRegistry.DECADENT_ETYR_SLAB, BlockRegistry.DECADENT_ETYR_STAIRS);
 
-        registerEtyrVariant(generator, BlockRegistry.PERTURBATED_ETYR_ORE, BlockRegistry.PERTURBATED_ETYR_BLOCK, BlockRegistry.PERTURBATED_ETYR_TILES,
-                BlockRegistry.PERTURBATED_ETYR_DOOR, BlockRegistry.PERTURBATED_ETYR_TRAPDOOR, BlockRegistry.PERTURBATED_ETYR_BARS, BlockRegistry.PERTURBATED_ETYR_PILLAR,
-                BlockRegistry.PERTURBATED_ETYR_SLAB, BlockRegistry.PERTURBATED_ETYR_STAIRS);
+        registerEtyrVariant(generator, BlockRegistry.PERTURBED_ETYR_ORE, BlockRegistry.PERTURBED_ETYR_BLOCK, BlockRegistry.PERTURBED_ETYR_TILES,
+                BlockRegistry.PERTURBED_ETYR_DOOR, BlockRegistry.PERTURBED_ETYR_TRAPDOOR, BlockRegistry.PERTURBED_ETYR_BARS, BlockRegistry.PERTURBED_ETYR_PILLAR,
+                BlockRegistry.PERTURBED_ETYR_SLAB, BlockRegistry.PERTURBED_ETYR_STAIRS);
 
         registerEtyrVariant(generator, BlockRegistry.CORRUPTED_ETYR_ORE, BlockRegistry.CORRUPTED_ETYR_BLOCK, BlockRegistry.CORRUPTED_ETYR_TILES,
                 BlockRegistry.CORRUPTED_ETYR_DOOR, BlockRegistry.CORRUPTED_ETYR_TRAPDOOR, BlockRegistry.CORRUPTED_ETYR_BARS, BlockRegistry.CORRUPTED_ETYR_PILLAR,

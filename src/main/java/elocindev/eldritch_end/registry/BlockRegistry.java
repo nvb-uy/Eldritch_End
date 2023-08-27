@@ -206,40 +206,40 @@ public class BlockRegistry {
     public static final BlockItem DECADENT_ETYR_STAIRS_ITEM = new BlockItem(DECADENT_ETYR_STAIRS, new FabricItemSettings());
 
     // Etyr variant #2
-    public static final Block PERTURBATED_ETYR_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE));
-    public static final BlockItem PERTURBATED_ETYR_ORE_ITEM = new BlockItem(PERTURBATED_ETYR_ORE, new FabricItemSettings());
+    public static final Block PERTURBED_ETYR_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE));
+    public static final BlockItem PERTURBED_ETYR_ORE_ITEM = new BlockItem(PERTURBED_ETYR_ORE, new FabricItemSettings());
 
-    public static final Block PERTURBATED_ETYR_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK));
-    public static final BlockItem PERTURBATED_ETYR_BLOCK_ITEM = new BlockItem(PERTURBATED_ETYR_BLOCK, new FabricItemSettings());
+    public static final Block PERTURBED_ETYR_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK));
+    public static final BlockItem PERTURBED_ETYR_BLOCK_ITEM = new BlockItem(PERTURBED_ETYR_BLOCK, new FabricItemSettings());
 
-    public static final Block PERTURBATED_ETYR_BARS = new PaneBlock(FabricBlockSettings.copyOf(Blocks.IRON_BARS));
-    public static final BlockItem PERTURBATED_ETYR_BARS_ITEM = new BlockItem(PERTURBATED_ETYR_BARS, new FabricItemSettings());
+    public static final Block PERTURBED_ETYR_BARS = new PaneBlock(FabricBlockSettings.copyOf(Blocks.IRON_BARS));
+    public static final BlockItem PERTURBED_ETYR_BARS_ITEM = new BlockItem(PERTURBED_ETYR_BARS, new FabricItemSettings());
 
-    public static final Block PERTURBATED_ETYR_DOOR = new DoorBlock(FabricBlockSettings
+    public static final Block PERTURBED_ETYR_DOOR = new DoorBlock(FabricBlockSettings
             .copyOf(Blocks.IRON_DOOR)
             .sounds(BlockSoundGroup.METAL));
-    public static final BlockItem PERTURBATED_ETYR_DOOR_ITEM = new BlockItem(PERTURBATED_ETYR_DOOR, new FabricItemSettings());
+    public static final BlockItem PERTURBED_ETYR_DOOR_ITEM = new BlockItem(PERTURBED_ETYR_DOOR, new FabricItemSettings());
 
-    public static final Block PERTURBATED_ETYR_PILLAR = new PillarBlock(FabricBlockSettings.copyOf(Blocks.QUARTZ_PILLAR));
-    public static final BlockItem PERTURBATED_ETYR_PILLAR_ITEM = new BlockItem(PERTURBATED_ETYR_PILLAR, new FabricItemSettings());
+    public static final Block PERTURBED_ETYR_PILLAR = new PillarBlock(FabricBlockSettings.copyOf(Blocks.QUARTZ_PILLAR));
+    public static final BlockItem PERTURBED_ETYR_PILLAR_ITEM = new BlockItem(PERTURBED_ETYR_PILLAR, new FabricItemSettings());
 
-    public static final Block PERTURBATED_ETYR_TILES = new Block(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK));
-    public static final BlockItem PERTURBATED_ETYR_TILES_ITEM = new BlockItem(PERTURBATED_ETYR_TILES, new FabricItemSettings());
+    public static final Block PERTURBED_ETYR_TILES = new Block(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK));
+    public static final BlockItem PERTURBED_ETYR_TILES_ITEM = new BlockItem(PERTURBED_ETYR_TILES, new FabricItemSettings());
 
-    public static final Block PERTURBATED_ETYR_TRAPDOOR = new TrapdoorBlock(FabricBlockSettings
+    public static final Block PERTURBED_ETYR_TRAPDOOR = new TrapdoorBlock(FabricBlockSettings
             .copyOf(Blocks.IRON_TRAPDOOR)
             .sounds(BlockSoundGroup.METAL));
 
-    public static final BlockItem PERTURBATED_ETYR_TRAPDOOR_ITEM = new BlockItem(PERTURBATED_ETYR_TRAPDOOR, new FabricItemSettings());
+    public static final BlockItem PERTURBED_ETYR_TRAPDOOR_ITEM = new BlockItem(PERTURBED_ETYR_TRAPDOOR, new FabricItemSettings());
 
-    public static final Block PERTURBATED_ETYR_SLAB = new SlabBlock(FabricBlockSettings
+    public static final Block PERTURBED_ETYR_SLAB = new SlabBlock(FabricBlockSettings
             .copyOf(Blocks.STONE_SLAB)
             .sounds(BlockSoundGroup.METAL));
 
-    public static final BlockItem PERTURBATED_ETYR_SLAB_ITEM = new BlockItem(PERTURBATED_ETYR_SLAB, new FabricItemSettings());
+    public static final BlockItem PERTURBED_ETYR_SLAB_ITEM = new BlockItem(PERTURBED_ETYR_SLAB, new FabricItemSettings());
 
-    public static final StairsBlock PERTURBATED_ETYR_STAIRS = new StairsBlock(PERTURBATED_ETYR_TILES.getDefaultState(), FabricBlockSettings.copyOf(Blocks.STONE_STAIRS));
-    public static final BlockItem PERTURBATED_ETYR_STAIRS_ITEM = new BlockItem(PERTURBATED_ETYR_STAIRS, new FabricItemSettings());
+    public static final StairsBlock PERTURBED_ETYR_STAIRS = new StairsBlock(PERTURBED_ETYR_TILES.getDefaultState(), FabricBlockSettings.copyOf(Blocks.STONE_STAIRS));
+    public static final BlockItem PERTURBED_ETYR_STAIRS_ITEM = new BlockItem(PERTURBED_ETYR_STAIRS, new FabricItemSettings());
 
     // Etyr variant #3
     public static final Block CORRUPTED_ETYR_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE));
@@ -325,15 +325,15 @@ public class BlockRegistry {
         registerFullBlock("decadent_etyr_stairs", DECADENT_ETYR_STAIRS, DECADENT_ETYR_STAIRS_ITEM);
         registerFullBlock("decadent_etyr_slab", DECADENT_ETYR_SLAB, DECADENT_ETYR_SLAB_ITEM);
 
-        registerFullBlock("perturbated_etyr_ore", PERTURBATED_ETYR_ORE, PERTURBATED_ETYR_ORE_ITEM);
-        registerFullBlock("perturbated_etyr_block", PERTURBATED_ETYR_BLOCK, PERTURBATED_ETYR_BLOCK_ITEM);
-        registerFullBlock("perturbated_etyr_bars", PERTURBATED_ETYR_BARS, PERTURBATED_ETYR_BARS_ITEM);
-        registerFullBlock("perturbated_etyr_door", PERTURBATED_ETYR_DOOR, PERTURBATED_ETYR_DOOR_ITEM);
-        registerFullBlock("perturbated_etyr_pillar", PERTURBATED_ETYR_PILLAR, PERTURBATED_ETYR_PILLAR_ITEM);
-        registerFullBlock("perturbated_etyr_tiles", PERTURBATED_ETYR_TILES, PERTURBATED_ETYR_TILES_ITEM);
-        registerFullBlock("perturbated_etyr_trapdoor", PERTURBATED_ETYR_TRAPDOOR, PERTURBATED_ETYR_TRAPDOOR_ITEM);
-        registerFullBlock("perturbated_etyr_stairs", PERTURBATED_ETYR_STAIRS, PERTURBATED_ETYR_STAIRS_ITEM);
-        registerFullBlock("perturbated_etyr_slab", PERTURBATED_ETYR_SLAB, PERTURBATED_ETYR_SLAB_ITEM);
+        registerFullBlock("perturbed_etyr_ore", PERTURBED_ETYR_ORE, PERTURBED_ETYR_ORE_ITEM);
+        registerFullBlock("perturbed_etyr_block", PERTURBED_ETYR_BLOCK, PERTURBED_ETYR_BLOCK_ITEM);
+        registerFullBlock("perturbed_etyr_bars", PERTURBED_ETYR_BARS, PERTURBED_ETYR_BARS_ITEM);
+        registerFullBlock("perturbed_etyr_door", PERTURBED_ETYR_DOOR, PERTURBED_ETYR_DOOR_ITEM);
+        registerFullBlock("perturbed_etyr_pillar", PERTURBED_ETYR_PILLAR, PERTURBED_ETYR_PILLAR_ITEM);
+        registerFullBlock("perturbed_etyr_tiles", PERTURBED_ETYR_TILES, PERTURBED_ETYR_TILES_ITEM);
+        registerFullBlock("perturbed_etyr_trapdoor", PERTURBED_ETYR_TRAPDOOR, PERTURBED_ETYR_TRAPDOOR_ITEM);
+        registerFullBlock("perturbed_etyr_stairs", PERTURBED_ETYR_STAIRS, PERTURBED_ETYR_STAIRS_ITEM);
+        registerFullBlock("perturbed_etyr_slab", PERTURBED_ETYR_SLAB, PERTURBED_ETYR_SLAB_ITEM);
 
         registerFullBlock("corrupted_etyr_ore", CORRUPTED_ETYR_ORE, CORRUPTED_ETYR_ORE_ITEM);
         registerFullBlock("corrupted_etyr_block", CORRUPTED_ETYR_BLOCK, CORRUPTED_ETYR_BLOCK_ITEM);
