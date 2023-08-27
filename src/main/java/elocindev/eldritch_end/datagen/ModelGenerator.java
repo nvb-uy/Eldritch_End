@@ -45,16 +45,9 @@ public class ModelGenerator extends FabricModelProvider {
         registerFence(BlockRegistry.PRIMORDIAL_FENCE, BlockRegistry.PRIMORDIAL_PLANKS, generator.modelCollector, generator.blockStateCollector);
         registerFenceGate(BlockRegistry.PRIMORDIAL_FENCE_GATE, BlockRegistry.PRIMORDIAL_PLANKS, generator.modelCollector, generator.blockStateCollector);
 
-        generator.registerSimpleCubeAll(BlockRegistry.ETYR_ORE);
-        generator.registerSimpleCubeAll(BlockRegistry.ETYR_BLOCK);
-        generator.registerSimpleCubeAll(BlockRegistry.ETYR_TILES);
-        generator.registerDoor(BlockRegistry.ETYR_DOOR);
-        generator.registerTrapdoor(BlockRegistry.ETYR_TRAPDOOR);
-        registerBars(BlockRegistry.ETYR_BARS, generator.modelCollector, generator.blockStateCollector);
-        generator.registerAxisRotated(BlockRegistry.ETYR_PILLAR, TexturedModel.END_FOR_TOP_CUBE_COLUMN, TexturedModel.END_FOR_TOP_CUBE_COLUMN_HORIZONTAL);
-
-        registerSlab(BlockRegistry.ETYR_SLAB, BlockRegistry.ETYR_TILES, generator.modelCollector, generator.blockStateCollector);
-        registerStairs(BlockRegistry.ETYR_STAIRS, BlockRegistry.ETYR_TILES, generator.modelCollector, generator.blockStateCollector);
+        registerEtyrVariant(generator, BlockRegistry.ETYR_BLOCK, BlockRegistry.ETYR_TILES,
+                BlockRegistry.ETYR_DOOR, BlockRegistry.ETYR_TRAPDOOR, BlockRegistry.ETYR_BARS, BlockRegistry.ETYR_PILLAR,
+                BlockRegistry.ETYR_SLAB, BlockRegistry.ETYR_STAIRS);
 
         registerEtyrVariant(generator, BlockRegistry.DECADENT_ETYR_BLOCK, BlockRegistry.DECADENT_ETYR_TILES,
                 BlockRegistry.DECADENT_ETYR_DOOR, BlockRegistry.DECADENT_ETYR_TRAPDOOR, BlockRegistry.DECADENT_ETYR_BARS, BlockRegistry.DECADENT_ETYR_PILLAR,
