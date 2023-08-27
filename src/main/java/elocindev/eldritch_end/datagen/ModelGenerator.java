@@ -55,6 +55,23 @@ public class ModelGenerator extends FabricModelProvider {
 
         registerSlab(BlockRegistry.ETYR_SLAB, BlockRegistry.ETYR_TILES, generator.modelCollector, generator.blockStateCollector);
         registerStairs(BlockRegistry.ETYR_STAIRS, BlockRegistry.ETYR_TILES, generator.modelCollector, generator.blockStateCollector);
+
+        registerEtyrVariant(generator, BlockRegistry.DECADENT_ETYR_ORE, BlockRegistry.DECADENT_ETYR_BLOCK, BlockRegistry.DECADENT_ETYR_TILES,
+                BlockRegistry.DECADENT_ETYR_DOOR, BlockRegistry.DECADENT_ETYR_TRAPDOOR, BlockRegistry.DECADENT_ETYR_BARS, BlockRegistry.DECADENT_ETYR_PILLAR,
+                BlockRegistry.DECADENT_ETYR_SLAB, BlockRegistry.DECADENT_ETYR_STAIRS);
+    }
+
+    private void registerEtyrVariant(BlockStateModelGenerator generator, Block ore, Block block, Block tiles, Block door, Block trapdoor, Block bars, Block pillar, Block slab, Block stairs) {
+        generator.registerSimpleCubeAll(ore);
+        generator.registerSimpleCubeAll(block);
+        generator.registerSimpleCubeAll(tiles);
+        generator.registerDoor(door);
+        generator.registerTrapdoor(trapdoor);
+        registerBars(bars, generator.modelCollector, generator.blockStateCollector);
+        generator.registerAxisRotated(pillar, TexturedModel.END_FOR_TOP_CUBE_COLUMN, TexturedModel.END_FOR_TOP_CUBE_COLUMN_HORIZONTAL);
+
+        registerSlab(slab, BlockRegistry.ETYR_TILES, generator.modelCollector, generator.blockStateCollector);
+        registerStairs(stairs, BlockRegistry.ETYR_TILES, generator.modelCollector, generator.blockStateCollector);
     }
 
     @Override
