@@ -56,6 +56,30 @@ public class ItemGroupRegistry {
             stacks.add(new ItemStack(BlockRegistry.ETYR_TILES_ITEM));
             stacks.add(new ItemStack(BlockRegistry.ETYR_TRAPDOOR_ITEM));
 
+                stacks.add(new ItemStack(BlockRegistry.DECADENT_ETYR_ORE_ITEM));
+                stacks.add(new ItemStack(BlockRegistry.DECADENT_ETYR_BLOCK_ITEM));
+                stacks.add(new ItemStack(BlockRegistry.DECADENT_ETYR_BARS_ITEM));
+                stacks.add(new ItemStack(BlockRegistry.DECADENT_ETYR_DOOR_ITEM));
+                stacks.add(new ItemStack(BlockRegistry.DECADENT_ETYR_PILLAR_ITEM));
+                stacks.add(new ItemStack(BlockRegistry.DECADENT_ETYR_TILES_ITEM));
+                stacks.add(new ItemStack(BlockRegistry.DECADENT_ETYR_TRAPDOOR_ITEM));
+
+                stacks.add(new ItemStack(BlockRegistry.PERTURBED_ETYR_ORE_ITEM));
+                stacks.add(new ItemStack(BlockRegistry.PERTURBED_ETYR_BLOCK_ITEM));
+                stacks.add(new ItemStack(BlockRegistry.PERTURBED_ETYR_BARS_ITEM));
+                stacks.add(new ItemStack(BlockRegistry.PERTURBED_ETYR_DOOR_ITEM));
+                stacks.add(new ItemStack(BlockRegistry.PERTURBED_ETYR_PILLAR_ITEM));
+                stacks.add(new ItemStack(BlockRegistry.PERTURBED_ETYR_TILES_ITEM));
+                stacks.add(new ItemStack(BlockRegistry.PERTURBED_ETYR_TRAPDOOR_ITEM));
+
+                stacks.add(new ItemStack(BlockRegistry.CORRUPTED_ETYR_ORE_ITEM));
+                stacks.add(new ItemStack(BlockRegistry.CORRUPTED_ETYR_BLOCK_ITEM));
+                stacks.add(new ItemStack(BlockRegistry.CORRUPTED_ETYR_BARS_ITEM));
+                stacks.add(new ItemStack(BlockRegistry.CORRUPTED_ETYR_DOOR_ITEM));
+                stacks.add(new ItemStack(BlockRegistry.CORRUPTED_ETYR_PILLAR_ITEM));
+                stacks.add(new ItemStack(BlockRegistry.CORRUPTED_ETYR_TILES_ITEM));
+                stacks.add(new ItemStack(BlockRegistry.CORRUPTED_ETYR_TRAPDOOR_ITEM));
+
             // -- ENTITY EGGS --
             stacks.add(new ItemStack(ItemRegistry.ABERRATION_SPAWN_EGG));
             stacks.add(new ItemStack(ItemRegistry.TENTACLE_SPAWN_EGG));
