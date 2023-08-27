@@ -115,7 +115,25 @@ public class BlockRegistry {
         .sounds(BlockSoundGroup.STONE));
     public static final BlockItem SPIRE_STONE_ITEM = new BlockItem(SPIRE_STONE, new FabricItemSettings());
 
+    public static final Block PRIMORDIAL_FENCE = new FenceBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD));
+    public static final BlockItem PRIMORDIAL_FENCE_ITEM = new BlockItem(PRIMORDIAL_FENCE, new FabricItemSettings());
 
+    public static final Block PRIMORDIAL_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD));
+    public static final BlockItem PRIMORDIAL_FENCE_GATE_ITEM = new BlockItem(PRIMORDIAL_FENCE_GATE, new FabricItemSettings());
+
+    public static final Block HASTURIAN_DUNE_SAND = new FallingBlock(FabricBlockSettings.copyOf(Blocks.SAND));
+    public static final BlockItem HASTURIAN_DUNE_SAND_ITEM = new BlockItem(HASTURIAN_DUNE_SAND, new FabricItemSettings());
+
+    public static final Block HASTURIAN_SAND = new FallingBlock(FabricBlockSettings.copyOf(Blocks.SAND));
+    public static final BlockItem HASTURIAN_SAND_ITEM = new BlockItem(HASTURIAN_SAND, new FabricItemSettings());
+
+    public static final Block HASTURIAN_CACTUS = new CactusBlock(FabricBlockSettings.copyOf(Blocks.CACTUS));
+    public static final BlockItem HASTURIAN_CACTUS_ITEM = new BlockItem(HASTURIAN_CACTUS, new FabricItemSettings());
+
+    public static final Block HASTURIAN_GRASS = new HasturianGrass(FabricBlockSettings.copyOf(BlockRegistry.ABYSMAL_ROOTS).sounds(BlockSoundGroup.ROOTS));
+    public static final BlockItem HASTURIAN_GRASS_ITEM = new BlockItem(HASTURIAN_GRASS, new FabricItemSettings());
+
+    // Default etyr
     public static final Block ETYR_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE));
     public static final BlockItem ETYR_ORE_ITEM = new BlockItem(ETYR_ORE, new FabricItemSettings());
 
@@ -142,24 +160,6 @@ public class BlockRegistry {
 
     public static final BlockItem ETYR_TRAPDOOR_ITEM = new BlockItem(ETYR_TRAPDOOR, new FabricItemSettings());
 
-    public static final Block PRIMORDIAL_FENCE = new FenceBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD));
-    public static final BlockItem PRIMORDIAL_FENCE_ITEM = new BlockItem(PRIMORDIAL_FENCE, new FabricItemSettings());
-
-    public static final Block PRIMORDIAL_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD));
-    public static final BlockItem PRIMORDIAL_FENCE_GATE_ITEM = new BlockItem(PRIMORDIAL_FENCE_GATE, new FabricItemSettings());
-
-    public static final Block HASTURIAN_DUNE_SAND = new FallingBlock(FabricBlockSettings.copyOf(Blocks.SAND));
-    public static final BlockItem HASTURIAN_DUNE_SAND_ITEM = new BlockItem(HASTURIAN_DUNE_SAND, new FabricItemSettings());
-
-    public static final Block HASTURIAN_SAND = new FallingBlock(FabricBlockSettings.copyOf(Blocks.SAND));
-    public static final BlockItem HASTURIAN_SAND_ITEM = new BlockItem(HASTURIAN_SAND, new FabricItemSettings());
-
-    public static final Block HASTURIAN_CACTUS = new CactusBlock(FabricBlockSettings.copyOf(Blocks.CACTUS));
-    public static final BlockItem HASTURIAN_CACTUS_ITEM = new BlockItem(HASTURIAN_CACTUS, new FabricItemSettings());
-
-    public static final Block HASTURIAN_GRASS = new HasturianGrass(FabricBlockSettings.copyOf(BlockRegistry.ABYSMAL_ROOTS).sounds(BlockSoundGroup.ROOTS));
-    public static final BlockItem HASTURIAN_GRASS_ITEM = new BlockItem(HASTURIAN_GRASS, new FabricItemSettings());
-
     public static final Block ETYR_SLAB = new SlabBlock(FabricBlockSettings
             .copyOf(Blocks.STONE_SLAB)
             .sounds(BlockSoundGroup.METAL));
@@ -169,7 +169,117 @@ public class BlockRegistry {
     public static final StairsBlock ETYR_STAIRS = new StairsBlock(ETYR_TILES.getDefaultState(), FabricBlockSettings.copyOf(Blocks.STONE_STAIRS));
     public static final BlockItem ETYR_STAIRS_ITEM = new BlockItem(ETYR_STAIRS, new FabricItemSettings());
 
-//
+    // Etyr variant #1
+    public static final Block DECADENT_ETYR_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE));
+    public static final BlockItem DECADENT_ETYR_ORE_ITEM = new BlockItem(DECADENT_ETYR_ORE, new FabricItemSettings());
+
+    public static final Block DECADENT_ETYR_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK));
+    public static final BlockItem DECADENT_ETYR_BLOCK_ITEM = new BlockItem(DECADENT_ETYR_BLOCK, new FabricItemSettings());
+
+    public static final Block DECADENT_ETYR_BARS = new PaneBlock(FabricBlockSettings.copyOf(Blocks.IRON_BARS));
+    public static final BlockItem DECADENT_ETYR_BARS_ITEM = new BlockItem(DECADENT_ETYR_BARS, new FabricItemSettings());
+
+    public static final Block DECADENT_ETYR_DOOR = new DoorBlock(FabricBlockSettings
+            .copyOf(Blocks.IRON_DOOR)
+            .sounds(BlockSoundGroup.METAL));
+    public static final BlockItem DECADENT_ETYR_DOOR_ITEM = new BlockItem(DECADENT_ETYR_DOOR, new FabricItemSettings());
+
+    public static final Block DECADENT_ETYR_PILLAR = new PillarBlock(FabricBlockSettings.copyOf(Blocks.QUARTZ_PILLAR));
+    public static final BlockItem DECADENT_ETYR_PILLAR_ITEM = new BlockItem(DECADENT_ETYR_PILLAR, new FabricItemSettings());
+
+    public static final Block DECADENT_ETYR_TILES = new Block(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK));
+    public static final BlockItem DECADENT_ETYR_TILES_ITEM = new BlockItem(DECADENT_ETYR_TILES, new FabricItemSettings());
+
+    public static final Block DECADENT_ETYR_TRAPDOOR = new TrapdoorBlock(FabricBlockSettings
+            .copyOf(Blocks.IRON_TRAPDOOR)
+            .sounds(BlockSoundGroup.METAL));
+
+    public static final BlockItem DECADENT_ETYR_TRAPDOOR_ITEM = new BlockItem(DECADENT_ETYR_TRAPDOOR, new FabricItemSettings());
+
+    public static final Block DECADENT_ETYR_SLAB = new SlabBlock(FabricBlockSettings
+            .copyOf(Blocks.STONE_SLAB)
+            .sounds(BlockSoundGroup.METAL));
+
+    public static final BlockItem DECADENT_ETYR_SLAB_ITEM = new BlockItem(DECADENT_ETYR_SLAB, new FabricItemSettings());
+
+    public static final StairsBlock DECADENT_ETYR_STAIRS = new StairsBlock(DECADENT_ETYR_TILES.getDefaultState(), FabricBlockSettings.copyOf(Blocks.STONE_STAIRS));
+    public static final BlockItem DECADENT_ETYR_STAIRS_ITEM = new BlockItem(DECADENT_ETYR_STAIRS, new FabricItemSettings());
+
+    // Etyr variant #2
+    public static final Block PERTURBATED_ETYR_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE));
+    public static final BlockItem PERTURBATED_ETYR_ORE_ITEM = new BlockItem(PERTURBATED_ETYR_ORE, new FabricItemSettings());
+
+    public static final Block PERTURBATED_ETYR_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK));
+    public static final BlockItem PERTURBATED_ETYR_BLOCK_ITEM = new BlockItem(PERTURBATED_ETYR_BLOCK, new FabricItemSettings());
+
+    public static final Block PERTURBATED_ETYR_BARS = new PaneBlock(FabricBlockSettings.copyOf(Blocks.IRON_BARS));
+    public static final BlockItem PERTURBATED_ETYR_BARS_ITEM = new BlockItem(PERTURBATED_ETYR_BARS, new FabricItemSettings());
+
+    public static final Block PERTURBATED_ETYR_DOOR = new DoorBlock(FabricBlockSettings
+            .copyOf(Blocks.IRON_DOOR)
+            .sounds(BlockSoundGroup.METAL));
+    public static final BlockItem PERTURBATED_ETYR_DOOR_ITEM = new BlockItem(PERTURBATED_ETYR_DOOR, new FabricItemSettings());
+
+    public static final Block PERTURBATED_ETYR_PILLAR = new PillarBlock(FabricBlockSettings.copyOf(Blocks.QUARTZ_PILLAR));
+    public static final BlockItem PERTURBATED_ETYR_PILLAR_ITEM = new BlockItem(PERTURBATED_ETYR_PILLAR, new FabricItemSettings());
+
+    public static final Block PERTURBATED_ETYR_TILES = new Block(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK));
+    public static final BlockItem PERTURBATED_ETYR_TILES_ITEM = new BlockItem(PERTURBATED_ETYR_TILES, new FabricItemSettings());
+
+    public static final Block PERTURBATED_ETYR_TRAPDOOR = new TrapdoorBlock(FabricBlockSettings
+            .copyOf(Blocks.IRON_TRAPDOOR)
+            .sounds(BlockSoundGroup.METAL));
+
+    public static final BlockItem PERTURBATED_ETYR_TRAPDOOR_ITEM = new BlockItem(PERTURBATED_ETYR_TRAPDOOR, new FabricItemSettings());
+
+    public static final Block PERTURBATED_ETYR_SLAB = new SlabBlock(FabricBlockSettings
+            .copyOf(Blocks.STONE_SLAB)
+            .sounds(BlockSoundGroup.METAL));
+
+    public static final BlockItem PERTURBATED_ETYR_SLAB_ITEM = new BlockItem(PERTURBATED_ETYR_SLAB, new FabricItemSettings());
+
+    public static final StairsBlock PERTURBATED_ETYR_STAIRS = new StairsBlock(PERTURBATED_ETYR_TILES.getDefaultState(), FabricBlockSettings.copyOf(Blocks.STONE_STAIRS));
+    public static final BlockItem PERTURBATED_ETYR_STAIRS_ITEM = new BlockItem(PERTURBATED_ETYR_STAIRS, new FabricItemSettings());
+
+    // Etyr variant #3
+    public static final Block CORRUPTED_ETYR_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE));
+    public static final BlockItem CORRUPTED_ETYR_ORE_ITEM = new BlockItem(CORRUPTED_ETYR_ORE, new FabricItemSettings());
+
+    public static final Block CORRUPTED_ETYR_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK));
+    public static final BlockItem CORRUPTED_ETYR_BLOCK_ITEM = new BlockItem(CORRUPTED_ETYR_BLOCK, new FabricItemSettings());
+
+    public static final Block CORRUPTED_ETYR_BARS = new PaneBlock(FabricBlockSettings.copyOf(Blocks.IRON_BARS));
+    public static final BlockItem CORRUPTED_ETYR_BARS_ITEM = new BlockItem(CORRUPTED_ETYR_BARS, new FabricItemSettings());
+
+    public static final Block CORRUPTED_ETYR_DOOR = new DoorBlock(FabricBlockSettings
+            .copyOf(Blocks.IRON_DOOR)
+            .sounds(BlockSoundGroup.METAL));
+    public static final BlockItem CORRUPTED_ETYR_DOOR_ITEM = new BlockItem(CORRUPTED_ETYR_DOOR, new FabricItemSettings());
+
+    public static final Block CORRUPTED_ETYR_PILLAR = new PillarBlock(FabricBlockSettings.copyOf(Blocks.QUARTZ_PILLAR));
+    public static final BlockItem CORRUPTED_ETYR_PILLAR_ITEM = new BlockItem(CORRUPTED_ETYR_PILLAR, new FabricItemSettings());
+
+    public static final Block CORRUPTED_ETYR_TILES = new Block(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK));
+    public static final BlockItem CORRUPTED_ETYR_TILES_ITEM = new BlockItem(CORRUPTED_ETYR_TILES, new FabricItemSettings());
+
+    public static final Block CORRUPTED_ETYR_TRAPDOOR = new TrapdoorBlock(FabricBlockSettings
+            .copyOf(Blocks.IRON_TRAPDOOR)
+            .sounds(BlockSoundGroup.METAL));
+
+    public static final BlockItem CORRUPTED_ETYR_TRAPDOOR_ITEM = new BlockItem(CORRUPTED_ETYR_TRAPDOOR, new FabricItemSettings());
+
+    public static final Block CORRUPTED_ETYR_SLAB = new SlabBlock(FabricBlockSettings
+            .copyOf(Blocks.STONE_SLAB)
+            .sounds(BlockSoundGroup.METAL));
+
+    public static final BlockItem CORRUPTED_ETYR_SLAB_ITEM = new BlockItem(CORRUPTED_ETYR_SLAB, new FabricItemSettings());
+
+    public static final StairsBlock CORRUPTED_ETYR_STAIRS = new StairsBlock(CORRUPTED_ETYR_TILES.getDefaultState(), FabricBlockSettings.copyOf(Blocks.STONE_STAIRS));
+    public static final BlockItem CORRUPTED_ETYR_STAIRS_ITEM = new BlockItem(CORRUPTED_ETYR_STAIRS, new FabricItemSettings());
+
+
+
+    //
     public static void register() {
         registerFullBlock("abysmal_fronds", ABYSMAL_FRONDS, ABYSMAL_FRONDS_ITEM);
         registerFullBlock("suspicious_fronds", SUSPICIOUS_FRONDS, SUSPICIOUS_FRONDS_ITEM);
@@ -204,6 +314,36 @@ public class BlockRegistry {
         registerFullBlock("etyr_trapdoor", ETYR_TRAPDOOR, ETYR_TRAPDOOR_ITEM);
         registerFullBlock("etyr_stairs", ETYR_STAIRS, ETYR_STAIRS_ITEM);
         registerFullBlock("etyr_slab", ETYR_SLAB, ETYR_SLAB_ITEM);
+
+        registerFullBlock("decadent_etyr_ore", DECADENT_ETYR_ORE, DECADENT_ETYR_ORE_ITEM);
+        registerFullBlock("decadent_etyr_block", DECADENT_ETYR_BLOCK, DECADENT_ETYR_BLOCK_ITEM);
+        registerFullBlock("decadent_etyr_bars", DECADENT_ETYR_BARS, DECADENT_ETYR_BARS_ITEM);
+        registerFullBlock("decadent_etyr_door", DECADENT_ETYR_DOOR, DECADENT_ETYR_DOOR_ITEM);
+        registerFullBlock("decadent_etyr_pillar", DECADENT_ETYR_PILLAR, DECADENT_ETYR_PILLAR_ITEM);
+        registerFullBlock("decadent_etyr_tiles", DECADENT_ETYR_TILES, DECADENT_ETYR_TILES_ITEM);
+        registerFullBlock("decadent_etyr_trapdoor", DECADENT_ETYR_TRAPDOOR, DECADENT_ETYR_TRAPDOOR_ITEM);
+        registerFullBlock("decadent_etyr_stairs", DECADENT_ETYR_STAIRS, DECADENT_ETYR_STAIRS_ITEM);
+        registerFullBlock("decadent_etyr_slab", DECADENT_ETYR_SLAB, DECADENT_ETYR_SLAB_ITEM);
+
+        registerFullBlock("perturbated_etyr_ore", PERTURBATED_ETYR_ORE, PERTURBATED_ETYR_ORE_ITEM);
+        registerFullBlock("perturbated_etyr_block", PERTURBATED_ETYR_BLOCK, PERTURBATED_ETYR_BLOCK_ITEM);
+        registerFullBlock("perturbated_etyr_bars", PERTURBATED_ETYR_BARS, PERTURBATED_ETYR_BARS_ITEM);
+        registerFullBlock("perturbated_etyr_door", PERTURBATED_ETYR_DOOR, PERTURBATED_ETYR_DOOR_ITEM);
+        registerFullBlock("perturbated_etyr_pillar", PERTURBATED_ETYR_PILLAR, PERTURBATED_ETYR_PILLAR_ITEM);
+        registerFullBlock("perturbated_etyr_tiles", PERTURBATED_ETYR_TILES, PERTURBATED_ETYR_TILES_ITEM);
+        registerFullBlock("perturbated_etyr_trapdoor", PERTURBATED_ETYR_TRAPDOOR, PERTURBATED_ETYR_TRAPDOOR_ITEM);
+        registerFullBlock("perturbated_etyr_stairs", PERTURBATED_ETYR_STAIRS, PERTURBATED_ETYR_STAIRS_ITEM);
+        registerFullBlock("perturbated_etyr_slab", PERTURBATED_ETYR_SLAB, PERTURBATED_ETYR_SLAB_ITEM);
+
+        registerFullBlock("corrupted_etyr_ore", CORRUPTED_ETYR_ORE, CORRUPTED_ETYR_ORE_ITEM);
+        registerFullBlock("corrupted_etyr_block", CORRUPTED_ETYR_BLOCK, CORRUPTED_ETYR_BLOCK_ITEM);
+        registerFullBlock("corrupted_etyr_bars", CORRUPTED_ETYR_BARS, CORRUPTED_ETYR_BARS_ITEM);
+        registerFullBlock("corrupted_etyr_door", CORRUPTED_ETYR_DOOR, CORRUPTED_ETYR_DOOR_ITEM);
+        registerFullBlock("corrupted_etyr_pillar", CORRUPTED_ETYR_PILLAR, CORRUPTED_ETYR_PILLAR_ITEM);
+        registerFullBlock("corrupted_etyr_tiles", CORRUPTED_ETYR_TILES, CORRUPTED_ETYR_TILES_ITEM);
+        registerFullBlock("corrupted_etyr_trapdoor", CORRUPTED_ETYR_TRAPDOOR, CORRUPTED_ETYR_TRAPDOOR_ITEM);
+        registerFullBlock("corrupted_etyr_stairs", CORRUPTED_ETYR_STAIRS, CORRUPTED_ETYR_STAIRS_ITEM);
+        registerFullBlock("corrupted_etyr_slab", CORRUPTED_ETYR_SLAB, CORRUPTED_ETYR_SLAB_ITEM);
 
         registerFullBlock("hasturian_sand", HASTURIAN_SAND, HASTURIAN_SAND_ITEM);
         registerFullBlock("hasturian_dune_sand", HASTURIAN_DUNE_SAND, HASTURIAN_DUNE_SAND_ITEM);
