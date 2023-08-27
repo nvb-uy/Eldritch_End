@@ -1,4 +1,4 @@
-// 1.19.2	2023-08-24T05:25:24.5699059	Block Loot Tables
+// 1.19.2	2023-08-24T06:50:29.1685965	Block Loot Tables
 aea8bd8890afd0a4e3a305c907d4c4b44a07ce6d data\eldritch_end\loot_tables\blocks\primordial_log.json
 f44fc803ec4dfa8ecc15b8019972fd19fb7407f3 data\eldritch_end\loot_tables\blocks\primordial_pressure_plate.json
 c80cc386f88eaed9a1cf65cd18ba6740797cb0aa data\eldritch_end\loot_tables\blocks\hasturian_dune_sand.json
@@ -15,11 +15,13 @@ bd47586a9ab85f66b8254940a2c912fa4fd708f4 data\eldritch_end\loot_tables\blocks\ha
 f94878fe784d7ed53e7e1c943b9990e000d77498 data\eldritch_end\loot_tables\blocks\etyr_block.json
 698b7e8400eec8e4fd1d2b015e6c31a467f96b61 data\eldritch_end\loot_tables\blocks\primordial_door.json
 12948ba4710dd910070ad08a3923421fd8943272 data\eldritch_end\loot_tables\blocks\hasturian_cactus.json
+f7d76dfbc869dcb5c2491107921272ac987dea67 data\eldritch_end\loot_tables\blocks\etyr_stairs.json
 ea057eaae278d6d46d7a58a1c43455c1cb314446 data\eldritch_end\loot_tables\blocks\primordial_fence_gate.json
 1d3a3211de093b2ee23b20421665274d9ab7ebf6 data\eldritch_end\loot_tables\blocks\etyr_ore.json
 e43c08323d274185df8a985f07ebb838f1463be4 data\eldritch_end\loot_tables\blocks\primordial_wood.json
 49dc1d92b1eab8a00bb1a8c8d076517a19edf3b8 data\eldritch_end\loot_tables\blocks\primordial_planks.json
 6cae97cb2720728de0f180d54d6af1f5a10997e4 data\eldritch_end\loot_tables\blocks\etyr_trapdoor.json
+3add0a6741de32962fe9d5c1ff59e6cc0887104e data\eldritch_end\loot_tables\blocks\etyr_slab.json
 2eaa04131646533e360647789c66ce0f561aff1b data\eldritch_end\loot_tables\blocks\stripped_primordial_log.json
 38501c1930590c5f028f030d3b59c11a724a8ccc data\eldritch_end\loot_tables\blocks\abysmal_fronds.json
 91b053fed684d0312e2a91c05d91be05a8e309d0 data\eldritch_end\loot_tables\blocks\suspicious_fronds.json
