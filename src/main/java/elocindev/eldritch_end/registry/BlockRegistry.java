@@ -170,8 +170,6 @@ public class BlockRegistry {
     public static final BlockItem ETYR_STAIRS_ITEM = new BlockItem(ETYR_STAIRS, new FabricItemSettings());
 
     // Etyr variant #1
-    public static final Block DECADENT_ETYR_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE));
-    public static final BlockItem DECADENT_ETYR_ORE_ITEM = new BlockItem(DECADENT_ETYR_ORE, new FabricItemSettings());
 
     public static final Block DECADENT_ETYR_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK));
     public static final BlockItem DECADENT_ETYR_BLOCK_ITEM = new BlockItem(DECADENT_ETYR_BLOCK, new FabricItemSettings());
@@ -206,8 +204,6 @@ public class BlockRegistry {
     public static final BlockItem DECADENT_ETYR_STAIRS_ITEM = new BlockItem(DECADENT_ETYR_STAIRS, new FabricItemSettings());
 
     // Etyr variant #2
-    public static final Block PERTURBED_ETYR_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE));
-    public static final BlockItem PERTURBED_ETYR_ORE_ITEM = new BlockItem(PERTURBED_ETYR_ORE, new FabricItemSettings());
 
     public static final Block PERTURBED_ETYR_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK));
     public static final BlockItem PERTURBED_ETYR_BLOCK_ITEM = new BlockItem(PERTURBED_ETYR_BLOCK, new FabricItemSettings());
@@ -242,8 +238,6 @@ public class BlockRegistry {
     public static final BlockItem PERTURBED_ETYR_STAIRS_ITEM = new BlockItem(PERTURBED_ETYR_STAIRS, new FabricItemSettings());
 
     // Etyr variant #3
-    public static final Block CORRUPTED_ETYR_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE));
-    public static final BlockItem CORRUPTED_ETYR_ORE_ITEM = new BlockItem(CORRUPTED_ETYR_ORE, new FabricItemSettings());
 
     public static final Block CORRUPTED_ETYR_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK));
     public static final BlockItem CORRUPTED_ETYR_BLOCK_ITEM = new BlockItem(CORRUPTED_ETYR_BLOCK, new FabricItemSettings());
@@ -315,7 +309,6 @@ public class BlockRegistry {
         registerFullBlock("etyr_stairs", ETYR_STAIRS, ETYR_STAIRS_ITEM);
         registerFullBlock("etyr_slab", ETYR_SLAB, ETYR_SLAB_ITEM);
 
-        registerFullBlock("decadent_etyr_ore", DECADENT_ETYR_ORE, DECADENT_ETYR_ORE_ITEM);
         registerFullBlock("decadent_etyr_block", DECADENT_ETYR_BLOCK, DECADENT_ETYR_BLOCK_ITEM);
         registerFullBlock("decadent_etyr_bars", DECADENT_ETYR_BARS, DECADENT_ETYR_BARS_ITEM);
         registerFullBlock("decadent_etyr_door", DECADENT_ETYR_DOOR, DECADENT_ETYR_DOOR_ITEM);
@@ -325,7 +318,6 @@ public class BlockRegistry {
         registerFullBlock("decadent_etyr_stairs", DECADENT_ETYR_STAIRS, DECADENT_ETYR_STAIRS_ITEM);
         registerFullBlock("decadent_etyr_slab", DECADENT_ETYR_SLAB, DECADENT_ETYR_SLAB_ITEM);
 
-        registerFullBlock("perturbed_etyr_ore", PERTURBED_ETYR_ORE, PERTURBED_ETYR_ORE_ITEM);
         registerFullBlock("perturbed_etyr_block", PERTURBED_ETYR_BLOCK, PERTURBED_ETYR_BLOCK_ITEM);
         registerFullBlock("perturbed_etyr_bars", PERTURBED_ETYR_BARS, PERTURBED_ETYR_BARS_ITEM);
         registerFullBlock("perturbed_etyr_door", PERTURBED_ETYR_DOOR, PERTURBED_ETYR_DOOR_ITEM);
@@ -335,7 +327,6 @@ public class BlockRegistry {
         registerFullBlock("perturbed_etyr_stairs", PERTURBED_ETYR_STAIRS, PERTURBED_ETYR_STAIRS_ITEM);
         registerFullBlock("perturbed_etyr_slab", PERTURBED_ETYR_SLAB, PERTURBED_ETYR_SLAB_ITEM);
 
-        registerFullBlock("corrupted_etyr_ore", CORRUPTED_ETYR_ORE, CORRUPTED_ETYR_ORE_ITEM);
         registerFullBlock("corrupted_etyr_block", CORRUPTED_ETYR_BLOCK, CORRUPTED_ETYR_BLOCK_ITEM);
         registerFullBlock("corrupted_etyr_bars", CORRUPTED_ETYR_BARS, CORRUPTED_ETYR_BARS_ITEM);
         registerFullBlock("corrupted_etyr_door", CORRUPTED_ETYR_DOOR, CORRUPTED_ETYR_DOOR_ITEM);
