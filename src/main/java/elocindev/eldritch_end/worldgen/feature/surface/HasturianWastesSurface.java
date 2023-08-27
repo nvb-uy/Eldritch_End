@@ -2,13 +2,13 @@ package elocindev.eldritch_end.worldgen.feature.surface;
 
 import com.mojang.serialization.Codec;
 
-import elocindev.eldritch_end.block.HasturianMoss;
+import elocindev.eldritch_end.config.Configs;
 import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.worldgen.feature.SurfaceConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.StructureWorldAccess;
@@ -27,22 +27,30 @@ public class HasturianWastesSurface extends Feature<SurfaceConfig> {
     @Override
     public boolean generate(FeatureContext<SurfaceConfig> context) {
         boolean generated = false;
+        boolean isSand = false;
+
         StructureWorldAccess world = context.getWorld();
         BlockPos origin = context.getOrigin();
+        Random random = context.getRandom();
 
         SurfaceConfig config = context.getConfig();
         BlockState blockState = Registry.BLOCK.get(config.blockID()).getDefaultState();
 
-        int centerX = origin.getX() + world.getRandom().nextInt(4);
-        int centerZ = origin.getZ() + world.getRandom().nextInt(4);
+        int centerX = origin.getX() + random.nextInt(4);
+        int centerZ = origin.getZ() + random.nextInt(4);
 
-        int radius = world.getRandom().nextInt(10) + 6;
+        int radius = random.nextInt(10) + 6;
         int radiusX = radius; int radiusZ = radius;
         
-        if (world.getRandom().nextBoolean()) {
-            radiusX += world.getRandom().nextInt(4);
+        if (random.nextBoolean()) {
+            isSand = true;
+            blockState = BlockRegistry.HASTURIAN_DUNE_SAND.getDefaultState(); 
+        }
+
+        if (random.nextBoolean()) {
+            radiusX += random.nextInt(4);
         } else {
-            radiusZ += world.getRandom().nextInt(4);
+            radiusZ += random.nextInt(4);
         }
 
         for (int x = centerX - radiusX; x <= centerX + radiusX; x++) {
@@ -54,13 +62,21 @@ public class HasturianWastesSurface extends Feature<SurfaceConfig> {
                     BlockPos targetPos = topPos.down();
 
                     if (canPlace(world, targetPos)) {
-                        if (world.getRandom().nextBoolean())
-                            world.setBlockState(targetPos, blockState, 3);
-                        else
-                            world.setBlockState(targetPos, blockState.with(HasturianMoss.FACING, Direction.EAST), 3);
 
+                        world.setBlockState(targetPos, blockState, 3);
+                        
+                        if (isSand) {
+                            for (int i = 0; i < 4; i++)
+                                if (canPlace(world, targetPos.down(i)) && world.getBlockState(targetPos.down(i+1)).getBlock() != Blocks.AIR) world.setBlockState(targetPos.down(i), BlockRegistry.HASTURIAN_SAND.getDefaultState(), 3);
+                        } else {
+                            if (Configs.BIOME_HASTURIAN_WASTES.enable_grass_generation && world.getRandom().nextInt(100) <= Configs.BIOME_HASTURIAN_WASTES.grass_generation_chance
+                            && world.getBlockState(targetPos.up()).getBlock() == Blocks.AIR)
+                                world.setBlockState(targetPos.up(), BlockRegistry.HASTURIAN_GRASS.getDefaultState(), 3);
+                        }
+                        
                         if (world.getBlockState(targetPos.up()).getBlock() == BlockRegistry.ABYSMAL_ROOTS)
                             world.setBlockState(targetPos.up(), Blocks.AIR.getDefaultState(), 3);
+
 
                         generated = true;
                     }

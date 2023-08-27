@@ -64,7 +64,7 @@ public class HasturianSpikeFeature extends Feature<DefaultFeatureConfig> {
                     float h = (float)MathHelper.abs(n) - 0.25F;
                     if ((m == 0 && n == 0 || !(g * g + h * h > f * f)) && (m != -l && m != l && n != -l && n != l || !(random.nextFloat() > 0.75F))) {
                         BlockState blockState = world.getBlockState(blockPos.add(m, k, n));
-                        if (blockState.isAir() || blockState.isOf(BlockRegistry.HASTURIAN_MOSS)) {
+                        if (blockState.isAir() || blockState.isOf(BlockRegistry.HASTURIAN_MOSS) || blockState.isOf(BlockRegistry.HASTURIAN_GRASS)) {
                             if (random.nextInt(100) <= Configs.BIOME_HASTURIAN_WASTES.etyr_spawn_chance_per_block)
                                 this.setBlockState(world, blockPos.add(m, k, n), BlockRegistry.ETYR_ORE.getDefaultState());
                             else
@@ -73,7 +73,7 @@ public class HasturianSpikeFeature extends Feature<DefaultFeatureConfig> {
 
                         if (k != 0 && l > 1) {
                             blockState = world.getBlockState(blockPos.add(m, -k, n));
-                            if (blockState.isAir()) {
+                            if (blockState.isAir() || blockState.isOf(BlockRegistry.HASTURIAN_GRASS)) {
                                 this.setBlockState(world, blockPos.add(m, -k, n), block);
                             }
                         }
@@ -99,7 +99,7 @@ public class HasturianSpikeFeature extends Feature<DefaultFeatureConfig> {
 
                 while(blockPos2.getY() > 50) {
                     BlockState blockState2 = world.getBlockState(blockPos2);
-                    if (!blockState2.isAir() && !isSoil(blockState2) && !blockState2.isOf(BlockRegistry.HASTURIAN_MOSS) && !blockState2.isOf(BlockRegistry.SPIRE_STONE)) {
+                    if (!blockState2.isAir() && !blockState2.isOf(BlockRegistry.HASTURIAN_MOSS) && !blockState2.isOf(BlockRegistry.SPIRE_STONE)) {
                         break;
                     }
 

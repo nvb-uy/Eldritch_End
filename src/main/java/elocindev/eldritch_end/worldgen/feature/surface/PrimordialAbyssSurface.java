@@ -2,7 +2,6 @@ package elocindev.eldritch_end.worldgen.feature.surface;
 
 import com.mojang.serialization.Codec;
 
-import elocindev.eldritch_end.block.AbysmalFronds;
 import elocindev.eldritch_end.config.Configs;
 import elocindev.eldritch_end.registry.BiomeRegistry;
 import elocindev.eldritch_end.registry.BlockRegistry;
@@ -13,7 +12,6 @@ import elocindev.eldritch_end.worldgen.util.TreeFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.StructureWorldAccess;
@@ -69,10 +67,7 @@ public class PrimordialAbyssSurface extends Feature<SurfaceConfig> {
 
                     if (canPlace(world, targetPos)) {
                         
-                        if (world.getRandom().nextBoolean())
-                            world.setBlockState(targetPos, blockState, 3);
-                        else
-                            world.setBlockState(targetPos, blockState.with(AbysmalFronds.FACING, Direction.EAST), 3);
+                        world.setBlockState(targetPos, blockState, 3);
                     
                         if (Configs.BIOME_PRIMORDIAL_ABYSS.enable_roots_generation && world.getRandom().nextInt(100) <= Configs.BIOME_PRIMORDIAL_ABYSS.roots_generation_chance)
                             world.setBlockState(targetPos.up(), BlockRegistry.ABYSMAL_ROOTS.getDefaultState(), 3);

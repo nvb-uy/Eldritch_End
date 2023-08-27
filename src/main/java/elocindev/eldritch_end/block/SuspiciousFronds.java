@@ -5,6 +5,7 @@ import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.registry.EntityRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -24,6 +25,9 @@ public class SuspiciousFronds extends AbysmalFronds {
             world.spawnEntity(tentacle);
 
             player.setVelocity(0, 0.90, 0);
+            player.velocityModified = true;
+
+            player.damage(DamageSource.mob(tentacle), 4.0f);
 
             world.setBlockState(pos, BlockRegistry.ABYSMAL_FRONDS.getDefaultState());
         }
