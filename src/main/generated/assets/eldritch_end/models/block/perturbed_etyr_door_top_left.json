@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_left",
+  "textures": {
+    "bottom": "eldritch_end:block/perturbed_etyr_door_bottom",
+    "top": "eldritch_end:block/perturbed_etyr_door_top"
+  }
+}
