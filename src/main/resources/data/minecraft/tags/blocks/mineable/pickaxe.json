@@ -5,6 +5,42 @@
     "eldritch_end:spire_stone",
     "eldritch_end:hasturian_moss",
     "eldritch_end:abysmal_fronds",
-    "eldritch_end:suspicious_fronds"
+    "eldritch_end:suspicious_fronds",
+
+    "eldritch_end:etyr_block",
+    "eldritch_end:etyr_bars",
+    "eldritch_end:etyr_door",
+    "eldritch_end:etyr_pillar",
+    "eldritch_end:etyr_tiles",
+    "eldritch_end:etyr_trapdoor",
+
+    "eldritch_end:decadent_etyr_block",
+    "eldritch_end:decadent_etyr_bars",
+    "eldritch_end:decadent_etyr_door",
+    "eldritch_end:decadent_etyr_pillar",
+    "eldritch_end:decadent_etyr_tiles",
+    "eldritch_end:decadent_etyr_trapdoor",
+
+    "eldritch_end:perturbed_etyr_block",
+    "eldritch_end:perturbed_etyr_bars",
+    "eldritch_end:perturbed_etyr_door",
+    "eldritch_end:perturbed_etyr_pillar",
+    "eldritch_end:perturbed_etyr_tiles",
+    "eldritch_end:perturbed_etyr_trapdoor",
+
+    "eldritch_end:corrupted_etyr_block",
+    "eldritch_end:corrupted_etyr_bars",
+    "eldritch_end:corrupted_etyr_door",
+    "eldritch_end:corrupted_etyr_pillar",
+    "eldritch_end:corrupted_etyr_tiles",
+    "eldritch_end:corrupted_etyr_trapdoor",
+
+    "eldritch_end:polished_spire_stone",
+    "eldritch_end:polished_spire_stone_bricks",
+    "eldritch_end:polished_spire_stone_pillar",
+    "eldritch_end:polished_spire_stone_tiles",
+    "eldritch_end:chiseled_polished_spire_stone",
+    "eldritch_end:cracked_polished_spire_stone_bricks",
+    "eldritch_end:cracked_polished_spire_stone_tiles"
   ]
 }
