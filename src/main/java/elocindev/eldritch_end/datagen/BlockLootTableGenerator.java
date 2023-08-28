@@ -36,6 +36,33 @@ public class BlockLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(BlockRegistry.ETYR_TILES, drops(BlockRegistry.ETYR_TILES_ITEM));
         addDrop(BlockRegistry.ETYR_TRAPDOOR, drops(BlockRegistry.ETYR_TRAPDOOR_ITEM));
 
+        addDrop(BlockRegistry.DECADENT_ETYR_BLOCK, drops(BlockRegistry.DECADENT_ETYR_BLOCK_ITEM));
+        addDrop(BlockRegistry.DECADENT_ETYR_BARS, drops(BlockRegistry.DECADENT_ETYR_BARS_ITEM));
+        addDrop(BlockRegistry.DECADENT_ETYR_DOOR, drops(BlockRegistry.DECADENT_ETYR_DOOR_ITEM));
+        addDrop(BlockRegistry.DECADENT_ETYR_PILLAR, drops(BlockRegistry.DECADENT_ETYR_PILLAR_ITEM));
+        addDrop(BlockRegistry.DECADENT_ETYR_TILES, drops(BlockRegistry.DECADENT_ETYR_TILES_ITEM));
+        addDrop(BlockRegistry.DECADENT_ETYR_TRAPDOOR, drops(BlockRegistry.DECADENT_ETYR_TRAPDOOR_ITEM));
+        addDrop(BlockRegistry.DECADENT_ETYR_STAIRS, drops(BlockRegistry.DECADENT_ETYR_STAIRS_ITEM));
+        addDrop(BlockRegistry.DECADENT_ETYR_SLAB, drops(BlockRegistry.DECADENT_ETYR_SLAB_ITEM));
+
+        addDrop(BlockRegistry.PERTURBED_ETYR_BLOCK, drops(BlockRegistry.PERTURBED_ETYR_BLOCK_ITEM));
+        addDrop(BlockRegistry.PERTURBED_ETYR_BARS, drops(BlockRegistry.PERTURBED_ETYR_BARS_ITEM));
+        addDrop(BlockRegistry.PERTURBED_ETYR_DOOR, drops(BlockRegistry.PERTURBED_ETYR_DOOR_ITEM));
+        addDrop(BlockRegistry.PERTURBED_ETYR_PILLAR, drops(BlockRegistry.PERTURBED_ETYR_PILLAR_ITEM));
+        addDrop(BlockRegistry.PERTURBED_ETYR_TILES, drops(BlockRegistry.PERTURBED_ETYR_TILES_ITEM));
+        addDrop(BlockRegistry.PERTURBED_ETYR_TRAPDOOR, drops(BlockRegistry.PERTURBED_ETYR_TRAPDOOR_ITEM));
+        addDrop(BlockRegistry.PERTURBED_ETYR_STAIRS, drops(BlockRegistry.PERTURBED_ETYR_STAIRS_ITEM));
+        addDrop(BlockRegistry.PERTURBED_ETYR_SLAB, drops(BlockRegistry.PERTURBED_ETYR_SLAB_ITEM));
+
+        addDrop(BlockRegistry.CORRUPTED_ETYR_BLOCK, drops(BlockRegistry.CORRUPTED_ETYR_BLOCK_ITEM));
+        addDrop(BlockRegistry.CORRUPTED_ETYR_BARS, drops(BlockRegistry.CORRUPTED_ETYR_BARS_ITEM));
+        addDrop(BlockRegistry.CORRUPTED_ETYR_DOOR, drops(BlockRegistry.CORRUPTED_ETYR_DOOR_ITEM));
+        addDrop(BlockRegistry.CORRUPTED_ETYR_PILLAR, drops(BlockRegistry.CORRUPTED_ETYR_PILLAR_ITEM));
+        addDrop(BlockRegistry.CORRUPTED_ETYR_TILES, drops(BlockRegistry.CORRUPTED_ETYR_TILES_ITEM));
+        addDrop(BlockRegistry.CORRUPTED_ETYR_TRAPDOOR, drops(BlockRegistry.CORRUPTED_ETYR_TRAPDOOR_ITEM));
+        addDrop(BlockRegistry.CORRUPTED_ETYR_STAIRS, drops(BlockRegistry.CORRUPTED_ETYR_STAIRS_ITEM));
+        addDrop(BlockRegistry.CORRUPTED_ETYR_SLAB, drops(BlockRegistry.CORRUPTED_ETYR_SLAB_ITEM));
+
         addDrop(BlockRegistry.HASTURIAN_DUNE_SAND, drops(BlockRegistry.HASTURIAN_DUNE_SAND_ITEM));
         addDrop(BlockRegistry.HASTURIAN_SAND, drops(BlockRegistry.HASTURIAN_SAND_ITEM));
         addDrop(BlockRegistry.HASTURIAN_CACTUS, drops(BlockRegistry.HASTURIAN_CACTUS_ITEM));
