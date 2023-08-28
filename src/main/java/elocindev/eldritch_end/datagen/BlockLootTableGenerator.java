@@ -63,6 +63,15 @@ public class BlockLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(BlockRegistry.CORRUPTED_ETYR_STAIRS, drops(BlockRegistry.CORRUPTED_ETYR_STAIRS_ITEM));
         addDrop(BlockRegistry.CORRUPTED_ETYR_SLAB, drops(BlockRegistry.CORRUPTED_ETYR_SLAB_ITEM));
 
+        addDrop(BlockRegistry.SPIRE_STONE, drops(BlockRegistry.SPIRE_STONE_ITEM));
+        addDrop(BlockRegistry.POLISHED_SPIRE_STONE, drops(BlockRegistry.POLISHED_SPIRE_STONE_ITEM));
+        addDrop(BlockRegistry.POLISHED_SPIRE_STONE_BRICKS, drops(BlockRegistry.POLISHED_SPIRE_STONE_BRICKS_ITEM));
+        addDrop(BlockRegistry.POLISHED_SPIRE_STONE_PILLAR, drops(BlockRegistry.POLISHED_SPIRE_STONE_PILLAR_ITEM));
+        addDrop(BlockRegistry.POLISHED_SPIRE_STONE_TILES, drops(BlockRegistry.POLISHED_SPIRE_STONE_TILES_ITEM));
+        addDrop(BlockRegistry.CHISELED_POLISHED_SPIRE_STONE, drops(BlockRegistry.CHISELED_POLISHED_SPIRE_STONE_ITEM));
+        addDrop(BlockRegistry.CRACKED_POLISHED_SPIRE_STONE_BRICKS, drops(BlockRegistry.CRACKED_POLISHED_SPIRE_STONE_BRICKS_ITEM));
+        addDrop(BlockRegistry.CRACKED_POLISHED_SPIRE_STONE_TILES, drops(BlockRegistry.CRACKED_POLISHED_SPIRE_STONE_TILES_ITEM));
+
         addDrop(BlockRegistry.HASTURIAN_DUNE_SAND, drops(BlockRegistry.HASTURIAN_DUNE_SAND_ITEM));
         addDrop(BlockRegistry.HASTURIAN_SAND, drops(BlockRegistry.HASTURIAN_SAND_ITEM));
         addDrop(BlockRegistry.HASTURIAN_CACTUS, drops(BlockRegistry.HASTURIAN_CACTUS_ITEM));
