@@ -29,9 +29,6 @@ public class ModelGenerator extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator generator) {
-        generator.registerSimpleCubeAll(BlockRegistry.PRIMORDIAL_PLANKS);
-        generator.registerDoor(BlockRegistry.PRIMORDIAL_DOOR);
-        generator.registerTrapdoor(BlockRegistry.PRIMORDIAL_TRAPDOOR);
         generator.registerTintableCross(BlockRegistry.ABYSMAL_ROOTS, BlockStateModelGenerator.TintType.NOT_TINTED);
         generator.registerSimpleState(BlockRegistry.HASTURIAN_CACTUS);
 
@@ -39,11 +36,9 @@ public class ModelGenerator extends FabricModelProvider {
         generator.registerSimpleCubeAll(BlockRegistry.HASTURIAN_DUNE_SAND);
         generator.registerSimpleCubeAll(BlockRegistry.HASTURIAN_SAND);
 
-        registerSlab(BlockRegistry.PRIMORDIAL_SLAB, BlockRegistry.PRIMORDIAL_PLANKS, generator.modelCollector, generator.blockStateCollector);
-        registerStairs(BlockRegistry.PRIMORDIAL_STAIRS, BlockRegistry.PRIMORDIAL_PLANKS, generator.modelCollector, generator.blockStateCollector);
-        registerButton(BlockRegistry.PRIMORDIAL_BUTTON, BlockRegistry.PRIMORDIAL_PLANKS, generator.modelCollector, generator.blockStateCollector);
-        registerFence(BlockRegistry.PRIMORDIAL_FENCE, BlockRegistry.PRIMORDIAL_PLANKS, generator.modelCollector, generator.blockStateCollector);
-        registerFenceGate(BlockRegistry.PRIMORDIAL_FENCE_GATE, BlockRegistry.PRIMORDIAL_PLANKS, generator.modelCollector, generator.blockStateCollector);
+        registerWoodset(generator, BlockRegistry.PRIMORDIAL_PLANKS, BlockRegistry.PRIMORDIAL_DOOR,
+                BlockRegistry.PRIMORDIAL_TRAPDOOR, BlockRegistry.PRIMORDIAL_SLAB, BlockRegistry.PRIMORDIAL_STAIRS,
+                BlockRegistry.PRIMORDIAL_BUTTON, BlockRegistry.PRIMORDIAL_FENCE, BlockRegistry.PRIMORDIAL_FENCE_GATE);
 
         registerEtyrVariant(generator, BlockRegistry.ETYR_BLOCK, BlockRegistry.ETYR_TILES,
                 BlockRegistry.ETYR_DOOR, BlockRegistry.ETYR_TRAPDOOR, BlockRegistry.ETYR_BARS, BlockRegistry.ETYR_PILLAR,
@@ -60,6 +55,17 @@ public class ModelGenerator extends FabricModelProvider {
         registerEtyrVariant(generator, BlockRegistry.CORRUPTED_ETYR_BLOCK, BlockRegistry.CORRUPTED_ETYR_TILES,
                 BlockRegistry.CORRUPTED_ETYR_DOOR, BlockRegistry.CORRUPTED_ETYR_TRAPDOOR, BlockRegistry.CORRUPTED_ETYR_BARS, BlockRegistry.CORRUPTED_ETYR_PILLAR,
                 BlockRegistry.CORRUPTED_ETYR_SLAB, BlockRegistry.CORRUPTED_ETYR_STAIRS);
+    }
+
+    private void registerWoodset(BlockStateModelGenerator generator, Block planks, Block door, Block trapdoor, Block slab, Block stairs, Block button, Block fence, Block fenceGate) {
+        generator.registerSimpleCubeAll(planks);
+        generator.registerDoor(door);
+        generator.registerTrapdoor(trapdoor);
+        registerSlab(slab, planks, generator.modelCollector, generator.blockStateCollector);
+        registerStairs(stairs, planks, generator.modelCollector, generator.blockStateCollector);
+        registerButton(button, planks, generator.modelCollector, generator.blockStateCollector);
+        registerFence(fence, planks, generator.modelCollector, generator.blockStateCollector);
+        registerFenceGate(fenceGate, planks, generator.modelCollector, generator.blockStateCollector);
     }
 
     private void registerEtyrVariant(BlockStateModelGenerator generator, Block block, Block tiles, Block door, Block trapdoor, Block bars, Block pillar, Block slab, Block stairs) {
