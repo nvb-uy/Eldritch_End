@@ -34,27 +34,27 @@ public class BlockRegistry {
 
     public static final Block PRIMORDIAL_LOG = new PillarBlock(FabricBlockSettings
         .copyOf(Blocks.OAK_LOG)
-        .sounds(BlockSoundGroup.STEM));
+        .sounds(BlockSoundGroup.WOOD));
 
     public static final BlockItem PRIMORDIAL_LOG_ITEM = new BlockItem(PRIMORDIAL_LOG, new FabricItemSettings());
 
     public static final Block STRIPPED_PRIMORDIAL_LOG = new PillarBlock(FabricBlockSettings
         .copyOf(Blocks.OAK_LOG)
-        .sounds(BlockSoundGroup.STEM));
+        .sounds(BlockSoundGroup.WOOD));
 
     public static final BlockItem STRIPPED_PRIMORDIAL_LOG_ITEM = new BlockItem(STRIPPED_PRIMORDIAL_LOG, new FabricItemSettings());
 
 
     public static final Block PRIMORDIAL_WOOD = new PillarBlock(FabricBlockSettings
         .copyOf(Blocks.OAK_LOG)
-        .sounds(BlockSoundGroup.STEM));
+        .sounds(BlockSoundGroup.WOOD));
 
     public static final BlockItem PRIMORDIAL_WOOD_ITEM = new BlockItem(PRIMORDIAL_WOOD, new FabricItemSettings());
 
 
     public static final Block STRIPPED_PRIMORDIAL_WOOD = new PillarBlock(FabricBlockSettings
         .copyOf(Blocks.OAK_LOG)
-        .sounds(BlockSoundGroup.STEM));
+        .sounds(BlockSoundGroup.WOOD));
 
     public static final BlockItem STRIPPED_PRIMORDIAL_WOOD_ITEM = new BlockItem(STRIPPED_PRIMORDIAL_WOOD, new FabricItemSettings());
 
