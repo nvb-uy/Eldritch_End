@@ -36,6 +36,14 @@ public class ModelGenerator extends FabricModelProvider {
         generator.registerSimpleCubeAll(BlockRegistry.HASTURIAN_DUNE_SAND);
         generator.registerSimpleCubeAll(BlockRegistry.HASTURIAN_SAND);
 
+        generator.registerSimpleCubeAll(BlockRegistry.CHISELED_POLISHED_SPIRE_STONE);
+        generator.registerSimpleCubeAll(BlockRegistry.POLISHED_SPIRE_STONE);
+        generator.registerSimpleCubeAll(BlockRegistry.CRACKED_POLISHED_SPIRE_STONE_TILES);
+        generator.registerSimpleCubeAll(BlockRegistry.CRACKED_POLISHED_SPIRE_STONE_BRICKS);
+        generator.registerSimpleCubeAll(BlockRegistry.POLISHED_SPIRE_STONE_BRICKS);
+        generator.registerSimpleCubeAll(BlockRegistry.POLISHED_SPIRE_STONE_TILES);
+        generator.registerAxisRotated(BlockRegistry.POLISHED_SPIRE_STONE_PILLAR, TexturedModel.END_FOR_TOP_CUBE_COLUMN, TexturedModel.END_FOR_TOP_CUBE_COLUMN_HORIZONTAL);
+
         registerWoodset(generator, BlockRegistry.PRIMORDIAL_PLANKS, BlockRegistry.PRIMORDIAL_DOOR,
                 BlockRegistry.PRIMORDIAL_TRAPDOOR, BlockRegistry.PRIMORDIAL_SLAB, BlockRegistry.PRIMORDIAL_STAIRS,
                 BlockRegistry.PRIMORDIAL_BUTTON, BlockRegistry.PRIMORDIAL_FENCE, BlockRegistry.PRIMORDIAL_FENCE_GATE);
