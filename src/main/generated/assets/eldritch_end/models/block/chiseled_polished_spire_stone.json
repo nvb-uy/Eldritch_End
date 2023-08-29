@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "eldritch_end:block/etyr_ore"
+    "all": "eldritch_end:block/chiseled_polished_spire_stone"
   }
 }
