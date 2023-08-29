@@ -42,7 +42,7 @@ public class ModelGenerator extends FabricModelProvider {
         generator.registerSimpleCubeAll(BlockRegistry.CRACKED_POLISHED_SPIRE_STONE_BRICKS);
         generator.registerSimpleCubeAll(BlockRegistry.POLISHED_SPIRE_STONE_BRICKS);
         generator.registerSimpleCubeAll(BlockRegistry.POLISHED_SPIRE_STONE_TILES);
-        generator.registerAxisRotated(BlockRegistry.POLISHED_SPIRE_STONE_PILLAR, TexturedModel.END_FOR_TOP_CUBE_COLUMN, TexturedModel.END_FOR_TOP_CUBE_COLUMN_HORIZONTAL);
+        //generator.registerAxisRotated(BlockRegistry.POLISHED_SPIRE_STONE_PILLAR, TexturedModel.END_FOR_TOP_CUBE_COLUMN, TexturedModel.END_FOR_TOP_CUBE_COLUMN_HORIZONTAL);
 
         registerWoodset(generator, BlockRegistry.PRIMORDIAL_PLANKS, BlockRegistry.PRIMORDIAL_DOOR,
                 BlockRegistry.PRIMORDIAL_TRAPDOOR, BlockRegistry.PRIMORDIAL_SLAB, BlockRegistry.PRIMORDIAL_STAIRS,
@@ -82,7 +82,7 @@ public class ModelGenerator extends FabricModelProvider {
         generator.registerDoor(door);
         generator.registerTrapdoor(trapdoor);
         registerBars(bars, generator.modelCollector, generator.blockStateCollector);
-        generator.registerAxisRotated(pillar, TexturedModel.END_FOR_TOP_CUBE_COLUMN, TexturedModel.END_FOR_TOP_CUBE_COLUMN_HORIZONTAL);
+        //generator.registerAxisRotated(pillar, TexturedModel.END_FOR_TOP_CUBE_COLUMN, TexturedModel.END_FOR_TOP_CUBE_COLUMN_HORIZONTAL);
 
         registerSlab(slab, BlockRegistry.ETYR_TILES, generator.modelCollector, generator.blockStateCollector);
         registerStairs(stairs, BlockRegistry.ETYR_TILES, generator.modelCollector, generator.blockStateCollector);
