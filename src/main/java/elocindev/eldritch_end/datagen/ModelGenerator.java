@@ -22,6 +22,8 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+import static net.minecraft.data.client.BlockStateModelGenerator.createAxisRotatedBlockState;
+
 public class ModelGenerator extends FabricModelProvider {
     public ModelGenerator(FabricDataGenerator dataGenerator) {
         super(dataGenerator);
@@ -43,7 +45,7 @@ public class ModelGenerator extends FabricModelProvider {
         generator.registerSimpleCubeAll(BlockRegistry.CRACKED_POLISHED_SPIRE_STONE_BRICKS);
         generator.registerSimpleCubeAll(BlockRegistry.POLISHED_SPIRE_STONE_BRICKS);
         generator.registerSimpleCubeAll(BlockRegistry.POLISHED_SPIRE_STONE_TILES);
-        generator.registerAxisRotated(BlockRegistry.POLISHED_SPIRE_STONE_PILLAR, TexturedModel.END_FOR_TOP_CUBE_COLUMN, TexturedModel.END_FOR_TOP_CUBE_COLUMN_HORIZONTAL);
+        //generator.registerAxisRotated(BlockRegistry.POLISHED_SPIRE_STONE_PILLAR, TexturedModel.END_FOR_TOP_CUBE_COLUMN, TexturedModel.END_FOR_TOP_CUBE_COLUMN_HORIZONTAL);
 
         registerWoodset(generator, BlockRegistry.PRIMORDIAL_PLANKS, BlockRegistry.PRIMORDIAL_DOOR,
                 BlockRegistry.PRIMORDIAL_TRAPDOOR, BlockRegistry.PRIMORDIAL_SLAB, BlockRegistry.PRIMORDIAL_STAIRS,
