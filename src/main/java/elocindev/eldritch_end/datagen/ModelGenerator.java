@@ -36,6 +36,7 @@ public class ModelGenerator extends FabricModelProvider {
         generator.registerSimpleCubeAll(BlockRegistry.HASTURIAN_DUNE_SAND);
         generator.registerSimpleCubeAll(BlockRegistry.HASTURIAN_SAND);
 
+        generator.registerSimpleCubeAll(BlockRegistry.ETYR_ORE);
         generator.registerSimpleCubeAll(BlockRegistry.CHISELED_POLISHED_SPIRE_STONE);
         generator.registerSimpleCubeAll(BlockRegistry.POLISHED_SPIRE_STONE);
         generator.registerSimpleCubeAll(BlockRegistry.CRACKED_POLISHED_SPIRE_STONE_TILES);
