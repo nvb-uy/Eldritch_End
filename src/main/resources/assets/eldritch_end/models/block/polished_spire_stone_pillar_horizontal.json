@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "eldritch_end:block/polished_spire_stone_pillar_top",
+    "side": "eldritch_end:block/polished_spire_stone_pillar"
+  }
+}
