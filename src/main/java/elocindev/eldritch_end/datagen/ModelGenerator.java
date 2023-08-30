@@ -47,6 +47,11 @@ public class ModelGenerator extends FabricModelProvider {
         generator.registerSimpleCubeAll(BlockRegistry.POLISHED_SPIRE_STONE_TILES);
         //generator.registerAxisRotated(BlockRegistry.POLISHED_SPIRE_STONE_PILLAR, TexturedModel.END_FOR_TOP_CUBE_COLUMN, TexturedModel.END_FOR_TOP_CUBE_COLUMN_HORIZONTAL);
 
+        registerSlabStairSet(generator, BlockRegistry.SPIRE_STONE_SLAB, BlockRegistry.SPIRE_STONE_STAIRS, BlockRegistry.SPIRE_STONE);
+        registerSlabStairSet(generator, BlockRegistry.POLISHED_SPIRE_STONE_SLAB, BlockRegistry.POLISHED_SPIRE_STONE_STAIRS, BlockRegistry.POLISHED_SPIRE_STONE);
+        registerSlabStairSet(generator, BlockRegistry.POLISHED_SPIRE_STONE_BRICK_SLAB, BlockRegistry.POLISHED_SPIRE_STONE_BRICK_STAIRS, BlockRegistry.POLISHED_SPIRE_STONE_BRICKS);
+        registerSlabStairSet(generator, BlockRegistry.POLISHED_SPIRE_STONE_TILE_SLAB, BlockRegistry.POLISHED_SPIRE_STONE_TILE_STAIRS, BlockRegistry.POLISHED_SPIRE_STONE_TILES);
+
         registerWoodset(generator, BlockRegistry.PRIMORDIAL_PLANKS, BlockRegistry.PRIMORDIAL_DOOR,
                 BlockRegistry.PRIMORDIAL_TRAPDOOR, BlockRegistry.PRIMORDIAL_SLAB, BlockRegistry.PRIMORDIAL_STAIRS,
                 BlockRegistry.PRIMORDIAL_BUTTON, BlockRegistry.PRIMORDIAL_FENCE, BlockRegistry.PRIMORDIAL_FENCE_GATE);
@@ -66,6 +71,11 @@ public class ModelGenerator extends FabricModelProvider {
         registerEtyrVariant(generator, BlockRegistry.CORRUPTED_ETYR_BLOCK, BlockRegistry.CORRUPTED_ETYR_TILES,
                 BlockRegistry.CORRUPTED_ETYR_DOOR, BlockRegistry.CORRUPTED_ETYR_TRAPDOOR, BlockRegistry.CORRUPTED_ETYR_BARS, BlockRegistry.CORRUPTED_ETYR_PILLAR,
                 BlockRegistry.CORRUPTED_ETYR_SLAB, BlockRegistry.CORRUPTED_ETYR_STAIRS);
+    }
+
+    private void registerSlabStairSet(BlockStateModelGenerator generator, Block slab, Block stairs, Block parentBlock) {
+        registerSlab(slab, parentBlock, generator.modelCollector, generator.blockStateCollector);
+        registerStairs(stairs, parentBlock, generator.modelCollector, generator.blockStateCollector);
     }
 
     private void registerWoodset(BlockStateModelGenerator generator, Block planks, Block door, Block trapdoor, Block slab, Block stairs, Block button, Block fence, Block fenceGate) {
