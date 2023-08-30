@@ -49,12 +49,12 @@ public class ItemGroupRegistry {
             
             stacks.add(new ItemStack(BlockRegistry.SPIRE_STONE_ITEM));
             stacks.add(new ItemStack(BlockRegistry.POLISHED_SPIRE_STONE_ITEM));
-            stacks.add(new ItemStack(BlockRegistry.CHISELED_POLISHED_SPIRE_STONE_ITEM));
-            stacks.add(new ItemStack(BlockRegistry.POLISHED_SPIRE_STONE_PILLAR_ITEM));
-            stacks.add(new ItemStack(BlockRegistry.POLISHED_SPIRE_STONE_TILES_ITEM));
-            stacks.add(new ItemStack(BlockRegistry.CRACKED_POLISHED_SPIRE_STONE_TILES_ITEM));
             stacks.add(new ItemStack(BlockRegistry.POLISHED_SPIRE_STONE_BRICKS_ITEM));
             stacks.add(new ItemStack(BlockRegistry.CRACKED_POLISHED_SPIRE_STONE_BRICKS_ITEM));
+            stacks.add(new ItemStack(BlockRegistry.POLISHED_SPIRE_STONE_TILES_ITEM));
+            stacks.add(new ItemStack(BlockRegistry.CRACKED_POLISHED_SPIRE_STONE_TILES_ITEM));
+            stacks.add(new ItemStack(BlockRegistry.POLISHED_SPIRE_STONE_PILLAR_ITEM));
+            stacks.add(new ItemStack(BlockRegistry.CHISELED_POLISHED_SPIRE_STONE_ITEM));
 
             stacks.add(new ItemStack(BlockRegistry.SPIRE_STONE_STAIRS_ITEM));
             stacks.add(new ItemStack(BlockRegistry.SPIRE_STONE_SLAB_ITEM));
