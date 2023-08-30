@@ -47,34 +47,22 @@ public class ItemGroupRegistry {
             stacks.add(new ItemStack(BlockRegistry.HASTURIAN_DUNE_SAND_ITEM));
             //stacks.add(new ItemStack(BlockRegistry.HASTURIAN_CACTUS_ITEM));
             
-            stacks.add(new ItemStack(BlockRegistry.SPIRE_STONE_ITEM));   
+            stacks.add(new ItemStack(BlockRegistry.SPIRE_STONE_ITEM));
+            stacks.add(new ItemStack(BlockRegistry.SPIRE_STONE_SLAB_ITEM));
+            stacks.add(new ItemStack(BlockRegistry.SPIRE_STONE_STAIRS_ITEM));
             stacks.add(new ItemStack(BlockRegistry.POLISHED_SPIRE_STONE_ITEM));
+            stacks.add(new ItemStack(BlockRegistry.POLISHED_SPIRE_STONE_SLAB_ITEM));
+            stacks.add(new ItemStack(BlockRegistry.POLISHED_SPIRE_STONE_STAIRS_ITEM));
             stacks.add(new ItemStack(BlockRegistry.POLISHED_SPIRE_STONE_BRICKS_ITEM));
+            stacks.add(new ItemStack(BlockRegistry.POLISHED_SPIRE_STONE_BRICK_STAIRS_ITEM));
+            stacks.add(new ItemStack(BlockRegistry.POLISHED_SPIRE_STONE_BRICK_SLAB_ITEM));
             stacks.add(new ItemStack(BlockRegistry.POLISHED_SPIRE_STONE_PILLAR_ITEM));
             stacks.add(new ItemStack(BlockRegistry.POLISHED_SPIRE_STONE_TILES_ITEM));
+            stacks.add(new ItemStack(BlockRegistry.POLISHED_SPIRE_STONE_TILE_STAIRS_ITEM));
+            stacks.add(new ItemStack(BlockRegistry.POLISHED_SPIRE_STONE_TILE_SLAB_ITEM));
             stacks.add(new ItemStack(BlockRegistry.CHISELED_POLISHED_SPIRE_STONE_ITEM));
             stacks.add(new ItemStack(BlockRegistry.CRACKED_POLISHED_SPIRE_STONE_BRICKS_ITEM));
             stacks.add(new ItemStack(BlockRegistry.CRACKED_POLISHED_SPIRE_STONE_TILES_ITEM));
-
-            stacks.add(new ItemStack(BlockRegistry.SPIRE_STONE_STAIRS_ITEM));
-            stacks.add(new ItemStack(BlockRegistry.POLISHED_SPIRE_STONE_STAIRS_ITEM));
-            stacks.add(new ItemStack(BlockRegistry.POLISHED_SPIRE_STONE_BRICK_STAIRS_ITEM));
-            stacks.add(new ItemStack(BlockRegistry.POLISHED_SPIRE_STONE_TILE_STAIRS_ITEM));
-
-            stacks.add(new ItemStack(BlockRegistry.PERTURBED_ETYR_STAIRS_ITEM));
-            stacks.add(new ItemStack(BlockRegistry.CORRUPTED_ETYR_STAIRS_ITEM));
-            stacks.add(new ItemStack(BlockRegistry.DECADENT_ETYR_STAIRS_ITEM));
-            stacks.add(new ItemStack(BlockRegistry.ETYR_STAIRS_ITEM));
-
-            stacks.add(new ItemStack(BlockRegistry.PERTURBED_ETYR_SLAB_ITEM));
-            stacks.add(new ItemStack(BlockRegistry.CORRUPTED_ETYR_SLAB_ITEM));
-            stacks.add(new ItemStack(BlockRegistry.DECADENT_ETYR_SLAB_ITEM));
-            stacks.add(new ItemStack(BlockRegistry.ETYR_SLAB_ITEM));
-
-            stacks.add(new ItemStack(BlockRegistry.SPIRE_STONE_SLAB_ITEM));
-            stacks.add(new ItemStack(BlockRegistry.POLISHED_SPIRE_STONE_SLAB_ITEM));
-            stacks.add(new ItemStack(BlockRegistry.POLISHED_SPIRE_STONE_BRICK_SLAB_ITEM));
-            stacks.add(new ItemStack(BlockRegistry.POLISHED_SPIRE_STONE_TILE_SLAB_ITEM));
 
             stacks.add(new ItemStack(BlockRegistry.ETYR_ORE_ITEM));
             stacks.add(new ItemStack(BlockRegistry.ETYR_BLOCK_ITEM));
@@ -83,6 +71,8 @@ public class ItemGroupRegistry {
             stacks.add(new ItemStack(BlockRegistry.ETYR_PILLAR_ITEM));
             stacks.add(new ItemStack(BlockRegistry.ETYR_TILES_ITEM));
             stacks.add(new ItemStack(BlockRegistry.ETYR_TRAPDOOR_ITEM));
+            stacks.add(new ItemStack(BlockRegistry.ETYR_SLAB_ITEM));
+            stacks.add(new ItemStack(BlockRegistry.ETYR_STAIRS_ITEM));
 
             stacks.add(new ItemStack(BlockRegistry.DECADENT_ETYR_BLOCK_ITEM));
             stacks.add(new ItemStack(BlockRegistry.DECADENT_ETYR_BARS_ITEM));
@@ -90,6 +80,8 @@ public class ItemGroupRegistry {
             stacks.add(new ItemStack(BlockRegistry.DECADENT_ETYR_PILLAR_ITEM));
             stacks.add(new ItemStack(BlockRegistry.DECADENT_ETYR_TILES_ITEM));
             stacks.add(new ItemStack(BlockRegistry.DECADENT_ETYR_TRAPDOOR_ITEM));
+            stacks.add(new ItemStack(BlockRegistry.DECADENT_ETYR_SLAB_ITEM));
+            stacks.add(new ItemStack(BlockRegistry.DECADENT_ETYR_STAIRS_ITEM));
 
             stacks.add(new ItemStack(BlockRegistry.PERTURBED_ETYR_BLOCK_ITEM));
             stacks.add(new ItemStack(BlockRegistry.PERTURBED_ETYR_BARS_ITEM));
@@ -97,6 +89,8 @@ public class ItemGroupRegistry {
             stacks.add(new ItemStack(BlockRegistry.PERTURBED_ETYR_PILLAR_ITEM));
             stacks.add(new ItemStack(BlockRegistry.PERTURBED_ETYR_TILES_ITEM));
             stacks.add(new ItemStack(BlockRegistry.PERTURBED_ETYR_TRAPDOOR_ITEM));
+            stacks.add(new ItemStack(BlockRegistry.PERTURBED_ETYR_SLAB_ITEM));
+            stacks.add(new ItemStack(BlockRegistry.PERTURBED_ETYR_STAIRS_ITEM));
 
             stacks.add(new ItemStack(BlockRegistry.CORRUPTED_ETYR_BLOCK_ITEM));
             stacks.add(new ItemStack(BlockRegistry.CORRUPTED_ETYR_BARS_ITEM));
@@ -104,6 +98,8 @@ public class ItemGroupRegistry {
             stacks.add(new ItemStack(BlockRegistry.CORRUPTED_ETYR_PILLAR_ITEM));
             stacks.add(new ItemStack(BlockRegistry.CORRUPTED_ETYR_TILES_ITEM));
             stacks.add(new ItemStack(BlockRegistry.CORRUPTED_ETYR_TRAPDOOR_ITEM));
+            stacks.add(new ItemStack(BlockRegistry.CORRUPTED_ETYR_SLAB_ITEM));
+            stacks.add(new ItemStack(BlockRegistry.CORRUPTED_ETYR_STAIRS_ITEM));
 
             // -- ENTITY EGGS --
             stacks.add(new ItemStack(ItemRegistry.ABERRATION_SPAWN_EGG));
