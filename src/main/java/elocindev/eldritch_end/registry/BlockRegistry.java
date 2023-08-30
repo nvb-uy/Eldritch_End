@@ -293,6 +293,39 @@ public class BlockRegistry {
     public static final Block CRACKED_POLISHED_SPIRE_STONE_TILES = new Block(FabricBlockSettings.copyOf(Blocks.STONE));
     public static final BlockItem CRACKED_POLISHED_SPIRE_STONE_TILES_ITEM = new BlockItem(CRACKED_POLISHED_SPIRE_STONE_TILES, new FabricItemSettings());
 
+    // Slabs
+    public static final Block SPIRE_STONE_SLAB = new SlabBlock(FabricBlockSettings
+            .copyOf(Blocks.STONE_SLAB)
+            .sounds(BlockSoundGroup.STONE));
+    public static final BlockItem SPIRE_STONE_SLAB_ITEM = new BlockItem(SPIRE_STONE_SLAB, new FabricItemSettings());
+
+    public static final Block POLISHED_SPIRE_STONE_SLAB = new SlabBlock(FabricBlockSettings
+            .copyOf(Blocks.STONE_SLAB)
+            .sounds(BlockSoundGroup.STONE));
+    public static final BlockItem POLISHED_SPIRE_STONE_SLAB_ITEM = new BlockItem(POLISHED_SPIRE_STONE_SLAB, new FabricItemSettings());
+
+    public static final Block POLISHED_SPIRE_STONE_BRICK_SLAB = new SlabBlock(FabricBlockSettings
+            .copyOf(Blocks.STONE_SLAB)
+            .sounds(BlockSoundGroup.STONE));
+    public static final BlockItem POLISHED_SPIRE_STONE_BRICK_SLAB_ITEM = new BlockItem(POLISHED_SPIRE_STONE_BRICK_SLAB, new FabricItemSettings());
+
+    public static final Block POLISHED_SPIRE_STONE_TILE_SLAB = new SlabBlock(FabricBlockSettings
+            .copyOf(Blocks.STONE_SLAB)
+            .sounds(BlockSoundGroup.STONE));
+    public static final BlockItem POLISHED_SPIRE_STONE_TILE_SLAB_ITEM = new BlockItem(POLISHED_SPIRE_STONE_TILE_SLAB, new FabricItemSettings());
+
+    // Stairs
+    public static final StairsBlock SPIRE_STONE_STAIRS = new StairsBlock(SPIRE_STONE.getDefaultState(), FabricBlockSettings.copyOf(Blocks.STONE_STAIRS));
+    public static final BlockItem SPIRE_STONE_STAIRS_ITEM = new BlockItem(SPIRE_STONE_STAIRS, new FabricItemSettings());
+
+    public static final StairsBlock POLISHED_SPIRE_STONE_STAIRS = new StairsBlock(POLISHED_SPIRE_STONE.getDefaultState(), FabricBlockSettings.copyOf(Blocks.STONE_STAIRS));
+    public static final BlockItem POLISHED_SPIRE_STONE_STAIRS_ITEM = new BlockItem(POLISHED_SPIRE_STONE_STAIRS, new FabricItemSettings());
+
+    public static final StairsBlock POLISHED_SPIRE_STONE_BRICK_STAIRS = new StairsBlock(POLISHED_SPIRE_STONE_BRICKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.STONE_STAIRS));
+    public static final BlockItem POLISHED_SPIRE_STONE_BRICK_STAIRS_ITEM = new BlockItem(POLISHED_SPIRE_STONE_BRICK_STAIRS, new FabricItemSettings());
+
+    public static final StairsBlock POLISHED_SPIRE_STONE_TILE_STAIRS = new StairsBlock(POLISHED_SPIRE_STONE_BRICKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.STONE_STAIRS));
+    public static final BlockItem POLISHED_SPIRE_STONE_TILE_STAIRS_ITEM = new BlockItem(POLISHED_SPIRE_STONE_TILE_STAIRS, new FabricItemSettings());
 
     //
     public static void register() {
@@ -327,6 +360,16 @@ public class BlockRegistry {
         registerFullBlock("chiseled_polished_spire_stone", CHISELED_POLISHED_SPIRE_STONE, CHISELED_POLISHED_SPIRE_STONE_ITEM);
         registerFullBlock("cracked_polished_spire_stone_bricks", CRACKED_POLISHED_SPIRE_STONE_BRICKS, CRACKED_POLISHED_SPIRE_STONE_BRICKS_ITEM);
         registerFullBlock("cracked_polished_spire_stone_tiles", CRACKED_POLISHED_SPIRE_STONE_TILES, CRACKED_POLISHED_SPIRE_STONE_TILES_ITEM);
+
+        registerFullBlock("spire_stone_stairs", SPIRE_STONE_STAIRS, SPIRE_STONE_STAIRS_ITEM);
+        registerFullBlock("polished_spire_stone_stairs", POLISHED_SPIRE_STONE_STAIRS, POLISHED_SPIRE_STONE_STAIRS_ITEM);
+        registerFullBlock("polished_spire_stone_brick_stairs", POLISHED_SPIRE_STONE_BRICK_STAIRS, POLISHED_SPIRE_STONE_BRICK_STAIRS_ITEM);
+        registerFullBlock("polished_spire_stone_tile_stairs", POLISHED_SPIRE_STONE_TILE_STAIRS, POLISHED_SPIRE_STONE_TILE_STAIRS_ITEM);
+
+        registerFullBlock("spire_stone_slab", SPIRE_STONE_SLAB, SPIRE_STONE_SLAB_ITEM);
+        registerFullBlock("polished_spire_stone_slab", POLISHED_SPIRE_STONE_SLAB, POLISHED_SPIRE_STONE_SLAB_ITEM);
+        registerFullBlock("polished_spire_stone_brick_slab", POLISHED_SPIRE_STONE_BRICK_SLAB, POLISHED_SPIRE_STONE_BRICK_SLAB_ITEM);
+        registerFullBlock("polished_spire_stone_tile_slab", POLISHED_SPIRE_STONE_TILE_SLAB, POLISHED_SPIRE_STONE_TILE_SLAB_ITEM);
 
         registerFullBlock("etyr_ore", ETYR_ORE, ETYR_ORE_ITEM);
         registerFullBlock("etyr_block", ETYR_BLOCK, ETYR_BLOCK_ITEM);
