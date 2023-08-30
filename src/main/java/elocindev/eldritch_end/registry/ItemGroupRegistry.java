@@ -61,6 +61,16 @@ public class ItemGroupRegistry {
             stacks.add(new ItemStack(BlockRegistry.POLISHED_SPIRE_STONE_BRICK_STAIRS_ITEM));
             stacks.add(new ItemStack(BlockRegistry.POLISHED_SPIRE_STONE_TILE_STAIRS_ITEM));
 
+            stacks.add(new ItemStack(BlockRegistry.PERTURBED_ETYR_STAIRS_ITEM));
+            stacks.add(new ItemStack(BlockRegistry.CORRUPTED_ETYR_STAIRS_ITEM));
+            stacks.add(new ItemStack(BlockRegistry.DECADENT_ETYR_STAIRS_ITEM));
+            stacks.add(new ItemStack(BlockRegistry.ETYR_STAIRS_ITEM));
+
+            stacks.add(new ItemStack(BlockRegistry.PERTURBED_ETYR_SLAB_ITEM));
+            stacks.add(new ItemStack(BlockRegistry.CORRUPTED_ETYR_SLAB_ITEM));
+            stacks.add(new ItemStack(BlockRegistry.DECADENT_ETYR_SLAB_ITEM));
+            stacks.add(new ItemStack(BlockRegistry.ETYR_SLAB_ITEM));
+
             stacks.add(new ItemStack(BlockRegistry.SPIRE_STONE_SLAB_ITEM));
             stacks.add(new ItemStack(BlockRegistry.POLISHED_SPIRE_STONE_SLAB_ITEM));
             stacks.add(new ItemStack(BlockRegistry.POLISHED_SPIRE_STONE_BRICK_SLAB_ITEM));
