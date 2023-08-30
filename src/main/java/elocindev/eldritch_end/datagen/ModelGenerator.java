@@ -87,8 +87,8 @@ public class ModelGenerator extends FabricModelProvider {
         registerBars(bars, generator.modelCollector, generator.blockStateCollector);
         //generator.registerAxisRotated(pillar, TexturedModel.END_FOR_TOP_CUBE_COLUMN, TexturedModel.END_FOR_TOP_CUBE_COLUMN_HORIZONTAL);
 
-        registerSlab(slab, BlockRegistry.ETYR_TILES, generator.modelCollector, generator.blockStateCollector);
-        registerStairs(stairs, BlockRegistry.ETYR_TILES, generator.modelCollector, generator.blockStateCollector);
+        registerSlab(slab, tiles, generator.modelCollector, generator.blockStateCollector);
+        registerStairs(stairs, tiles, generator.modelCollector, generator.blockStateCollector);
     }
 
     @Override
