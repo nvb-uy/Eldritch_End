@@ -29,6 +29,8 @@ public class ModelGenerator extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator generator) {
+        generator.registerSimpleCubeAll(BlockRegistry.PRIMORDIAL_LEAVES);
+
         generator.registerTintableCross(BlockRegistry.ABYSMAL_ROOTS, BlockStateModelGenerator.TintType.NOT_TINTED);
         generator.registerSimpleState(BlockRegistry.HASTURIAN_CACTUS);
 

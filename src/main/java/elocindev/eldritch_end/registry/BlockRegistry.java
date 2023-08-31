@@ -20,43 +20,41 @@ import net.minecraft.util.registry.Registry;
 
 public class BlockRegistry {
     public static final Block ABYSMAL_FRONDS = new AbysmalFronds();
-    public static final BlockItem ABYSMAL_FRONDS_ITEM = new BlockItem(ABYSMAL_FRONDS, new FabricItemSettings());
+    	public static final BlockItem ABYSMAL_FRONDS_ITEM = new BlockItem(ABYSMAL_FRONDS, new FabricItemSettings());
 
     public static final Block SUSPICIOUS_FRONDS = new SuspiciousFronds();
-    public static final BlockItem SUSPICIOUS_FRONDS_ITEM = new BlockItem(SUSPICIOUS_FRONDS, new FabricItemSettings());
+    	public static final BlockItem SUSPICIOUS_FRONDS_ITEM = new BlockItem(SUSPICIOUS_FRONDS, new FabricItemSettings());
 
     public static final Block ABYSMAL_TENDRILS = new AbysmalTendrils();
-    public static final BlockItem ABYSMAL_TENDRILS_ITEM = new BlockItem(ABYSMAL_TENDRILS, new FabricItemSettings());
+    	public static final BlockItem ABYSMAL_TENDRILS_ITEM = new BlockItem(ABYSMAL_TENDRILS, new FabricItemSettings());
 
     public static final Block ABYSMAL_ROOTS = new AbysmalRoots(FabricBlockSettings.copyOf(Blocks.GRASS).sounds(BlockSoundGroup.ROOTS));
+    	public static final BlockItem ABYSMAL_ROOTS_ITEM = new BlockItem(ABYSMAL_ROOTS, new FabricItemSettings());
 
-    public static final BlockItem ABYSMAL_ROOTS_ITEM = new BlockItem(ABYSMAL_ROOTS, new FabricItemSettings());
+    public static final Block PRIMORDIAL_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG).sounds(BlockSoundGroup.WOOD));
+    	public static final BlockItem PRIMORDIAL_LOG_ITEM = new BlockItem(PRIMORDIAL_LOG, new FabricItemSettings());
 
-    public static final Block PRIMORDIAL_LOG = new PillarBlock(FabricBlockSettings
-        .copyOf(Blocks.OAK_LOG)
-        .sounds(BlockSoundGroup.WOOD));
-
-    public static final BlockItem PRIMORDIAL_LOG_ITEM = new BlockItem(PRIMORDIAL_LOG, new FabricItemSettings());
+    public static final Block PRIMORDIAL_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
+		public static final BlockItem PRIMORDIAL_LEAVES_ITEM = new BlockItem(PRIMORDIAL_LEAVES, new FabricItemSettings());      
 
     public static final Block STRIPPED_PRIMORDIAL_LOG = new PillarBlock(FabricBlockSettings
         .copyOf(Blocks.OAK_LOG)
         .sounds(BlockSoundGroup.WOOD));
-
-    public static final BlockItem STRIPPED_PRIMORDIAL_LOG_ITEM = new BlockItem(STRIPPED_PRIMORDIAL_LOG, new FabricItemSettings());
+    	public static final BlockItem STRIPPED_PRIMORDIAL_LOG_ITEM = new BlockItem(STRIPPED_PRIMORDIAL_LOG, new FabricItemSettings());
 
 
     public static final Block PRIMORDIAL_WOOD = new PillarBlock(FabricBlockSettings
         .copyOf(Blocks.OAK_LOG)
         .sounds(BlockSoundGroup.WOOD));
 
-    public static final BlockItem PRIMORDIAL_WOOD_ITEM = new BlockItem(PRIMORDIAL_WOOD, new FabricItemSettings());
+    	public static final BlockItem PRIMORDIAL_WOOD_ITEM = new BlockItem(PRIMORDIAL_WOOD, new FabricItemSettings());
 
 
     public static final Block STRIPPED_PRIMORDIAL_WOOD = new PillarBlock(FabricBlockSettings
         .copyOf(Blocks.OAK_LOG)
         .sounds(BlockSoundGroup.WOOD));
 
-    public static final BlockItem STRIPPED_PRIMORDIAL_WOOD_ITEM = new BlockItem(STRIPPED_PRIMORDIAL_WOOD, new FabricItemSettings());
+    	public static final BlockItem STRIPPED_PRIMORDIAL_WOOD_ITEM = new BlockItem(STRIPPED_PRIMORDIAL_WOOD, new FabricItemSettings());
 
     //
 
@@ -64,19 +62,19 @@ public class BlockRegistry {
         .copyOf(Blocks.OAK_PLANKS)
         .sounds(BlockSoundGroup.WOOD));
 
-    public static final BlockItem PRIMORDIAL_PLANKS_ITEM = new BlockItem(PRIMORDIAL_PLANKS, new FabricItemSettings());
+    	public static final BlockItem PRIMORDIAL_PLANKS_ITEM = new BlockItem(PRIMORDIAL_PLANKS, new FabricItemSettings());
 
     public static final Block PRIMORDIAL_SLAB = new SlabBlock(FabricBlockSettings
         .copyOf(Blocks.OAK_SLAB)
         .sounds(BlockSoundGroup.WOOD));
 
-    public static final BlockItem PRIMORDIAL_SLAB_ITEM = new BlockItem(PRIMORDIAL_SLAB, new FabricItemSettings());
+    	public static final BlockItem PRIMORDIAL_SLAB_ITEM = new BlockItem(PRIMORDIAL_SLAB, new FabricItemSettings());
 
     public static Block PRIMORDIAL_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings
         .copyOf(Blocks.OAK_PRESSURE_PLATE)
         .sounds(BlockSoundGroup.WOOD));
 
-    public static final BlockItem PRIMORDIAL_PRESSURE_PLATE_ITEM = new BlockItem(PRIMORDIAL_PRESSURE_PLATE, new FabricItemSettings());
+    	public static final BlockItem PRIMORDIAL_PRESSURE_PLATE_ITEM = new BlockItem(PRIMORDIAL_PRESSURE_PLATE, new FabricItemSettings());
 
     // 
 
@@ -337,6 +335,7 @@ public class BlockRegistry {
 
         // Primordial woodset
         registerFullBlock("primordial_log", PRIMORDIAL_LOG, PRIMORDIAL_LOG_ITEM);
+		registerFullBlock("primordial_leaves", PRIMORDIAL_LEAVES, PRIMORDIAL_LEAVES_ITEM);
         registerFullBlock("primordial_wood", PRIMORDIAL_WOOD, PRIMORDIAL_WOOD_ITEM);
         registerFullBlock("stripped_primordial_log", STRIPPED_PRIMORDIAL_LOG, STRIPPED_PRIMORDIAL_LOG_ITEM);
         registerFullBlock("stripped_primordial_wood", STRIPPED_PRIMORDIAL_WOOD, STRIPPED_PRIMORDIAL_WOOD_ITEM);
