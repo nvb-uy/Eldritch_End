@@ -22,8 +22,6 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-import static net.minecraft.data.client.BlockStateModelGenerator.createAxisRotatedBlockState;
-
 public class ModelGenerator extends FabricModelProvider {
     public ModelGenerator(FabricDataGenerator dataGenerator) {
         super(dataGenerator);
