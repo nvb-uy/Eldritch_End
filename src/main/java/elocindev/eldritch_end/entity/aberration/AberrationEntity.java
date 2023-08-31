@@ -27,6 +27,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 
 public class AberrationEntity extends HostileEntity implements IAnimatable {
+    @SuppressWarnings("removal")
     private AnimationFactory factory = new AnimationFactory(this);
 
     public AberrationEntity(EntityType<? extends HostileEntity> entityType, World world) {

@@ -26,6 +26,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 
 public class TentacleEntity extends HostileEntity implements IAnimatable {
+    @SuppressWarnings("removal")
     private AnimationFactory factory = new AnimationFactory(this);
 
     public TentacleEntity(EntityType<? extends HostileEntity> entityType, World world) {
