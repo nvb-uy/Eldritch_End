@@ -22,8 +22,6 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-import static net.minecraft.data.client.BlockStateModelGenerator.createAxisRotatedBlockState;
-
 public class ModelGenerator extends FabricModelProvider {
     public ModelGenerator(FabricDataGenerator dataGenerator) {
         super(dataGenerator);
@@ -31,6 +29,8 @@ public class ModelGenerator extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator generator) {
+        generator.registerSimpleCubeAll(BlockRegistry.PRIMORDIAL_LEAVES);
+
         generator.registerTintableCross(BlockRegistry.ABYSMAL_ROOTS, BlockStateModelGenerator.TintType.NOT_TINTED);
         generator.registerSimpleState(BlockRegistry.HASTURIAN_CACTUS);
 

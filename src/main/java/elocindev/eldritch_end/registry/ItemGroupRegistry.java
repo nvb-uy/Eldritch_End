@@ -24,6 +24,7 @@ public class ItemGroupRegistry {
             stacks.add(new ItemStack(BlockRegistry.ABYSMAL_ROOTS_ITEM));
 
             stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_LOG_ITEM));
+            stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_LEAVES_ITEM));
             stacks.add(new ItemStack(BlockRegistry.PRIMORDIAL_WOOD_ITEM));
             stacks.add(new ItemStack(BlockRegistry.STRIPPED_PRIMORDIAL_LOG_ITEM));
             stacks.add(new ItemStack(BlockRegistry.STRIPPED_PRIMORDIAL_WOOD_ITEM));
