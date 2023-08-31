@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "end": "eldritch_end:block/etyr_tiles",
-    "side": "eldritch_end:block/etyr_tiles"
+    "end": "eldritch_end:block/decadent_etyr_tiles",
+    "side": "eldritch_end:block/decadent_etyr_tiles"
   }
 }

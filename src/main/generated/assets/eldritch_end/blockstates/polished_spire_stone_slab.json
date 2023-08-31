@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "eldritch_end:block/polished_spire_stone_slab"
+    },
+    "type=double": {
+      "model": "eldritch_end:block/polished_spire_stone_slab_double"
+    },
+    "type=top": {
+      "model": "eldritch_end:block/polished_spire_stone_slab_top"
+    }
+  }
+}
