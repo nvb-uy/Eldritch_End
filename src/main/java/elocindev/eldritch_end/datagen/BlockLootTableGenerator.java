@@ -22,7 +22,7 @@ public class BlockLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(BlockRegistry.PRIMORDIAL_PLANKS, drops(BlockRegistry.PRIMORDIAL_PLANKS_ITEM));
         addDrop(BlockRegistry.PRIMORDIAL_SLAB, drops(BlockRegistry.PRIMORDIAL_SLAB_ITEM));
         addDrop(BlockRegistry.PRIMORDIAL_PRESSURE_PLATE, drops(BlockRegistry.PRIMORDIAL_PRESSURE_PLATE_ITEM));
-        addDrop(BlockRegistry.PRIMORDIAL_DOOR, BlockLootTableGenerator::doorDrops);
+        addDrop(BlockRegistry.PRIMORDIAL_DOOR, doorDrops(BlockRegistry.PRIMORDIAL_DOOR));
         addDrop(BlockRegistry.PRIMORDIAL_TRAPDOOR, drops(BlockRegistry.PRIMORDIAL_TRAPDOOR_ITEM));
         addDrop(BlockRegistry.PRIMORDIAL_SIGN, drops(BlockRegistry.PRIMORDIAL_WALL_SIGN));
         addDrop(BlockRegistry.PRIMORDIAL_FENCE, drops(BlockRegistry.PRIMORDIAL_FENCE_ITEM));
@@ -31,14 +31,14 @@ public class BlockLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(BlockRegistry.ETYR_ORE, (blockx) -> oreDrops(blockx, ItemRegistry.RAW_ETYR));
         addDrop(BlockRegistry.ETYR_BLOCK, drops(BlockRegistry.ETYR_BLOCK_ITEM));
         addDrop(BlockRegistry.ETYR_BARS, drops(BlockRegistry.ETYR_BARS_ITEM));
-        addDrop(BlockRegistry.ETYR_DOOR, BlockLootTableGenerator::doorDrops);
+        addDrop(BlockRegistry.ETYR_DOOR, doorDrops(BlockRegistry.ETYR_DOOR));
         addDrop(BlockRegistry.ETYR_PILLAR, drops(BlockRegistry.ETYR_PILLAR_ITEM));
         addDrop(BlockRegistry.ETYR_TILES, drops(BlockRegistry.ETYR_TILES_ITEM));
         addDrop(BlockRegistry.ETYR_TRAPDOOR, drops(BlockRegistry.ETYR_TRAPDOOR_ITEM));
 
         addDrop(BlockRegistry.DECADENT_ETYR_BLOCK, drops(BlockRegistry.DECADENT_ETYR_BLOCK_ITEM));
         addDrop(BlockRegistry.DECADENT_ETYR_BARS, drops(BlockRegistry.DECADENT_ETYR_BARS_ITEM));
-        addDrop(BlockRegistry.DECADENT_ETYR_DOOR, drops(BlockRegistry.DECADENT_ETYR_DOOR_ITEM));
+        addDrop(BlockRegistry.DECADENT_ETYR_DOOR, doorDrops(BlockRegistry.DECADENT_ETYR_DOOR));
         addDrop(BlockRegistry.DECADENT_ETYR_PILLAR, drops(BlockRegistry.DECADENT_ETYR_PILLAR_ITEM));
         addDrop(BlockRegistry.DECADENT_ETYR_TILES, drops(BlockRegistry.DECADENT_ETYR_TILES_ITEM));
         addDrop(BlockRegistry.DECADENT_ETYR_TRAPDOOR, drops(BlockRegistry.DECADENT_ETYR_TRAPDOOR_ITEM));
@@ -47,7 +47,7 @@ public class BlockLootTableGenerator extends FabricBlockLootTableProvider {
 
         addDrop(BlockRegistry.PERTURBED_ETYR_BLOCK, drops(BlockRegistry.PERTURBED_ETYR_BLOCK_ITEM));
         addDrop(BlockRegistry.PERTURBED_ETYR_BARS, drops(BlockRegistry.PERTURBED_ETYR_BARS_ITEM));
-        addDrop(BlockRegistry.PERTURBED_ETYR_DOOR, BlockLootTableGenerator::doorDrops);
+        addDrop(BlockRegistry.PERTURBED_ETYR_DOOR, doorDrops(BlockRegistry.PERTURBED_ETYR_DOOR));
         addDrop(BlockRegistry.PERTURBED_ETYR_PILLAR, drops(BlockRegistry.PERTURBED_ETYR_PILLAR_ITEM));
         addDrop(BlockRegistry.PERTURBED_ETYR_TILES, drops(BlockRegistry.PERTURBED_ETYR_TILES_ITEM));
         addDrop(BlockRegistry.PERTURBED_ETYR_TRAPDOOR, drops(BlockRegistry.PERTURBED_ETYR_TRAPDOOR_ITEM));
@@ -56,7 +56,7 @@ public class BlockLootTableGenerator extends FabricBlockLootTableProvider {
 
         addDrop(BlockRegistry.CORRUPTED_ETYR_BLOCK, drops(BlockRegistry.CORRUPTED_ETYR_BLOCK_ITEM));
         addDrop(BlockRegistry.CORRUPTED_ETYR_BARS, drops(BlockRegistry.CORRUPTED_ETYR_BARS_ITEM));
-        addDrop(BlockRegistry.CORRUPTED_ETYR_DOOR, BlockLootTableGenerator::doorDrops);
+        addDrop(BlockRegistry.CORRUPTED_ETYR_DOOR, doorDrops(BlockRegistry.CORRUPTED_ETYR_DOOR));
         addDrop(BlockRegistry.CORRUPTED_ETYR_PILLAR, drops(BlockRegistry.CORRUPTED_ETYR_PILLAR_ITEM));
         addDrop(BlockRegistry.CORRUPTED_ETYR_TILES, drops(BlockRegistry.CORRUPTED_ETYR_TILES_ITEM));
         addDrop(BlockRegistry.CORRUPTED_ETYR_TRAPDOOR, drops(BlockRegistry.CORRUPTED_ETYR_TRAPDOOR_ITEM));
