@@ -76,6 +76,7 @@ public class BlockLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(BlockRegistry.HASTURIAN_SAND, drops(BlockRegistry.HASTURIAN_SAND_ITEM));
         addDrop(BlockRegistry.HASTURIAN_CACTUS, drops(BlockRegistry.HASTURIAN_CACTUS_ITEM));
         addDrop(BlockRegistry.HASTURIAN_GRASS, dropsWithSilkTouch(BlockRegistry.HASTURIAN_GRASS));
+        addDrop(BlockRegistry.ABYSMAL_ROOTS, dropsWithSilkTouch(BlockRegistry.ABYSMAL_ROOTS));
 
         addDrop(BlockRegistry.ETYR_STAIRS, drops(BlockRegistry.ETYR_STAIRS_ITEM));
         addDrop(BlockRegistry.ETYR_SLAB, drops(BlockRegistry.ETYR_SLAB_ITEM));
