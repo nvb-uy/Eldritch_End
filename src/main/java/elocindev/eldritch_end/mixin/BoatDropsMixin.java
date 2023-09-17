@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(BoatEntity.class)
 public class BoatDropsMixin {
     @Inject(method = "asItem", at = @At("HEAD"), cancellable = true)
-    public void asItem(CallbackInfoReturnable<Item> ci) {
+    public void eldritch_end_asItem(CallbackInfoReturnable<Item> ci) {
         if (((BoatEntity)(Object)this).getBoatType() == EntityRegistry.PRIMORDIAL) {
             ci.setReturnValue(ItemRegistry.PRIMORDIAL_BOAT);
         }
