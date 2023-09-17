@@ -36,7 +36,7 @@ public class BoatTypeMixin {
             opcode = Opcodes.PUTSTATIC,
             target = "Lnet/minecraft/entity/vehicle/BoatEntity$Type;field_7724:[Lnet/minecraft/entity/vehicle/BoatEntity$Type;",
             shift = At.Shift.AFTER))
-    private static void addCustomBoatType(CallbackInfo ci) {
+    private static void eldritch_end_addCustomBoatType(CallbackInfo ci) {
         var types = new ArrayList<>(Arrays.asList(field_7724));
         var last = types.get(types.size() - 1);
 
