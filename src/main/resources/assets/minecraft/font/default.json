@@ -2,7 +2,7 @@
     "providers": [
 
     { "type": "bitmap",
-            "file": "minecraft:font/hastur_bossbar.png",
+            "file": "eldritch_end:bossbar/hastur_bossbar.png",
             "ascent": 13, "height": 52,
             "chars": ["\uE892"]
         }
