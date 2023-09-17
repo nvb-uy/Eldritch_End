@@ -17,8 +17,7 @@ public class EtyrPattern extends Item {
     }
     
     String[] TOOLTIP_NORMAL = {
-        "\u00A72Etyr Pattern \u00A78(Upgrade)",
-        ""
+        "\u00A72Etyr Pattern \u00A78(Upgrade)"
     };
 
     @Override
