@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import javax.swing.text.html.parser.Entity;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -192,6 +190,7 @@ public class ConfigBuilder {
             if (Files.notExists(Folder)) Files.createDirectory(Folder);
             if (Files.notExists(BiomeFolder)) Files.createDirectory(BiomeFolder);
             if (Files.notExists(EntityFolder)) Files.createDirectory(EntityFolder);
+            if (Files.notExists(BossFolder)) Files.createDirectory(BossFolder);
 
             return true;
         } catch (IOException exception) {

@@ -67,10 +67,10 @@ public class HasturEntity extends HostileEntity implements IAnimatable {
     public static DefaultAttributeContainer.Builder setAttributes() {
         return HostileEntity.createMobAttributes()
         // TODO: REPLACE THIS WITH CUSTOM HASTUR CONFIG
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, Configs.ENTITY_ABERRATION.HEALTH_ATTRIBUTE)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, Configs.BOSS_HASTUR.HEALTH_ATTRIBUTE)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, Configs.ENTITY_ABERRATION.ATTACK_DAMAGE_ATTRIBUTE)
-                .add(EntityAttributes.GENERIC_ATTACK_SPEED, Configs.ENTITY_ABERRATION.ATTACK_SPEED_ATTRIBUTE)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1)
+                .add(EntityAttributes.GENERIC_ATTACK_SPEED, 1)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1000);
     }
 
