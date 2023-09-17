@@ -10,14 +10,14 @@ public class ItemGroupRegistry {
         new Identifier("eldritch_end", "tab"))
         .icon(() -> new ItemStack(BlockRegistry.ABYSMAL_FRONDS_ITEM))
         .appendItems(stacks -> {
+            stacks.add(new ItemStack(ItemRegistry.NECRONOMICON));
+            stacks.add(new ItemStack(ItemRegistry.RAW_ETYR));
+            stacks.add(new ItemStack(ItemRegistry.ETYR_INGOT));
+            
             stacks.add(new ItemStack(ArmorRegistry.ETYRITE_HELMET));
             stacks.add(new ItemStack(ArmorRegistry.ETYRITE_CHESTPLATE));
             stacks.add(new ItemStack(ArmorRegistry.ETYRITE_LEGGINGS));
             stacks.add(new ItemStack(ArmorRegistry.ETYRITE_BOOTS));
-
-            stacks.add(new ItemStack(ItemRegistry.NECRONOMICON));
-            stacks.add(new ItemStack(ItemRegistry.RAW_ETYR));
-            stacks.add(new ItemStack(ItemRegistry.ETYR_INGOT));
 
             // -- ARTIFACTS --
 
