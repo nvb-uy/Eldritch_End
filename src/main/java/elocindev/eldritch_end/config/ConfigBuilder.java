@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import javax.swing.text.html.parser.Entity;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -11,6 +13,7 @@ import elocindev.eldritch_end.config.entries.ClientConfig;
 import elocindev.eldritch_end.config.entries.HasturianWastesConfig;
 import elocindev.eldritch_end.config.entries.PrimordialAbyssConfig;
 import elocindev.eldritch_end.config.entries.entities.AberrationConfig;
+import elocindev.eldritch_end.config.entries.entities.HasturConfig;
 import elocindev.eldritch_end.config.entries.entities.TentacleConfig;
 import net.fabricmc.loader.api.FabricLoader;
 
@@ -21,6 +24,7 @@ public class ConfigBuilder {
     public static final Path Folder = FabricLoader.getInstance().getConfigDir().resolve("eldritch_end");
     public static final Path BiomeFolder = Folder.resolve("biomes");
     public static final Path EntityFolder = Folder.resolve("entities");
+    public static final Path BossFolder = EntityFolder.resolve("bosses");
 
     // Files
     public static final Path ClientConfig = Folder.resolve("eldritch_end-client.json");
@@ -32,6 +36,8 @@ public class ConfigBuilder {
         // Entities
     public static final Path Aberration = EntityFolder.resolve("aberration.json");
     public static final Path Tentacle = EntityFolder.resolve("tentacle.json");
+
+    public static final Path Hastur = BossFolder.resolve("hastur.json");
     
     public static boolean hasStarted() {
         return createFolders();
@@ -150,6 +156,29 @@ public class ConfigBuilder {
             }
 
             return BUILDER.fromJson(Files.readString(Tentacle), TentacleConfig.class);
+
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
+
+    public static HasturConfig loadHastur() {
+        try {            
+            if (Files.notExists(Hastur)) {
+                HasturConfig defaultCfg = new HasturConfig();
+                
+                defaultCfg.HEALTH_ATTRIBUTE = 2500;
+                defaultCfg.MINION_SPAWN_AMOUNT = 3;
+                defaultCfg.HASTUR_OMNIVAMPIRISM_AMOUNT = 0.1;
+                defaultCfg.TENTACLE_CHANCE_PERSEC = 5;
+                defaultCfg.ENCARNATION_LIGHTNING_DAMAGE = 100;
+                defaultCfg.PLAYER_DYING_KILLS_OTHER_PLAYERS = true;
+
+                String defaultJson = BUILDER.toJson(defaultCfg);
+                Files.writeString(Hastur, defaultJson);
+            }
+
+            return BUILDER.fromJson(Files.readString(Hastur), HasturConfig.class);
 
         } catch (IOException exception) {
             throw new RuntimeException(exception);

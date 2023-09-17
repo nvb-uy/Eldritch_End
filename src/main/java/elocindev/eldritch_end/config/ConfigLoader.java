@@ -13,6 +13,7 @@ public class ConfigLoader {
                 Configs.BIOME_HASTURIAN_WASTES = ConfigBuilder.loadHasturianWastes();
                 Configs.ENTITY_ABERRATION = ConfigBuilder.loadAberration();
                 Configs.ENTITY_TENTACLE = ConfigBuilder.loadTentacle();
+                Configs.BOSS_HASTUR = ConfigBuilder.loadHastur();
 			}
 		});
 		
