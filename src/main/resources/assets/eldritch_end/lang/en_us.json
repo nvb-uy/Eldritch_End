@@ -96,5 +96,6 @@
     "effect.eldritch_end.corruption": "Corruption",
     
     "entity.eldritch_end.aberration": "Aberration",
-    "entity.eldritch_end.tentacle": "Tentacle"
+    "entity.eldritch_end.tentacle": "Tentacle",
+    "entity.eldritch_end.hastur": "Hastur's Image"
 }
