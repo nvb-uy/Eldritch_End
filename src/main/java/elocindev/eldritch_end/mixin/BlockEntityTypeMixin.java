@@ -13,7 +13,7 @@ import net.minecraft.block.entity.BlockEntityType;
 @Mixin(BlockEntityType.class)
 public class BlockEntityTypeMixin {
     @Inject(method = "supports", at = @At("HEAD"), cancellable = true)
-    private void supports(BlockState state, CallbackInfoReturnable<Boolean> info) {
+    private void eldritch_end_supports(BlockState state, CallbackInfoReturnable<Boolean> info) {
         if (BlockEntityType.SIGN.equals(this) && (state.getBlock() instanceof SignBlock || state.getBlock() instanceof WallSignBlock)) {
             info.setReturnValue(true);
         }

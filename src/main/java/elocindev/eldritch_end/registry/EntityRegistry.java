@@ -2,6 +2,7 @@ package elocindev.eldritch_end.registry;
 
 import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.entity.aberration.AberrationEntity;
+import elocindev.eldritch_end.entity.hastur.HasturEntity;
 import elocindev.eldritch_end.entity.tentacle.TentacleEntity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
@@ -25,11 +26,16 @@ public class EntityRegistry {
         Registry.ENTITY_TYPE, new Identifier(EldritchEnd.MODID, "tentacle"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, TentacleEntity::new).dimensions(EntityDimensions.fixed(1, 3)).build());
 
+    public static final EntityType<HasturEntity> HASTUR = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(EldritchEnd.MODID, "hastur"),
+                FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, HasturEntity::new).dimensions(EntityDimensions.fixed(2, 3)).build());
+
+
     public static BoatEntity.Type PRIMORDIAL;
 
-    // Initialize attributes here
     public static void register() {
         FabricDefaultAttributeRegistry.register(EntityRegistry.ABERRATION, AberrationEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(EntityRegistry.TENTACLE, TentacleEntity.setAttributes());
+        FabricDefaultAttributeRegistry.register(EntityRegistry.HASTUR, HasturEntity.setAttributes());
     }
 }

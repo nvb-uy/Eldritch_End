@@ -4,6 +4,7 @@ import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.registry.EntityRegistry;
 import elocindev.eldritch_end.config.ConfigLoader;
 import elocindev.eldritch_end.entity.client.aberration.AberrationRenderer;
+import elocindev.eldritch_end.entity.client.hastur.HasturRenderer;
 import elocindev.eldritch_end.entity.client.tentacle.TentacleRenderer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -17,6 +18,7 @@ public class EldritchEndClient implements ClientModInitializer {
 
         EntityRendererRegistry.register(EntityRegistry.ABERRATION, AberrationRenderer::new);
         EntityRendererRegistry.register(EntityRegistry.TENTACLE, TentacleRenderer::new);
+        EntityRendererRegistry.register(EntityRegistry.HASTUR, HasturRenderer::new);
 
         BlockRenderLayerMap.INSTANCE.putBlock(BlockRegistry.PRIMORDIAL_TRAPDOOR, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(BlockRegistry.ETYR_TRAPDOOR, RenderLayer.getCutout());

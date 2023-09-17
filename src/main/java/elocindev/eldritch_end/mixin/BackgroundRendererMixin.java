@@ -21,7 +21,7 @@ public abstract class BackgroundRendererMixin {
 	// I used it as reference to understand how fog modification works
 
 	@Inject(method = "applyFog", at = @At("TAIL"))
-	private static void eldritchFog(Camera camera, BackgroundRenderer.FogType fogType, float viewDistance, boolean thickFog, float tickDelta, CallbackInfo ci) {
+	private static void eldritch_end_applyFog(Camera camera, BackgroundRenderer.FogType fogType, float viewDistance, boolean thickFog, float tickDelta, CallbackInfo ci) {
 		if (!Configs.CLIENT_CONFIG.enable_fog) return;
 
 		MinecraftClient client = MinecraftClient.getInstance();

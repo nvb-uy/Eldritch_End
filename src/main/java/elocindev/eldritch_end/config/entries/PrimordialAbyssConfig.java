@@ -10,4 +10,5 @@ public class PrimordialAbyssConfig {
   public int tendril_patch_chance = 10;
   public boolean enable_roots_generation = true;
   public int roots_generation_chance = 10;
+  public boolean enable_leaves_generation = true;
 }

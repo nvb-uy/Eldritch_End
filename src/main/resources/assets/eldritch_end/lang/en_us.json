@@ -2,6 +2,7 @@
     "itemGroup.eldritch_end.tab":"Eldritch End",
 
     "block.eldritch_end.abysmal_fronds":"Abysmal Fronds",
+    "block.eldritch_end.abysmal_roots": "Abysmal Roots",
     "block.eldritch_end.suspicious_fronds":"Suspicious Fronds",
     "block.eldritch_end.abysmal_tendrils":"Abysmal Tendrils",
     "block.eldritch_end.primordial_log":"Primordial Log",
@@ -36,6 +37,8 @@
     "block.eldritch_end.etyr_trapdoor":"Etyr Trapdoor",
     "block.eldritch_end.etyr_pillar":"Etyr Pillar",
     "block.eldritch_end.etyr_tiles":"Etyr Tiles",
+    "block.eldritch_end.etyr_stairs":"Etyr Stairs",
+    "block.eldritch_end.etyr_slab":"Etyr Slab",
 
     "block.eldritch_end.decadent_etyr_block": "Decadent Etyr Block",
     "block.eldritch_end.decadent_etyr_bars": "Decadent Etyr Bars",
@@ -46,6 +49,8 @@
     "block.eldritch_end.decadent_etyr_stairs": "Decadent Etyr Stairs",
     "block.eldritch_end.decadent_etyr_slab": "Decadent Etyr Slab",
 
+    "block.eldritch_end.perturbed_etyr_block": "Perturbed Etyr Block",
+    "block.eldritch_end.perturbed_etyr_bars": "Perturbed Etyr Bars",
     "block.eldritch_end.perturbed_etyr_door": "Perturbed Etyr Door",
     "block.eldritch_end.perturbed_etyr_pillar": "Perturbed Etyr Pillar",
     "block.eldritch_end.perturbed_etyr_tiles": "Perturbed Etyr Tiles",
@@ -53,6 +58,7 @@
     "block.eldritch_end.perturbed_etyr_stairs": "Perturbed Etyr Stairs",
     "block.eldritch_end.perturbed_etyr_slab": "Perturbed Etyr Slab",
 
+    "block.eldritch_end.corrupted_etyr_block": "Corrupted Etyr Block",
     "block.eldritch_end.corrupted_etyr_door": "Corrupted Etyr Door",
     "block.eldritch_end.corrupted_etyr_bars": "Corrupted Etyr Bars",
     "block.eldritch_end.corrupted_etyr_pillar": "Corrupted Etyr Pillar",
@@ -61,6 +67,7 @@
     "block.eldritch_end.corrupted_etyr_stairs": "Corrupted Etyr Stairs",
     "block.eldritch_end.corrupted_etyr_slab": "Corrupted Etyr Slab",
 
+    "block.eldritch_end.polished_spire_stone_tile_slab": "Polished Spire Stone Tile Slab",
     "block.eldritch_end.polished_spire_stone": "Polished Spire Stone",
     "block.eldritch_end.chiseled_polished_spire_stone": "Chiseled Polished Spire Stone",
     "block.eldritch_end.polished_spire_stone_bricks": "Polished Spire Stone Bricks",
@@ -70,9 +77,18 @@
     "block.eldritch_end.polished_spire_stone_tiles": "Polished Spire Stone Tiles",
     "block.eldritch_end.cracked_polished_spire_stone_tiles": "Cracked Polished Spire Stone Tiles",
     "block.eldritch_end.spire_stone_stairs": "Spire Stone Stairs",
+    "block.eldritch_end.spire_stone_slab": "Spire Stone Slab",
+    "block.eldritch_end.polished_spire_stone_slab": "Polished Spire Stone Slab",
     "block.eldritch_end.polished_spire_stone_stairs": "Polished Spire Stone Stairs",
     "block.eldritch_end.polished_spire_stone_brick_stairs": "Polished Spire Stone Brick Stairs",
+    "block.eldritch_end.polished_spire_stone_brick_slab": "Polished Spire Stone Brick Slab",
     "block.eldritch_end.polished_spire_stone_tile_stairs": "Polished Spire Stone Tile Stairs",
+
+
+    "item.eldritch_end.etyrite_helmet": "Etyrite Helmet",
+    "item.eldritch_end.etyrite_chestplate": "Etyrite Chestplate",
+    "item.eldritch_end.etyrite_leggings": "Etyrite Leggings",
+    "item.eldritch_end.etyrite_boots": "Etyrite Boots",
 
     "item.eldritch_end.necronomicon": "\u00A72Necronomicon",
     "item.eldritch_end.silver_key": "Silver Key",
@@ -84,7 +100,9 @@
     "item.eldritch_end.chorb_spawn_egg": "Chorb Spawn Egg",
 
     "effect.eldritch_end.corruption": "Corruption",
+    "effect.eldritch_end.hastur_presence": "Hastur's Presence",
     
     "entity.eldritch_end.aberration": "Aberration",
-    "entity.eldritch_end.tentacle": "Tentacle"
+    "entity.eldritch_end.tentacle": "Tentacle",
+    "entity.eldritch_end.hastur": "Hastur's Image"
 }
