@@ -14,6 +14,7 @@ import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -103,6 +104,15 @@ public class HasturEntity extends HostileEntity implements IAnimatable {
     public void onStoppedTrackingBy(ServerPlayerEntity player) {
         super.onStoppedTrackingBy(player);
         this.bossBar.removePlayer(player);
+    }
+    
+    @Override
+    public void checkDespawn() {
+        if (this.world.getDifficulty() == Difficulty.PEACEFUL && this.isDisallowedInPeaceful()) {
+            this.discard();
+        } else {
+            this.despawnCounter = 0;
+        }
     }
 
     @Override
