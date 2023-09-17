@@ -1,6 +1,7 @@
 package elocindev.eldritch_end.datagen;
 
 import com.google.gson.JsonElement;
+import elocindev.eldritch_end.registry.ArmorRegistry;
 import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.registry.ItemRegistry;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
@@ -107,6 +108,12 @@ public class ModelGenerator extends FabricModelProvider {
         generator.register(ItemRegistry.NECRONOMICON, Models.GENERATED);
         generator.register(ItemRegistry.RAW_ETYR, Models.GENERATED);
         generator.register(ItemRegistry.ETYR_INGOT, Models.GENERATED);
+
+        generator.register(ArmorRegistry.ETYRITE_HELMET, Models.GENERATED);
+        generator.register(ArmorRegistry.ETYRITE_CHESTPLATE, Models.GENERATED);
+        generator.register(ArmorRegistry.ETYRITE_LEGGINGS, Models.GENERATED);
+        generator.register(ArmorRegistry.ETYRITE_BOOTS, Models.GENERATED);
+
     }
 
     private void registerBars(Block barBlock, BiConsumer<Identifier, Supplier<JsonElement>> modelCollector, Consumer<BlockStateSupplier> blockStateCollector) {
