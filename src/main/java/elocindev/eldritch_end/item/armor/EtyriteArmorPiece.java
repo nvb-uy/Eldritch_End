@@ -19,7 +19,7 @@ public class EtyriteArmorPiece extends ArmorItem {
     }
 
     String[] TOOLTIP_NORMAL = {
-        "\u00A72+5 Corruption Resistance"
+        "\u00A72+10% Corruption Resistance"
     };
 
     @Override
