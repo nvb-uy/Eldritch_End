@@ -113,7 +113,8 @@ public class ModelGenerator extends FabricModelProvider {
         generator.register(ArmorRegistry.ETYRITE_CHESTPLATE, Models.GENERATED);
         generator.register(ArmorRegistry.ETYRITE_LEGGINGS, Models.GENERATED);
         generator.register(ArmorRegistry.ETYRITE_BOOTS, Models.GENERATED);
-
+        
+        generator.register(ItemRegistry.ETYR_UPGRADE_PATTERN, Models.GENERATED);
     }
 
     private void registerBars(Block barBlock, BiConsumer<Identifier, Supplier<JsonElement>> modelCollector, Consumer<BlockStateSupplier> blockStateCollector) {
