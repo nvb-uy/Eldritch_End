@@ -72,6 +72,7 @@ public class ConfigBuilder {
                 defaultCfg.tendril_patch_chance = 10;
                 defaultCfg.enable_roots_generation = true;
                 defaultCfg.roots_generation_chance = 10;
+                defaultCfg.enable_leaves_generation = true;
 
                 String defaultJson = BUILDER.toJson(defaultCfg);
                 Files.writeString(PrimordialAbyss, defaultJson);

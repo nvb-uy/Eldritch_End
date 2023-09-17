@@ -1,5 +1,6 @@
 package elocindev.eldritch_end.worldgen.util;
 
+import elocindev.eldritch_end.config.Configs;
 import elocindev.eldritch_end.registry.BlockRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.PillarBlock;
@@ -61,13 +62,12 @@ public class TreeFactory {
             pos.north(2).east().up(3),
             pos.north(2).east().up(4)
         };        
+
         for (int i = 0; i < 4; i++) {
             world.setBlockState(pos.up(i), block, 3);
         }
 
-        for (int i = 0; i < branches_vertical.length; i++) {
-            world.setBlockState(branches_vertical[i], block, 3);
-        }
+        placeVerticalBranches(branches_vertical, world, block, BlockRegistry.PRIMORDIAL_LEAVES.getDefaultState());
         
         world.setBlockState(pos.north().up(2), block.with(PillarBlock.AXIS, Direction.NORTH.getAxis()), 3);
         world.setBlockState(pos.south().west().up(4), block.with(PillarBlock.AXIS, Direction.WEST.getAxis()), 3);
@@ -96,13 +96,25 @@ public class TreeFactory {
             pos.south(2).west().up(4)
         };
 
+        BlockPos[] fix_leaves = {
+            pos.north(2).west().up(4),
+            pos.south(2).west(2).up(4),
+            pos.south(2).up(4),
+            pos.south(2).west().up(3),
+            pos.south(3).west().up(4)
+        };
+
         for (int i = 0; i < 2; i++) {
             world.setBlockState(pos.up(i), block, 3);
         }
 
-        for (int i = 0; i < branches_vertical.length; i++) {
-            world.setBlockState(branches_vertical[i], block, 3);
-        }
+        if (Configs.BIOME_PRIMORDIAL_ABYSS.enable_leaves_generation)
+            for (int i = 0; i < fix_leaves.length; i++) {
+                world.setBlockState(fix_leaves[i], BlockRegistry.PRIMORDIAL_LEAVES.getDefaultState(), 3);
+            }
+
+        placeVerticalBranches(branches_vertical, world, block, BlockRegistry.PRIMORDIAL_LEAVES.getDefaultState());
+
         for (int i = 0; i < branches_horizontal_ns.length; i++) {
             world.setBlockState(branches_horizontal_ns[i], block.with(PillarBlock.AXIS, Direction.SOUTH.getAxis()), 3);
         }
@@ -138,9 +150,7 @@ public class TreeFactory {
             world.setBlockState(pos.up(i), block, 3);
         }
 
-        for (int i = 0; i < branches_vertical.length; i++) {
-            world.setBlockState(branches_vertical[i], block, 3);
-        }
+        placeVerticalBranches(branches_vertical, world, block, BlockRegistry.PRIMORDIAL_LEAVES.getDefaultState());
         
         for (int i = 0; i < branches_horizontal_ns.length; i++) {
             world.setBlockState(branches_horizontal_ns[i], block.with(PillarBlock.AXIS, Direction.SOUTH.getAxis()), 3);
@@ -151,6 +161,38 @@ public class TreeFactory {
         }
         
     }
+
+    // *------------------------*
+    //     BRANCH GENERATION
+    // *------------------------*
+    public static void placeVerticalBranches(BlockPos[] positions, StructureWorldAccess world, BlockState log, BlockState leaves) {        
+        
+        for (int i = 0; i < positions.length; i++) {
+            world.setBlockState(positions[i], log, 3);
+        }
+        
+        if ((Configs.BIOME_PRIMORDIAL_ABYSS.enable_leaves_generation)) {
+            for (int i = 0; i < positions.length; i++) {
+                if (world.getBlockState(positions[i].up()).isOf(log.getBlock())) {
+                    for (int x = -1; x < 2; x++) {
+                        for (int z = -1; z < 2; z++) {
+                            if (world.getBlockState(positions[i].add(x, 0, z)).isAir()) {
+                                world.setBlockState(positions[i].add(x, 0, z), leaves, 3);
+                            }
+                        }
+                    }
+                } else {
+                    world.setBlockState(positions[i].east(), leaves, 3);
+                    world.setBlockState(positions[i].west(), leaves, 3);
+                    world.setBlockState(positions[i].north(), leaves, 3);
+                    world.setBlockState(positions[i].south(), leaves, 3);
+                    world.setBlockState(positions[i].up(1), leaves, 3);
+                }
+                
+            }
+        }
+    }
+
 
     // Utils
 
