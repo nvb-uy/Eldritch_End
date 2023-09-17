@@ -11,11 +11,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import elocindev.eldritch_end.EldritchEnd;
-import elocindev.eldritch_end.item.Chorb;
 import elocindev.eldritch_end.item.Necronomicon;
 import elocindev.eldritch_end.item.SilverKey;
 import elocindev.eldritch_end.item.spawneggs.AberrationEgg;
 import elocindev.eldritch_end.item.spawneggs.TentacleEgg;
+import elocindev.eldritch_end.item.upgrades.EtyrPattern;
+import elocindev.eldritch_end.item.Chorb;
 
 public class ItemRegistry {
     private static final Logger LOGGER = LoggerFactory.getLogger(EldritchEnd.MODID);
@@ -35,6 +36,7 @@ public class ItemRegistry {
 
     public static final Item RAW_ETYR = new Item(new FabricItemSettings());
     public static final Item ETYR_INGOT = new Item(new FabricItemSettings());
+    public static final Item ETYR_UPGRADE_PATTERN = new EtyrPattern(new FabricItemSettings());
 
     public static Item reg(Item instance, String id) {
         return Registry.register(Registry.ITEM, new Identifier(EldritchEnd.MODID, id), instance);
@@ -54,6 +56,8 @@ public class ItemRegistry {
 
         reg(RAW_ETYR, "raw_etyr");
         reg(ETYR_INGOT, "etyr_ingot");
+        reg(ETYR_UPGRADE_PATTERN, "etyr_upgrade_pattern");
+        
         LOGGER.info("Registered Eldritch End's items");
     }
 }

@@ -13,7 +13,8 @@ public class ItemGroupRegistry {
             stacks.add(new ItemStack(ItemRegistry.NECRONOMICON));
             stacks.add(new ItemStack(ItemRegistry.RAW_ETYR));
             stacks.add(new ItemStack(ItemRegistry.ETYR_INGOT));
-            
+            stacks.add(new ItemStack(ItemRegistry.ETYR_UPGRADE_PATTERN));
+                        
             stacks.add(new ItemStack(ArmorRegistry.ETYRITE_HELMET));
             stacks.add(new ItemStack(ArmorRegistry.ETYRITE_CHESTPLATE));
             stacks.add(new ItemStack(ArmorRegistry.ETYRITE_LEGGINGS));
