@@ -13,6 +13,7 @@ import net.minecraft.entity.boss.BossBar.Style;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
@@ -34,7 +35,7 @@ public class HasturEntity extends HostileEntity implements IAnimatable {
 
     public HasturEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
-        this.bossBar = (ServerBossBar)(new ServerBossBar(this.getDisplayName(), Color.YELLOW, Style.PROGRESS))
+        this.bossBar = (ServerBossBar)(new ServerBossBar(Text.of("\uE892"), Color.YELLOW, Style.PROGRESS))
             .setDarkenSky(true)
             .setThickenFog(true);
     }
