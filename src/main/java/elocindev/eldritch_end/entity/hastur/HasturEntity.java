@@ -34,7 +34,9 @@ public class HasturEntity extends HostileEntity implements IAnimatable {
 
     public HasturEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
-        this.bossBar = (ServerBossBar)(new ServerBossBar(this.getDisplayName(), Color.YELLOW, Style.PROGRESS)).setDarkenSky(true);
+        this.bossBar = (ServerBossBar)(new ServerBossBar(this.getDisplayName(), Color.YELLOW, Style.PROGRESS))
+            .setDarkenSky(true)
+            .setThickenFog(true);
     }
 
     @Override
