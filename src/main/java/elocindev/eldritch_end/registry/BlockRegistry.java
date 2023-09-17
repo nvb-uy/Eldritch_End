@@ -6,6 +6,7 @@ import elocindev.eldritch_end.block.AbysmalRoots;
 import elocindev.eldritch_end.block.AbysmalTendrils;
 import elocindev.eldritch_end.block.HasturianGrass;
 import elocindev.eldritch_end.block.HasturianMoss;
+import elocindev.eldritch_end.block.PrimordialLeaves;
 import elocindev.eldritch_end.block.SuspiciousFronds;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -34,7 +35,7 @@ public class BlockRegistry {
     public static final Block PRIMORDIAL_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG).sounds(BlockSoundGroup.WOOD));
     	public static final BlockItem PRIMORDIAL_LOG_ITEM = new BlockItem(PRIMORDIAL_LOG, new FabricItemSettings());
 
-    public static final Block PRIMORDIAL_LEAVES = new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
+    public static final Block PRIMORDIAL_LEAVES = new PrimordialLeaves(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
 		public static final BlockItem PRIMORDIAL_LEAVES_ITEM = new BlockItem(PRIMORDIAL_LEAVES, new FabricItemSettings());      
 
     public static final Block STRIPPED_PRIMORDIAL_LOG = new PillarBlock(FabricBlockSettings
