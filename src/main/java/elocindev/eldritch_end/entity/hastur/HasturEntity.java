@@ -10,6 +10,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.boss.ServerBossBar;
 import net.minecraft.entity.boss.BossBar.Color;
 import net.minecraft.entity.boss.BossBar.Style;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -45,6 +46,14 @@ public class HasturEntity extends HostileEntity implements IAnimatable {
         this.goalSelector.add(2, new AttackGoal(this));
         this.goalSelector.add(8, new LookAtEntityGoal(this, PlayerEntity.class, 16.0F));
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
+    }
+
+    @Override
+    public boolean damage(DamageSource source, float amount) {
+        if (source == DamageSource.OUT_OF_WORLD) {
+            this.applyDamage(source, amount);
+        }
+        return false;
     }
 
     @Override
@@ -108,8 +117,8 @@ public class HasturEntity extends HostileEntity implements IAnimatable {
         super.onStoppedTrackingBy(player);
         this.bossBar.removePlayer(player);
     }
-    
-    @Override
+
+        @Override
     public void checkDespawn() {
         if (this.world.getDifficulty() == Difficulty.PEACEFUL && this.isDisallowedInPeaceful()) {
             this.discard();
