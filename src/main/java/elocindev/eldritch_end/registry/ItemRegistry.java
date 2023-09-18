@@ -14,6 +14,7 @@ import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.item.Necronomicon;
 import elocindev.eldritch_end.item.SilverKey;
 import elocindev.eldritch_end.item.spawneggs.AberrationEgg;
+import elocindev.eldritch_end.item.spawneggs.HastursCrown;
 import elocindev.eldritch_end.item.spawneggs.TentacleEgg;
 import elocindev.eldritch_end.item.upgrades.EtyrPattern;
 import elocindev.eldritch_end.item.Chorb;
@@ -23,6 +24,7 @@ public class ItemRegistry {
 
     public static final Item ABERRATION_SPAWN_EGG = new AberrationEgg(EntityRegistry.ABERRATION, 0x54496f, 0x726f76, new FabricItemSettings());    
     public static final Item TENTACLE_SPAWN_EGG = new TentacleEgg(EntityRegistry.TENTACLE, 0x54496f, 0x9a87b0, new FabricItemSettings());  
+    public static final Item HASTUR_CROWN = new HastursCrown(EntityRegistry.HASTUR, 0xFFFFFF, 0xFFFFFF, new FabricItemSettings());
 
     public static final Item NECRONOMICON = new Necronomicon(new FabricItemSettings());
     public static final Item SILVER_KEY = new SilverKey(new FabricItemSettings());
@@ -46,6 +48,7 @@ public class ItemRegistry {
         
         reg(ABERRATION_SPAWN_EGG, "aberration_spawn_egg");
         reg(TENTACLE_SPAWN_EGG, "tentacle_spawn_egg");
+        reg(HASTUR_CROWN, "hastur_crown");
 
         reg(NECRONOMICON, "necronomicon");
         reg(SILVER_KEY, "silver_key");
