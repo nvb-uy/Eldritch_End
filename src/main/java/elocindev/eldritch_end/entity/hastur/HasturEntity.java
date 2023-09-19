@@ -1,10 +1,13 @@
 package elocindev.eldritch_end.entity.hastur;
 
 import elocindev.eldritch_end.config.Configs;
+import elocindev.eldritch_end.entity.tentacle.UndeadTentacleEntity;
 import elocindev.eldritch_end.registry.EffectRegistry;
+import elocindev.eldritch_end.registry.EntityRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -69,10 +72,24 @@ public class HasturEntity extends HostileEntity implements IAnimatable {
     @Override
     public void mobTick() {
         super.mobTick();
+
+        if (this.age % 100 == 0 && !this.world.isClient()) {
+            summonMinion(200);
+        }
+
         if (this.age == 1) {
             this.setPosition(this.getX(), this.getY() + 5, this.getZ());
         }
         this.bossBar.setPercent(this.getHealth() / this.getMaxHealth());
+    }
+
+    private void summonMinion(float damageAmount) {
+        LivingEntity tentacle = new HuskEntity(EntityType.HUSK, this.world);
+        tentacle.setHealth(this.getHealth());
+        tentacle.setVelocity(this.getVelocity());
+        tentacle.setPosition(this.getPos());
+        this.world.spawnEntity(tentacle);
+        this.damage(DamageSource.OUT_OF_WORLD, damageAmount);
     }
 
     @Override
