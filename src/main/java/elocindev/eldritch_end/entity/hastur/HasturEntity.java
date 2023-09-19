@@ -7,6 +7,7 @@ import elocindev.eldritch_end.registry.EntityRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -73,8 +74,12 @@ public class HasturEntity extends HostileEntity implements IAnimatable {
     public void mobTick() {
         super.mobTick();
 
+        if (this.age % 200 == 0 && !this.world.isClient()) {
+            lightningAttack(100);
+        }
+
         if (this.age % 100 == 0 && !this.world.isClient()) {
-            summonMinion(200);
+            summonMinion(100);
         }
 
         if (this.age == 1) {
@@ -83,12 +88,23 @@ public class HasturEntity extends HostileEntity implements IAnimatable {
         this.bossBar.setPercent(this.getHealth() / this.getMaxHealth());
     }
 
+    private void lightningAttack(float damageAmount) {
+        if (this.world.getClosestPlayer(this.getX(), this.getY(), this.getZ(), 20, false) != null) {
+            PlayerEntity closestPlayer = this.world.getClosestPlayer(this.getX(), this.getY(), this.getZ(), 20, false);
+            LightningEntity lightning = new LightningEntity(EntityType.LIGHTNING_BOLT, this.world);
+            lightning.setVelocity(this.getVelocity());
+            lightning.setPosition(closestPlayer.getPos());
+            this.world.spawnEntity(lightning);
+            this.damage(DamageSource.OUT_OF_WORLD, damageAmount);
+        }
+    }
+
     private void summonMinion(float damageAmount) {
-        LivingEntity tentacle = new HuskEntity(EntityType.HUSK, this.world);
-        tentacle.setHealth(this.getHealth());
-        tentacle.setVelocity(this.getVelocity());
-        tentacle.setPosition(this.getPos());
-        this.world.spawnEntity(tentacle);
+        LivingEntity minion = new HuskEntity(EntityType.HUSK, this.world);
+        minion.setHealth(this.getHealth());
+        minion.setVelocity(this.getVelocity());
+        minion.setPosition(this.getPos());
+        this.world.spawnEntity(minion);
         this.damage(DamageSource.OUT_OF_WORLD, damageAmount);
     }
 
