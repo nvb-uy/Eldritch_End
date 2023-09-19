@@ -68,6 +68,9 @@ public class HasturEntity extends HostileEntity implements IAnimatable {
     @Override
     public void mobTick() {
         super.mobTick();
+        if (this.age == 1) {
+            this.setPosition(this.getX(), this.getY() + 5, this.getZ());
+        }
         this.bossBar.setPercent(this.getHealth() / this.getMaxHealth());
     }
 
