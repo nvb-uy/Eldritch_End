@@ -1,6 +1,7 @@
 package elocindev.eldritch_end.entity.hastur;
 
 import elocindev.eldritch_end.config.Configs;
+import elocindev.eldritch_end.registry.EffectRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;

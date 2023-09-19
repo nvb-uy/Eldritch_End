@@ -2,9 +2,11 @@ package elocindev.eldritch_end.entity.tentacle;
 
 import elocindev.eldritch_end.config.Configs;
 import elocindev.eldritch_end.registry.EffectRegistry;
+import elocindev.eldritch_end.registry.EntityRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -37,6 +39,20 @@ public class TentacleEntity extends HostileEntity implements IAnimatable {
     protected void initGoals() {
         this.goalSelector.add(2, new MeleeAttackGoal(this, 0, false));
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if (this.hasStatusEffect(EffectRegistry.HASTUR_PRESENCE) && this instanceof TentacleEntity) {
+            LivingEntity tentacle = new UndeadTentacleEntity(EntityRegistry.UNDEAD_TENTACLE, this.world);
+            tentacle.setHealth(this.getHealth());
+            tentacle.setVelocity(this.getVelocity());
+            tentacle.setPosition(this.getPos());
+            this.world.spawnEntity(tentacle);
+            this.discard();
+            return;
+        }
     }
 
     @Override
