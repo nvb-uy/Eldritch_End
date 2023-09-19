@@ -1,12 +1,11 @@
-package elocindev.eldritch_end.entity.client.tentacle;
+package elocindev.eldritch_end.entity.client.undead_tentacle;
 
 import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.entity.tentacle.TentacleEntity;
-import elocindev.eldritch_end.registry.EffectRegistry;
 import net.minecraft.util.Identifier;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 
-public class TentacleModel extends AnimatedGeoModel<TentacleEntity> {
+public class UndeadTentacleModel extends AnimatedGeoModel<TentacleEntity> {
     @Override
     public Identifier getModelResource(TentacleEntity object) {
         return new Identifier(EldritchEnd.MODID, "geo/tentacle.geo.json");
@@ -14,7 +13,7 @@ public class TentacleModel extends AnimatedGeoModel<TentacleEntity> {
 
     @Override
     public Identifier getTextureResource(TentacleEntity object) {
-        return new Identifier(EldritchEnd.MODID, "textures/entity/tentacle.png");
+        return new Identifier(EldritchEnd.MODID, "textures/entity/hastur_tentacle.png");
     }
 
     @Override

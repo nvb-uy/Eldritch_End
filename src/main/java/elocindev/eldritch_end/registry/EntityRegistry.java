@@ -4,6 +4,7 @@ import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.entity.aberration.AberrationEntity;
 import elocindev.eldritch_end.entity.hastur.HasturEntity;
 import elocindev.eldritch_end.entity.tentacle.TentacleEntity;
+import elocindev.eldritch_end.entity.tentacle.UndeadTentacleEntity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.EntityDimensions;
@@ -26,6 +27,10 @@ public class EntityRegistry {
         Registry.ENTITY_TYPE, new Identifier(EldritchEnd.MODID, "tentacle"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, TentacleEntity::new).dimensions(EntityDimensions.fixed(1, 3)).build());
 
+    public static final EntityType<UndeadTentacleEntity> UNDEAD_TENTACLE = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(EldritchEnd.MODID, "undead_tentacle"),
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, UndeadTentacleEntity::new).dimensions(EntityDimensions.fixed(1, 3)).build());
+
     public static final EntityType<HasturEntity> HASTUR = Registry.register(
             Registry.ENTITY_TYPE, new Identifier(EldritchEnd.MODID, "hastur"),
                 FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, HasturEntity::new).dimensions(EntityDimensions.fixed(2, 3)).build());
@@ -36,6 +41,7 @@ public class EntityRegistry {
     public static void register() {
         FabricDefaultAttributeRegistry.register(EntityRegistry.ABERRATION, AberrationEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(EntityRegistry.TENTACLE, TentacleEntity.setAttributes());
+        FabricDefaultAttributeRegistry.register(EntityRegistry.UNDEAD_TENTACLE, UndeadTentacleEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(EntityRegistry.HASTUR, HasturEntity.setAttributes());
     }
 }

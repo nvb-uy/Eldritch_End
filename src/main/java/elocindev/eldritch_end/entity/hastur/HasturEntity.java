@@ -12,6 +12,7 @@ import net.minecraft.entity.boss.BossBar.Color;
 import net.minecraft.entity.boss.BossBar.Style;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.mob.HuskEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
@@ -67,7 +68,6 @@ public class HasturEntity extends HostileEntity implements IAnimatable {
     @Override
     public void mobTick() {
         super.mobTick();
-
         this.bossBar.setPercent(this.getHealth() / this.getMaxHealth());
     }
 
