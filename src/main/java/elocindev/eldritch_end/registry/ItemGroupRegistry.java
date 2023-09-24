@@ -11,6 +11,7 @@ public class ItemGroupRegistry {
         .icon(() -> new ItemStack(BlockRegistry.ABYSMAL_FRONDS_ITEM))
         .appendItems(stacks -> {
             stacks.add(new ItemStack(ItemRegistry.NECRONOMICON));
+            stacks.add(new ItemStack(ItemRegistry.ABERRATION_LIMB));
             stacks.add(new ItemStack(ItemRegistry.RAW_ETYR));
             stacks.add(new ItemStack(ItemRegistry.ETYR_INGOT));
             stacks.add(new ItemStack(ItemRegistry.ETYR_UPGRADE_PATTERN));

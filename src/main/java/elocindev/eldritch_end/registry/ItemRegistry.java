@@ -29,6 +29,7 @@ public class ItemRegistry {
 
     public static final Item NECRONOMICON = new Necronomicon(new FabricItemSettings());
     public static final Item SILVER_KEY = new SilverKey(new FabricItemSettings());
+    public static final Item ABERRATION_LIMB = new Item(new FabricItemSettings());
 
     public static final Item PRIMORDIAL_BOAT = new BoatItem(false, EntityRegistry.PRIMORDIAL, new FabricItemSettings());
     public static final Item PRIMORDIAL_CHEST_BOAT = new BoatItem(true, EntityRegistry.PRIMORDIAL, new FabricItemSettings());
@@ -54,6 +55,7 @@ public class ItemRegistry {
 
         reg(NECRONOMICON, "necronomicon");
         reg(SILVER_KEY, "silver_key");
+        reg(ABERRATION_LIMB, "aberration_limb");
         reg(CHORB_SPAWN_EGG, "chorb_spawn_egg");
 
         reg(PRIMORDIAL_BOAT, "primordial_boat");
