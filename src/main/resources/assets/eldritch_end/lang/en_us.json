@@ -93,6 +93,7 @@
 
     "item.eldritch_end.necronomicon": "\u00A72Necronomicon",
     "item.eldritch_end.aberration_limb": "Aberration's Limb",
+    "item.eldritch_end.aberration_heart": "Aberration's Heart",
     "item.eldritch_end.silver_key": "Silver Key",
     "item.eldritch_end.raw_etyr": "Raw Etyr",
     "item.eldritch_end.etyr_ingot": "Etyr Ingot",    
@@ -100,6 +101,7 @@
     "item.eldritch_end.aberration_spawn_egg": "Aberration Spawn Egg",
     "item.eldritch_end.tentacle_spawn_egg": "Tentacle Spawn Egg",
     "item.eldritch_end.chorb_spawn_egg": "Chorb Spawn Egg",
+    "item.eldritch_end.hastur_crown": "Hastur's Lost Crown",
 
     "effect.eldritch_end.corruption": "Corruption",
     "effect.eldritch_end.hastur_presence": "Hastur's Presence",

@@ -30,6 +30,7 @@ public class ItemRegistry {
     public static final Item NECRONOMICON = new Necronomicon(new FabricItemSettings());
     public static final Item SILVER_KEY = new SilverKey(new FabricItemSettings());
     public static final Item ABERRATION_LIMB = new Item(new FabricItemSettings());
+    public static final Item ABERRATION_HEART = new Item(new FabricItemSettings());
 
     public static final Item PRIMORDIAL_BOAT = new BoatItem(false, EntityRegistry.PRIMORDIAL, new FabricItemSettings());
     public static final Item PRIMORDIAL_CHEST_BOAT = new BoatItem(true, EntityRegistry.PRIMORDIAL, new FabricItemSettings());
@@ -47,16 +48,11 @@ public class ItemRegistry {
     }
 
     public static void register() {
-        
-        reg(ABERRATION_SPAWN_EGG, "aberration_spawn_egg");
-        reg(TENTACLE_SPAWN_EGG, "tentacle_spawn_egg");
-        reg(UNDEAD_TENTACLE_SPAWN_EGG, "undead_tentacle_spawn_egg");
-        reg(HASTUR_CROWN, "hastur_crown");
-
         reg(NECRONOMICON, "necronomicon");
         reg(SILVER_KEY, "silver_key");
         reg(ABERRATION_LIMB, "aberration_limb");
-        reg(CHORB_SPAWN_EGG, "chorb_spawn_egg");
+        reg(ABERRATION_HEART, "aberration_heart");
+        
 
         reg(PRIMORDIAL_BOAT, "primordial_boat");
         reg(PRIMORDIAL_CHEST_BOAT, "primordial_chest_boat");
@@ -64,6 +60,12 @@ public class ItemRegistry {
         reg(RAW_ETYR, "raw_etyr");
         reg(ETYR_INGOT, "etyr_ingot");
         reg(ETYR_UPGRADE_PATTERN, "etyr_upgrade_pattern");
+
+        reg(ABERRATION_SPAWN_EGG, "aberration_spawn_egg");
+        reg(TENTACLE_SPAWN_EGG, "tentacle_spawn_egg");
+        reg(UNDEAD_TENTACLE_SPAWN_EGG, "undead_tentacle_spawn_egg");
+        reg(CHORB_SPAWN_EGG, "chorb_spawn_egg");
+        reg(HASTUR_CROWN, "hastur_crown");
         
         LOGGER.info("Registered Eldritch End's items");
     }
