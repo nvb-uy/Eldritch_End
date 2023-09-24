@@ -1,13 +1,9 @@
 package elocindev.eldritch_end.entity.tentacle;
 
 import elocindev.eldritch_end.config.Configs;
-import elocindev.eldritch_end.registry.EffectRegistry;
-import elocindev.eldritch_end.registry.EntityRegistry;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.world.World;
 
