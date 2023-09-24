@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " # ",
+        "#c#",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:end_stone"
+        },
+        "c": {
+            "item": "eldritch_end:etyr_ingot"
+        }
+    },
+    "result": {
+        "item": "eldritch_end:etyr_upgrade_pattern",
+        "count": 1
+    }
+}
