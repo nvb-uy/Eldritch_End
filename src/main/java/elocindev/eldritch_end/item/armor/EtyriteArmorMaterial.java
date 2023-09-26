@@ -1,6 +1,7 @@
 package elocindev.eldritch_end.item.armor;
 
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
@@ -13,14 +14,15 @@ public class EtyriteArmorMaterial implements ArmorMaterial {
     private static final int[] PROTECTION_VALUES = new int[] {3, 6, 8, 3};
 
     @Override
-    public int getDurability(EquipmentSlot slot) {
-        return BASE_DURABILITY[slot.getEntitySlotId()] * 37;
+    public int getDurability(ArmorItem.Type type) {
+        return BASE_DURABILITY[type.ordinal()] * 37;
     }
 
     @Override
-    public int getProtectionAmount(EquipmentSlot slot) {
-        return PROTECTION_VALUES[slot.getEntitySlotId()];
+    public int getProtection(ArmorItem.Type type) {
+        return PROTECTION_VALUES[type.ordinal()];
     }
+
 
     @Override
     public int getEnchantability() {

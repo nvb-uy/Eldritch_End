@@ -1,6 +1,15 @@
 package elocindev.eldritch_end.entity.hastur;
 
 import elocindev.eldritch_end.config.Configs;
+import elocindev.eldritch_end.effects.Corruption;
+import mod.azure.azurelib.animatable.GeoEntity;
+import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
+import mod.azure.azurelib.core.animation.AnimatableManager;
+import mod.azure.azurelib.core.animation.Animation;
+import mod.azure.azurelib.core.animation.AnimationController;
+import mod.azure.azurelib.core.animation.RawAnimation;
+import mod.azure.azurelib.core.object.PlayState;
+import mod.azure.azurelib.util.AzureLibUtil;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -13,6 +22,7 @@ import net.minecraft.entity.boss.ServerBossBar;
 import net.minecraft.entity.boss.BossBar.Color;
 import net.minecraft.entity.boss.BossBar.Style;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.HuskEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -21,19 +31,10 @@ import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.builder.ILoopType;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-
-public class HasturEntity extends HostileEntity implements IAnimatable {
+public class HasturEntity extends HostileEntity implements GeoEntity {
     @SuppressWarnings("removal")
-    private AnimationFactory factory = new AnimationFactory(this);
+    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
 
     private final ServerBossBar bossBar;
 
@@ -53,9 +54,12 @@ public class HasturEntity extends HostileEntity implements IAnimatable {
 
     @Override
     public boolean damage(DamageSource source, float amount) {
+        /* todo: fix
         if (source == DamageSource.OUT_OF_WORLD) {
             this.applyDamage(source, amount);
         }
+
+         */
         return false;
     }
 
@@ -71,11 +75,11 @@ public class HasturEntity extends HostileEntity implements IAnimatable {
     public void mobTick() {
         super.mobTick();
 
-        if (this.age % 200 == 0 && !this.world.isClient()) {
+        if (this.age % 200 == 0 && !this.getWorld().isClient()) {
             lightningAttack(100);
         }
 
-        if (this.age % 100 == 0 && !this.world.isClient()) {
+        if (this.age % 100 == 0 && !this.getWorld().isClient()) {
             summonMinion(100);
         }
 
@@ -86,23 +90,24 @@ public class HasturEntity extends HostileEntity implements IAnimatable {
     }
 
     private void lightningAttack(float damageAmount) {
-        if (this.world.getClosestPlayer(this.getX(), this.getY(), this.getZ(), 20, false) != null) {
-            PlayerEntity closestPlayer = this.world.getClosestPlayer(this.getX(), this.getY(), this.getZ(), 20, false);
-            LightningEntity lightning = new LightningEntity(EntityType.LIGHTNING_BOLT, this.world);
+        if (this.getWorld().getClosestPlayer(this.getX(), this.getY(), this.getZ(), 20, false) != null) {
+            PlayerEntity closestPlayer = this.getWorld().getClosestPlayer(this.getX(), this.getY(), this.getZ(), 20, false);
+            LightningEntity lightning = new LightningEntity(EntityType.LIGHTNING_BOLT, this.getWorld());
             lightning.setVelocity(this.getVelocity());
             lightning.setPosition(closestPlayer.getPos());
-            this.world.spawnEntity(lightning);
-            this.damage(DamageSource.OUT_OF_WORLD, damageAmount);
+            this.getWorld().spawnEntity(lightning);
+
+            this.damage(Corruption.of(this.getWorld(), DamageTypes.OUT_OF_WORLD), damageAmount);
         }
     }
 
     private void summonMinion(float damageAmount) {
-        LivingEntity minion = new HuskEntity(EntityType.HUSK, this.world);
+        LivingEntity minion = new HuskEntity(EntityType.HUSK, this.getWorld());
         minion.setHealth(this.getHealth());
         minion.setVelocity(this.getVelocity());
         minion.setPosition(this.getPos());
-        this.world.spawnEntity(minion);
-        this.damage(DamageSource.OUT_OF_WORLD, damageAmount);
+        this.getWorld().spawnEntity(minion);
+        this.damage(Corruption.of(this.getWorld(), DamageTypes.OUT_OF_WORLD), damageAmount);
     }
 
     @Override
@@ -123,18 +128,6 @@ public class HasturEntity extends HostileEntity implements IAnimatable {
     @Override
     protected void playStepSound(BlockPos pos, BlockState state) { }
 
-
-    @Override
-    public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController<>(this, "controller", 10, this::animationPredicate));
-    }
-
-    protected <E extends HasturEntity> PlayState animationPredicate(final AnimationEvent<E> event) {
-        event.getController().animationSpeed = 1.0F;
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.hastur.idle", ILoopType.EDefaultLoopTypes.LOOP));
-        return PlayState.CONTINUE;
-    }
-
     @Override
     public boolean isCollidable() {
         return false;
@@ -154,7 +147,7 @@ public class HasturEntity extends HostileEntity implements IAnimatable {
 
         @Override
     public void checkDespawn() {
-        if (this.world.getDifficulty() == Difficulty.PEACEFUL && this.isDisallowedInPeaceful()) {
+        if (this.getWorld().getDifficulty() == Difficulty.PEACEFUL && this.isDisallowedInPeaceful()) {
             this.discard();
         } else {
             this.despawnCounter = 0;
@@ -162,7 +155,17 @@ public class HasturEntity extends HostileEntity implements IAnimatable {
     }
 
     @Override
-    public AnimationFactory getFactory() {
-        return factory;
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        controllers.add(new AnimationController<>(this, "animationPredicate", 10, event -> {
+            event.getController().setAnimationSpeed(1.0F);
+            event.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
+            return PlayState.CONTINUE;
+        }));
+    }
+
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return cache;
     }
 }

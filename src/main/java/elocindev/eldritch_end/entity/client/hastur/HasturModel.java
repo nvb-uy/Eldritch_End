@@ -2,10 +2,10 @@ package elocindev.eldritch_end.entity.client.hastur;
 
 import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.entity.hastur.HasturEntity;
+import mod.azure.azurelib.model.GeoModel;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
 
-public class HasturModel extends AnimatedGeoModel<HasturEntity> {
+public class HasturModel extends GeoModel<HasturEntity> {
     @Override
     public Identifier getModelResource(HasturEntity object) {
         return new Identifier(EldritchEnd.MODID, "geo/hastur.geo.json");

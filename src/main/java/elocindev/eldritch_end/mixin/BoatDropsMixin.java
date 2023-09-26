@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/* todo: fix
 @Mixin(BoatEntity.class)
 public class BoatDropsMixin {
     @Inject(method = "asItem", at = @At("HEAD"), cancellable = true)
@@ -18,3 +19,5 @@ public class BoatDropsMixin {
         }
     }
 }
+
+ */

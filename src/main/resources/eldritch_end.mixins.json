@@ -6,8 +6,7 @@
   "mixins": [
     "BackgroundRendererMixin",
     "BlockEntityTypeMixin",
-    "BoatTypeMixin",
-    "BoatDropsMixin"
+    "BoatTypeMixin"
   ],
   "injectors": {
     "defaultRequire": 1

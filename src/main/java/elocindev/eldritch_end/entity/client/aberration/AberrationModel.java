@@ -2,10 +2,10 @@ package elocindev.eldritch_end.entity.client.aberration;
 
 import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.entity.aberration.AberrationEntity;
+import mod.azure.azurelib.model.GeoModel;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
 
-public class AberrationModel extends AnimatedGeoModel<AberrationEntity> {
+public class AberrationModel extends GeoModel<AberrationEntity> {
     @Override
     public Identifier getModelResource(AberrationEntity object) {
         return new Identifier(EldritchEnd.MODID, "geo/aberration.geo.json");

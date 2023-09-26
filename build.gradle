@@ -66,9 +66,9 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	modImplementation "curse.maven:continuity-531351:4441032"
+	modImplementation "curse.maven:continuity-531351:4658300"
 
-	modImplementation 'software.bernie.geckolib:geckolib-fabric-1.19:3.1.40'
+	modImplementation "curse.maven:azurelib-817423:4757035"
 
 	//modImplementation "curse.maven:sodium-394468:3669187"
 	//modImplementation "curse.maven:iris-455508:3770305"

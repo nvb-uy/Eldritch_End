@@ -1,8 +1,17 @@
 package elocindev.eldritch_end.entity.tentacle;
 
 import elocindev.eldritch_end.config.Configs;
+import elocindev.eldritch_end.effects.Corruption;
 import elocindev.eldritch_end.registry.EffectRegistry;
 import elocindev.eldritch_end.registry.EntityRegistry;
+import mod.azure.azurelib.animatable.GeoEntity;
+import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
+import mod.azure.azurelib.core.animation.AnimatableManager;
+import mod.azure.azurelib.core.animation.Animation;
+import mod.azure.azurelib.core.animation.AnimationController;
+import mod.azure.azurelib.core.animation.RawAnimation;
+import mod.azure.azurelib.core.object.PlayState;
+import mod.azure.azurelib.util.AzureLibUtil;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -10,26 +19,17 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.builder.ILoopType;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 
-public class TentacleEntity extends HostileEntity implements IAnimatable {
+public class TentacleEntity extends HostileEntity implements GeoEntity {
     @SuppressWarnings("removal")
-    private AnimationFactory factory = new AnimationFactory(this);
+    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
 
     public TentacleEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
@@ -45,11 +45,11 @@ public class TentacleEntity extends HostileEntity implements IAnimatable {
     public void tick() {
         super.tick();
         if (this.hasStatusEffect(EffectRegistry.HASTUR_PRESENCE) && this instanceof TentacleEntity) {
-            LivingEntity tentacle = new UndeadTentacleEntity(EntityRegistry.UNDEAD_TENTACLE, this.world);
+            LivingEntity tentacle = new UndeadTentacleEntity(EntityRegistry.UNDEAD_TENTACLE, this.getWorld());
             tentacle.setHealth(this.getHealth());
             tentacle.setVelocity(this.getVelocity());
             tentacle.setPosition(this.getPos());
-            this.world.spawnEntity(tentacle);
+            this.getWorld().spawnEntity(tentacle);
             this.discard();
             return;
         }
@@ -65,7 +65,7 @@ public class TentacleEntity extends HostileEntity implements IAnimatable {
                 
                 float extradamage = ((float) Configs.ENTITY_ABERRATION.ATTACK_DAMAGE_ATTRIBUTE * 0.25f) * (victim.getStatusEffect(effect).getAmplifier() + 1);
                 
-                victim.damage(DamageSource.mob(this), extradamage);
+                victim.damage(Corruption.of(this.getWorld(), Corruption.DAMAGE), extradamage);
             } else
                 victim.addStatusEffect(new StatusEffectInstance(effect, Configs.ENTITY_ABERRATION.initital_corruption_duration_ticks, 0, false, false));
         }
@@ -86,60 +86,46 @@ public class TentacleEntity extends HostileEntity implements IAnimatable {
     @Override
     protected void playStepSound(BlockPos pos, BlockState state) { }
 
-
     @Override
-    public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController<>(this, "spawnController", 10, this::spawnAnimationPredicate));
-        data.addAnimationController(new AnimationController<>(this, "attackController", 10, this::attackAnimationPredicate));
-        data.addAnimationController(new AnimationController<>(this, "controller", 10, this::animationPredicate));
-    }
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        controllers.add(new AnimationController<>(this, "animationPredicate", 10, event -> {
+            if (this.age < 20) {
+                event.getController().setTransitionLength(0);
+                event.getController().setAnimation(RawAnimation.begin().then("appear", Animation.LoopType.LOOP));
 
-    protected <E extends TentacleEntity> PlayState animationPredicate(final AnimationEvent<E> event) {
-        if (this.age < 20) {
-            event.getController().transitionLengthTicks = 0;
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("appear", ILoopType.EDefaultLoopTypes.LOOP));
-        
+                return PlayState.CONTINUE;
+            }
+            if (this.handSwinging) {
+                this.handSwinging = false;
+                event.getController().setAnimation(RawAnimation.begin().then("attack", Animation.LoopType.LOOP));
+
+                return PlayState.CONTINUE;
+            }
+
+            event.getController().setAnimationSpeed(1.0F);
+            event.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
             return PlayState.CONTINUE;
-        }
-        if (this.handSwinging) {
-            this.handSwinging = false;
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("attack", ILoopType.EDefaultLoopTypes.LOOP));
-        
+
+        })).add((new AnimationController<>(this, "spawnAnimationPredicate", 10, event -> {
+            event.getController().setAnimationSpeed(1.0F);
+            if (this.age < 20) {
+                event.getController().forceAnimationReset();
+                event.getController().setAnimation(RawAnimation.begin().then("appear", Animation.LoopType.PLAY_ONCE));
+                return PlayState.CONTINUE;
+            }
             return PlayState.CONTINUE;
-        }
-
-        event.getController().animationSpeed = 1.0F;
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", ILoopType.EDefaultLoopTypes.LOOP));
-        return PlayState.CONTINUE;
-    }
-
-    protected <E extends TentacleEntity> PlayState spawnAnimationPredicate(final AnimationEvent<E> event) {
-        event.getController().animationSpeed = 1.0F;
-        
-        if (this.age < 20) {
-
-            event.getController().markNeedsReload();
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("appear", ILoopType.EDefaultLoopTypes.PLAY_ONCE));
-        
+        }))).add(new AnimationController<>(this, "attackAnimationPredicate", 10, event -> {
+            if (this.isAttacking()) {
+                event.getController().setAnimationSpeed(4.0F);
+                event.getController().forceAnimationReset();
+                event.getController().setAnimation(RawAnimation.begin().then("attack", Animation.LoopType.PLAY_ONCE));
+            }
             return PlayState.CONTINUE;
-        }
-        
-        return PlayState.CONTINUE;
-    }
-
-    protected <E extends TentacleEntity> PlayState attackAnimationPredicate(final AnimationEvent<E> event) {
-        if (this.isAttacking()) {
-            event.getController().animationSpeed = 4.0F;
-
-            event.getController().markNeedsReload();
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("attack", ILoopType.EDefaultLoopTypes.PLAY_ONCE));
-        }
-        
-        return PlayState.CONTINUE;
+        }));
     }
 
     @Override
-    public AnimationFactory getFactory() {
-        return factory;
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return cache;
     }
 }

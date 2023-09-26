@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 
 public class EtyriteArmorPiece extends ArmorItem {
 
-    public EtyriteArmorPiece(ArmorMaterial material, EquipmentSlot slot, Settings settings) {
+    public EtyriteArmorPiece(ArmorMaterial material, ArmorItem.Type slot, Settings settings) {
         super(material, slot, settings);
     }
 

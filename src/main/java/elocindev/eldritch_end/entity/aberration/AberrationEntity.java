@@ -5,6 +5,14 @@ import elocindev.eldritch_end.effects.Corruption;
 import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.registry.EffectRegistry;
 import elocindev.eldritch_end.util.CorruptionUtils;
+import mod.azure.azurelib.animatable.GeoEntity;
+import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
+import mod.azure.azurelib.core.animation.AnimatableManager;
+import mod.azure.azurelib.core.animation.Animation;
+import mod.azure.azurelib.core.animation.AnimationController;
+import mod.azure.azurelib.core.animation.RawAnimation;
+import mod.azure.azurelib.core.object.PlayState;
+import mod.azure.azurelib.util.AzureLibUtil;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -17,19 +25,11 @@ import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.builder.ILoopType;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 
-public class AberrationEntity extends HostileEntity implements IAnimatable {
+public class AberrationEntity extends HostileEntity implements GeoEntity {
     @SuppressWarnings("removal")
-    private AnimationFactory factory = new AnimationFactory(this);
+    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
 
     public AberrationEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
@@ -48,7 +48,7 @@ public class AberrationEntity extends HostileEntity implements IAnimatable {
     public void tickMovement() {
         super.tickMovement();
 
-        if (this.age % 20 == 0 && this.world.getBlockState(new BlockPos(this.getX(), this.getY() - 1, this.getZ())).getBlock() == BlockRegistry.ABYSMAL_FRONDS) {
+        if (this.age % 20 == 0 && this.getWorld().getBlockState(new BlockPos(this.getBlockX(), this.getBlockY() - 1, this.getBlockZ())).getBlock() == BlockRegistry.ABYSMAL_FRONDS) {
             this.heal(this.getMaxHealth() / 10);
         }
     }
@@ -63,7 +63,7 @@ public class AberrationEntity extends HostileEntity implements IAnimatable {
             if (victim.hasStatusEffect(effect)) {
                 victim.addStatusEffect(new StatusEffectInstance(effect, victim.getStatusEffect(effect).getDuration(), victim.getStatusEffect(effect).getAmplifier() + 1, false, false));
                 
-                victim.damage(Corruption.DAMAGE, CorruptionUtils.getDamageAmount(victim, (float) Configs.ENTITY_ABERRATION.ATTACK_DAMAGE_ATTRIBUTE * 0.25f, true));
+                victim.damage(Corruption.of(this.getWorld(), Corruption.DAMAGE), CorruptionUtils.getDamageAmount(victim, (float) Configs.ENTITY_ABERRATION.ATTACK_DAMAGE_ATTRIBUTE * 0.25f, true));
             } else
                 victim.addStatusEffect(new StatusEffectInstance(effect, Configs.ENTITY_ABERRATION.initital_corruption_duration_ticks, 0, false, false));
         }
@@ -82,34 +82,31 @@ public class AberrationEntity extends HostileEntity implements IAnimatable {
     @Override
     protected void playStepSound(BlockPos pos, BlockState state) { }
 
-
     @Override
-    public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController<>(this, "controller", 10, this::animationPredicate));
-    }
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        controllers.add(new AnimationController<>(this, "animationPredicate", 10, event -> {
+            if (this.handSwinging) {
+                event.getController().setAnimation(RawAnimation.begin().then("attack", Animation.LoopType.PLAY_ONCE));
+                this.handSwinging = false;
+                return PlayState.CONTINUE;
+            }
 
-    protected <E extends AberrationEntity> PlayState animationPredicate(final AnimationEvent<E> event) {
-        if (this.handSwinging) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("attack", ILoopType.EDefaultLoopTypes.PLAY_ONCE));
-            this.handSwinging = false;
+            if (event.isMoving() && this.isOnGround()) {
+                // TODO: Make this scale with the movement attribute
+                event.getController().setAnimationSpeed(3.0F);
+
+                event.getController().setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
+                return PlayState.CONTINUE;
+            }
+
+            event.getController().setAnimationSpeed(1.0F);
+            event.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
             return PlayState.CONTINUE;
-        }
-        
-        if (event.isMoving() && this.isOnGround()) {
-            // TODO: Make this scale with the movement attribute
-            event.getController().animationSpeed = 3.0F;
-
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", ILoopType.EDefaultLoopTypes.LOOP));
-            return PlayState.CONTINUE;
-        }
-
-        event.getController().animationSpeed = 1.0F;
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", ILoopType.EDefaultLoopTypes.LOOP));
-        return PlayState.CONTINUE;
+        }));
     }
 
     @Override
-    public AnimationFactory getFactory() {
-        return factory;
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return cache;
     }
 }
