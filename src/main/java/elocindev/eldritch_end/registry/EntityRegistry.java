@@ -11,8 +11,9 @@ import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.vehicle.BoatEntity;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 public class EntityRegistry {
     static {
@@ -20,20 +21,20 @@ public class EntityRegistry {
     }
 
     public static final EntityType<AberrationEntity> ABERRATION = Registry.register(
-        Registry.ENTITY_TYPE, new Identifier(EldritchEnd.MODID, "aberration"),
+            Registries.ENTITY_TYPE, new Identifier(EldritchEnd.MODID, "aberration"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, AberrationEntity::new).dimensions(EntityDimensions.fixed(1, 1)).build());
 
     public static final EntityType<TentacleEntity> TENTACLE = Registry.register(
-        Registry.ENTITY_TYPE, new Identifier(EldritchEnd.MODID, "tentacle"),
+            Registries.ENTITY_TYPE, new Identifier(EldritchEnd.MODID, "tentacle"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, TentacleEntity::new).dimensions(EntityDimensions.fixed(1, 3)).build());
 
     public static final EntityType<UndeadTentacleEntity> UNDEAD_TENTACLE = Registry.register(
-            Registry.ENTITY_TYPE, new Identifier(EldritchEnd.MODID, "undead_tentacle"),
+            Registries.ENTITY_TYPE, new Identifier(EldritchEnd.MODID, "undead_tentacle"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, UndeadTentacleEntity::new).dimensions(EntityDimensions.fixed(1, 3)).build());
 
     public static final EntityType<HasturEntity> HASTUR = Registry.register(
-            Registry.ENTITY_TYPE, new Identifier(EldritchEnd.MODID, "hastur"),
-                FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, HasturEntity::new).dimensions(EntityDimensions.fixed(2, 3)).build());
+            Registries.ENTITY_TYPE, new Identifier(EldritchEnd.MODID, "hastur"),
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, HasturEntity::new).dimensions(EntityDimensions.fixed(2, 3)).build());
 
 
     public static BoatEntity.Type PRIMORDIAL;
