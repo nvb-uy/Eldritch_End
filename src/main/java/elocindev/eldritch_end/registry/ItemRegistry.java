@@ -4,8 +4,9 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.BoatItem;
 import net.minecraft.item.Item;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,7 +45,7 @@ public class ItemRegistry {
     public static final Item ETYR_UPGRADE_PATTERN = new EtyrPattern(new FabricItemSettings());
 
     public static Item reg(Item instance, String id) {
-        return Registry.register(Registry.ITEM, new Identifier(EldritchEnd.MODID, id), instance);
+        return Registry.register(Registries.ITEM, new Identifier(EldritchEnd.MODID, id), instance);
     }
 
     public static void register() {
