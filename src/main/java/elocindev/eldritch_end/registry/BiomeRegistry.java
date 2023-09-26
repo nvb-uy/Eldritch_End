@@ -5,16 +5,16 @@ import elocindev.eldritch_end.worldgen.biome.HasturianWastes;
 import elocindev.eldritch_end.worldgen.biome.PrimordialAbyss;
 import elocindev.eldritch_end.EldritchEnd;
 import net.fabricmc.fabric.api.biome.v1.TheEndBiomes;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 
 public class BiomeRegistry {
-    public static final RegistryKey<Biome> PRIMORDIAL_ABYSS = RegistryKey.of(Registry.BIOME_KEY, 
+    public static final RegistryKey<Biome> PRIMORDIAL_ABYSS = RegistryKey.of(RegistryKeys.BIOME,
         new Identifier(EldritchEnd.MODID, "primordial_abyss"));
     
-    public static final RegistryKey<Biome> HASTURIAN_WASTES = RegistryKey.of(Registry.BIOME_KEY, 
+    public static final RegistryKey<Biome> HASTURIAN_WASTES = RegistryKey.of(RegistryKeys.BIOME,
         new Identifier(EldritchEnd.MODID, "hasturian_wastes"));
 
     public static void register() {
