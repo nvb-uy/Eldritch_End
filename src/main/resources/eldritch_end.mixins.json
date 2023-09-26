@@ -5,7 +5,6 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "BackgroundRendererMixin",
-    "SignTypeAccessor",
     "BlockEntityTypeMixin",
     "BoatTypeMixin",
     "BoatDropsMixin"
