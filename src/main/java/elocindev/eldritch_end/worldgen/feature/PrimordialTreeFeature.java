@@ -5,8 +5,8 @@ import com.mojang.serialization.Codec;
 import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.worldgen.util.TreeFactory;
 import net.minecraft.block.BlockState;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.feature.Feature;
@@ -28,7 +28,7 @@ public class PrimordialTreeFeature extends Feature<TreeConfig> {
         BlockPos origin = context.getOrigin();
 
         TreeConfig config = context.getConfig();
-        BlockState primordial_log = Registry.BLOCK.get(config.blockID()).getDefaultState();
+        BlockState primordial_log = Registries.BLOCK.get(config.blockID()).getDefaultState();
 
 
         BlockPos topPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, new BlockPos(origin.getX(), origin.getY(), origin.getZ()));
