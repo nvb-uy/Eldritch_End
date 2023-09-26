@@ -5,24 +5,29 @@ import elocindev.eldritch_end.registry.BiomeRegistry;
 import elocindev.eldritch_end.registry.FeatureRegistry;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
-import net.minecraft.util.registry.BuiltinRegistries;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.EndPlacedFeatures;
+import net.minecraft.world.gen.feature.PlacedFeature;
 
 public class HasturianWastes {
 	public static void register() {
+		/* todo: fix
 		Registry.register(BuiltinRegistries.BIOME, BiomeRegistry.HASTURIAN_WASTES.getValue(), createHasturianWastes());
+		 */
 	}
 	
 	private static Biome createHasturianWastes() {
 		GenerationSettings.Builder builder = new GenerationSettings.Builder()
-				.feature(GenerationStep.Feature.SURFACE_STRUCTURES, EndPlacedFeatures.END_SPIKE);
+				.feature(GenerationStep.Feature.SURFACE_STRUCTURES, (RegistryEntry<PlacedFeature>) EndPlacedFeatures.END_SPIKE);
 		return compose(builder);
 	}
 
@@ -30,7 +35,7 @@ public class HasturianWastes {
 		SpawnSettings.Builder settings = new SpawnSettings.Builder();
 
 		return (new Biome.Builder())
-		.precipitation(Biome.Precipitation.NONE)
+		.precipitation(false)
 		.temperature(Configs.BIOME_PRIMORDIAL_ABYSS.biome_temperature)
 		.downfall(0.1F)
 		
@@ -46,13 +51,13 @@ public class HasturianWastes {
 		BiomeModifications.addFeature(
             BiomeSelectors.includeByKey(BiomeRegistry.HASTURIAN_WASTES),
             GenerationStep.Feature.LOCAL_MODIFICATIONS,
-            RegistryKey.of(Registry.PLACED_FEATURE_KEY, FeatureRegistry.HASTURIAN_WASTES_SURFACE_ID)
+            RegistryKey.of(RegistryKeys.PLACED_FEATURE, FeatureRegistry.HASTURIAN_WASTES_SURFACE_ID)
         );
 
 		BiomeModifications.addFeature(
             BiomeSelectors.includeByKey(BiomeRegistry.HASTURIAN_WASTES),
             GenerationStep.Feature.SURFACE_STRUCTURES,
-            RegistryKey.of(Registry.PLACED_FEATURE_KEY, FeatureRegistry.HASTURIAN_SPIKES_ID)
+            RegistryKey.of(RegistryKeys.PLACED_FEATURE, FeatureRegistry.HASTURIAN_SPIKES_ID)
         );
     }
 }

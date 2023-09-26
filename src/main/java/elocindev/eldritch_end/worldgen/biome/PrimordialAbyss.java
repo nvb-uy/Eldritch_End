@@ -9,26 +9,27 @@ import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.util.registry.BuiltinRegistries;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeEffects;
-import net.minecraft.world.biome.BiomeParticleConfig;
-import net.minecraft.world.biome.GenerationSettings;
-import net.minecraft.world.biome.SpawnSettings;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.world.biome.*;
 import net.minecraft.world.biome.SpawnSettings.SpawnEntry;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.EndPlacedFeatures;
+import net.minecraft.world.gen.feature.PlacedFeature;
 
 public class PrimordialAbyss {
 	public static void register() {
+		/* todo: fix
 		Registry.register(BuiltinRegistries.BIOME, BiomeRegistry.PRIMORDIAL_ABYSS.getValue(), createPrimordialAbyss());
+
+		 */
 	}
 	
 	private static Biome createPrimordialAbyss() {
 		GenerationSettings.Builder builder = new GenerationSettings.Builder()
-				.feature(GenerationStep.Feature.SURFACE_STRUCTURES, EndPlacedFeatures.END_GATEWAY_RETURN);
+				.feature(GenerationStep.Feature.SURFACE_STRUCTURES, (RegistryEntry<PlacedFeature>) EndPlacedFeatures.END_GATEWAY_RETURN);
 		return compose(builder);
 	}
 
@@ -45,7 +46,7 @@ public class PrimordialAbyss {
 		ParticleEffect ambientParticle = ParticleTypes.ASH;
 
 		return (new Biome.Builder())
-		.precipitation(Biome.Precipitation.NONE)
+		.precipitation(false)
 		.temperature(Configs.BIOME_PRIMORDIAL_ABYSS.biome_temperature)
 		.downfall(0.1F)
 		
@@ -62,13 +63,13 @@ public class PrimordialAbyss {
 		BiomeModifications.addFeature(
             BiomeSelectors.includeByKey(BiomeRegistry.PRIMORDIAL_ABYSS),
             GenerationStep.Feature.RAW_GENERATION,
-            RegistryKey.of(Registry.PLACED_FEATURE_KEY, FeatureRegistry.PRIMORDIAL_ABYSS_SURFACE_ID)
+            RegistryKey.of(RegistryKeys.PLACED_FEATURE, FeatureRegistry.PRIMORDIAL_ABYSS_SURFACE_ID)
         );
 
 		BiomeModifications.addFeature(
             BiomeSelectors.includeByKey(BiomeRegistry.PRIMORDIAL_ABYSS),
             GenerationStep.Feature.TOP_LAYER_MODIFICATION,
-            RegistryKey.of(Registry.PLACED_FEATURE_KEY, FeatureRegistry.PRIMORDIAL_TREES_ID)
+            RegistryKey.of(RegistryKeys.PLACED_FEATURE, FeatureRegistry.PRIMORDIAL_TREES_ID)
         );
     }
 }

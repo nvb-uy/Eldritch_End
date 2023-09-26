@@ -3,15 +3,16 @@ package elocindev.eldritch_end.datagen;
 import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.registry.ItemRegistry;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 
 public class BlockLootTableGenerator extends FabricBlockLootTableProvider {
-    protected BlockLootTableGenerator(FabricDataGenerator dataGenerator) {
-        super(dataGenerator);
+    protected BlockLootTableGenerator(FabricDataOutput dataOutput) {
+        super(dataOutput);
     }
 
     @Override
-    protected void generateBlockLootTables() {
+    public void generate() {
         addDrop(BlockRegistry.ABYSMAL_FRONDS, drops(BlockRegistry.ABYSMAL_FRONDS_ITEM));
         addDrop(BlockRegistry.ABYSMAL_FRONDS, drops(BlockRegistry.ABYSMAL_FRONDS_ITEM));
         addDrop(BlockRegistry.SUSPICIOUS_FRONDS, drops(BlockRegistry.SUSPICIOUS_FRONDS_ITEM));

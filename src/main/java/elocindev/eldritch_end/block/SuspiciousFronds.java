@@ -27,7 +27,8 @@ public class SuspiciousFronds extends AbysmalFronds {
             player.setVelocity(0, 0.90, 0);
             player.velocityModified = true;
 
-            player.damage(DamageSource.mob(tentacle), 4.0f);
+            //todo: fix :sob:
+            //player.damage(DamageSource.mob(tentacle), 4.0f);
 
             world.setBlockState(pos, BlockRegistry.ABYSMAL_FRONDS.getDefaultState());
         }

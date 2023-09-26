@@ -5,6 +5,7 @@ import elocindev.eldritch_end.registry.ArmorRegistry;
 import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.registry.ItemRegistry;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -24,8 +25,8 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class ModelGenerator extends FabricModelProvider {
-    public ModelGenerator(FabricDataGenerator dataGenerator) {
-        super(dataGenerator);
+    public ModelGenerator(FabricDataOutput output) {
+        super(output);
     }
 
     @Override
@@ -154,7 +155,7 @@ public class ModelGenerator extends FabricModelProvider {
         Identifier identifier2 = Models.TEMPLATE_FENCE_GATE.upload(fenceGateBlock, textureMap,modelCollector);
         Identifier identifier3 = Models.TEMPLATE_FENCE_GATE_WALL_OPEN.upload(fenceGateBlock, textureMap, modelCollector);
         Identifier identifier4 = Models.TEMPLATE_FENCE_GATE_WALL.upload(fenceGateBlock, textureMap, modelCollector);
-        blockStateCollector.accept(BlockStateModelGenerator.createFenceGateBlockState(fenceGateBlock, identifier, identifier2, identifier3, identifier4));
+        blockStateCollector.accept(BlockStateModelGenerator.createFenceGateBlockState(fenceGateBlock, identifier, identifier2, identifier3, identifier4, false));
 
         Identifier identifier5 = Models.FENCE_INVENTORY.upload(fenceGateBlock, textureMap, modelCollector);
         registerParentedItemModel(fenceGateBlock, identifier5, modelCollector);
