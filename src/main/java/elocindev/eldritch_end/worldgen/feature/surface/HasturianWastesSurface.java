@@ -7,9 +7,9 @@ import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.worldgen.feature.SurfaceConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.feature.Feature;
@@ -34,7 +34,7 @@ public class HasturianWastesSurface extends Feature<SurfaceConfig> {
         Random random = context.getRandom();
 
         SurfaceConfig config = context.getConfig();
-        BlockState blockState = Registry.BLOCK.get(config.blockID()).getDefaultState();
+        BlockState blockState = Registries.BLOCK.get(config.blockID()).getDefaultState();
 
         int centerX = origin.getX() + random.nextInt(4);
         int centerZ = origin.getZ() + random.nextInt(4);
