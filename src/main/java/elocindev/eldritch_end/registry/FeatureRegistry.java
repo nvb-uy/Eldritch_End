@@ -9,15 +9,22 @@ import elocindev.eldritch_end.worldgen.feature.SurfaceConfig;
 import elocindev.eldritch_end.worldgen.feature.TreeConfig;
 import elocindev.eldritch_end.worldgen.feature.surface.HasturianWastesSurface;
 import elocindev.eldritch_end.worldgen.feature.surface.PrimordialAbyssSurface;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.BuiltinRegistries;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.PlacedFeature;
 import net.minecraft.world.gen.placementmodifier.SquarePlacementModifier;
+
+/*
+import net.minecraft.util.registry.BuiltinRegistries;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryEntry;
+ */
 
 public class FeatureRegistry {
     public static final Identifier PRIMORDIAL_ABYSS_SURFACE_ID = new Identifier(EldritchEnd.MODID, "abyssal_surface");
@@ -75,20 +82,24 @@ public class FeatureRegistry {
     );
 
     public static void register() {
-        Registry.register(Registry.FEATURE, PRIMORDIAL_ABYSS_SURFACE_ID, PRIMORDIAL_ABYSS_SURFACE);
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, PRIMORDIAL_ABYSS_SURFACE_ID, PRIMORDIAL_ABYSS_SURFACE_CONFIGURED);
-        Registry.register(BuiltinRegistries.PLACED_FEATURE, PRIMORDIAL_ABYSS_SURFACE_ID, PRIMORDIAL_ABYSS_SURFACE_PLACED);
+        Registry.register(Registries.FEATURE, PRIMORDIAL_ABYSS_SURFACE_ID, PRIMORDIAL_ABYSS_SURFACE);
 
-        Registry.register(Registry.FEATURE, HASTURIAN_WASTES_SURFACE_ID, HASTURIAN_WASTES_SURFACE);
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, HASTURIAN_WASTES_SURFACE_ID, HASTURIAN_WASTES_SURFACE_CONFIGURED);
-        Registry.register(BuiltinRegistries.PLACED_FEATURE, HASTURIAN_WASTES_SURFACE_ID, HASTURIAN_WASTES_SURFACE_PLACED);
+        /* Todo: fix
+        Registry.register(RegistryKeys.CONFIGURED_FEATURE, PRIMORDIAL_ABYSS_SURFACE_ID, PRIMORDIAL_ABYSS_SURFACE_CONFIGURED);
+        Registry.register(RegistryKeys.PLACED_FEATURE, PRIMORDIAL_ABYSS_SURFACE_ID, PRIMORDIAL_ABYSS_SURFACE_PLACED);
 
-        Registry.register(Registry.FEATURE, PRIMORDIAL_TREES_ID, PRIMORDIAL_TREES);
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, PRIMORDIAL_TREES_ID, PRIMORDIAL_TREE_CONFIGURED);
-        Registry.register(BuiltinRegistries.PLACED_FEATURE, PRIMORDIAL_TREES_ID, PRIMORDIAL_TREE_PLACED);
+        Registry.register(Registries.FEATURE, HASTURIAN_WASTES_SURFACE_ID, HASTURIAN_WASTES_SURFACE);
+        Registry.register(RegistryKeys.CONFIGURED_FEATURE, HASTURIAN_WASTES_SURFACE_ID, HASTURIAN_WASTES_SURFACE_CONFIGURED);
+        Registry.register(RegistryKeys.PLACED_FEATURE, HASTURIAN_WASTES_SURFACE_ID, HASTURIAN_WASTES_SURFACE_PLACED);
 
-        Registry.register(Registry.FEATURE, HASTURIAN_SPIKES_ID, HASTURIAN_SPIKES);
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, HASTURIAN_SPIKES_ID, HASTURIAN_SPIKES_CONFIGURED);
-        Registry.register(BuiltinRegistries.PLACED_FEATURE, HASTURIAN_SPIKES_ID, HASTURIAN_SPIKES_PLACED);
+        Registry.register(Registries.FEATURE, PRIMORDIAL_TREES_ID, PRIMORDIAL_TREES);
+        Registry.register(RegistryKeys.CONFIGURED_FEATURE, PRIMORDIAL_TREES_ID, PRIMORDIAL_TREE_CONFIGURED);
+        Registry.register(RegistryKeys.PLACED_FEATURE, PRIMORDIAL_TREES_ID, PRIMORDIAL_TREE_PLACED);
+
+        Registry.register(Registries.FEATURE, HASTURIAN_SPIKES_ID, HASTURIAN_SPIKES);
+        Registry.register(RegistryKeys.CONFIGURED_FEATURE, HASTURIAN_SPIKES_ID, HASTURIAN_SPIKES_CONFIGURED);
+        Registry.register(RegistryKeys.PLACED_FEATURE, HASTURIAN_SPIKES_ID, HASTURIAN_SPIKES_PLACED);
+         */
+
     }
 }

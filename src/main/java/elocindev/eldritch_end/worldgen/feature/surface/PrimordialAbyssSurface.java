@@ -11,8 +11,8 @@ import elocindev.eldritch_end.worldgen.util.TendrilFactory;
 import elocindev.eldritch_end.worldgen.util.TreeFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.feature.Feature;
@@ -34,7 +34,7 @@ public class PrimordialAbyssSurface extends Feature<SurfaceConfig> {
         BlockPos origin = context.getOrigin();
 
         SurfaceConfig config = context.getConfig();
-        BlockState blockState = Registry.BLOCK.get(config.blockID()).getDefaultState();
+        BlockState blockState = Registries.BLOCK.get(config.blockID()).getDefaultState();
 
         int centerX = origin.getX() + world.getRandom().nextInt(4);
         int centerZ = origin.getZ() + world.getRandom().nextInt(4);
