@@ -182,17 +182,14 @@ public class TreeFactory {
                         }
                     }
                 } else {
-                    world.setBlockState(positions[i].east(), leaves, 3);
-                    world.setBlockState(positions[i].west(), leaves, 3);
-                    world.setBlockState(positions[i].north(), leaves, 3);
-                    world.setBlockState(positions[i].south(), leaves, 3);
-                    world.setBlockState(positions[i].up(1), leaves, 3);
+                    BlockPos[] pos = {positions[i].east(), positions[i].west(), positions[i].north(), positions[i].south(), positions[i].up(1) };
+                    for (int j = 0; j < pos.length; j++)
+                        world.setBlockState(pos[j], leaves, 3);
                 }
                 
             }
         }
     }
-
 
     // Utils
 
