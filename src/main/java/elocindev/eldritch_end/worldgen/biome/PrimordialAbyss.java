@@ -1,35 +1,18 @@
 package elocindev.eldritch_end.worldgen.biome;
 
 import elocindev.eldritch_end.config.Configs;
-import elocindev.eldritch_end.registry.BiomeRegistry;
 import elocindev.eldritch_end.registry.EntityRegistry;
-import elocindev.eldritch_end.registry.FeatureRegistry;
-import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.biome.SpawnSettings.SpawnEntry;
-import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.feature.EndPlacedFeatures;
-import net.minecraft.world.gen.feature.PlacedFeature;
 
 public class PrimordialAbyss {
-	public static void register() {
-		/* todo: fix
-		Registry.register(BuiltinRegistries.BIOME, BiomeRegistry.PRIMORDIAL_ABYSS.getValue(), createPrimordialAbyss());
+	public static void load() {}
 
-		 */
-	}
-	
-	private static Biome createPrimordialAbyss() {
-		GenerationSettings.Builder builder = new GenerationSettings.Builder()
-				.feature(GenerationStep.Feature.SURFACE_STRUCTURES, (RegistryEntry<PlacedFeature>) EndPlacedFeatures.END_GATEWAY_RETURN);
+	public static Biome createPrimordialAbyss() {
+		GenerationSettings.Builder builder = new GenerationSettings.Builder();
 		return compose(builder);
 	}
 
@@ -60,16 +43,16 @@ public class PrimordialAbyss {
 	}
 
     public static void registerModifications() {
-		BiomeModifications.addFeature(
-            BiomeSelectors.includeByKey(BiomeRegistry.PRIMORDIAL_ABYSS),
-            GenerationStep.Feature.RAW_GENERATION,
-            RegistryKey.of(RegistryKeys.PLACED_FEATURE, FeatureRegistry.PRIMORDIAL_ABYSS_SURFACE_ID)
-        );
+		// BiomeModifications.addFeature(
+        //     BiomeSelectors.includeByKey(BiomeRegistry.PRIMORDIAL_ABYSS),
+        //     GenerationStep.Feature.RAW_GENERATION,
+        //     RegistryKey.of(RegistryKeys.PLACED_FEATURE, FeatureRegistry.PRIMORDIAL_ABYSS_SURFACE_ID)
+        // );
 
-		BiomeModifications.addFeature(
-            BiomeSelectors.includeByKey(BiomeRegistry.PRIMORDIAL_ABYSS),
-            GenerationStep.Feature.TOP_LAYER_MODIFICATION,
-            RegistryKey.of(RegistryKeys.PLACED_FEATURE, FeatureRegistry.PRIMORDIAL_TREES_ID)
-        );
+		// BiomeModifications.addFeature(
+        //     BiomeSelectors.includeByKey(BiomeRegistry.PRIMORDIAL_ABYSS),
+        //     GenerationStep.Feature.TOP_LAYER_MODIFICATION,
+        //     RegistryKey.of(RegistryKeys.PLACED_FEATURE, FeatureRegistry.PRIMORDIAL_TREES_ID)
+        // );
     }
 }

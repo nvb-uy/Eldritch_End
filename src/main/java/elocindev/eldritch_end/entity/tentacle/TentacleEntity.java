@@ -28,7 +28,6 @@ import net.minecraft.world.World;
 
 
 public class TentacleEntity extends HostileEntity implements GeoEntity {
-    @SuppressWarnings("removal")
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
 
     public TentacleEntity(EntityType<? extends HostileEntity> entityType, World world) {

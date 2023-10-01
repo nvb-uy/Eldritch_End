@@ -22,12 +22,12 @@ public class EldritchEnd implements ModInitializer {
 
 		AzureLib.initialize();
 
+		BiomeRegistry.register();
 		ArmorRegistry.register();
 		BlockRegistry.register();
 		ItemRegistry.register();
 		EntityRegistry.register();
-		FeatureRegistry.register();
-		BiomeRegistry.register();
+		// FeatureRegistry.register();
 		EffectRegistry.register();
 		ItemGroupRegistry.register();
 	}

@@ -11,7 +11,6 @@ import elocindev.eldritch_end.worldgen.feature.surface.HasturianWastesSurface;
 import elocindev.eldritch_end.worldgen.feature.surface.PrimordialAbyssSurface;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
@@ -27,79 +26,77 @@ import net.minecraft.util.registry.RegistryEntry;
  */
 
 public class FeatureRegistry {
-    public static final Identifier PRIMORDIAL_ABYSS_SURFACE_ID = new Identifier(EldritchEnd.MODID, "abyssal_surface");
-    public static Feature<SurfaceConfig> PRIMORDIAL_ABYSS_SURFACE = new PrimordialAbyssSurface(SurfaceConfig.CODEC);
-    public static ConfiguredFeature<SurfaceConfig, PrimordialAbyssSurface> PRIMORDIAL_ABYSS_SURFACE_CONFIGURED = new ConfiguredFeature<>(
-                    (PrimordialAbyssSurface) PRIMORDIAL_ABYSS_SURFACE,
-                    new SurfaceConfig(new Identifier("eldritch_end", "abysmal_fronds"))
-    );
+    // public static final Identifier PRIMORDIAL_ABYSS_SURFACE_ID = new Identifier(EldritchEnd.MODID, "abyssal_surface");
+    // public static Feature<SurfaceConfig> PRIMORDIAL_ABYSS_SURFACE = new PrimordialAbyssSurface(SurfaceConfig.CODEC);
+    // public static ConfiguredFeature<SurfaceConfig, PrimordialAbyssSurface> PRIMORDIAL_ABYSS_SURFACE_CONFIGURED = new ConfiguredFeature<>(
+    //                 (PrimordialAbyssSurface) PRIMORDIAL_ABYSS_SURFACE,
+    //                 new SurfaceConfig(new Identifier("eldritch_end", "abysmal_fronds"))
+    // );
 
-    public static PlacedFeature PRIMORDIAL_ABYSS_SURFACE_PLACED = new PlacedFeature(
-            RegistryEntry.of(
-                PRIMORDIAL_ABYSS_SURFACE_CONFIGURED
-            ), List.of(SquarePlacementModifier.of())
-    );
+    // public static PlacedFeature PRIMORDIAL_ABYSS_SURFACE_PLACED = new PlacedFeature(
+    //         RegistryEntry.of(
+    //             PRIMORDIAL_ABYSS_SURFACE_CONFIGURED
+    //         ), List.of(SquarePlacementModifier.of())
+    // );
 
-    public static final Identifier HASTURIAN_WASTES_SURFACE_ID = new Identifier(EldritchEnd.MODID, "mossy_surface");
-    public static Feature<SurfaceConfig> HASTURIAN_WASTES_SURFACE = new HasturianWastesSurface(SurfaceConfig.CODEC);
+    // public static final Identifier HASTURIAN_WASTES_SURFACE_ID = new Identifier(EldritchEnd.MODID, "mossy_surface");
+    // public static Feature<SurfaceConfig> HASTURIAN_WASTES_SURFACE = new HasturianWastesSurface(SurfaceConfig.CODEC);
 
-    public static ConfiguredFeature<SurfaceConfig, HasturianWastesSurface> HASTURIAN_WASTES_SURFACE_CONFIGURED = new ConfiguredFeature<>(
-                    (HasturianWastesSurface) HASTURIAN_WASTES_SURFACE,
-                    new SurfaceConfig(new Identifier("eldritch_end", "hasturian_moss"))
-    );
+    // public static ConfiguredFeature<SurfaceConfig, HasturianWastesSurface> HASTURIAN_WASTES_SURFACE_CONFIGURED = new ConfiguredFeature<>(
+    //                 (HasturianWastesSurface) HASTURIAN_WASTES_SURFACE,
+    //                 new SurfaceConfig(new Identifier("eldritch_end", "hasturian_moss"))
+    // );
 
-    public static PlacedFeature HASTURIAN_WASTES_SURFACE_PLACED = new PlacedFeature(
-            RegistryEntry.of(
-                HASTURIAN_WASTES_SURFACE_CONFIGURED
-            ), List.of(SquarePlacementModifier.of())
-    );
+    // public static PlacedFeature HASTURIAN_WASTES_SURFACE_PLACED = new PlacedFeature(
+    //         RegistryEntry.of(
+    //             HASTURIAN_WASTES_SURFACE_CONFIGURED
+    //         ), List.of(SquarePlacementModifier.of())
+    // );
 
-    public static Identifier HASTURIAN_SPIKES_ID = new Identifier(EldritchEnd.MODID, "hasturian_spike");
-    public static Feature<DefaultFeatureConfig> HASTURIAN_SPIKES = new HasturianSpikeFeature(DefaultFeatureConfig.CODEC);
-    public static ConfiguredFeature<DefaultFeatureConfig, HasturianSpikeFeature> HASTURIAN_SPIKES_CONFIGURED = new ConfiguredFeature<>(
-                    (HasturianSpikeFeature) HASTURIAN_SPIKES,
-                    new DefaultFeatureConfig()
-    );
+    // public static Identifier HASTURIAN_SPIKES_ID = new Identifier(EldritchEnd.MODID, "hasturian_spike");
+    // public static Feature<DefaultFeatureConfig> HASTURIAN_SPIKES = new HasturianSpikeFeature(DefaultFeatureConfig.CODEC);
+    // public static ConfiguredFeature<DefaultFeatureConfig, HasturianSpikeFeature> HASTURIAN_SPIKES_CONFIGURED = new ConfiguredFeature<>(
+    //                 (HasturianSpikeFeature) HASTURIAN_SPIKES,
+    //                 new DefaultFeatureConfig()
+    // );
 
-    public static PlacedFeature HASTURIAN_SPIKES_PLACED = new PlacedFeature(
-            RegistryEntry.of(
-                HASTURIAN_SPIKES_CONFIGURED
-            ), List.of(SquarePlacementModifier.of())
-    );
+    // public static PlacedFeature HASTURIAN_SPIKES_PLACED = new PlacedFeature(
+    //         RegistryEntry.of(
+    //             HASTURIAN_SPIKES_CONFIGURED
+    //         ), List.of(SquarePlacementModifier.of())
+    // );
 
-    public static final Identifier PRIMORDIAL_TREES_ID = new Identifier(EldritchEnd.MODID, "primordial_tree");
+    // public static final Identifier PRIMORDIAL_TREES_ID = new Identifier(EldritchEnd.MODID, "primordial_tree");
 
-    public static Feature<TreeConfig> PRIMORDIAL_TREES = new PrimordialTreeFeature(TreeConfig.CODEC);
-    public static ConfiguredFeature<TreeConfig, PrimordialTreeFeature> PRIMORDIAL_TREE_CONFIGURED = new ConfiguredFeature<>(
-                    (PrimordialTreeFeature) PRIMORDIAL_TREES,
-                    new TreeConfig(new Identifier("eldritch_end", "primordial_log"))
-    );
+    // public static Feature<TreeConfig> PRIMORDIAL_TREES = new PrimordialTreeFeature(TreeConfig.CODEC);
+    // public static ConfiguredFeature<TreeConfig, PrimordialTreeFeature> PRIMORDIAL_TREE_CONFIGURED = new ConfiguredFeature<>(
+    //                 (PrimordialTreeFeature) PRIMORDIAL_TREES,
+    //                 new TreeConfig(new Identifier("eldritch_end", "primordial_log"))
+    // );
 
-    public static PlacedFeature PRIMORDIAL_TREE_PLACED = new PlacedFeature(
-            RegistryEntry.of(
-                PRIMORDIAL_TREE_CONFIGURED
-            ), List.of(SquarePlacementModifier.of())
-    );
+    // public static PlacedFeature PRIMORDIAL_TREE_PLACED = new PlacedFeature(
+    //         RegistryEntry.of(
+    //             PRIMORDIAL_TREE_CONFIGURED
+    //         ), List.of(SquarePlacementModifier.of())
+    // );
 
     public static void register() {
-        Registry.register(Registries.FEATURE, PRIMORDIAL_ABYSS_SURFACE_ID, PRIMORDIAL_ABYSS_SURFACE);
+        // Registry.register(Registries.FEATURE, PRIMORDIAL_ABYSS_SURFACE_ID, PRIMORDIAL_ABYSS_SURFACE);
 
-        /* Todo: fix
-        Registry.register(RegistryKeys.CONFIGURED_FEATURE, PRIMORDIAL_ABYSS_SURFACE_ID, PRIMORDIAL_ABYSS_SURFACE_CONFIGURED);
-        Registry.register(RegistryKeys.PLACED_FEATURE, PRIMORDIAL_ABYSS_SURFACE_ID, PRIMORDIAL_ABYSS_SURFACE_PLACED);
+        // Registry.register(RegistryKeys.CONFIGURED_FEATURE, PRIMORDIAL_ABYSS_SURFACE_ID, PRIMORDIAL_ABYSS_SURFACE_CONFIGURED);
+        // Registry.register(RegistryKeys.PLACED_FEATURE, PRIMORDIAL_ABYSS_SURFACE_ID, PRIMORDIAL_ABYSS_SURFACE_PLACED);
 
-        Registry.register(Registries.FEATURE, HASTURIAN_WASTES_SURFACE_ID, HASTURIAN_WASTES_SURFACE);
-        Registry.register(RegistryKeys.CONFIGURED_FEATURE, HASTURIAN_WASTES_SURFACE_ID, HASTURIAN_WASTES_SURFACE_CONFIGURED);
-        Registry.register(RegistryKeys.PLACED_FEATURE, HASTURIAN_WASTES_SURFACE_ID, HASTURIAN_WASTES_SURFACE_PLACED);
+        // Registry.register(Registries.FEATURE, HASTURIAN_WASTES_SURFACE_ID, HASTURIAN_WASTES_SURFACE);
+        // Registry.register(RegistryKeys.CONFIGURED_FEATURE, HASTURIAN_WASTES_SURFACE_ID, HASTURIAN_WASTES_SURFACE_CONFIGURED);
+        // Registry.register(RegistryKeys.PLACED_FEATURE, HASTURIAN_WASTES_SURFACE_ID, HASTURIAN_WASTES_SURFACE_PLACED);
 
-        Registry.register(Registries.FEATURE, PRIMORDIAL_TREES_ID, PRIMORDIAL_TREES);
-        Registry.register(RegistryKeys.CONFIGURED_FEATURE, PRIMORDIAL_TREES_ID, PRIMORDIAL_TREE_CONFIGURED);
-        Registry.register(RegistryKeys.PLACED_FEATURE, PRIMORDIAL_TREES_ID, PRIMORDIAL_TREE_PLACED);
+        // Registry.register(Registries.FEATURE, PRIMORDIAL_TREES_ID, PRIMORDIAL_TREES);
+        // Registry.register(RegistryKeys.CONFIGURED_FEATURE, PRIMORDIAL_TREES_ID, PRIMORDIAL_TREE_CONFIGURED);
+        // Registry.register(RegistryKeys.PLACED_FEATURE, PRIMORDIAL_TREES_ID, PRIMORDIAL_TREE_PLACED);
 
-        Registry.register(Registries.FEATURE, HASTURIAN_SPIKES_ID, HASTURIAN_SPIKES);
-        Registry.register(RegistryKeys.CONFIGURED_FEATURE, HASTURIAN_SPIKES_ID, HASTURIAN_SPIKES_CONFIGURED);
-        Registry.register(RegistryKeys.PLACED_FEATURE, HASTURIAN_SPIKES_ID, HASTURIAN_SPIKES_PLACED);
-         */
+        // Registry.register(Registries.FEATURE, HASTURIAN_SPIKES_ID, HASTURIAN_SPIKES);
+        // Registry.register(RegistryKeys.CONFIGURED_FEATURE, HASTURIAN_SPIKES_ID, HASTURIAN_SPIKES_CONFIGURED);
+        // Registry.register(RegistryKeys.PLACED_FEATURE, HASTURIAN_SPIKES_ID, HASTURIAN_SPIKES_PLACED);
 
     }
 }

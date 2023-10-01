@@ -28,7 +28,6 @@ import net.minecraft.world.World;
 
 
 public class AberrationEntity extends HostileEntity implements GeoEntity {
-    @SuppressWarnings("removal")
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
 
     public AberrationEntity(EntityType<? extends HostileEntity> entityType, World world) {

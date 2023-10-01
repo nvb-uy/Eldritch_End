@@ -1,33 +1,16 @@
 package elocindev.eldritch_end.worldgen.biome;
 
 import elocindev.eldritch_end.config.Configs;
-import elocindev.eldritch_end.registry.BiomeRegistry;
-import elocindev.eldritch_end.registry.FeatureRegistry;
-import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
-import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.feature.EndPlacedFeatures;
-import net.minecraft.world.gen.feature.PlacedFeature;
 
 public class HasturianWastes {
-	public static void register() {
-		/* todo: fix
-		Registry.register(BuiltinRegistries.BIOME, BiomeRegistry.HASTURIAN_WASTES.getValue(), createHasturianWastes());
-		 */
-	}
-	
-	private static Biome createHasturianWastes() {
-		GenerationSettings.Builder builder = new GenerationSettings.Builder()
-				.feature(GenerationStep.Feature.SURFACE_STRUCTURES, (RegistryEntry<PlacedFeature>) EndPlacedFeatures.END_SPIKE);
+	public static void load() {}
+
+	public static Biome createHasturianWastes() {
+		GenerationSettings.Builder builder = new GenerationSettings.Builder();
 		return compose(builder);
 	}
 
@@ -48,16 +31,16 @@ public class HasturianWastes {
 	}
 
     public static void registerModifications() {
-		BiomeModifications.addFeature(
-            BiomeSelectors.includeByKey(BiomeRegistry.HASTURIAN_WASTES),
-            GenerationStep.Feature.LOCAL_MODIFICATIONS,
-            RegistryKey.of(RegistryKeys.PLACED_FEATURE, FeatureRegistry.HASTURIAN_WASTES_SURFACE_ID)
-        );
+		// BiomeModifications.addFeature(
+        //     BiomeSelectors.includeByKey(BiomeRegistry.HASTURIAN_WASTES),
+        //     GenerationStep.Feature.LOCAL_MODIFICATIONS,
+        //     RegistryKey.of(RegistryKeys.PLACED_FEATURE, FeatureRegistry.HASTURIAN_WASTES_SURFACE_ID)
+        // );
 
-		BiomeModifications.addFeature(
-            BiomeSelectors.includeByKey(BiomeRegistry.HASTURIAN_WASTES),
-            GenerationStep.Feature.SURFACE_STRUCTURES,
-            RegistryKey.of(RegistryKeys.PLACED_FEATURE, FeatureRegistry.HASTURIAN_SPIKES_ID)
-        );
+		// BiomeModifications.addFeature(
+        //     BiomeSelectors.includeByKey(BiomeRegistry.HASTURIAN_WASTES),
+        //     GenerationStep.Feature.SURFACE_STRUCTURES,
+        //     RegistryKey.of(RegistryKeys.PLACED_FEATURE, FeatureRegistry.HASTURIAN_SPIKES_ID)
+        // );
     }
 }

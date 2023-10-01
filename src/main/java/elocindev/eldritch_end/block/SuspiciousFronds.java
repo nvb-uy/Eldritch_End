@@ -5,7 +5,6 @@ import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.registry.EntityRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

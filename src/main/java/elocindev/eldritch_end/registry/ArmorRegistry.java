@@ -3,7 +3,6 @@ package elocindev.eldritch_end.registry;
 import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.item.armor.EtyriteArmorMaterial;
 import elocindev.eldritch_end.item.armor.EtyriteArmorPiece;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Item;

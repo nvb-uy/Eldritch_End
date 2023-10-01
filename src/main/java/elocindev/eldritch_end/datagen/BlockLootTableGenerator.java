@@ -2,7 +2,6 @@ package elocindev.eldritch_end.datagen;
 
 import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.registry.ItemRegistry;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 

@@ -5,7 +5,6 @@ import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemStack;

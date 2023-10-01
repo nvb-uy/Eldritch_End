@@ -33,7 +33,6 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 
 public class HasturEntity extends HostileEntity implements GeoEntity {
-    @SuppressWarnings("removal")
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
 
     private final ServerBossBar bossBar;
