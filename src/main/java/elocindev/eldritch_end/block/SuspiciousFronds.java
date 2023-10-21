@@ -1,5 +1,6 @@
 package elocindev.eldritch_end.block;
 
+import elocindev.eldritch_end.effects.Corruption;
 import elocindev.eldritch_end.entity.tentacle.TentacleEntity;
 import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.registry.EntityRegistry;
@@ -26,9 +27,7 @@ public class SuspiciousFronds extends AbysmalFronds {
             player.setVelocity(0, 0.90, 0);
             player.velocityModified = true;
 
-            //todo: fix :sob:
-            //player.damage(DamageSource.mob(tentacle), 4.0f);
-
+            player.damage(Corruption.of(world, Corruption.DAMAGE), 4);
             world.setBlockState(pos, BlockRegistry.ABYSMAL_FRONDS.getDefaultState());
         }
     }
