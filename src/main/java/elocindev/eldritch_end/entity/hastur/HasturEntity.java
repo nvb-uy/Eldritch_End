@@ -53,12 +53,10 @@ public class HasturEntity extends HostileEntity implements GeoEntity {
 
     @Override
     public boolean damage(DamageSource source, float amount) {
-        /* todo: fix
-        if (source == DamageSource.OUT_OF_WORLD) {
+        if (source == this.getDamageSources().outOfWorld()) {
             this.applyDamage(source, amount);
         }
 
-         */
         return false;
     }
 
@@ -96,7 +94,7 @@ public class HasturEntity extends HostileEntity implements GeoEntity {
             lightning.setPosition(closestPlayer.getPos());
             this.getWorld().spawnEntity(lightning);
 
-            this.damage(Corruption.of(this.getWorld(), DamageTypes.OUT_OF_WORLD), damageAmount);
+            this.damage(this.getDamageSources().outOfWorld(), damageAmount);
         }
     }
 
@@ -106,7 +104,8 @@ public class HasturEntity extends HostileEntity implements GeoEntity {
         minion.setVelocity(this.getVelocity());
         minion.setPosition(this.getPos());
         this.getWorld().spawnEntity(minion);
-        this.damage(Corruption.of(this.getWorld(), DamageTypes.OUT_OF_WORLD), damageAmount);
+
+        this.damage(this.getDamageSources().outOfWorld(), damageAmount);
     }
 
     @Override
