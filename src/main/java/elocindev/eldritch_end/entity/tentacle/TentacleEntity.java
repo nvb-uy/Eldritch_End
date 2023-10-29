@@ -13,17 +13,21 @@ import mod.azure.azurelib.core.animation.RawAnimation;
 import mod.azure.azurelib.core.object.PlayState;
 import mod.azure.azurelib.util.AzureLibUtil;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 
@@ -55,6 +59,21 @@ public class TentacleEntity extends HostileEntity implements GeoEntity {
     }
 
     @Override
+    public void tickMovement() {
+        this.getWorld().getProfiler().push("ai");
+        if (this.isImmobile()) {
+            this.jumping = false;
+            this.sidewaysSpeed = 0.0F;
+            this.forwardSpeed = 0.0F;
+        } else if (this.canMoveVoluntarily()) {
+            this.getWorld().getProfiler().push("newAi");
+            this.tickNewAi();
+            this.getWorld().getProfiler().pop();
+        }
+    }
+
+
+        @Override
     public boolean tryAttack(Entity target) {
         if (target instanceof PlayerEntity victim) {
             StatusEffect effect = EffectRegistry.CORRUPTION;
