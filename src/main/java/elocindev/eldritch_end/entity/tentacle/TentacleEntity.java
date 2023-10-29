@@ -13,6 +13,7 @@ import mod.azure.azurelib.core.animation.RawAnimation;
 import mod.azure.azurelib.core.object.PlayState;
 import mod.azure.azurelib.util.AzureLibUtil;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -47,6 +48,10 @@ public class TentacleEntity extends HostileEntity implements GeoEntity {
     @Override
     public void tick() {
         super.tick();
+        if (this.getWorld().getBlockState(this.getBlockPos().down()) == Blocks.AIR.getDefaultState()) {
+            this.kill();
+        }
+
         if (this.hasStatusEffect(EffectRegistry.HASTUR_PRESENCE) && this instanceof TentacleEntity) {
             LivingEntity tentacle = new UndeadTentacleEntity(EntityRegistry.UNDEAD_TENTACLE, this.getWorld());
             tentacle.setHealth(this.getHealth());
