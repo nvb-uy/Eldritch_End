@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "eldritch_end:etyr_ingot"
+  },
+  "base": {
+    "item": "minecraft:netherite_helmet"
+  },
+  "result": {
+    "item": "eldritch_end:etyrite_helmet"
+  },
+  "template": {
+    "item": "eldritch_end:etyr_upgrade_pattern"
+  }
+}

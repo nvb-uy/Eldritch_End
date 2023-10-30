@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "eldritch_end:etyr_ingot"
+  },
+  "base": {
+    "item": "minecraft:netherite_boots"
+  },
+  "result": {
+    "item": "eldritch_end:etyrite_boots"
+  },
+  "template": {
+    "item": "eldritch_end:etyr_upgrade_pattern"
+  }
+}
