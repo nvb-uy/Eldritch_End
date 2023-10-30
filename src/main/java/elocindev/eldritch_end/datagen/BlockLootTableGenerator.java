@@ -37,6 +37,8 @@ public class BlockLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(BlockRegistry.ETYR_PILLAR, drops(BlockRegistry.ETYR_PILLAR_ITEM));
         addDrop(BlockRegistry.ETYR_TILES, drops(BlockRegistry.ETYR_TILES_ITEM));
         addDrop(BlockRegistry.ETYR_TRAPDOOR, drops(BlockRegistry.ETYR_TRAPDOOR_ITEM));
+        addDrop(BlockRegistry.ETYR_STAIRS, drops(BlockRegistry.ETYR_STAIRS_ITEM));
+        addDrop(BlockRegistry.ETYR_SLAB, drops(BlockRegistry.ETYR_SLAB_ITEM));
 
         addDrop(BlockRegistry.DECADENT_ETYR_BLOCK, drops(BlockRegistry.DECADENT_ETYR_BLOCK_ITEM));
         addDrop(BlockRegistry.DECADENT_ETYR_BARS, drops(BlockRegistry.DECADENT_ETYR_BARS_ITEM));
@@ -81,7 +83,13 @@ public class BlockLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(BlockRegistry.HASTURIAN_GRASS, dropsWithSilkTouch(BlockRegistry.HASTURIAN_GRASS));
         addDrop(BlockRegistry.ABYSMAL_ROOTS, dropsWithSilkTouch(BlockRegistry.ABYSMAL_ROOTS));
 
-        addDrop(BlockRegistry.ETYR_STAIRS, drops(BlockRegistry.ETYR_STAIRS_ITEM));
-        addDrop(BlockRegistry.ETYR_SLAB, drops(BlockRegistry.ETYR_SLAB_ITEM));
+        addDrop(BlockRegistry.SPIRE_STONE_STAIRS, drops(BlockRegistry.SPIRE_STONE_STAIRS_ITEM));
+        addDrop(BlockRegistry.SPIRE_STONE_SLAB, drops(BlockRegistry.SPIRE_STONE_SLAB_ITEM));
+        addDrop(BlockRegistry.POLISHED_SPIRE_STONE_STAIRS, drops(BlockRegistry.POLISHED_SPIRE_STONE_STAIRS_ITEM));
+        addDrop(BlockRegistry.POLISHED_SPIRE_STONE_SLAB, drops(BlockRegistry.POLISHED_SPIRE_STONE_SLAB_ITEM));
+        addDrop(BlockRegistry.POLISHED_SPIRE_STONE_BRICK_STAIRS, drops(BlockRegistry.POLISHED_SPIRE_STONE_BRICK_STAIRS_ITEM));
+        addDrop(BlockRegistry.POLISHED_SPIRE_STONE_BRICK_SLAB, drops(BlockRegistry.POLISHED_SPIRE_STONE_BRICK_SLAB_ITEM));
+        addDrop(BlockRegistry.POLISHED_SPIRE_STONE_TILE_STAIRS, drops(BlockRegistry.POLISHED_SPIRE_STONE_TILE_STAIRS_ITEM));
+        addDrop(BlockRegistry.POLISHED_SPIRE_STONE_TILE_SLAB, drops(BlockRegistry.POLISHED_SPIRE_STONE_TILE_SLAB_ITEM));
     }
 }
