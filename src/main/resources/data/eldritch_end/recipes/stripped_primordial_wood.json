@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "eldritch_end:stripped_primordial_wood"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "item": "eldritch_end:stripped_primordial_log"
+  }
+}
