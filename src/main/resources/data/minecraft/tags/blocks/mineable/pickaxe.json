@@ -41,6 +41,26 @@
     "eldritch_end:polished_spire_stone_tiles",
     "eldritch_end:chiseled_polished_spire_stone",
     "eldritch_end:cracked_polished_spire_stone_bricks",
-    "eldritch_end:cracked_polished_spire_stone_tiles"
+    "eldritch_end:cracked_polished_spire_stone_tiles",
+
+    "eldritch_end:spire_stone_stairs",
+    "eldritch_end:polished_spire_stone_stairs",
+    "eldritch_end:polished_spire_stone_brick_stairs",
+    "eldritch_end:polished_spire_stone_tile_stairs",
+
+    "eldritch_end:spire_stone_slab",
+    "eldritch_end:polished_spire_stone_slab",
+    "eldritch_end:polished_spire_stone_brick_slab",
+    "eldritch_end:polished_spire_stone_tile_slab",
+
+    "eldritch_end:etyr_stairs",
+    "eldritch_end:corrupted_etyr_stairs",
+    "eldritch_end:perturbed_etyr_stairs",
+    "eldritch_end:decadent_etyr_stairs",
+
+    "eldritch_end:etyr_slab",
+    "eldritch_end:corrupted_etyr_slab",
+    "eldritch_end:perturbed_etyr_slab",
+    "eldritch_end:decadent_etyr_slab"
   ]
 }
