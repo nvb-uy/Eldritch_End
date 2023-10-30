@@ -4,10 +4,20 @@ import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.registry.ItemRegistry;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
+import net.minecraft.block.Block;
+import net.minecraft.enchantment.Enchantments;
+import net.minecraft.loot.condition.TableBonusLootCondition;
+import net.minecraft.loot.entry.ItemEntry;
 
 public class BlockLootTableGenerator extends FabricBlockLootTableProvider {
     protected BlockLootTableGenerator(FabricDataOutput dataOutput) {
         super(dataOutput);
+    }
+
+    public void addLeafDrop(Block block, Block drop) {
+        net.minecraft.loot.LootTable.Builder builder = leavesDrops(block, drop);
+        this.addDrop(block, builder);
+        this.addDrop(drop, builder);
     }
 
     @Override
@@ -91,5 +101,7 @@ public class BlockLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(BlockRegistry.POLISHED_SPIRE_STONE_BRICK_SLAB, drops(BlockRegistry.POLISHED_SPIRE_STONE_BRICK_SLAB_ITEM));
         addDrop(BlockRegistry.POLISHED_SPIRE_STONE_TILE_STAIRS, drops(BlockRegistry.POLISHED_SPIRE_STONE_TILE_STAIRS_ITEM));
         addDrop(BlockRegistry.POLISHED_SPIRE_STONE_TILE_SLAB, drops(BlockRegistry.POLISHED_SPIRE_STONE_TILE_SLAB_ITEM));
+
+        addLeafDrop(BlockRegistry.PRIMORDIAL_LEAVES, BlockRegistry.PRIMORDIAL_LEAVES);
     }
 }
