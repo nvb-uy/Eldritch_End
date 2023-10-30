@@ -122,8 +122,7 @@ public class ItemGroupRegistry {
             entries.add(new ItemStack(ItemRegistry.TENTACLE_SPAWN_EGG));
             entries.add(new ItemStack(ItemRegistry.HASTUR_CROWN));
 
-    }).build());
-    // Todo: fix: .build().setTexture("eldritchend.png").hideName();
+    }).texture("eldritchend.png").noRenderedName().build());
 
     public static void register() {}
 }
