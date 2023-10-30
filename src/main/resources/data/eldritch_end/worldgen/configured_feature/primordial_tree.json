@@ -1,0 +1,7 @@
+{
+  "type": "eldritch_end:primordial_tree",
+  "config": {
+    "blockID": "eldritch_end:primordial_log",
+    "decorators": []
+  }
+}

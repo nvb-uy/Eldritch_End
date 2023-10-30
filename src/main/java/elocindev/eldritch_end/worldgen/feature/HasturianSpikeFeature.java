@@ -21,7 +21,10 @@ public class HasturianSpikeFeature extends Feature<DefaultFeatureConfig> {
     }
 
     public static boolean canBePlaced(StructureWorldAccess world, BlockPos position) {
-        return world.getBlockState(position).getBlock() == BlockRegistry.HASTURIAN_MOSS;
+
+        // Todo: fix
+        // return world.getBlockState(position).getBlock() == BlockRegistry.HASTURIAN_MOSS;
+        return true;
     }
 
     @Override

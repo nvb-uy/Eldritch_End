@@ -1,0 +1,7 @@
+{
+  "type": "eldritch_end:hasturian_wastes_surface",
+  "config": {
+    "blockID": "eldritch_end:hasturian_moss",
+    "decorators": []
+  }
+}
