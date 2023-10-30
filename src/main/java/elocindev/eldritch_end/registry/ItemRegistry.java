@@ -23,9 +23,9 @@ import elocindev.eldritch_end.item.Chorb;
 public class ItemRegistry {
     private static final Logger LOGGER = LoggerFactory.getLogger(EldritchEnd.MODID);
 
-    public static final Item ABERRATION_SPAWN_EGG = new AberrationEgg(EntityRegistry.ABERRATION, 0x54496f, 0x726f76, new FabricItemSettings());    
+    public static final Item ABERRATION_SPAWN_EGG = new AberrationEgg(EntityRegistry.ABERRATION, 0x54496f, 0xC76800, new FabricItemSettings());
     public static final Item TENTACLE_SPAWN_EGG = new TentacleEgg(EntityRegistry.TENTACLE, 0x54496f, 0x9a87b0, new FabricItemSettings());
-    public static final Item UNDEAD_TENTACLE_SPAWN_EGG = new TentacleEgg(EntityRegistry.UNDEAD_TENTACLE, 0x54496f, 0x9a87b0, new FabricItemSettings());
+    public static final Item UNDEAD_TENTACLE_SPAWN_EGG = new TentacleEgg(EntityRegistry.UNDEAD_TENTACLE, 0x29221D, 0x816445,  new FabricItemSettings());
     public static final Item HASTUR_CROWN = new HastursCrown(EntityRegistry.HASTUR, 0xFFFFFF, 0xFFFFFF, new FabricItemSettings());
 
     public static final Item NECRONOMICON = new Necronomicon(new FabricItemSettings());

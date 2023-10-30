@@ -187,9 +187,13 @@ public class ModelGenerator extends FabricModelProvider {
         TextureMap textureMap = TextureMap.all(plankBlock);
         TextureMap textureMap2 = TextureMap.sideEnd(TextureMap.getSubId(plankBlock, ""), textureMap.getTexture(TextureKey.TOP));
 
-        Identifier identifier = Models.STAIRS.upload(stairBlock, textureMap2, modelCollector);
+        Identifier innerModel = Models.INNER_STAIRS.upload(stairBlock, textureMap2, modelCollector);
+        Identifier regularModel = Models.STAIRS.upload(stairBlock, textureMap2, modelCollector);
+        Identifier outerModel = Models.OUTER_STAIRS.upload(stairBlock, textureMap2, modelCollector);
 
-        blockStateCollector.accept(createStairsBlockState(stairBlock, identifier, identifier, identifier));
+        //Block stairsBlock, Identifier innerModelId, Identifier regularModelId, Identifier outerModelId
+
+        blockStateCollector.accept(createStairsBlockState(stairBlock, innerModel, regularModel, outerModel));
     }
 
     public final void registerFronds(Block block, BiConsumer<Identifier, Supplier<JsonElement>> modelCollector, Consumer<BlockStateSupplier> blockStateCollector) {

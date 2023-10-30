@@ -238,7 +238,7 @@ public class BlockRegistry {
     public static final Block POLISHED_SPIRE_STONE_BRICKS = new Block(FabricBlockSettings.copyOf(Blocks.STONE));
     public static final BlockItem POLISHED_SPIRE_STONE_BRICKS_ITEM = new BlockItem(POLISHED_SPIRE_STONE_BRICKS, new FabricItemSettings());
 
-    public static final Block POLISHED_SPIRE_STONE_PILLAR = new Block(FabricBlockSettings.copyOf(Blocks.STONE));
+    public static final Block POLISHED_SPIRE_STONE_PILLAR = new PillarBlock(FabricBlockSettings.copyOf(Blocks.QUARTZ_PILLAR));
     public static final BlockItem POLISHED_SPIRE_STONE_PILLAR_ITEM = new BlockItem(POLISHED_SPIRE_STONE_PILLAR, new FabricItemSettings());
 
     public static final Block POLISHED_SPIRE_STONE_TILES = new Block(FabricBlockSettings.copyOf(Blocks.STONE));
