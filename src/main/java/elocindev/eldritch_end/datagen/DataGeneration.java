@@ -1,7 +1,6 @@
 package elocindev.eldritch_end.datagen;
 
 import elocindev.eldritch_end.registry.BiomeRegistry;
-import elocindev.eldritch_end.worldgen.WorldgenProvider;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.minecraft.registry.RegistryBuilder;

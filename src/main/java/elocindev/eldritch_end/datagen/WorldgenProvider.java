@@ -1,4 +1,4 @@
-package elocindev.eldritch_end.worldgen;
+package elocindev.eldritch_end.datagen;
 
 import java.util.concurrent.CompletableFuture;
 
