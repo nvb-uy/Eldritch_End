@@ -1,7 +1,6 @@
 package elocindev.eldritch_end.entity.hastur;
 
 import elocindev.eldritch_end.config.Configs;
-import elocindev.eldritch_end.effects.Corruption;
 import mod.azure.azurelib.animatable.GeoEntity;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
 import mod.azure.azurelib.core.animation.AnimatableManager;
@@ -22,7 +21,6 @@ import net.minecraft.entity.boss.ServerBossBar;
 import net.minecraft.entity.boss.BossBar.Color;
 import net.minecraft.entity.boss.BossBar.Style;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.HuskEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -116,7 +114,7 @@ public class HasturEntity extends HostileEntity implements GeoEntity {
     public static DefaultAttributeContainer.Builder setAttributes() {
         return HostileEntity.createMobAttributes()
         // TODO: REPLACE THIS WITH CUSTOM HASTUR CONFIG
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, Configs.BOSS_HASTUR.HEALTH_ATTRIBUTE)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, Configs.Entity.HASTUR.HEALTH_ATTRIBUTE)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1)
                 .add(EntityAttributes.GENERIC_ATTACK_SPEED, 1)

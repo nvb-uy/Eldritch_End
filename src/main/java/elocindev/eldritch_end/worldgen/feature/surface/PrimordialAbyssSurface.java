@@ -40,7 +40,7 @@ public class PrimordialAbyssSurface extends Feature<SurfaceConfig> {
         int centerZ = origin.getZ() + world.getRandom().nextInt(4);
         
         // Tendril Generation
-        if (Configs.BIOME_PRIMORDIAL_ABYSS.enable_tendril_patches && world.getRandom().nextInt(100) <= Configs.BIOME_PRIMORDIAL_ABYSS.tendril_patch_chance) {
+        if (Configs.Biome.PRIMORDIAL_ABYSS.enable_tendril_patches && world.getRandom().nextInt(100) <= Configs.Biome.PRIMORDIAL_ABYSS.tendril_patch_chance) {
             BlockPos targetPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, new BlockPos(centerX, 0, centerZ)).down();
 
             TendrilFactory.genRandomShape(world, targetPos, BlockRegistry.ABYSMAL_TENDRILS.getDefaultState(), BlockRegistry.SUSPICIOUS_FRONDS.getDefaultState());
@@ -69,7 +69,7 @@ public class PrimordialAbyssSurface extends Feature<SurfaceConfig> {
                         
                         world.setBlockState(targetPos, blockState, 3);
                     
-                        if (Configs.BIOME_PRIMORDIAL_ABYSS.enable_roots_generation && world.getRandom().nextInt(100) <= Configs.BIOME_PRIMORDIAL_ABYSS.roots_generation_chance)
+                        if (Configs.Biome.PRIMORDIAL_ABYSS.enable_roots_generation && world.getRandom().nextInt(100) <= Configs.Biome.PRIMORDIAL_ABYSS.roots_generation_chance)
                             world.setBlockState(targetPos.up(), BlockRegistry.ABYSMAL_ROOTS.getDefaultState(), 3);
 
                         generated = true;

@@ -14,21 +14,15 @@ import mod.azure.azurelib.core.object.PlayState;
 import mod.azure.azurelib.util.AzureLibUtil;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 
@@ -86,11 +80,11 @@ public class TentacleEntity extends HostileEntity implements GeoEntity {
             if (victim.hasStatusEffect(effect)) {
                 victim.addStatusEffect(new StatusEffectInstance(effect, victim.getStatusEffect(effect).getDuration(), victim.getStatusEffect(effect).getAmplifier() + 1, false, false));
                 
-                float extradamage = ((float) Configs.ENTITY_ABERRATION.ATTACK_DAMAGE_ATTRIBUTE * 0.25f) * (victim.getStatusEffect(effect).getAmplifier() + 1);
+                float extradamage = ((float) Configs.Entity.ABERRATION.ATTACK_DAMAGE_ATTRIBUTE * 0.25f) * (victim.getStatusEffect(effect).getAmplifier() + 1);
                 
                 victim.damage(Corruption.of(this.getWorld(), Corruption.DAMAGE), extradamage);
             } else
-                victim.addStatusEffect(new StatusEffectInstance(effect, Configs.ENTITY_ABERRATION.initital_corruption_duration_ticks, 0, false, false));
+                victim.addStatusEffect(new StatusEffectInstance(effect, Configs.Entity.ABERRATION.initital_corruption_duration_ticks, 0, false, false));
         }
 
         return super.tryAttack(target);
@@ -98,10 +92,10 @@ public class TentacleEntity extends HostileEntity implements GeoEntity {
 
     public static DefaultAttributeContainer.Builder setAttributes() {
         return HostileEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, Configs.ENTITY_TENTACLE.HEALTH_ATTRIBUTE)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, Configs.Entity.TENTACLE.HEALTH_ATTRIBUTE)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, Configs.ENTITY_TENTACLE.ATTACK_DAMAGE_ATTRIBUTE)
-                .add(EntityAttributes.GENERIC_ATTACK_SPEED, Configs.ENTITY_TENTACLE.ATTACK_SPEED_ATTRIBUTE)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, Configs.Entity.TENTACLE.ATTACK_DAMAGE_ATTRIBUTE)
+                .add(EntityAttributes.GENERIC_ATTACK_SPEED, Configs.Entity.TENTACLE.ATTACK_SPEED_ATTRIBUTE)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 100)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 2);
     }

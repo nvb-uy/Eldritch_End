@@ -108,7 +108,7 @@ public class TreeFactory {
             world.setBlockState(pos.up(i), block, 3);
         }
 
-        if (Configs.BIOME_PRIMORDIAL_ABYSS.enable_leaves_generation)
+        if (Configs.Biome.PRIMORDIAL_ABYSS.enable_leaves_generation)
             for (int i = 0; i < fix_leaves.length; i++) {
                 world.setBlockState(fix_leaves[i], BlockRegistry.PRIMORDIAL_LEAVES.getDefaultState(), 3);
             }
@@ -171,7 +171,7 @@ public class TreeFactory {
             world.setBlockState(positions[i], log, 3);
         }
         
-        if ((Configs.BIOME_PRIMORDIAL_ABYSS.enable_leaves_generation)) {
+        if ((Configs.Biome.PRIMORDIAL_ABYSS.enable_leaves_generation)) {
             for (int i = 0; i < positions.length; i++) {
                 if (world.getBlockState(positions[i].up()).isOf(log.getBlock())) {
                     for (int x = -1; x < 2; x++) {

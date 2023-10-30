@@ -69,7 +69,7 @@ public class HasturianWastesSurface extends Feature<SurfaceConfig> {
                             for (int i = 0; i < 4; i++)
                                 if (canPlace(world, targetPos.down(i)) && world.getBlockState(targetPos.down(i+1)).getBlock() != Blocks.AIR) world.setBlockState(targetPos.down(i), BlockRegistry.HASTURIAN_SAND.getDefaultState(), 3);
                         } else {
-                            if (Configs.BIOME_HASTURIAN_WASTES.enable_grass_generation && world.getRandom().nextInt(100) <= Configs.BIOME_HASTURIAN_WASTES.grass_generation_chance
+                            if (Configs.Biome.HASTURIAN_WASTES.enable_grass_generation && world.getRandom().nextInt(100) <= Configs.Biome.HASTURIAN_WASTES.grass_generation_chance
                             && world.getBlockState(targetPos.up()).getBlock() == Blocks.AIR)
                                 world.setBlockState(targetPos.up(), BlockRegistry.HASTURIAN_GRASS.getDefaultState(), 3);
                         }

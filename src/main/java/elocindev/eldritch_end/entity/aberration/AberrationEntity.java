@@ -36,8 +36,8 @@ public class AberrationEntity extends HostileEntity implements GeoEntity {
 
     @Override
     protected void initGoals() {
-        this.goalSelector.add(2, new MeleeAttackGoal(this, Configs.ENTITY_ABERRATION.CHASE_SPEED, false));
-        this.goalSelector.add(7, new WanderAroundFarGoal(this, Configs.ENTITY_ABERRATION.WANDER_SPEED));
+        this.goalSelector.add(2, new MeleeAttackGoal(this, Configs.Entity.ABERRATION.CHASE_SPEED, false));
+        this.goalSelector.add(7, new WanderAroundFarGoal(this, Configs.Entity.ABERRATION.WANDER_SPEED));
         this.goalSelector.add(8, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.add(8, new LookAroundGoal(this));
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
@@ -62,9 +62,9 @@ public class AberrationEntity extends HostileEntity implements GeoEntity {
             if (victim.hasStatusEffect(effect)) {
                 victim.addStatusEffect(new StatusEffectInstance(effect, victim.getStatusEffect(effect).getDuration(), victim.getStatusEffect(effect).getAmplifier() + 1, false, false));
                 
-                victim.damage(Corruption.of(this.getWorld(), Corruption.DAMAGE), CorruptionUtils.getDamageAmount(victim, (float) Configs.ENTITY_ABERRATION.ATTACK_DAMAGE_ATTRIBUTE * 0.25f, true));
+                victim.damage(Corruption.of(this.getWorld(), Corruption.DAMAGE), CorruptionUtils.getDamageAmount(victim, (float) Configs.Entity.ABERRATION.ATTACK_DAMAGE_ATTRIBUTE * 0.25f, true));
             } else
-                victim.addStatusEffect(new StatusEffectInstance(effect, Configs.ENTITY_ABERRATION.initital_corruption_duration_ticks, 0, false, false));
+                victim.addStatusEffect(new StatusEffectInstance(effect, Configs.Entity.ABERRATION.initital_corruption_duration_ticks, 0, false, false));
         }
 
         return super.tryAttack(target);
@@ -72,10 +72,10 @@ public class AberrationEntity extends HostileEntity implements GeoEntity {
 
     public static DefaultAttributeContainer.Builder setAttributes() {
         return HostileEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, Configs.ENTITY_ABERRATION.HEALTH_ATTRIBUTE)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, Configs.ENTITY_ABERRATION.MOVEMENT_SPEED_ATTRIBUTE)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, Configs.ENTITY_ABERRATION.ATTACK_DAMAGE_ATTRIBUTE)
-                .add(EntityAttributes.GENERIC_ATTACK_SPEED, Configs.ENTITY_ABERRATION.ATTACK_SPEED_ATTRIBUTE);
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, Configs.Entity.ABERRATION.HEALTH_ATTRIBUTE)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, Configs.Entity.ABERRATION.MOVEMENT_SPEED_ATTRIBUTE)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, Configs.Entity.ABERRATION.ATTACK_DAMAGE_ATTRIBUTE)
+                .add(EntityAttributes.GENERIC_ATTACK_SPEED, Configs.Entity.ABERRATION.ATTACK_SPEED_ATTRIBUTE);
     }
 
     @Override

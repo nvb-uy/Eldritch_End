@@ -19,7 +19,7 @@ public class HasturianWastes {
 
 		return (new Biome.Builder())
 		.precipitation(false)
-		.temperature(Configs.BIOME_PRIMORDIAL_ABYSS.biome_temperature)
+		.temperature(Configs.Biome.PRIMORDIAL_ABYSS.biome_temperature)
 		.downfall(0.1F)
 		
 		.effects((new BiomeEffects.Builder())

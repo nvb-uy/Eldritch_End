@@ -5,9 +5,6 @@ import elocindev.eldritch_end.registry.ItemRegistry;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.block.Block;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.loot.condition.TableBonusLootCondition;
-import net.minecraft.loot.entry.ItemEntry;
 
 public class BlockLootTableGenerator extends FabricBlockLootTableProvider {
     protected BlockLootTableGenerator(FabricDataOutput dataOutput) {

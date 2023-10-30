@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "eldritch_end:block/perturbed_etyr_tiles",
+    "side": "eldritch_end:block/perturbed_etyr_tiles",
+    "top": "eldritch_end:block/perturbed_etyr_tiles"
+  }
+}

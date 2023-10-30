@@ -29,10 +29,10 @@ public class UndeadTentacleEntity extends TentacleEntity {
 
     public static DefaultAttributeContainer.Builder setAttributes() {
         return HostileEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, Configs.ENTITY_TENTACLE.HEALTH_ATTRIBUTE)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, Configs.Entity.TENTACLE.HEALTH_ATTRIBUTE)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, Configs.ENTITY_TENTACLE.ATTACK_DAMAGE_ATTRIBUTE)
-                .add(EntityAttributes.GENERIC_ATTACK_SPEED, Configs.ENTITY_TENTACLE.ATTACK_SPEED_ATTRIBUTE)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, Configs.Entity.TENTACLE.ATTACK_DAMAGE_ATTRIBUTE)
+                .add(EntityAttributes.GENERIC_ATTACK_SPEED, Configs.Entity.TENTACLE.ATTACK_SPEED_ATTRIBUTE)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 100)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 2);
     }

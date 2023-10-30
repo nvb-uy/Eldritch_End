@@ -23,14 +23,14 @@ public class PrimordialAbyss {
 	private static Biome compose(GenerationSettings.Builder builder) {
 		SpawnSettings.Builder settings = new SpawnSettings.Builder();
 
-		if (Configs.BIOME_PRIMORDIAL_ABYSS.spawn_aberrations)
+		if (Configs.Biome.PRIMORDIAL_ABYSS.spawn_aberrations)
 			addAberrations(settings);
 
 		ParticleEffect ambientParticle = ParticleTypes.ASH;
 
 		return (new Biome.Builder())
 		.precipitation(false)
-		.temperature(Configs.BIOME_PRIMORDIAL_ABYSS.biome_temperature)
+		.temperature(Configs.Biome.PRIMORDIAL_ABYSS.biome_temperature)
 		.downfall(0.1F)
 		
 		.effects((new BiomeEffects.Builder())

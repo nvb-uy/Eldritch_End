@@ -22,7 +22,7 @@ public abstract class BackgroundRendererMixin {
 
 	@Inject(method = "applyFog", at = @At("TAIL"))
 	private static void eldritch_end_applyFog(Camera camera, BackgroundRenderer.FogType fogType, float viewDistance, boolean thickFog, float tickDelta, CallbackInfo ci) {
-		if (!Configs.CLIENT_CONFIG.enable_fog) return;
+		if (!Configs.Client.CLIENT_CONFIG.enable_fog) return;
 
 		MinecraftClient client = MinecraftClient.getInstance();
 		ClientWorld world = client.world;
