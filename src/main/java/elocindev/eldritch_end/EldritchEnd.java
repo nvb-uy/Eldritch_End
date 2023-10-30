@@ -30,5 +30,6 @@ public class EldritchEnd implements ModInitializer {
 		// FeatureRegistry.register();
 		EffectRegistry.register();
 		ItemGroupRegistry.register();
+		WorldgenRegistry.register();
 	}
 }
