@@ -21,12 +21,14 @@ public class BlockLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(BlockRegistry.STRIPPED_PRIMORDIAL_WOOD, drops(BlockRegistry.STRIPPED_PRIMORDIAL_WOOD_ITEM));
         addDrop(BlockRegistry.PRIMORDIAL_PLANKS, drops(BlockRegistry.PRIMORDIAL_PLANKS_ITEM));
         addDrop(BlockRegistry.PRIMORDIAL_SLAB, drops(BlockRegistry.PRIMORDIAL_SLAB_ITEM));
+        addDrop(BlockRegistry.PRIMORDIAL_STAIRS, drops(BlockRegistry.PRIMORDIAL_STAIRS_ITEM));
         addDrop(BlockRegistry.PRIMORDIAL_PRESSURE_PLATE, drops(BlockRegistry.PRIMORDIAL_PRESSURE_PLATE_ITEM));
         addDrop(BlockRegistry.PRIMORDIAL_DOOR, doorDrops(BlockRegistry.PRIMORDIAL_DOOR));
         addDrop(BlockRegistry.PRIMORDIAL_TRAPDOOR, drops(BlockRegistry.PRIMORDIAL_TRAPDOOR_ITEM));
         addDrop(BlockRegistry.PRIMORDIAL_SIGN, drops(BlockRegistry.PRIMORDIAL_WALL_SIGN));
         addDrop(BlockRegistry.PRIMORDIAL_FENCE, drops(BlockRegistry.PRIMORDIAL_FENCE_ITEM));
         addDrop(BlockRegistry.PRIMORDIAL_FENCE_GATE, drops(BlockRegistry.PRIMORDIAL_FENCE_GATE_ITEM));
+        addDrop(BlockRegistry.PRIMORDIAL_BUTTON, drops(BlockRegistry.PRIMORDIAL_BUTTON_ITEM));
 
         addDrop(BlockRegistry.ETYR_ORE, (blockx) -> oreDrops(blockx, ItemRegistry.RAW_ETYR));
         addDrop(BlockRegistry.ETYR_BLOCK, drops(BlockRegistry.ETYR_BLOCK_ITEM));
