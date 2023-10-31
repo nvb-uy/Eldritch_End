@@ -2,6 +2,9 @@
     "itemGroup.eldritch_end":"Eldritch End",
     "death.attack.corruption": "%1$s fell victim to the corruption...",
 
+    "biome.eldritch_end.hasturian_wastes": "Hasturian Wastes",
+    "biome.eldritch_end.primordial_abyss": "Primordial Abyss",
+
     "block.eldritch_end.abysmal_fronds":"Abysmal Fronds",
     "block.eldritch_end.abysmal_roots": "Abysmal Roots",
     "block.eldritch_end.suspicious_fronds":"Suspicious Fronds",
@@ -107,7 +110,7 @@
 
     "effect.eldritch_end.corruption": "Corruption",
     "effect.eldritch_end.hastur_presence": "Hastur's Presence",
-    
+
     "entity.eldritch_end.aberration": "Aberration",
     "entity.eldritch_end.tentacle": "Tentacle",
     "entity.eldritch_end.hastur": "Hastur's Image"
