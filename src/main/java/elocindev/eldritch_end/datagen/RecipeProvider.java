@@ -1,12 +1,14 @@
 package elocindev.eldritch_end.datagen;
 
 import elocindev.eldritch_end.registry.BlockRegistry;
+import elocindev.eldritch_end.registry.ItemRegistry;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
+import net.minecraft.item.Item;
 import net.minecraft.recipe.book.RecipeCategory;
 
 import java.util.function.Consumer;
@@ -55,6 +57,11 @@ public class RecipeProvider extends FabricRecipeProvider {
         generateDoorRecipe(BlockRegistry.PERTURBED_ETYR_BLOCK, BlockRegistry.PERTURBED_ETYR_DOOR, exporter);
         generateDoorRecipe(BlockRegistry.CORRUPTED_ETYR_BLOCK, BlockRegistry.CORRUPTED_ETYR_DOOR, exporter);
         generateDoorRecipe(BlockRegistry.PRIMORDIAL_PLANKS, BlockRegistry.PRIMORDIAL_DOOR, exporter);
+
+        generateEtyrBarsRecipe(BlockRegistry.ETYR_BLOCK, BlockRegistry.ETYR_BARS, exporter);
+        generateEtyrBarsRecipe(BlockRegistry.DECADENT_ETYR_BLOCK, BlockRegistry.DECADENT_ETYR_BARS, exporter);
+        generateEtyrBarsRecipe(BlockRegistry.PERTURBED_ETYR_BLOCK, BlockRegistry.PERTURBED_ETYR_BARS, exporter);
+        generateEtyrBarsRecipe(BlockRegistry.CORRUPTED_ETYR_BLOCK, BlockRegistry.CORRUPTED_ETYR_BARS, exporter);
     }
 
     private void generateStairsRecipe(Block inputBlock, Block stairBlock, Consumer<RecipeJsonProvider> exporter) {
@@ -92,6 +99,17 @@ public class RecipeProvider extends FabricRecipeProvider {
     private void generateDoorRecipe(Block inputBlock, Block doorBlock, Consumer<RecipeJsonProvider> exporter) {
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, doorBlock).pattern("##").pattern("##").pattern("##")
                 .input('#', inputBlock)
+                .criterion(FabricRecipeProvider.hasItem(inputBlock),
+                        FabricRecipeProvider.conditionsFromItem(inputBlock))
+                .offerTo(exporter);
+    }
+
+    private void generateEtyrBarsRecipe(Block inputBlock, Block barBlock, Consumer<RecipeJsonProvider> exporter) {
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, barBlock).pattern("-#-").pattern("#-#")
+                .input('#', inputBlock)
+                .input('-', ItemRegistry.ETYR_INGOT)
+                .criterion(FabricRecipeProvider.hasItem(ItemRegistry.ETYR_INGOT),
+                        FabricRecipeProvider.conditionsFromItem(ItemRegistry.ETYR_INGOT))
                 .criterion(FabricRecipeProvider.hasItem(inputBlock),
                         FabricRecipeProvider.conditionsFromItem(inputBlock))
                 .offerTo(exporter);
