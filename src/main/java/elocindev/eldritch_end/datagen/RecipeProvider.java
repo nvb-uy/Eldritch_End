@@ -49,6 +49,12 @@ public class RecipeProvider extends FabricRecipeProvider {
         generateTrapdoorRecipe(BlockRegistry.PERTURBED_ETYR_BLOCK, BlockRegistry.PERTURBED_ETYR_TRAPDOOR, exporter);
         generateTrapdoorRecipe(BlockRegistry.CORRUPTED_ETYR_BLOCK, BlockRegistry.CORRUPTED_ETYR_TRAPDOOR, exporter);
         generateTrapdoorRecipe(BlockRegistry.PRIMORDIAL_PLANKS, BlockRegistry.PRIMORDIAL_TRAPDOOR, exporter);
+
+        generateDoorRecipe(BlockRegistry.ETYR_BLOCK, BlockRegistry.ETYR_DOOR, exporter);
+        generateDoorRecipe(BlockRegistry.DECADENT_ETYR_BLOCK, BlockRegistry.DECADENT_ETYR_DOOR, exporter);
+        generateDoorRecipe(BlockRegistry.PERTURBED_ETYR_BLOCK, BlockRegistry.PERTURBED_ETYR_DOOR, exporter);
+        generateDoorRecipe(BlockRegistry.CORRUPTED_ETYR_BLOCK, BlockRegistry.CORRUPTED_ETYR_DOOR, exporter);
+        generateDoorRecipe(BlockRegistry.PRIMORDIAL_PLANKS, BlockRegistry.PRIMORDIAL_DOOR, exporter);
     }
 
     private void generateStairsRecipe(Block inputBlock, Block stairBlock, Consumer<RecipeJsonProvider> exporter) {
@@ -77,6 +83,14 @@ public class RecipeProvider extends FabricRecipeProvider {
 
     private void generateTrapdoorRecipe(Block inputBlock, Block trapdoorBlock, Consumer<RecipeJsonProvider> exporter) {
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, trapdoorBlock).pattern("###").pattern("###")
+                .input('#', inputBlock)
+                .criterion(FabricRecipeProvider.hasItem(inputBlock),
+                        FabricRecipeProvider.conditionsFromItem(inputBlock))
+                .offerTo(exporter);
+    }
+
+    private void generateDoorRecipe(Block inputBlock, Block doorBlock, Consumer<RecipeJsonProvider> exporter) {
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, doorBlock).pattern("##").pattern("##").pattern("##")
                 .input('#', inputBlock)
                 .criterion(FabricRecipeProvider.hasItem(inputBlock),
                         FabricRecipeProvider.conditionsFromItem(inputBlock))
