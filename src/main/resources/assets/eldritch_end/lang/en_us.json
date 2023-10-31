@@ -1,6 +1,7 @@
 {
     "itemGroup.eldritch_end":"Eldritch End",
     "death.attack.corruption": "%1$s fell victim to the corruption...",
+    "death.attack.corruption.player": "%1$s fell victim to the corruption...",
 
     "biome.eldritch_end.hasturian_wastes": "Hasturian Wastes",
     "biome.eldritch_end.primordial_abyss": "Primordial Abyss",
