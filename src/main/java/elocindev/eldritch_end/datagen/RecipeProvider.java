@@ -83,7 +83,7 @@ public class RecipeProvider extends FabricRecipeProvider {
         generateTileRecipe(BlockRegistry.POLISHED_SPIRE_STONE, BlockRegistry.POLISHED_SPIRE_STONE_BRICKS, exporter);
 
         // Chiseled Polished spire stone
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, BlockRegistry.CHISELED_POLISHED_SPIRE_STONE).pattern("#").pattern("#")
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, BlockRegistry.CHISELED_POLISHED_SPIRE_STONE, 4).pattern("#").pattern("#")
                 .input('#', BlockRegistry.POLISHED_SPIRE_STONE_SLAB)
                 .criterion(FabricRecipeProvider.hasItem(BlockRegistry.POLISHED_SPIRE_STONE_SLAB),
                         FabricRecipeProvider.conditionsFromItem(BlockRegistry.POLISHED_SPIRE_STONE_SLAB))
@@ -91,7 +91,7 @@ public class RecipeProvider extends FabricRecipeProvider {
     }
 
     private void generateStairsRecipe(Block inputBlock, Block stairBlock, Consumer<RecipeJsonProvider> exporter) {
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, stairBlock).pattern("#  ").pattern("## ").pattern("###")
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, stairBlock, 4).pattern("#  ").pattern("## ").pattern("###")
                 .input('#', inputBlock)
                 .criterion(FabricRecipeProvider.hasItem(inputBlock),
                         FabricRecipeProvider.conditionsFromItem(inputBlock))
@@ -99,7 +99,7 @@ public class RecipeProvider extends FabricRecipeProvider {
     }
 
     private void generateSlabRecipe(Block inputBlock, Block slabBlock, Consumer<RecipeJsonProvider> exporter) {
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, slabBlock).pattern("###")
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, slabBlock, 6).pattern("###")
                 .input('#', inputBlock)
                 .criterion(FabricRecipeProvider.hasItem(inputBlock),
                         FabricRecipeProvider.conditionsFromItem(inputBlock))
@@ -107,7 +107,7 @@ public class RecipeProvider extends FabricRecipeProvider {
     }
 
     private void generatePillarRecipe(Block inputBlock, Block pillarBlock, Consumer<RecipeJsonProvider> exporter) {
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, pillarBlock).pattern("#").pattern("#")
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, pillarBlock, 2).pattern("#").pattern("#")
                 .input('#', inputBlock)
                 .criterion(FabricRecipeProvider.hasItem(inputBlock),
                         FabricRecipeProvider.conditionsFromItem(inputBlock))
@@ -115,7 +115,7 @@ public class RecipeProvider extends FabricRecipeProvider {
     }
 
     private void generateTrapdoorRecipe(Block inputBlock, Block trapdoorBlock, Consumer<RecipeJsonProvider> exporter) {
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, trapdoorBlock).pattern("###").pattern("###")
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, trapdoorBlock, 2).pattern("###").pattern("###")
                 .input('#', inputBlock)
                 .criterion(FabricRecipeProvider.hasItem(inputBlock),
                         FabricRecipeProvider.conditionsFromItem(inputBlock))
@@ -123,7 +123,7 @@ public class RecipeProvider extends FabricRecipeProvider {
     }
 
     private void generateDoorRecipe(Block inputBlock, Block doorBlock, Consumer<RecipeJsonProvider> exporter) {
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, doorBlock).pattern("##").pattern("##").pattern("##")
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, doorBlock, 3).pattern("##").pattern("##").pattern("##")
                 .input('#', inputBlock)
                 .criterion(FabricRecipeProvider.hasItem(inputBlock),
                         FabricRecipeProvider.conditionsFromItem(inputBlock))
@@ -131,7 +131,7 @@ public class RecipeProvider extends FabricRecipeProvider {
     }
 
     private void generateEtyrBarsRecipe(Block inputBlock, Block barBlock, Consumer<RecipeJsonProvider> exporter) {
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, barBlock).pattern("-#-").pattern("#-#")
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, barBlock, 16).pattern("-#-").pattern("#-#")
                 .input('#', inputBlock)
                 .input('-', ItemRegistry.ETYR_INGOT)
                 .criterion(FabricRecipeProvider.hasItem(ItemRegistry.ETYR_INGOT),
@@ -142,7 +142,7 @@ public class RecipeProvider extends FabricRecipeProvider {
     }
 
     private void generateTileRecipe(Block inputBlock, Block tileBlock, Consumer<RecipeJsonProvider> exporter) {
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, tileBlock).pattern("##").pattern("##")
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, tileBlock, 4).pattern("##").pattern("##")
                 .input('#', inputBlock)
                 .criterion(FabricRecipeProvider.hasItem(inputBlock),
                         FabricRecipeProvider.conditionsFromItem(inputBlock))
