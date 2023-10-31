@@ -18,7 +18,15 @@ public class RecipeProvider extends FabricRecipeProvider {
 
     @Override
     public void generate(Consumer<RecipeJsonProvider> exporter) {
-        generateStairsRecipe(BlockRegistry.ABYSMAL_FRONDS, BlockRegistry.ETYR_STAIRS, exporter);
+        generateStairsRecipe(BlockRegistry.ETYR_BLOCK, BlockRegistry.ETYR_STAIRS, exporter);
+        generateStairsRecipe(BlockRegistry.DECADENT_ETYR_BLOCK, BlockRegistry.DECADENT_ETYR_STAIRS, exporter);
+        generateStairsRecipe(BlockRegistry.PERTURBED_ETYR_BLOCK, BlockRegistry.PERTURBED_ETYR_STAIRS, exporter);
+        generateStairsRecipe(BlockRegistry.CORRUPTED_ETYR_BLOCK, BlockRegistry.CORRUPTED_ETYR_STAIRS, exporter);
+        generateStairsRecipe(BlockRegistry.PRIMORDIAL_PLANKS, BlockRegistry.PRIMORDIAL_STAIRS, exporter);
+        generateStairsRecipe(BlockRegistry.SPIRE_STONE, BlockRegistry.SPIRE_STONE_STAIRS, exporter);
+        generateStairsRecipe(BlockRegistry.POLISHED_SPIRE_STONE_TILES, BlockRegistry.POLISHED_SPIRE_STONE_TILE_STAIRS, exporter);
+        generateStairsRecipe(BlockRegistry.POLISHED_SPIRE_STONE_BRICKS, BlockRegistry.POLISHED_SPIRE_STONE_BRICK_STAIRS, exporter);
+        generateStairsRecipe(BlockRegistry.POLISHED_SPIRE_STONE, BlockRegistry.POLISHED_SPIRE_STONE_STAIRS, exporter);
     }
 
     private void generateStairsRecipe(Block inputBlock, Block stairBlock, Consumer<RecipeJsonProvider> exporter) {
