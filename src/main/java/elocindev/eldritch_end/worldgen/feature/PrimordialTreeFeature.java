@@ -18,9 +18,7 @@ public class PrimordialTreeFeature extends Feature<TreeConfig> {
     }
 
     public static boolean canBePlaced(StructureWorldAccess world, BlockPos position) {
-        // todo: fix
-        // return world.getBlockState(position).getBlock() == BlockRegistry.ABYSMAL_FRONDS;
-        return true;
+        return world.getBlockState(position).getBlock() == BlockRegistry.ABYSMAL_FRONDS;
     }
    
     @Override
