@@ -20,7 +20,8 @@ public class EldritchEndClient implements ClientModInitializer {
         EntityRendererRegistry.register(EntityRegistry.ABERRATION, AberrationRenderer::new);
         EntityRendererRegistry.register(EntityRegistry.TENTACLE, TentacleRenderer::new);
         EntityRendererRegistry.register(EntityRegistry.UNDEAD_TENTACLE, UndeadTentacleRenderer::new);
-        EntityRendererRegistry.register(EntityRegistry.HASTUR, HasturRenderer::new);
+        
+        // EntityRendererRegistry.register(EntityRegistry.HASTUR, HasturRenderer::new);
 
         BlockRenderLayerMap.INSTANCE.putBlock(BlockRegistry.PRIMORDIAL_TRAPDOOR, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(BlockRegistry.ETYR_TRAPDOOR, RenderLayer.getCutout());
