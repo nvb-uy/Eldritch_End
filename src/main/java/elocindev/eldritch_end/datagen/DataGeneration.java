@@ -13,10 +13,11 @@ public class DataGeneration implements DataGeneratorEntrypoint {
 
         pack.addProvider(ModelGenerator::new);
         pack.addProvider(BlockLootTableGenerator::new);
-        pack.addProvider(TagGenerator::new);
+        pack.addProvider(BlockTagGenerator::new);
         pack.addProvider(BiomeTagProvider::new);
         pack.addProvider(WorldgenProvider::new);
         pack.addProvider(RecipeProvider::new);
+        pack.addProvider(ItemTagGenerator::new);
     }
 
     @Override
