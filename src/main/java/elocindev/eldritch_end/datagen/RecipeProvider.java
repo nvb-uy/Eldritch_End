@@ -88,68 +88,6 @@ public class RecipeProvider extends FabricRecipeProvider {
         generateTileRecipe(BlockRegistry.SPIRE_STONE, BlockRegistry.POLISHED_SPIRE_STONE, exporter);
         generateTileRecipe(BlockRegistry.POLISHED_SPIRE_STONE, BlockRegistry.POLISHED_SPIRE_STONE_BRICKS, exporter);
 
-        generateTileRecipe(BlockRegistry.PRIMORDIAL_PLANKS, Blocks.CRAFTING_TABLE, exporter);
-
-        // Shield
-        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.SHIELD).pattern("#-#").pattern("###").pattern(" # ")
-                .input('#', BlockRegistry.PRIMORDIAL_PLANKS)
-                .input('-', Items.IRON_INGOT)
-                .criterion(FabricRecipeProvider.hasItem(BlockRegistry.PRIMORDIAL_PLANKS),
-                        FabricRecipeProvider.conditionsFromItem(BlockRegistry.PRIMORDIAL_PLANKS))
-                .criterion(FabricRecipeProvider.hasItem(Items.STICK),
-                        FabricRecipeProvider.conditionsFromItem(Items.STICK))
-                .offerTo(exporter);
-
-        // Axe
-        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.WOODEN_AXE).pattern("##").pattern("#i").pattern(" i")
-                .input('#', BlockRegistry.PRIMORDIAL_PLANKS)
-                .input('i', Items.STICK)
-                .criterion(FabricRecipeProvider.hasItem(BlockRegistry.PRIMORDIAL_PLANKS),
-                        FabricRecipeProvider.conditionsFromItem(BlockRegistry.PRIMORDIAL_PLANKS))
-                .criterion(FabricRecipeProvider.hasItem(Items.STICK),
-                        FabricRecipeProvider.conditionsFromItem(Items.STICK))
-                .offerTo(exporter);
-
-        // Hoe
-        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.WOODEN_HOE).pattern("##").pattern(" i").pattern(" i")
-                .input('#', BlockRegistry.PRIMORDIAL_PLANKS)
-                .input('i', Items.STICK)
-                .criterion(FabricRecipeProvider.hasItem(BlockRegistry.PRIMORDIAL_PLANKS),
-                        FabricRecipeProvider.conditionsFromItem(BlockRegistry.PRIMORDIAL_PLANKS))
-                .criterion(FabricRecipeProvider.hasItem(Items.STICK),
-                        FabricRecipeProvider.conditionsFromItem(Items.STICK))
-                .offerTo(exporter);
-
-        // Shovel
-        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.WOODEN_SHOVEL).pattern("#").pattern("i").pattern("i")
-                .input('#', BlockRegistry.PRIMORDIAL_PLANKS)
-                .input('i', Items.STICK)
-                .criterion(FabricRecipeProvider.hasItem(BlockRegistry.PRIMORDIAL_PLANKS),
-                        FabricRecipeProvider.conditionsFromItem(BlockRegistry.PRIMORDIAL_PLANKS))
-                .criterion(FabricRecipeProvider.hasItem(Items.STICK),
-                        FabricRecipeProvider.conditionsFromItem(Items.STICK))
-                .offerTo(exporter);
-
-        // Sword
-        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.WOODEN_SWORD).pattern("#").pattern("#").pattern("i")
-                .input('#', BlockRegistry.PRIMORDIAL_PLANKS)
-                .input('i', Items.STICK)
-                .criterion(FabricRecipeProvider.hasItem(BlockRegistry.PRIMORDIAL_PLANKS),
-                        FabricRecipeProvider.conditionsFromItem(BlockRegistry.PRIMORDIAL_PLANKS))
-                .criterion(FabricRecipeProvider.hasItem(Items.STICK),
-                        FabricRecipeProvider.conditionsFromItem(Items.STICK))
-                .offerTo(exporter);
-
-        // Pickaxe
-        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.WOODEN_PICKAXE).pattern("###").pattern(" i ").pattern(" i ")
-                .input('#', BlockRegistry.PRIMORDIAL_PLANKS)
-                .input('i', Items.STICK)
-                .criterion(FabricRecipeProvider.hasItem(BlockRegistry.PRIMORDIAL_PLANKS),
-                        FabricRecipeProvider.conditionsFromItem(BlockRegistry.PRIMORDIAL_PLANKS))
-                .criterion(FabricRecipeProvider.hasItem(Items.STICK),
-                        FabricRecipeProvider.conditionsFromItem(Items.STICK))
-                .offerTo(exporter);
-
         // Chiseled Polished spire stone
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, BlockRegistry.CHISELED_POLISHED_SPIRE_STONE).pattern("#").pattern("#")
                 .input('#', BlockRegistry.POLISHED_SPIRE_STONE_SLAB)
