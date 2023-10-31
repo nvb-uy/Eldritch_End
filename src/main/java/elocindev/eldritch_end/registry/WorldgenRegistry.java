@@ -1,7 +1,6 @@
 package elocindev.eldritch_end.registry;
 
 import elocindev.eldritch_end.EldritchEnd;
-import elocindev.eldritch_end.config.entries.PrimordialAbyssConfig;
 import elocindev.eldritch_end.worldgen.feature.HasturianSpikeFeature;
 import elocindev.eldritch_end.worldgen.feature.PrimordialTreeFeature;
 import elocindev.eldritch_end.worldgen.feature.SurfaceConfig;

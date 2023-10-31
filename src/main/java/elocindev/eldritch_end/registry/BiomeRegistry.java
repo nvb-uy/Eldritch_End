@@ -32,7 +32,7 @@ public class BiomeRegistry {
 
         TheEndBiomes.addHighlandsBiome(HASTURIAN_WASTES, Configs.Biome.HASTURIAN_WASTES.biome_weight);
         
-        // PrimordialAbyss.registerModifications();
-        // HasturianWastes.registerModifications();
+        PrimordialAbyss.registerModifications();
+        HasturianWastes.registerModifications();
     }
 }

@@ -1,10 +1,17 @@
 package elocindev.eldritch_end.worldgen.biome;
 
 import elocindev.eldritch_end.config.Configs;
+import elocindev.eldritch_end.registry.BiomeRegistry;
+import elocindev.eldritch_end.registry.WorldgenRegistry;
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
+import net.minecraft.world.gen.GenerationStep.Feature;
 
 public class HasturianWastes {
 	public static void load() {}
@@ -26,21 +33,21 @@ public class HasturianWastes {
 			.waterColor(2367016).waterFogColor(2949228).fogColor(2758197).skyColor(1312788)
 			.build())
 
-		.spawnSettings(settings.build())	
+		.spawnSettings(settings.build())
 		.generationSettings(builder.build()).build();
 	}
 
     public static void registerModifications() {
-		// BiomeModifications.addFeature(
-        //     BiomeSelectors.includeByKey(BiomeRegistry.HASTURIAN_WASTES),
-        //     GenerationStep.Feature.LOCAL_MODIFICATIONS,
-        //     RegistryKey.of(RegistryKeys.PLACED_FEATURE, FeatureRegistry.HASTURIAN_WASTES_SURFACE_ID)
-        // );
+		BiomeModifications.addFeature(
+            BiomeSelectors.includeByKey(BiomeRegistry.HASTURIAN_WASTES),
+            Feature.LOCAL_MODIFICATIONS,
+            RegistryKey.of(RegistryKeys.PLACED_FEATURE, WorldgenRegistry.HASTURIAN_WASTES_SURFACE_ID)
+        );
 
-		// BiomeModifications.addFeature(
-        //     BiomeSelectors.includeByKey(BiomeRegistry.HASTURIAN_WASTES),
-        //     GenerationStep.Feature.SURFACE_STRUCTURES,
-        //     RegistryKey.of(RegistryKeys.PLACED_FEATURE, FeatureRegistry.HASTURIAN_SPIKES_ID)
-        // );
+		BiomeModifications.addFeature(
+            BiomeSelectors.includeByKey(BiomeRegistry.HASTURIAN_WASTES),
+            Feature.SURFACE_STRUCTURES,
+            RegistryKey.of(RegistryKeys.PLACED_FEATURE, WorldgenRegistry.HASTURIAN_SPIKES_ID)
+        );
     }
 }
