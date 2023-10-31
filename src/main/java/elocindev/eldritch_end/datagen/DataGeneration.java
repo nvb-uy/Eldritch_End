@@ -16,6 +16,7 @@ public class DataGeneration implements DataGeneratorEntrypoint {
         pack.addProvider(TagGenerator::new);
         pack.addProvider(BiomeTagProvider::new);
         pack.addProvider(WorldgenProvider::new);
+        pack.addProvider(RecipeProvider::new);
     }
 
     @Override
