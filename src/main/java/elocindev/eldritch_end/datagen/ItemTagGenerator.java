@@ -1,10 +1,8 @@
 package elocindev.eldritch_end.datagen;
 
-import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.registry.BlockRegistry;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
-import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;

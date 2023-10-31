@@ -2,7 +2,6 @@ package elocindev.eldritch_end.registry;
 
 import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.entity.aberration.AberrationEntity;
-import elocindev.eldritch_end.entity.hastur.HasturEntity;
 import elocindev.eldritch_end.entity.tentacle.TentacleEntity;
 import elocindev.eldritch_end.entity.tentacle.UndeadTentacleEntity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;

@@ -15,7 +15,6 @@ import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.item.Necronomicon;
 import elocindev.eldritch_end.item.SilverKey;
 import elocindev.eldritch_end.item.spawneggs.AberrationEgg;
-import elocindev.eldritch_end.item.spawneggs.HastursCrown;
 import elocindev.eldritch_end.item.spawneggs.TentacleEgg;
 import elocindev.eldritch_end.item.upgrades.EtyrPattern;
 import elocindev.eldritch_end.item.Chorb;

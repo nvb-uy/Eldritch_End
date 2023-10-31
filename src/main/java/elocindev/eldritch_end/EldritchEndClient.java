@@ -5,7 +5,6 @@ import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.registry.EntityRegistry;
 import elocindev.eldritch_end.config.ConfigLoader;
 import elocindev.eldritch_end.entity.client.aberration.AberrationRenderer;
-import elocindev.eldritch_end.entity.client.hastur.HasturRenderer;
 import elocindev.eldritch_end.entity.client.tentacle.TentacleRenderer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
