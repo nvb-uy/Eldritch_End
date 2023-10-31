@@ -23,14 +23,16 @@ public class RecipeProvider extends FabricRecipeProvider {
         super(output);
     }
 
-    public static final List<ItemConvertible> SMELTABLE_INPUTS = Util.make(Lists.newArrayList(), list -> {
-        list.add(BlockRegistry.POLISHED_SPIRE_STONE_BRICKS);
-    });
-
     @Override
     public void generate(Consumer<RecipeJsonProvider> exporter) {
-        RecipeProvider.offerSmelting(exporter, SMELTABLE_INPUTS, RecipeCategory.BUILDING_BLOCKS, BlockRegistry.CRACKED_POLISHED_SPIRE_STONE_BRICKS, 0.45F, 200, EldritchEnd.MODID);
-        RecipeProvider.offerBlasting(exporter, SMELTABLE_INPUTS, RecipeCategory.BUILDING_BLOCKS, BlockRegistry.CRACKED_POLISHED_SPIRE_STONE_BRICKS, 0.45F, 100, EldritchEnd.MODID);
+        RecipeProvider.offerSmelting(exporter, List.of(BlockRegistry.ETYR_ORE), RecipeCategory.BUILDING_BLOCKS, ItemRegistry.ETYR_INGOT, 0.7F, 200, EldritchEnd.MODID);
+        RecipeProvider.offerBlasting(exporter, List.of(BlockRegistry.ETYR_ORE), RecipeCategory.BUILDING_BLOCKS, ItemRegistry.ETYR_INGOT, 0.7F, 100, EldritchEnd.MODID);
+
+        RecipeProvider.offerSmelting(exporter, List.of(ItemRegistry.RAW_ETYR), RecipeCategory.BUILDING_BLOCKS, ItemRegistry.ETYR_INGOT, 0.7F, 200, EldritchEnd.MODID);
+        RecipeProvider.offerBlasting(exporter, List.of(ItemRegistry.RAW_ETYR), RecipeCategory.BUILDING_BLOCKS, ItemRegistry.ETYR_INGOT, 0.7F, 100, EldritchEnd.MODID);
+
+        RecipeProvider.offerSmelting(exporter, List.of(BlockRegistry.POLISHED_SPIRE_STONE_BRICKS), RecipeCategory.BUILDING_BLOCKS, BlockRegistry.CRACKED_POLISHED_SPIRE_STONE_BRICKS, 0.45F, 200, EldritchEnd.MODID);
+        RecipeProvider.offerBlasting(exporter, List.of(BlockRegistry.POLISHED_SPIRE_STONE_BRICKS), RecipeCategory.BUILDING_BLOCKS, BlockRegistry.CRACKED_POLISHED_SPIRE_STONE_BRICKS, 0.45F, 100, EldritchEnd.MODID);
 
         generateStairsRecipe(BlockRegistry.ETYR_BLOCK, BlockRegistry.ETYR_STAIRS, exporter);
         generateStairsRecipe(BlockRegistry.DECADENT_ETYR_BLOCK, BlockRegistry.DECADENT_ETYR_STAIRS, exporter);
