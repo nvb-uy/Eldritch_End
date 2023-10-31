@@ -1,4 +1,4 @@
-package elocindev.eldritch_end.mixin;
+package elocindev.eldritch_end.mixin.boat;
 
 import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.registry.EntityRegistry;

@@ -1,4 +1,4 @@
-package elocindev.eldritch_end.mixin;
+package elocindev.eldritch_end.mixin.client;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import elocindev.eldritch_end.config.Configs;

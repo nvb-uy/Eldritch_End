@@ -4,9 +4,12 @@
   "package": "elocindev.eldritch_end.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "BackgroundRendererMixin",
-    "BlockEntityTypeMixin",
-    "BoatTypeMixin"
+    "worldgen.EntFixerMixin",
+    "sign.BlockEntityTypeMixin",
+    "boat.BoatTypeMixin"
+  ],
+  "client": [
+    "client.BackgroundRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

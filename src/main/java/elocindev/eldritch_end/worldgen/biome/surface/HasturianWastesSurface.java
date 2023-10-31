@@ -1,4 +1,4 @@
-package elocindev.eldritch_end.worldgen.feature.surface;
+package elocindev.eldritch_end.worldgen.biome.surface;
 
 import com.mojang.serialization.Codec;
 

@@ -1,12 +1,12 @@
 package elocindev.eldritch_end.registry;
 
 import elocindev.eldritch_end.EldritchEnd;
+import elocindev.eldritch_end.worldgen.biome.surface.HasturianWastesSurface;
+import elocindev.eldritch_end.worldgen.biome.surface.PrimordialAbyssSurface;
 import elocindev.eldritch_end.worldgen.feature.HasturianSpikeFeature;
 import elocindev.eldritch_end.worldgen.feature.PrimordialTreeFeature;
 import elocindev.eldritch_end.worldgen.feature.SurfaceConfig;
 import elocindev.eldritch_end.worldgen.feature.TreeConfig;
-import elocindev.eldritch_end.worldgen.feature.surface.HasturianWastesSurface;
-import elocindev.eldritch_end.worldgen.feature.surface.PrimordialAbyssSurface;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;

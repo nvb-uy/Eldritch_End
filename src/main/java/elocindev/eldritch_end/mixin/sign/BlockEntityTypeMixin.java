@@ -1,4 +1,4 @@
-package elocindev.eldritch_end.mixin;
+package elocindev.eldritch_end.mixin.sign;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Inject;
