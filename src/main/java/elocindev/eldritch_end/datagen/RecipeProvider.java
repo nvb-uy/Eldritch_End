@@ -90,6 +90,16 @@ public class RecipeProvider extends FabricRecipeProvider {
 
         generateTileRecipe(BlockRegistry.PRIMORDIAL_PLANKS, Blocks.CRAFTING_TABLE, exporter);
 
+        // Shield
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.SHIELD).pattern("#-#").pattern("###").pattern(" # ")
+                .input('#', BlockRegistry.PRIMORDIAL_PLANKS)
+                .input('-', Items.IRON_INGOT)
+                .criterion(FabricRecipeProvider.hasItem(BlockRegistry.PRIMORDIAL_PLANKS),
+                        FabricRecipeProvider.conditionsFromItem(BlockRegistry.PRIMORDIAL_PLANKS))
+                .criterion(FabricRecipeProvider.hasItem(Items.STICK),
+                        FabricRecipeProvider.conditionsFromItem(Items.STICK))
+                .offerTo(exporter);
+
         // Axe
         ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.WOODEN_AXE).pattern("##").pattern("#i").pattern(" i")
                 .input('#', BlockRegistry.PRIMORDIAL_PLANKS)
@@ -101,7 +111,7 @@ public class RecipeProvider extends FabricRecipeProvider {
                 .offerTo(exporter);
 
         // Hoe
-        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.WOODEN_HOE).pattern("##").pattern("i").pattern("i")
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.WOODEN_HOE).pattern("##").pattern(" i").pattern(" i")
                 .input('#', BlockRegistry.PRIMORDIAL_PLANKS)
                 .input('i', Items.STICK)
                 .criterion(FabricRecipeProvider.hasItem(BlockRegistry.PRIMORDIAL_PLANKS),
