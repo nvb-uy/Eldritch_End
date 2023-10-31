@@ -69,6 +69,15 @@ public class RecipeProvider extends FabricRecipeProvider {
         generateTileRecipe(BlockRegistry.CORRUPTED_ETYR_BLOCK, BlockRegistry.CORRUPTED_ETYR_TILES, exporter);
         generateTileRecipe(BlockRegistry.POLISHED_SPIRE_STONE, BlockRegistry.POLISHED_SPIRE_STONE_TILES, exporter);
         generateTileRecipe(BlockRegistry.CRACKED_POLISHED_SPIRE_STONE_BRICKS, BlockRegistry.CRACKED_POLISHED_SPIRE_STONE_TILES, exporter);
+        generateTileRecipe(BlockRegistry.SPIRE_STONE, BlockRegistry.POLISHED_SPIRE_STONE, exporter);
+        generateTileRecipe(BlockRegistry.POLISHED_SPIRE_STONE, BlockRegistry.POLISHED_SPIRE_STONE_BRICKS, exporter);
+
+        // Chiseled Polished spire stone
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, BlockRegistry.CHISELED_POLISHED_SPIRE_STONE).pattern("#").pattern("#")
+                .input('#', BlockRegistry.POLISHED_SPIRE_STONE_SLAB)
+                .criterion(FabricRecipeProvider.hasItem(BlockRegistry.POLISHED_SPIRE_STONE_SLAB),
+                        FabricRecipeProvider.conditionsFromItem(BlockRegistry.POLISHED_SPIRE_STONE_SLAB))
+                .offerTo(exporter);
     }
 
     private void generateStairsRecipe(Block inputBlock, Block stairBlock, Consumer<RecipeJsonProvider> exporter) {
