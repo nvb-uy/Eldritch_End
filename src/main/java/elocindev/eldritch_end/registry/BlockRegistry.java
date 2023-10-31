@@ -58,8 +58,6 @@ public class BlockRegistry {
 
     	public static final BlockItem STRIPPED_PRIMORDIAL_WOOD_ITEM = new BlockItem(STRIPPED_PRIMORDIAL_WOOD, new FabricItemSettings());
 
-    //
-
     public static final Block PRIMORDIAL_PLANKS = new Block(FabricBlockSettings
         .copyOf(Blocks.OAK_PLANKS)
         .sounds(BlockSoundGroup.WOOD));
@@ -132,7 +130,7 @@ public class BlockRegistry {
     public static final Block ETYR_BARS = new PaneBlock(FabricBlockSettings.copyOf(Blocks.IRON_BARS));
     public static final BlockItem ETYR_BARS_ITEM = new BlockItem(ETYR_BARS, new FabricItemSettings());
 
-    public static final Block ETYR_DOOR = new DoorBlock(FabricBlockSettings.copyOf(Blocks.IRON_DOOR).sounds(BlockSoundGroup.METAL), BlockSetType.OAK);
+    public static final Block ETYR_DOOR = new DoorBlock(FabricBlockSettings.copyOf(Blocks.IRON_DOOR).sounds(BlockSoundGroup.METAL), BlockSetType.IRON);
     public static final BlockItem ETYR_DOOR_ITEM = new BlockItem(ETYR_DOOR, new FabricItemSettings());
 
     public static final Block ETYR_PILLAR = new PillarBlock(FabricBlockSettings.copyOf(Blocks.QUARTZ_PILLAR));
