@@ -62,6 +62,13 @@ public class RecipeProvider extends FabricRecipeProvider {
         generateEtyrBarsRecipe(BlockRegistry.DECADENT_ETYR_BLOCK, BlockRegistry.DECADENT_ETYR_BARS, exporter);
         generateEtyrBarsRecipe(BlockRegistry.PERTURBED_ETYR_BLOCK, BlockRegistry.PERTURBED_ETYR_BARS, exporter);
         generateEtyrBarsRecipe(BlockRegistry.CORRUPTED_ETYR_BLOCK, BlockRegistry.CORRUPTED_ETYR_BARS, exporter);
+
+        generateTileRecipe(BlockRegistry.ETYR_BLOCK, BlockRegistry.ETYR_TILES, exporter);
+        generateTileRecipe(BlockRegistry.DECADENT_ETYR_BLOCK, BlockRegistry.DECADENT_ETYR_TILES, exporter);
+        generateTileRecipe(BlockRegistry.PERTURBED_ETYR_BLOCK, BlockRegistry.PERTURBED_ETYR_TILES, exporter);
+        generateTileRecipe(BlockRegistry.CORRUPTED_ETYR_BLOCK, BlockRegistry.CORRUPTED_ETYR_TILES, exporter);
+        generateTileRecipe(BlockRegistry.POLISHED_SPIRE_STONE, BlockRegistry.POLISHED_SPIRE_STONE_TILES, exporter);
+        generateTileRecipe(BlockRegistry.CRACKED_POLISHED_SPIRE_STONE_BRICKS, BlockRegistry.CRACKED_POLISHED_SPIRE_STONE_TILES, exporter);
     }
 
     private void generateStairsRecipe(Block inputBlock, Block stairBlock, Consumer<RecipeJsonProvider> exporter) {
@@ -110,6 +117,14 @@ public class RecipeProvider extends FabricRecipeProvider {
                 .input('-', ItemRegistry.ETYR_INGOT)
                 .criterion(FabricRecipeProvider.hasItem(ItemRegistry.ETYR_INGOT),
                         FabricRecipeProvider.conditionsFromItem(ItemRegistry.ETYR_INGOT))
+                .criterion(FabricRecipeProvider.hasItem(inputBlock),
+                        FabricRecipeProvider.conditionsFromItem(inputBlock))
+                .offerTo(exporter);
+    }
+
+    private void generateTileRecipe(Block inputBlock, Block tileBlock, Consumer<RecipeJsonProvider> exporter) {
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, tileBlock).pattern("##").pattern("##")
+                .input('#', inputBlock)
                 .criterion(FabricRecipeProvider.hasItem(inputBlock),
                         FabricRecipeProvider.conditionsFromItem(inputBlock))
                 .offerTo(exporter);
