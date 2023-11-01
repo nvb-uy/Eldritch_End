@@ -15,13 +15,16 @@ public class ConfigFolder {
     }
 
     public static String getNestedFile(String file, String folder) {
-        Path mainFolder = FabricLoader.getInstance().getConfigDir().resolve("eldritch_end");
+        Path cfg = FabricLoader.getInstance().getConfigDir();
+        Path eeFolder = cfg.resolve("eldritch_end");
 
-        if (!mainFolder.toFile().exists())
-            mainFolder.toFile().mkdir();
+        if (!eeFolder.toFile().exists())
+            eeFolder.toFile().mkdir();
         
-        Path nestedFolder = mainFolder.resolve(folder); if (!nestedFolder.toFile().exists()) nestedFolder.toFile().mkdir();
+        Path nestedFolder = eeFolder.resolve(folder);
+        
+        if (!nestedFolder.toFile().exists()) nestedFolder.toFile().mkdir();
 
-        return FabricLoader.getInstance().getConfigDir().resolve("eldritch_end").resolve(nestedFolder).resolve(file).toString();
+        return nestedFolder.resolve(file).toString();
     }
 }
