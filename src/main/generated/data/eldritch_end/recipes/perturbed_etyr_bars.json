@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "eldritch_end:perturbed_etyr_block"
+    },
+    "-": {
+      "item": "eldritch_end:etyr_ingot"
+    }
+  },
+  "pattern": [
+    "-#-",
+    "#-#"
+  ],
+  "result": {
+    "count": 16,
+    "item": "eldritch_end:perturbed_etyr_bars"
+  },
+  "show_notification": true
+}

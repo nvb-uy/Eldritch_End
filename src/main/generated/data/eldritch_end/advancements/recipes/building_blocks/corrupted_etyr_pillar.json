@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_corrupted_etyr_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "eldritch_end:corrupted_etyr_block"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eldritch_end:corrupted_etyr_pillar"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_corrupted_etyr_block",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eldritch_end:corrupted_etyr_pillar"
+    ]
+  },
+  "sends_telemetry_event": false
+}
