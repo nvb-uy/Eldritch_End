@@ -5,10 +5,8 @@ import com.mojang.serialization.Codec;
 import elocindev.eldritch_end.config.Configs;
 import elocindev.eldritch_end.registry.BiomeRegistry;
 import elocindev.eldritch_end.registry.BlockRegistry;
-import elocindev.eldritch_end.worldgen.feature.PrimordialTreeFeature;
 import elocindev.eldritch_end.worldgen.feature.SurfaceConfig;
 import elocindev.eldritch_end.worldgen.util.TendrilFactory;
-import elocindev.eldritch_end.worldgen.util.TreeFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registries;
@@ -78,11 +76,11 @@ public class PrimordialAbyssSurface extends Feature<SurfaceConfig> {
             }
         }
 
-        int zOffset = world.getRandom().nextBetween(-4, 4); int xOffset = world.getRandom().nextBetween(-4, 4);
+        //int zOffset = world.getRandom().nextBetween(-4, 4); int xOffset = world.getRandom().nextBetween(-4, 4);
 
-        BlockPos treeTarget = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, new BlockPos(centerX, 0, centerZ)).down();
+        //BlockPos treeTarget = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, new BlockPos(centerX, 0, centerZ)).down();
         
-        if (PrimordialTreeFeature.canBePlaced(world, treeTarget)) TreeFactory.addRandomMedium(world, treeTarget.add(xOffset, 0, zOffset), BlockRegistry.PRIMORDIAL_LOG.getDefaultState());
+        //if (PrimordialTreeFeature.canBePlaced(world, treeTarget)) TreeFactory.addRandomMedium(world, treeTarget.add(xOffset, 0, zOffset), BlockRegistry.PRIMORDIAL_LOG.getDefaultState());
     
 
         return generated;
