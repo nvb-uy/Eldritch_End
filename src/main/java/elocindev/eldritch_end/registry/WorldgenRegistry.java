@@ -26,9 +26,9 @@ public class WorldgenRegistry {
 
 
     public static void register() {
-        Registry.register(Registries.FEATURE, PRIMORDIAL_TREE_ID, PRIMORDIAL_TREE_FEATURE);
         Registry.register(Registries.FEATURE, PRIMORDIAL_ABYSS_SURFACE_ID, PRIMORDIAL_ABYSS_SURFACE_FEATURE);
         Registry.register(Registries.FEATURE, HASTURIAN_WASTES_SURFACE_ID, HASTURIAN_WASTES_SURFACE_FEATURE);
         Registry.register(Registries.FEATURE, HASTURIAN_SPIKES_ID, HASTURIAN_SPIKES_FEATURE);
+        Registry.register(Registries.FEATURE, PRIMORDIAL_TREE_ID, PRIMORDIAL_TREE_FEATURE);
     }
 }

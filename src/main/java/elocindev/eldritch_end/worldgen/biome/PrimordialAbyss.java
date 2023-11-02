@@ -58,7 +58,7 @@ public class PrimordialAbyss {
 
 		BiomeModifications.addFeature(
             BiomeSelectors.includeByKey(BiomeRegistry.PRIMORDIAL_ABYSS),
-            Feature.TOP_LAYER_MODIFICATION,
+            Feature.SURFACE_STRUCTURES,
             RegistryKey.of(RegistryKeys.PLACED_FEATURE, WorldgenRegistry.PRIMORDIAL_TREE_ID)
         );
     }

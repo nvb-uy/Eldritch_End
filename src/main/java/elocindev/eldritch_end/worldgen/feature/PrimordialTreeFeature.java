@@ -30,15 +30,16 @@ public class PrimordialTreeFeature extends Feature<TreeConfig> {
         TreeConfig config = context.getConfig();
         BlockState primordial_log = Registries.BLOCK.get(config.blockID()).getDefaultState();
 
-
         BlockPos topPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, new BlockPos(origin.getX(), origin.getY(), origin.getZ()));
         
         if (canBePlaced(world, topPos.down())) {
-            if (world.getBlockState(topPos.down()).isOf(BlockRegistry.ABYSMAL_FRONDS))
-                TreeFactory.addRandomMedium(world, topPos, primordial_log);
-
             int ranX = world.getRandom().nextBetween(-9, 9); int ranZ = world.getRandom().nextBetween(-9, 9);
-            BlockPos smallTreePos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, new BlockPos(origin.getX() + ranX, origin.getY(), origin.getZ() + ranZ));
+            
+            if (world.getBlockState(topPos.down()).isOf(BlockRegistry.ABYSMAL_FRONDS))
+                TreeFactory.addRandomMedium(world, topPos.add(ranX, 0, ranZ), primordial_log);
+
+            ranX += world.getRandom().nextBetween(-9, 9); ranZ += world.getRandom().nextBetween(-9, 9);
+            BlockPos smallTreePos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, origin.add(ranX, 0, ranZ));
 
             if (canBePlaced(world, smallTreePos.down()))
                 TreeFactory.placeSmallDeadTree(world, smallTreePos, primordial_log);
