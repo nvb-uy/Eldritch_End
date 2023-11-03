@@ -108,7 +108,7 @@ public class TentacleEntity extends HostileEntity implements GeoEntity {
         controllers.add(new AnimationController<>(this, "animationPredicate", 10, event -> {
             if (this.age < 20) {
                 event.getController().setTransitionLength(0);
-                event.getController().setAnimation(RawAnimation.begin().then("appear", Animation.LoopType.LOOP));
+                event.getController().setAnimation(RawAnimation.begin().then("appear", Animation.LoopType.PLAY_ONCE));
 
                 return PlayState.CONTINUE;
             }
@@ -123,15 +123,7 @@ public class TentacleEntity extends HostileEntity implements GeoEntity {
             event.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
             return PlayState.CONTINUE;
 
-        })).add((new AnimationController<>(this, "spawnAnimationPredicate", 10, event -> {
-            event.getController().setAnimationSpeed(1.0F);
-            if (this.age < 20) {
-                event.getController().forceAnimationReset();
-                event.getController().setAnimation(RawAnimation.begin().then("appear", Animation.LoopType.PLAY_ONCE));
-                return PlayState.CONTINUE;
-            }
-            return PlayState.CONTINUE;
-        }))).add(new AnimationController<>(this, "attackAnimationPredicate", 10, event -> {
+        })).add(new AnimationController<>(this, "attackAnimationPredicate", 10, event -> {
             if (this.isAttacking()) {
                 event.getController().setAnimationSpeed(4.0F);
                 event.getController().forceAnimationReset();
