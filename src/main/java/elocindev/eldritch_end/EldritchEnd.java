@@ -7,18 +7,16 @@ import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import elocindev.eldritch_end.config.ConfigBuilder;
 import elocindev.eldritch_end.config.ConfigLoader;
 
 public class EldritchEnd implements ModInitializer {
 	public static final String MODID = "eldritch_end";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MODID);
 
-	private static boolean config = ConfigBuilder.hasStarted();
-
 	@Override
 	public void onInitialize() {
-		ConfigLoader.init(config);
+		ConfigLoader.register();
+		ConfigLoader.initDatapack(true);
 
 		AzureLib.initialize();
 

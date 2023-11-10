@@ -8,12 +8,18 @@ import elocindev.eldritch_end.config.entries.entities.HasturConfig;
 import elocindev.eldritch_end.config.entries.entities.TentacleConfig;
 
 public class Configs {
-    public static ClientConfig CLIENT_CONFIG = ConfigBuilder.loadClientConfig();
+    public class Client {
+        public static ClientConfig CLIENT_CONFIG = ClientConfig.INSTANCE;
+    }
 
-    public static PrimordialAbyssConfig BIOME_PRIMORDIAL_ABYSS = ConfigBuilder.loadPrimordialAbyss();
-    public static HasturianWastesConfig BIOME_HASTURIAN_WASTES = ConfigBuilder.loadHasturianWastes();
+    public class Biome {
+        public static PrimordialAbyssConfig PRIMORDIAL_ABYSS = PrimordialAbyssConfig.INSTANCE;
+        public static HasturianWastesConfig HASTURIAN_WASTES = HasturianWastesConfig.INSTANCE;
+    }
 
-    public static AberrationConfig ENTITY_ABERRATION = ConfigBuilder.loadAberration();
-    public static TentacleConfig ENTITY_TENTACLE = ConfigBuilder.loadTentacle();
-    public static HasturConfig BOSS_HASTUR = ConfigBuilder.loadHastur();
+    public class Entity {
+        public static AberrationConfig ABERRATION = AberrationConfig.INSTANCE;
+        public static TentacleConfig TENTACLE = TentacleConfig.INSTANCE;
+        public static HasturConfig HASTUR = HasturConfig.INSTANCE;
+    }
 }

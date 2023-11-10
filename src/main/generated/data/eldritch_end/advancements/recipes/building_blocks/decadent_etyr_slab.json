@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_decadent_etyr_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "eldritch_end:decadent_etyr_block"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eldritch_end:decadent_etyr_slab"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_decadent_etyr_block",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eldritch_end:decadent_etyr_slab"
+    ]
+  },
+  "sends_telemetry_event": false
+}

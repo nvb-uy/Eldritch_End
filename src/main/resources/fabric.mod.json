@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "id": "eldritch_end",
-  "version": "1.0.0",
+  "version": "0.1.32",
 
   "name": "Eldritch End",
-  "description": "A scary end mod based upon Lovecraft",
+  "description": "A scary end mod based upon H.P. Lovecraft's work.",
   "authors": [
     "ElocinDev"
   ],
@@ -32,6 +32,8 @@
   ],
   "depends": {
     "fabricloader": ">=0.14.19",
-    "java": ">=17"
+    "java": ">=17",
+    "necronomicon": ">=1.2.0",
+    "azurelib": "*"
   }
 }

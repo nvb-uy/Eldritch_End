@@ -15,7 +15,6 @@ import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.item.Necronomicon;
 import elocindev.eldritch_end.item.SilverKey;
 import elocindev.eldritch_end.item.spawneggs.AberrationEgg;
-import elocindev.eldritch_end.item.spawneggs.HastursCrown;
 import elocindev.eldritch_end.item.spawneggs.TentacleEgg;
 import elocindev.eldritch_end.item.upgrades.EtyrPattern;
 import elocindev.eldritch_end.item.Chorb;
@@ -26,7 +25,7 @@ public class ItemRegistry {
     public static final Item ABERRATION_SPAWN_EGG = new AberrationEgg(EntityRegistry.ABERRATION, 0x54496f, 0xC76800, new FabricItemSettings());
     public static final Item TENTACLE_SPAWN_EGG = new TentacleEgg(EntityRegistry.TENTACLE, 0x54496f, 0x9a87b0, new FabricItemSettings());
     public static final Item UNDEAD_TENTACLE_SPAWN_EGG = new TentacleEgg(EntityRegistry.UNDEAD_TENTACLE, 0x29221D, 0x816445,  new FabricItemSettings());
-    public static final Item HASTUR_CROWN = new HastursCrown(EntityRegistry.HASTUR, 0xFFFFFF, 0xFFFFFF, new FabricItemSettings());
+    // public static final Item HASTUR_CROWN = new HastursCrown(EntityRegistry.HASTUR, 0xFFFFFF, 0xFFFFFF, new FabricItemSettings());
 
     public static final Item NECRONOMICON = new Necronomicon(new FabricItemSettings());
     public static final Item SILVER_KEY = new SilverKey(new FabricItemSettings());
@@ -66,7 +65,7 @@ public class ItemRegistry {
         reg(TENTACLE_SPAWN_EGG, "tentacle_spawn_egg");
         reg(UNDEAD_TENTACLE_SPAWN_EGG, "undead_tentacle_spawn_egg");
         reg(CHORB_SPAWN_EGG, "chorb_spawn_egg");
-        reg(HASTUR_CROWN, "hastur_crown");
+        // reg(HASTUR_CROWN, "hastur_crown");
         
         LOGGER.info("Registered Eldritch End's items");
     }

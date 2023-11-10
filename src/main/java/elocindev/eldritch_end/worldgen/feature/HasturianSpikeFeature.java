@@ -21,10 +21,7 @@ public class HasturianSpikeFeature extends Feature<DefaultFeatureConfig> {
     }
 
     public static boolean canBePlaced(StructureWorldAccess world, BlockPos position) {
-
-        // Todo: fix
-        // return world.getBlockState(position).getBlock() == BlockRegistry.HASTURIAN_MOSS;
-        return true;
+        return world.getBlockState(position).getBlock() == BlockRegistry.HASTURIAN_MOSS;
     }
 
     @Override
@@ -38,9 +35,9 @@ public class HasturianSpikeFeature extends Feature<DefaultFeatureConfig> {
         
         blockPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, blockPos);
 
-        if (!Configs.BIOME_HASTURIAN_WASTES.enable_spike_generation) return false;
+        if (!Configs.Biome.HASTURIAN_WASTES.enable_spike_generation) return false;
 
-        if (random.nextInt(100) >= Configs.BIOME_HASTURIAN_WASTES.spike_generation_chance) return false;
+        if (random.nextInt(100) >= Configs.Biome.HASTURIAN_WASTES.spike_generation_chance) return false;
 
         if (!canBePlaced(world, blockPos.down()))
             return false;
@@ -68,7 +65,7 @@ public class HasturianSpikeFeature extends Feature<DefaultFeatureConfig> {
                     if ((m == 0 && n == 0 || !(g * g + h * h > f * f)) && (m != -l && m != l && n != -l && n != l || !(random.nextFloat() > 0.75F))) {
                         BlockState blockState = world.getBlockState(blockPos.add(m, k, n));
                         if (blockState.isAir() || blockState.isOf(BlockRegistry.HASTURIAN_MOSS) || blockState.isOf(BlockRegistry.HASTURIAN_GRASS)) {
-                            if (random.nextInt(100) <= Configs.BIOME_HASTURIAN_WASTES.etyr_spawn_chance_per_block)
+                            if (random.nextInt(100) <= Configs.Biome.HASTURIAN_WASTES.etyr_spawn_chance_per_block)
                                 this.setBlockState(world, blockPos.add(m, k, n), BlockRegistry.ETYR_ORE.getDefaultState());
                             else
                                 this.setBlockState(world, blockPos.add(m, k, n), block);

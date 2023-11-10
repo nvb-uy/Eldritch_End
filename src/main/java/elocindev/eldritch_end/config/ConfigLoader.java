@@ -1,20 +1,31 @@
 package elocindev.eldritch_end.config;
 
 import elocindev.eldritch_end.EldritchEnd;
+import elocindev.eldritch_end.config.entries.ClientConfig;
+import elocindev.eldritch_end.config.entries.HasturianWastesConfig;
+import elocindev.eldritch_end.config.entries.PrimordialAbyssConfig;
+import elocindev.eldritch_end.config.entries.entities.AberrationConfig;
+import elocindev.eldritch_end.config.entries.entities.HasturConfig;
+import elocindev.eldritch_end.config.entries.entities.TentacleConfig;
+import elocindev.necronomicon.api.config.v1.NecConfigAPI;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 
 public class ConfigLoader {
-    public static void init(boolean started) {
+
+    public static void register() {
+        NecConfigAPI.registerConfig(PrimordialAbyssConfig.class);
+        NecConfigAPI.registerConfig(HasturianWastesConfig.class);
+        NecConfigAPI.registerConfig(AberrationConfig.class);
+        NecConfigAPI.registerConfig(TentacleConfig.class);
+        NecConfigAPI.registerConfig(HasturConfig.class);
+    }
+
+    public static void initDatapack(boolean started) {
         
         ServerLifecycleEvents.END_DATA_PACK_RELOAD.register((server, resourceManager, success)
 		->  {
-			if (started) {                  
-				Configs.BIOME_PRIMORDIAL_ABYSS = ConfigBuilder.loadPrimordialAbyss();
-                Configs.BIOME_HASTURIAN_WASTES = ConfigBuilder.loadHasturianWastes();
-                
-                Configs.ENTITY_ABERRATION = ConfigBuilder.loadAberration();
-                Configs.ENTITY_TENTACLE = ConfigBuilder.loadTentacle();
-                Configs.BOSS_HASTUR = ConfigBuilder.loadHastur();
+			if (started) {
+                register();
 			}
 		});
 		
@@ -22,7 +33,8 @@ public class ConfigLoader {
     }
 
     public static void initClient() {
-        Configs.CLIENT_CONFIG = ConfigBuilder.loadClientConfig();
+        NecConfigAPI.registerConfig(ClientConfig.class);
+        Configs.Client.CLIENT_CONFIG = ClientConfig.INSTANCE;
         
         EldritchEnd.LOGGER.info("Eldritch End's Client Config Loaded!");
     }

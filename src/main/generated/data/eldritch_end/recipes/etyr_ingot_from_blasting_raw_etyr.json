@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.7,
+  "group": "eldritch_end",
+  "ingredient": {
+    "item": "eldritch_end:raw_etyr"
+  },
+  "result": "eldritch_end:etyr_ingot"
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "blocks",
+  "cookingtime": 200,
+  "experience": 0.45,
+  "group": "eldritch_end",
+  "ingredient": {
+    "item": "eldritch_end:polished_spire_stone_bricks"
+  },
+  "result": "eldritch_end:cracked_polished_spire_stone_bricks"
+}

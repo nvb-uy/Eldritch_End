@@ -61,7 +61,8 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	modImplementation "curse.maven:azurelib-817423:4757035"
+	modImplementation "curse.maven:azurelib-817423:${project.azurelib}"
+	modImplementation "curse.maven:necronomicon-586157:${project.necronomicon_api}"
 
 	//modImplementation "curse.maven:sodium-394468:3669187"
 	//modImplementation "curse.maven:iris-455508:3770305"
