@@ -29,6 +29,7 @@ public class ItemGroupRegistry {
             entries.add(new ItemStack(ArmorRegistry.ETYRITE_BOOTS));
 
             // -- ARTIFACTS --
+            
 
             // -- BLOCKS --
             entries.add(new ItemStack(BlockRegistry.ABYSMAL_FRONDS_ITEM));
