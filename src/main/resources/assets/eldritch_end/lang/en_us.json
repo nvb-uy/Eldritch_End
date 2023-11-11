@@ -103,6 +103,9 @@
     "item.eldritch_end.raw_etyr": "Raw Etyr",
     "item.eldritch_end.etyr_ingot": "Etyr Ingot",    
 
+    "item.eldritch_end.xalarath": "Xal'arath, the faceless eye",
+    "item.eldritch_end.xalarath.type": "Corrupted Artifact",
+
     "item.eldritch_end.aberration_spawn_egg": "Aberration Spawn Egg",
     "item.eldritch_end.tentacle_spawn_egg": "Tentacle Spawn Egg",
     "item.eldritch_end.undead_tentacle_spawn_egg": "Undead Tentacle Spawn Egg",
