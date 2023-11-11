@@ -24,7 +24,7 @@ public class Chorb extends SpawnEggItem {
         "\u00A77Chorb chorbs at the target, dealing \u00A7d93041 emotional damage\u00A77.",
         "",
         "\u00A7l\u2022 \u00A76Bladee's Blessing \u00A78(Active, 30s Cooldown)",
-        "\u00A77Chorb starts listening to \u00A76BLADEE - WASTER\u00A77, increasing his damage 25% for the song's duration.",
+        "\u00A77Chorb starts listening to \u00A76BLADEE - WASTER\u00A77, increasing her damage 25% for the song's duration.",
         "",
         "\u00A7l\u2022 \u00A76Shrimp in the shower \u00A78(Ultimate, 120s Cooldown)",
         "\u00A77Chorb spawns a shower and starts eating shrimp for 10s,",
