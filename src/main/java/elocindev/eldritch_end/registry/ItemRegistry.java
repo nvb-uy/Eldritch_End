@@ -14,9 +14,11 @@ import org.slf4j.LoggerFactory;
 import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.item.Necronomicon;
 import elocindev.eldritch_end.item.SilverKey;
+import elocindev.eldritch_end.item.artifacts.Xalarath;
 import elocindev.eldritch_end.item.spawneggs.AberrationEgg;
 import elocindev.eldritch_end.item.spawneggs.TentacleEgg;
 import elocindev.eldritch_end.item.upgrades.EtyrPattern;
+import elocindev.necronomicon.api.text.AnimatedText;
 import elocindev.eldritch_end.item.Chorb;
 
 public class ItemRegistry {
@@ -31,6 +33,8 @@ public class ItemRegistry {
     public static final Item SILVER_KEY = new SilverKey(new FabricItemSettings());
     public static final Item ABERRATION_LIMB = new Item(new FabricItemSettings());
     public static final Item ABERRATION_HEART = new Item(new FabricItemSettings());
+
+    public static final Item XALARATH = new Xalarath(new FabricItemSettings().maxCount(1).fireproof());
 
     public static final Item PRIMORDIAL_BOAT = new BoatItem(false, EntityRegistry.PRIMORDIAL, new FabricItemSettings());
     public static final Item PRIMORDIAL_CHEST_BOAT = new BoatItem(true, EntityRegistry.PRIMORDIAL, new FabricItemSettings());
@@ -53,6 +57,7 @@ public class ItemRegistry {
         reg(ABERRATION_LIMB, "aberration_limb");
         reg(ABERRATION_HEART, "aberration_heart");
         
+        reg(XALARATH, "xalarath");
 
         reg(PRIMORDIAL_BOAT, "primordial_boat");
         reg(PRIMORDIAL_CHEST_BOAT, "primordial_chest_boat");

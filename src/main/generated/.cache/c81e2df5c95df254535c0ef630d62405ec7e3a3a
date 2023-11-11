@@ -1,4 +1,4 @@
-// 1.20.1	2023-11-06T19:44:54.4475184	Eldritch End/Recipes
+// 1.20.1	2023-11-11T17:04:20.7860921	Eldritch End/Recipes
 c4c8899c3b290932347e8032af43a6de9add9fec data\eldritch_end\advancements\recipes\building_blocks\polished_spire_stone_brick_slab.json
 586b79a5528aa1fbe333e6b1ad088a81ea791434 data\eldritch_end\recipes\polished_spire_stone_tile_slab.json
 aa5be2f39d1c2573cffd989af689be0a25efe699 data\eldritch_end\recipes\etyr_pillar.json
@@ -78,8 +78,8 @@ c077911f53612c334304ad072488094b1789b546 data\eldritch_end\recipes\etyr_stairs.j
 58384b03357ba794af9c4abf48375dfcdcdad429 data\eldritch_end\recipes\decadent_etyr_pillar.json
 6192bed6097466a102f3329dba9704db3f8d40c5 data\eldritch_end\recipes\polished_spire_stone_tile_stairs.json
 929a35b214e3c854c052a8341929d89398ccaa7d data\eldritch_end\recipes\spire_stone_slab.json
-a2448ced057a5bd1aa936ff04a940b9f328ee1d4 data\eldritch_end\recipes\polished_spire_stone_tiles.json
 f50c46802af176a72a73553f378a403258f6b978 data\eldritch_end\recipes\perturbed_etyr_bars.json
+a2448ced057a5bd1aa936ff04a940b9f328ee1d4 data\eldritch_end\recipes\polished_spire_stone_tiles.json
 278f6873175d3960ee45b20e045c852048dd530f data\eldritch_end\advancements\recipes\building_blocks\cracked_polished_spire_stone_tiles.json
 23f8e3d19791f9ceffdda7f048ff4658eeea8bdb data\eldritch_end\advancements\recipes\building_blocks\decadent_etyr_pillar.json
 c4f0686be8be0b1b2a7a3194485cf0ee43207f5a data\eldritch_end\advancements\recipes\building_blocks\perturbed_etyr_tiles.json

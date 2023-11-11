@@ -109,6 +109,8 @@ public class ModelGenerator extends FabricModelProvider {
         generator.register(ItemRegistry.ABERRATION_LIMB, Models.GENERATED);
         generator.register(ItemRegistry.ABERRATION_HEART, Models.GENERATED);
 
+        generator.register(ItemRegistry.XALARATH, Models.GENERATED);
+
         generator.register(ItemRegistry.RAW_ETYR, Models.GENERATED);
         generator.register(ItemRegistry.ETYR_INGOT, Models.GENERATED);
 
