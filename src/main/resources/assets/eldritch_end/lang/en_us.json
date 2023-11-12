@@ -105,7 +105,7 @@
 
     "item.eldritch_end.xalarath": "Xal'arath, The Faceless Eye",
     "item.eldritch_end.xalarath.type": "Corruption Artifact",
-    "item.eldritch_end.xalarath.shadowburst.1": "Creates an explosion that deals %s corruption damage",
+    "item.eldritch_end.xalarath.shadowburst.1": "Creates an explosion that deals",
     "item.eldritch_end.xalarath.shadowburst.2": "divided between all nearby entities.",
 
     "item.eldritch_end.aberration_spawn_egg": "Aberration Spawn Egg",

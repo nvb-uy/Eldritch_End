@@ -14,6 +14,8 @@ import net.minecraft.text.Text;
 import net.minecraft.world.World;
 
 public class Xalarath extends CorruptionArtifact {
+    public static int shadowburst_damage = 10;
+
     public Xalarath(Settings settings) {
         super(settings);
     }
@@ -22,6 +24,7 @@ public class Xalarath extends CorruptionArtifact {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         MutableText type = TextAPI.Styles.getGradient(Text.translatable("item.eldritch_end.xalarath.type"), 1, 0x5c3885, 0x8e4ecf, 1.0F);
         MutableText ability_icon = Text.empty().append("\uA996 ");
+        MutableText ability_damage = Text.empty().append(shadowburst_damage+" damage").setStyle(TextUtils.Styles.DAMAGE_CORRUPTION);
 
         tooltip.add(type.fillStyle(type.getStyle().withUnderline(true)));
 
@@ -32,12 +35,16 @@ public class Xalarath extends CorruptionArtifact {
         ability_icon.append(shadowburst);       
 
         tooltip.add(ability_icon);
-        //TODO: replace %s with the ability's corruption damage
+
         MutableText description1 = Text.translatable("item.eldritch_end.xalarath.shadowburst.1").setStyle(TextUtils.Styles.DESCRIPTION);
         MutableText description2 = Text.translatable("item.eldritch_end.xalarath.shadowburst.2").setStyle(TextUtils.Styles.DESCRIPTION);
 
-        tooltip.add(Text.literal(" ").append(description1));
+        tooltip.add(Text.literal(" ").append(description1).append(Text.literal(" \uA997 ").append(ability_damage)));
         tooltip.add(Text.literal(" ").append(description2));
+
+        tooltip.add(emptyLine());
+
+        MutableText corruption = Text.translatable("item.eldritch_end.xalarath.corruption").setStyle(TextUtils.Styles.CORRUPTION_ABILITY);
     }
 
     private Text emptyLine() {

@@ -11,6 +11,18 @@
             "file": "eldritch_end:icon/mouse.png",
             "ascent": 9, "height": 9,
             "chars": ["\uA996"]
+        },
+        {
+            "type": "bitmap",
+            "file": "eldritch_end:icon/corruption_scaling.png",
+            "ascent": 9, "height": 11,
+            "chars": ["\uA997"]
+        },
+        {
+            "type": "bitmap",
+            "file": "eldritch_end:icon/corruption_plus.png",
+            "ascent": 9, "height": 11,
+            "chars": ["\uA998"]
         }
     ]
 }

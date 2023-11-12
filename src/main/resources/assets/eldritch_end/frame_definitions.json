@@ -1,0 +1,12 @@
+{
+	"definitions": [
+		{
+			"index": 0,
+			"startColor": "#FF705A87",
+			"endColor": "#FF705A87-v70+s15",
+			"bgStartColor": "#E8705A87-v85+s15",
+			"bgEndColor": "#F4705A87-v120+s35",
+			"selectors": ["%Corrupted", "eldritch_end:xalarath"]
+		}
+	]
+}

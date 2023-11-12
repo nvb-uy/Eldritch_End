@@ -64,6 +64,12 @@ dependencies {
 	modImplementation "curse.maven:azurelib-817423:${project.azurelib}"
 	modImplementation "curse.maven:necronomicon-586157:${project.necronomicon_api}"
 
+	// Optional, compats
+	modImplementation "curse.maven:legendary-tooltips-fabric-542478:4650438"
+	modImplementation "curse.maven:iceberg-fabric-539382:4706535"
+	modImplementation "curse.maven:forge-config-api-port-fabric-547434:4583000"
+	modImplementation "curse.maven:prism-fabric-665526:4650327"
+
 	//modImplementation "curse.maven:sodium-394468:3669187"
 	//modImplementation "curse.maven:iris-455508:3770305"
 
