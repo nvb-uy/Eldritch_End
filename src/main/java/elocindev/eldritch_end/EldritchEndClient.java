@@ -6,11 +6,7 @@ import elocindev.eldritch_end.registry.EntityRegistry;
 
 import java.util.List;
 
-import com.anthonyhilyard.legendarytooltips.LegendaryTooltips;
 import com.anthonyhilyard.legendarytooltips.config.LegendaryTooltipsConfig;
-import com.anthonyhilyard.legendarytooltips.config.LegendaryTooltipsConfig.ColorType;
-import com.anthonyhilyard.legendarytooltips.config.LegendaryTooltipsConfig.FrameDefinition;
-import com.anthonyhilyard.legendarytooltips.config.LegendaryTooltipsConfig.FrameSource;
 import com.anthonyhilyard.prism.util.ColorUtil;
 
 import elocindev.eldritch_end.config.ConfigLoader;

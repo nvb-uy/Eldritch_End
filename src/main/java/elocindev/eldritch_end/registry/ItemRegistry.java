@@ -18,7 +18,6 @@ import elocindev.eldritch_end.item.artifacts.Xalarath;
 import elocindev.eldritch_end.item.spawneggs.AberrationEgg;
 import elocindev.eldritch_end.item.spawneggs.TentacleEgg;
 import elocindev.eldritch_end.item.upgrades.EtyrPattern;
-import elocindev.necronomicon.api.text.AnimatedText;
 import elocindev.eldritch_end.item.Chorb;
 
 public class ItemRegistry {
