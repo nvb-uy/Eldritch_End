@@ -25,7 +25,6 @@ public class EldritchEnd implements ModInitializer {
 		BlockRegistry.register();
 		ItemRegistry.register();
 		EntityRegistry.register();
-		// FeatureRegistry.register();
 		EffectRegistry.register();
 		ItemGroupRegistry.register();
 		WorldgenRegistry.register();

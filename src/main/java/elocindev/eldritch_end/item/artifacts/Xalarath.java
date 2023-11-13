@@ -45,6 +45,7 @@ public class Xalarath extends CorruptionArtifact {
         tooltip.add(emptyLine());
 
         MutableText corruption = Text.translatable("item.eldritch_end.xalarath.corruption").setStyle(TextUtils.Styles.CORRUPTION_ABILITY);
+        tooltip.add(Text.literal("\uA999 ").append(Text.literal("+10 Corruption").setStyle(TextUtils.Styles.DAMAGE_CORRUPTION)));
     }
 
     private Text emptyLine() {

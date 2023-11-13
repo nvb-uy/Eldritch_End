@@ -23,6 +23,12 @@
             "file": "eldritch_end:icon/corruption_plus.png",
             "ascent": 9, "height": 11,
             "chars": ["\uA998"]
+        },
+        {
+            "type": "bitmap",
+            "file": "eldritch_end:icon/corruption.png",
+            "ascent": 9, "height": 11,
+            "chars": ["\uA999"]
         }
     ]
 }
