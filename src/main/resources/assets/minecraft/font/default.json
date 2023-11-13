@@ -14,6 +14,12 @@
         },
         {
             "type": "bitmap",
+            "file": "eldritch_end:icon/passive.png",
+            "ascent": 9, "height": 9,
+            "chars": ["\uB996"]
+        },
+        {
+            "type": "bitmap",
             "file": "eldritch_end:icon/corruption_scaling.png",
             "ascent": 9, "height": 11,
             "chars": ["\uA997"]
@@ -27,7 +33,7 @@
         {
             "type": "bitmap",
             "file": "eldritch_end:icon/corruption.png",
-            "ascent": 9, "height": 11,
+            "ascent": 9, "height": 10,
             "chars": ["\uA999"]
         }
     ]

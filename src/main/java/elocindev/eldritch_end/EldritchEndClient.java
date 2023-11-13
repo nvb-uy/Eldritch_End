@@ -57,7 +57,9 @@ public class EldritchEndClient implements ClientModInitializer {
                 () -> ColorUtil.combineARGB(255, 101, 52, 173),
                 () -> ColorUtil.combineARGB(230, 12, 9, 15),
                 9999,
-                List.of("eldritch_end:xalarath")
+                List.of(
+                    "eldritch_end:xalarath",
+                    "eldritch_end:necronomicon")
             );
     }
 }
