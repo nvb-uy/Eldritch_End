@@ -21,7 +21,7 @@ public class ItemGroupRegistry {
 
             entries.add(new ItemStack(ItemRegistry.RAW_ETYR));
             entries.add(new ItemStack(ItemRegistry.ETYR_INGOT));
-            entries.add(new ItemStack(ItemRegistry.ETYR_UPGRADE_PATTERN));
+            entries.add(new ItemStack(ItemRegistry.ETYR_UPGRADE_TEMPLATE));
                         
             entries.add(new ItemStack(ArmorRegistry.ETYRITE_HELMET));
             entries.add(new ItemStack(ArmorRegistry.ETYRITE_CHESTPLATE));

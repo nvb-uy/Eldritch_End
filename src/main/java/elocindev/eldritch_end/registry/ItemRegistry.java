@@ -4,12 +4,21 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.BoatItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.SmithingTemplateItem;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.text.Style;
+import net.minecraft.text.Text;
+import net.minecraft.text.TextColor;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
+
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.anthonyhilyard.prism.text.TextColors;
 
 import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.item.Necronomicon;
@@ -18,6 +27,7 @@ import elocindev.eldritch_end.item.artifacts.Xalarath;
 import elocindev.eldritch_end.item.spawneggs.AberrationEgg;
 import elocindev.eldritch_end.item.spawneggs.TentacleEgg;
 import elocindev.eldritch_end.item.upgrades.EtyrPattern;
+import elocindev.necronomicon.api.text.TextAPI;
 import elocindev.eldritch_end.item.Chorb;
 
 public class ItemRegistry {
@@ -44,7 +54,15 @@ public class ItemRegistry {
 
     public static final Item RAW_ETYR = new Item(new FabricItemSettings());
     public static final Item ETYR_INGOT = new Item(new FabricItemSettings());
-    public static final Item ETYR_UPGRADE_PATTERN = new EtyrPattern(new FabricItemSettings());
+    public static final Item ETYR_UPGRADE_TEMPLATE = new SmithingTemplateItem(
+        Text.literal("Netherite Equipment").setStyle(Style.EMPTY.withColor(Formatting.BLUE)),
+        Text.translatable("item.eldritch_end.etyr_ingot").setStyle(Style.EMPTY.withColor(Formatting.BLUE)),
+        TextAPI.Styles.getStaticGradient(Text.literal("Etyr Upgrade"), 0x4c6956, 0x7aa187),
+        Text.empty(),
+        Text.empty(),
+        List.of(new Identifier("minecraft:item/empty_slot_smithing_template_netherite_upgrade")),
+        List.of()
+        );
 
     public static Item reg(Item instance, String id) {
         return Registry.register(Registries.ITEM, new Identifier(EldritchEnd.MODID, id), instance);
@@ -63,7 +81,7 @@ public class ItemRegistry {
 
         reg(RAW_ETYR, "raw_etyr");
         reg(ETYR_INGOT, "etyr_ingot");
-        reg(ETYR_UPGRADE_PATTERN, "etyr_upgrade_pattern");
+        reg(ETYR_UPGRADE_TEMPLATE, "etyr_upgrade_pattern");
 
         reg(ABERRATION_SPAWN_EGG, "aberration_spawn_egg");
         reg(TENTACLE_SPAWN_EGG, "tentacle_spawn_egg");
