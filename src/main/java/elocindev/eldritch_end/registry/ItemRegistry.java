@@ -9,7 +9,6 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
-import net.minecraft.text.TextColor;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
@@ -18,15 +17,12 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.anthonyhilyard.prism.text.TextColors;
-
 import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.item.Necronomicon;
 import elocindev.eldritch_end.item.SilverKey;
 import elocindev.eldritch_end.item.artifacts.Xalarath;
 import elocindev.eldritch_end.item.spawneggs.AberrationEgg;
 import elocindev.eldritch_end.item.spawneggs.TentacleEgg;
-import elocindev.eldritch_end.item.upgrades.EtyrPattern;
 import elocindev.necronomicon.api.text.TextAPI;
 import elocindev.eldritch_end.item.Chorb;
 

@@ -10,5 +10,7 @@ public class TextUtils {
 
         public static final Style DAMAGE_CORRUPTION = Style.EMPTY.withColor(0x554a8a);
         public static final Style DAMAGE_PHYSICAL = Style.EMPTY.withColor(0xad3232);
+
+        public static final Style NOT_IMPLEMENTED = Style.EMPTY.withColor(0xff1100);
     }
 }
