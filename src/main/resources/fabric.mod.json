@@ -33,7 +33,7 @@
   "depends": {
     "fabricloader": ">=0.14.19",
     "java": ">=17",
-    "necronomicon": ">=1.2.0",
+    "necronomicon": ">=1.3.0",
     "azurelib": "*"
   }
 }
