@@ -47,6 +47,7 @@ public class Necronomicon extends Item {
         }
 
         tooltip.add(ability_icon.append(ability));
+        tooltip.add(Text.literal("This item is not yet implemented!").setStyle(TextUtils.Styles.NOT_IMPLEMENTED));
     }
 
     private Text emptyLine() {
