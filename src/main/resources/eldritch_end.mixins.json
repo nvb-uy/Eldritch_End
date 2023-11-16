@@ -10,7 +10,8 @@
     "item.ItemNameMixin"
   ],
   "client": [
-    "client.BackgroundRendererMixin"
+    "client.BackgroundRendererMixin",
+    "screen.CorruptionIconRenderMixin"
   ],
   "injectors": {
     "defaultRequire": 1

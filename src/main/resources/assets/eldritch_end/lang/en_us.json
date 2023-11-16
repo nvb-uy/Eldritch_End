@@ -1,5 +1,7 @@
 {
     "itemGroup.eldritch_end":"Eldritch End",
+
+    "eldritch_end.corruption.gui.player": "Player Corruption",
     "death.attack.corruption": "%1$s fell victim to the corruption...",
     "death.attack.corruption.player": "%1$s fell victim to the corruption...",
 

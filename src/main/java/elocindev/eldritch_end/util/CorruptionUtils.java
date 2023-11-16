@@ -1,5 +1,6 @@
 package elocindev.eldritch_end.util;
 
+
 import elocindev.eldritch_end.item.armor.EtyriteArmorPiece;
 import elocindev.eldritch_end.registry.EffectRegistry;
 import net.minecraft.entity.LivingEntity;
