@@ -35,6 +35,12 @@
             "file": "eldritch_end:icon/corruption.png",
             "ascent": 9, "height": 10,
             "chars": ["\uA999"]
+        },
+        {
+            "type": "bitmap",
+            "file": "eldritch_end:icon/corruption_resistance.png",
+            "ascent": 9, "height": 10,
+            "chars": ["\uAB01"]
         }
     ]
 }
