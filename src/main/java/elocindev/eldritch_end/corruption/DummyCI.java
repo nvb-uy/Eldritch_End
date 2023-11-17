@@ -7,7 +7,6 @@ import org.jetbrains.annotations.Nullable;
 import elocindev.eldritch_end.api.CorruptionAPI;
 import elocindev.eldritch_end.worldgen.util.TextUtils;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.client.util.Icons;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Style;

@@ -7,7 +7,8 @@
     "worldgen.EntFixerMixin",
     "sign.BlockEntityTypeMixin",
     "boat.BoatTypeMixin",
-    "item.ItemNameMixin"
+    "item.ItemNameMixin",
+    "entity.attribute.AttributeApplyMixin"
   ],
   "client": [
     "client.BackgroundRendererMixin",
