@@ -18,6 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import elocindev.eldritch_end.EldritchEnd;
+import elocindev.eldritch_end.corruption.DummyCI;
 import elocindev.eldritch_end.item.Necronomicon;
 import elocindev.eldritch_end.item.SilverKey;
 import elocindev.eldritch_end.item.artifacts.Xalarath;
@@ -48,6 +49,8 @@ public class ItemRegistry {
     // Well that's because this is an easter egg. Please don't tell anyone and just enjoy it ingame :thisisthesunglassescat:
     public static final Item CHORB_SPAWN_EGG = new Chorb(EntityType.GIANT, 0xfcba03, 0xfce703, new FabricItemSettings());
 
+    public static final Item CORRUPTION_MENU = new DummyCI(new FabricItemSettings());
+
     public static final Item RAW_ETYR = new Item(new FabricItemSettings());
     public static final Item ETYR_INGOT = new Item(new FabricItemSettings());
     public static final Item ETYR_UPGRADE_TEMPLATE = new SmithingTemplateItem(
@@ -74,6 +77,8 @@ public class ItemRegistry {
 
         reg(PRIMORDIAL_BOAT, "primordial_boat");
         reg(PRIMORDIAL_CHEST_BOAT, "primordial_chest_boat");
+
+        reg(CORRUPTION_MENU, "corruption");
 
         reg(RAW_ETYR, "raw_etyr");
         reg(ETYR_INGOT, "etyr_ingot");
