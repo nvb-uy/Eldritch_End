@@ -11,7 +11,7 @@
   ],
   "client": [
     "client.BackgroundRendererMixin",
-    "client.screen.CorruptionIconRenderMixin"
+    "client.screen.CorruptionMenuRenderMixin"
   ],
   "injectors": {
     "defaultRequire": 1

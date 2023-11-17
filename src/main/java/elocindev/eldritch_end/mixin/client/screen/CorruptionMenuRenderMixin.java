@@ -15,17 +15,19 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 @Mixin(InventoryScreen.class)
-public abstract class CorruptionIconRenderMixin extends AbstractInventoryScreen<PlayerScreenHandler> {
-    public CorruptionIconRenderMixin(PlayerScreenHandler screenHandler, PlayerInventory playerInventory, Text text) {
+public abstract class CorruptionMenuRenderMixin extends AbstractInventoryScreen<PlayerScreenHandler> {
+    public CorruptionMenuRenderMixin(PlayerScreenHandler screenHandler, PlayerInventory playerInventory, Text text) {
         super(screenHandler, playerInventory, text);
     }
 
     @Inject(method = "drawBackground", at = @At("TAIL"), cancellable = true)
     protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY, CallbackInfo info) {       
-        context.drawTexture(new Identifier("eldritch_end", "textures/icon/corruption.png"), x + 66, y + 69, 0, 0, 11, 11, 11, 11);
+        String currentTexture = "textures/icon/corruption_menu/1.png";
         
-        if (mouseX >= x + 68 && mouseX <= x + 79 && mouseY >= y + 70 && mouseY <= y + 81) {
-            context.drawTooltip(textRenderer, CorruptionAPI.getTooltip(), mouseX, mouseY);
+        context.drawTexture(new Identifier("eldritch_end", currentTexture), x + 66, y + 69, 0, 0, 11, 11, 11, 11);
+        
+        if (mouseX >= x + 66 && mouseX <= x + 77 && mouseY >= y + 69 && mouseY <= y + 80) {
+            context.drawTooltip(textRenderer, CorruptionAPI.getCMenuTooltip(), mouseX, mouseY);
         }
     }
 }

@@ -1,10 +1,10 @@
 package elocindev.eldritch_end.entity.aberration;
 
 import elocindev.eldritch_end.config.Configs;
+import elocindev.eldritch_end.corruption.CorruptionUtils;
 import elocindev.eldritch_end.effects.Corruption;
 import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.registry.EffectRegistry;
-import elocindev.eldritch_end.util.CorruptionUtils;
 import mod.azure.azurelib.animatable.GeoEntity;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
 import mod.azure.azurelib.core.animation.AnimatableManager;

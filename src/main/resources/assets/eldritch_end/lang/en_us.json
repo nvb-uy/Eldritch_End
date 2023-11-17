@@ -2,6 +2,8 @@
     "itemGroup.eldritch_end":"Eldritch End",
 
     "eldritch_end.corruption.gui.player": "Player Corruption",
+    "eldritch_end.corruption.gui.desc.1": "Empower your corrupted abilities,",
+    "eldritch_end.corruption.gui.desc.2": "but descend into madness in the process.",
     "death.attack.corruption": "%1$s fell victim to the corruption...",
     "death.attack.corruption.player": "%1$s fell victim to the corruption...",
 

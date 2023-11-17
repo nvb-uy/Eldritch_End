@@ -1,4 +1,4 @@
-package elocindev.eldritch_end.util;
+package elocindev.eldritch_end.corruption;
 
 
 import elocindev.eldritch_end.item.armor.EtyriteArmorPiece;
