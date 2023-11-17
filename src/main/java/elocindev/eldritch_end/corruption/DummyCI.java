@@ -5,7 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
 import elocindev.eldritch_end.api.CorruptionAPI;
+import elocindev.eldritch_end.registry.AttributeRegistry;
 import elocindev.eldritch_end.worldgen.util.TextUtils;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -25,15 +27,21 @@ public class DummyCI extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        int corruption = 0;
+        MinecraftClient client = MinecraftClient.getInstance();
+        if (client.player == null) return;
+        
+        int resistance = (int)client.player.getAttributeInstance(AttributeRegistry.CORRUPTION_RESISTANCE).getValue();
+        int corruption = (int)client.player.getAttributeInstance(AttributeRegistry.CORRUPTION).getValue();
 
         Style descriptionStyle = Style.EMPTY.withColor(0xc95f1c);
 
-        Text corruptionText = Text.literal("\uA999 ").append(Text.literal(corruption+" Corruption").setStyle(TextUtils.Styles.DAMAGE_CORRUPTION));
+        Text corruptionText = Text.literal("\uA999 ").append(Text.literal(corruption+" Total Corruption").setStyle(TextUtils.Styles.DAMAGE_CORRUPTION));
+        Text resistText = Text.literal("\uA999 ").append(Text.literal(resistance+"% Etyr").setStyle(TextUtils.Styles.CORRUPTION_RESISTANCE));
 
         tooltip.add(Text.translatable("eldritch_end.corruption.gui.desc.1").setStyle(descriptionStyle));
         tooltip.add(Text.translatable("eldritch_end.corruption.gui.desc.2").setStyle(descriptionStyle));
         tooltip.add(Text.empty());
+        tooltip.add(resistText);
         tooltip.add(corruptionText);
    }
 }
