@@ -20,6 +20,7 @@ public class EldritchEnd implements ModInitializer {
 
 		AzureLib.initialize();
 
+		AttributeRegistry.register();
 		BiomeRegistry.register();
 		ArmorRegistry.register();
 		BlockRegistry.register();
@@ -28,5 +29,6 @@ public class EldritchEnd implements ModInitializer {
 		EffectRegistry.register();
 		ItemGroupRegistry.register();
 		WorldgenRegistry.register();
+		
 	}
 }
