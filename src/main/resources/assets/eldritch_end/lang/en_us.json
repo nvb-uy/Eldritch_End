@@ -4,8 +4,14 @@
     "eldritch_end.corruption.gui.player": "Player Corruption",
     "eldritch_end.corruption.gui.desc.1": "Empower your corrupted abilities,",
     "eldritch_end.corruption.gui.desc.2": "but descend into madness in the process.",
-    "death.attack.corruption": "%1$s fell victim to the corruption...",
-    "death.attack.corruption.player": "%1$s fell victim to the corruption...",
+
+    "death.attack.corruption": "%1$s fell victim to the corruption.",
+    "death.attack.corruption.player": "%1$s fell victim to the corruption.",
+
+    "attributes.eldritch_end.corruption": "Corruption",
+    "attributes.eldritch_end.corruption.desc": "The amount of corruption a player has.",
+    "attributes.eldritch_end.corruption_resistance": "Corruption Resistance",
+    "attributes.eldritch_end.corruption_resistance.desc": "The amount of corruption resistance a player has.",
 
     "biome.eldritch_end.hasturian_wastes": "Hasturian Wastes",
     "biome.eldritch_end.primordial_abyss": "Primordial Abyss",
