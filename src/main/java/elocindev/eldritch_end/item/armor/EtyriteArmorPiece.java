@@ -36,7 +36,7 @@ public class EtyriteArmorPiece extends ArmorItem {
             modifiers.put(
                 AttributeRegistry.CORRUPTION_RESISTANCE,
                 new EntityAttributeModifier(
-                    UUID.fromString("991e0e10-855f-11ee-b9d1-0242ac120002"), 
+                    UUID.randomUUID(), 
                     "Corruption resistance modifier", 
                     10.0, 
                     EntityAttributeModifier.Operation.ADDITION
