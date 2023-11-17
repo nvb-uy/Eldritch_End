@@ -32,11 +32,35 @@ public class EtyriteArmorPiece extends ArmorItem {
     public Multimap<EntityAttribute, EntityAttributeModifier> getAttributeModifiers(EquipmentSlot slot) {
         Multimap<EntityAttribute, EntityAttributeModifier> modifiers = HashMultimap.create(super.getAttributeModifiers(slot));
         
+        UUID slotUUID = UUID.randomUUID();
+
+        UUID head = UUID.fromString("697fe278-8564-11ee-b9d1-0242ac120002");
+        UUID chest = UUID.fromString("697fe278-8564-11ee-b9d1-0242ac120003");
+        UUID legs = UUID.fromString("697fe278-8564-11ee-b9d1-0242ac120004");
+        UUID feet = UUID.fromString("697fe278-8564-11ee-b9d1-0242ac120005");
+
+        switch (slot) {
+            case HEAD:
+                slotUUID = head;
+                break;
+            case CHEST:
+                slotUUID = chest;
+                break;
+            case LEGS:
+                slotUUID = legs;
+                break;
+            case FEET:
+                slotUUID = feet;
+                break;
+            default:
+                break;
+        }
+
         if (slot == this.getSlotType())
             modifiers.put(
                 AttributeRegistry.CORRUPTION_RESISTANCE,
                 new EntityAttributeModifier(
-                    UUID.randomUUID(), 
+                    slotUUID, 
                     "Corruption resistance modifier", 
                     10.0, 
                     EntityAttributeModifier.Operation.ADDITION
