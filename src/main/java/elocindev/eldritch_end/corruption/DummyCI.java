@@ -36,7 +36,7 @@ public class DummyCI extends Item {
         Style descriptionStyle = Style.EMPTY.withColor(0xc95f1c);
 
         Text corruptionText = Text.literal("\uA999 ").append(Text.literal(corruption+" Total Corruption").setStyle(TextUtils.Styles.DAMAGE_CORRUPTION));
-        Text resistText = Text.literal("\uA999 ").append(Text.literal(resistance+"% Etyr").setStyle(TextUtils.Styles.CORRUPTION_RESISTANCE));
+        Text resistText = Text.literal("\uAB01 ").append(Text.literal(resistance+"% Etyr").setStyle(TextUtils.Styles.CORRUPTION_RESISTANCE));
 
         tooltip.add(Text.translatable("eldritch_end.corruption.gui.desc.1").setStyle(descriptionStyle));
         tooltip.add(Text.translatable("eldritch_end.corruption.gui.desc.2").setStyle(descriptionStyle));
