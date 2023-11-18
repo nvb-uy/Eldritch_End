@@ -7,6 +7,7 @@ import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import elocindev.eldritch_end.compat.EtyrAttributeBuilder;
 import elocindev.eldritch_end.config.ConfigLoader;
 
 public class EldritchEnd implements ModInitializer {
@@ -29,6 +30,7 @@ public class EldritchEnd implements ModInitializer {
 		EffectRegistry.register();
 		ItemGroupRegistry.register();
 		WorldgenRegistry.register();
-		
+
+		EtyrAttributeBuilder.buildItemTag();		
 	}
 }
