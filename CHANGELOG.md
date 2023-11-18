@@ -2,7 +2,7 @@
 
 - Added Corruption GUI in survival inventory
 - Corruption and Corruption Resistance (Labeled as Etyr %) are now attributes
-- The player corruption GUI will show the percentage of etyr and total corruption (TODO: FINISH TOTAL CORRUPTION) [Nicole]
+- The player corruption GUI will show the percentage of etyr and total corruption
 - Overhauled generation of the biomes, they now feel more natural.
 - Added Corruption mechanic config with various entries, not all of them are implemented.
 - Added Corruption API under package elocindev.eldritch_end.api.CorruptionAPI
