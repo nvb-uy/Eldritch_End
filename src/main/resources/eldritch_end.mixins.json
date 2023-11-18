@@ -6,6 +6,7 @@
   "mixins": [
     "worldgen.EntFixerMixin",
     "worldgen.biome.SurfaceRuleAccessor",
+    "server.BiomeMixin",
     "sign.BlockEntityTypeMixin",
     "boat.BoatTypeMixin",
     "item.ItemNameMixin",

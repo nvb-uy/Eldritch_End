@@ -7,9 +7,6 @@ import elocindev.eldritch_end.registry.BiomeRegistry;
 import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.worldgen.feature.SurfaceConfig;
 import elocindev.eldritch_end.worldgen.util.TendrilFactory;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.registry.Registries;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.StructureWorldAccess;
@@ -22,7 +19,7 @@ public class PrimordialAbyssSurface extends Feature<SurfaceConfig> {
     }
 
     public boolean canPlace(StructureWorldAccess world, BlockPos position) {
-        return world.getBlockState(position).getBlock() == Blocks.END_STONE;
+        return world.getBlockState(position).getBlock() == BlockRegistry.ABYSMAL_FRONDS;
     }
    
     @Override
@@ -30,9 +27,6 @@ public class PrimordialAbyssSurface extends Feature<SurfaceConfig> {
         boolean generated = false;
         StructureWorldAccess world = context.getWorld();
         BlockPos origin = context.getOrigin();
-
-        SurfaceConfig config = context.getConfig();
-        BlockState blockState = Registries.BLOCK.get(config.blockID()).getDefaultState();
 
         int centerX = origin.getX() + world.getRandom().nextInt(4);
         int centerZ = origin.getZ() + world.getRandom().nextInt(4);
@@ -65,8 +59,6 @@ public class PrimordialAbyssSurface extends Feature<SurfaceConfig> {
 
                     if (canPlace(world, targetPos)) {
                         
-                        world.setBlockState(targetPos, blockState, 3);
-                    
                         if (Configs.Biome.PRIMORDIAL_ABYSS.enable_roots_generation && world.getRandom().nextInt(100) <= Configs.Biome.PRIMORDIAL_ABYSS.roots_generation_chance)
                             world.setBlockState(targetPos.up(), BlockRegistry.ABYSMAL_ROOTS.getDefaultState(), 3);
 

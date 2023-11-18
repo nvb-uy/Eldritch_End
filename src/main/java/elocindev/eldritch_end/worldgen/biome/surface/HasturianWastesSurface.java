@@ -21,7 +21,7 @@ public class HasturianWastesSurface extends Feature<SurfaceConfig> {
     }
 
     public boolean canPlace(StructureWorldAccess world, BlockPos position) {
-        return world.getBlockState(position).getBlock() == Blocks.END_STONE || world.getBlockState(position).getBlock() == BlockRegistry.ABYSMAL_FRONDS;
+        return world.getBlockState(position).getBlock() == BlockRegistry.HASTURIAN_MOSS;
     }
    
     @Override
@@ -44,7 +44,6 @@ public class HasturianWastesSurface extends Feature<SurfaceConfig> {
         
         if (random.nextBoolean()) {
             isSand = true;
-            blockState = BlockRegistry.HASTURIAN_DUNE_SAND.getDefaultState(); 
         }
 
         if (random.nextBoolean()) {

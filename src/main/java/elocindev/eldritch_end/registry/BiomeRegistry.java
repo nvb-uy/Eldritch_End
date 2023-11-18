@@ -11,6 +11,8 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.YOffset;
+import net.minecraft.world.gen.surfacebuilder.MaterialRules;
 
 public class BiomeRegistry {
     public static final RegistryKey<Biome> PRIMORDIAL_ABYSS = RegistryKey.of(RegistryKeys.BIOME,
@@ -34,5 +36,37 @@ public class BiomeRegistry {
         
         PrimordialAbyss.registerModifications();
         HasturianWastes.registerModifications();
+    }
+
+    public class SurfaceRules {
+        private static final MaterialRules.MaterialRule HASTURIAN_MOSS = MaterialRules.block(BlockRegistry.HASTURIAN_MOSS.getDefaultState());
+        private static final MaterialRules.MaterialRule ABYSMAL_FRONDS = MaterialRules.block(BlockRegistry.ABYSMAL_FRONDS.getDefaultState());
+
+
+        public static MaterialRules.MaterialRule createHasturianWastes() {
+            return MaterialRules.condition(
+                    MaterialRules.biome(BiomeRegistry.HASTURIAN_WASTES),
+                    MaterialRules.condition(
+                        MaterialRules.STONE_DEPTH_FLOOR,
+                            MaterialRules.condition(
+                                    MaterialRules.aboveY(YOffset.aboveBottom(50), 0),
+                                    HASTURIAN_MOSS
+                            )
+                    )
+            );
+        }
+
+        public static MaterialRules.MaterialRule createPrimordialAbyss() {
+			return MaterialRules.condition(
+				MaterialRules.biome(BiomeRegistry.HASTURIAN_WASTES),
+				MaterialRules.condition(
+					MaterialRules.STONE_DEPTH_FLOOR,
+						MaterialRules.condition(
+								MaterialRules.aboveY(YOffset.aboveBottom(50), 0),
+								ABYSMAL_FRONDS
+						)
+				)
+			);
+        }
     }
 }

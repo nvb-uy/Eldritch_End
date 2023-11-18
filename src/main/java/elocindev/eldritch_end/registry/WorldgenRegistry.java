@@ -10,25 +10,10 @@ import elocindev.eldritch_end.worldgen.feature.TreeConfig;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.surfacebuilder.MaterialRules;
 
 public class WorldgenRegistry {
-    public class Rules {
-        MaterialRules.MaterialRule HASTURIAN_MOSS = MaterialRules.condition(
-                MaterialRules.biome(BiomeRegistry.HASTURIAN_WASTES),
-                MaterialRules.condition(
-                    MaterialRules.STONE_DEPTH_FLOOR,
-                        MaterialRules.condition(
-                                MaterialRules.aboveY(YOffset.aboveBottom(50), 2),
-                                MaterialRules.block(BlockRegistry.HASTURIAN_MOSS.getDefaultState())
-                        )
-                )
-        );
-    }
-
     public static final Identifier PRIMORDIAL_TREE_ID = new Identifier(EldritchEnd.MODID, "primordial_tree");
     public static final Identifier PRIMORDIAL_ABYSS_SURFACE_ID = new Identifier(EldritchEnd.MODID, "primordial_abyss_surface");
     public static final Identifier HASTURIAN_WASTES_SURFACE_ID = new Identifier(EldritchEnd.MODID, "hasturian_wastes_surface");
