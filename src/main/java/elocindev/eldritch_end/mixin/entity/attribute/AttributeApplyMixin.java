@@ -9,7 +9,10 @@ import elocindev.eldritch_end.registry.AttributeRegistry;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 
-@Mixin(LivingEntity.class)
+@Mixin(
+  value = LivingEntity.class,
+  priority = 1000
+)
 public class AttributeApplyMixin {
     @Inject(method = "createLivingAttributes", at = @At("RETURN")) 
     private static void eldritch_end$registerAttributes(CallbackInfoReturnable<DefaultAttributeContainer.Builder> cir) {
