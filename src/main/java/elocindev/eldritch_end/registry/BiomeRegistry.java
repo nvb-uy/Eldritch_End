@@ -58,7 +58,7 @@ public class BiomeRegistry {
 
         public static MaterialRules.MaterialRule createPrimordialAbyss() {
 			return MaterialRules.condition(
-				MaterialRules.biome(BiomeRegistry.HASTURIAN_WASTES),
+				MaterialRules.biome(BiomeRegistry.PRIMORDIAL_ABYSS),
 				MaterialRules.condition(
 					MaterialRules.STONE_DEPTH_FLOOR,
 						MaterialRules.condition(
