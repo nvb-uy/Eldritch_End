@@ -29,9 +29,7 @@ public class BiomeRegistry {
     public static void register() {
         HasturianWastes.load(); PrimordialAbyss.load();
 
-        TheEndBiomes.addHighlandsBiome(PRIMORDIAL_ABYSS, Configs.Biome.PRIMORDIAL_ABYSS.biome_weight);
-        TheEndBiomes.addMidlandsBiome(PRIMORDIAL_ABYSS, PRIMORDIAL_ABYSS, Configs.Biome.PRIMORDIAL_ABYSS.biome_weight);
-
+        TheEndBiomes.addMidlandsBiome(HASTURIAN_WASTES, PRIMORDIAL_ABYSS, Configs.Biome.PRIMORDIAL_ABYSS.biome_weight);
         TheEndBiomes.addHighlandsBiome(HASTURIAN_WASTES, Configs.Biome.HASTURIAN_WASTES.biome_weight);
         
         PrimordialAbyss.registerModifications();
@@ -47,11 +45,11 @@ public class BiomeRegistry {
             return MaterialRules.condition(
                     MaterialRules.biome(BiomeRegistry.HASTURIAN_WASTES),
                     MaterialRules.condition(
-                        MaterialRules.STONE_DEPTH_FLOOR,
-                            MaterialRules.condition(
-                                    MaterialRules.aboveY(YOffset.aboveBottom(50), 0),
-                                    HASTURIAN_MOSS
-                            )
+                    MaterialRules.STONE_DEPTH_FLOOR,
+                        MaterialRules.condition(
+                            MaterialRules.aboveY(YOffset.aboveBottom(50), 0),
+                            HASTURIAN_MOSS
+                        )
                     )
             );
         }
@@ -61,10 +59,10 @@ public class BiomeRegistry {
 				MaterialRules.biome(BiomeRegistry.PRIMORDIAL_ABYSS),
 				MaterialRules.condition(
 					MaterialRules.STONE_DEPTH_FLOOR,
-						MaterialRules.condition(
-								MaterialRules.aboveY(YOffset.aboveBottom(50), 0),
-								ABYSMAL_FRONDS
-						)
+                    MaterialRules.condition(
+                        MaterialRules.aboveY(YOffset.aboveBottom(50), 0),
+                        ABYSMAL_FRONDS
+                    )
 				)
 			);
         }
