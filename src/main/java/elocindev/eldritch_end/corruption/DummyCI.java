@@ -30,8 +30,8 @@ public class DummyCI extends Item {
         MinecraftClient client = MinecraftClient.getInstance();
         if (client.player == null) return;
         
-        int resistance = (int)client.player.getAttributeInstance(AttributeRegistry.CORRUPTION_RESISTANCE).getValue();
-        int corruption = (int)client.player.getAttributeInstance(AttributeRegistry.CORRUPTION).getValue();
+        int resistance = (int)CorruptionAPI.getCorruptionResistanceLevel(client.player);
+        int corruption = (int)CorruptionAPI.getTotalCorruptionLevel(client.player);
 
         Style descriptionStyle = Style.EMPTY.withColor(0xc95f1c);
 

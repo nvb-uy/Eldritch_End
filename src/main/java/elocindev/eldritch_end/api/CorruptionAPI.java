@@ -12,6 +12,10 @@ public class CorruptionAPI {
         return corruption / getCorruptionResistanceMult(entity);
     }
 
+    public static double getCorruptionResistanceLevel(LivingEntity entity) {
+        return entity.getAttributeInstance(AttributeRegistry.CORRUPTION_RESISTANCE).getValue();
+    }
+
     public static double getCorruptionResistanceMult(LivingEntity entity) {
         return 1 + (entity.getAttributeInstance(AttributeRegistry.CORRUPTION_RESISTANCE).getValue() / 100);
     }
