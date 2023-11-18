@@ -1,4 +1,4 @@
-package elocindev.eldritch_end.config.entries;
+package elocindev.eldritch_end.config.entries.biomes;
 
 import elocindev.eldritch_end.config.ConfigFolder;
 import elocindev.necronomicon.config.NecConfig;

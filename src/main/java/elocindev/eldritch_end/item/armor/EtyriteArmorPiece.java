@@ -38,7 +38,7 @@ public class EtyriteArmorPiece extends ArmorItem {
         UUID chest = UUID.fromString("697fe278-8564-11ee-b9d1-0242ac120003");
         UUID legs = UUID.fromString("697fe278-8564-11ee-b9d1-0242ac120004");
         UUID feet = UUID.fromString("697fe278-8564-11ee-b9d1-0242ac120005");
-
+        
         switch (slot) {
             case HEAD:
                 slotUUID = head;

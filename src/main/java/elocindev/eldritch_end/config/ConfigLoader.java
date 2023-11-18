@@ -2,8 +2,8 @@ package elocindev.eldritch_end.config;
 
 import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.config.entries.ClientConfig;
-import elocindev.eldritch_end.config.entries.HasturianWastesConfig;
-import elocindev.eldritch_end.config.entries.PrimordialAbyssConfig;
+import elocindev.eldritch_end.config.entries.biomes.HasturianWastesConfig;
+import elocindev.eldritch_end.config.entries.biomes.PrimordialAbyssConfig;
 import elocindev.eldritch_end.config.entries.entities.AberrationConfig;
 import elocindev.eldritch_end.config.entries.entities.HasturConfig;
 import elocindev.eldritch_end.config.entries.entities.TentacleConfig;
