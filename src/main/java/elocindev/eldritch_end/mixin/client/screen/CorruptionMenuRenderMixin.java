@@ -6,6 +6,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import elocindev.eldritch_end.EldritchEnd;
+import elocindev.eldritch_end.api.CorruptionAPI;
+import elocindev.eldritch_end.config.Configs;
 import elocindev.eldritch_end.registry.ItemRegistry;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.AbstractInventoryScreen;
@@ -24,6 +26,10 @@ public abstract class CorruptionMenuRenderMixin extends AbstractInventoryScreen<
 
     @Inject(method = "drawBackground", at = @At("TAIL"), cancellable = true)
     protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY, CallbackInfo info) {       
+        if (client.player == null || 
+        Configs.Mechanics.CORRUPTION.show_icon_only_when_corrupted && CorruptionAPI.getCorruptionLevel(client.player) == 0 ) 
+            return;
+        
         String currentTexture = "textures/icon/corruption_menu/1.png";
 
         context.drawTexture(new Identifier(EldritchEnd.MODID, currentTexture), x + 66, y + 69, 0, 0, 11, 11, 11, 11);

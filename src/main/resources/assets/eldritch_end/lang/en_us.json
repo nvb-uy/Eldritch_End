@@ -132,5 +132,7 @@
 
     "entity.eldritch_end.aberration": "Aberration",
     "entity.eldritch_end.tentacle": "Tentacle",
+    "entity.eldritch_end.undead_tentacle": "Undead Tentacle",
+    "entity.eldritch_end.the_faceless_one": "The Faceless One",
     "entity.eldritch_end.hastur": "Hastur's Image"
 }
