@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "worldgen.EntFixerMixin",
+    "worldgen.biome.SurfaceRuleAccessor",
     "sign.BlockEntityTypeMixin",
     "boat.BoatTypeMixin",
     "item.ItemNameMixin",
