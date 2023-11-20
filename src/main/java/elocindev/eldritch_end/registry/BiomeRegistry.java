@@ -29,8 +29,8 @@ public class BiomeRegistry {
     public static void register() {
         HasturianWastes.load(); PrimordialAbyss.load();
 
-        TheEndBiomes.addMidlandsBiome(HASTURIAN_WASTES, PRIMORDIAL_ABYSS, Configs.Biome.PRIMORDIAL_ABYSS.biome_weight);
         TheEndBiomes.addHighlandsBiome(HASTURIAN_WASTES, Configs.Biome.HASTURIAN_WASTES.biome_weight);
+        TheEndBiomes.addHighlandsBiome(PRIMORDIAL_ABYSS, Configs.Biome.PRIMORDIAL_ABYSS.biome_weight);
         
         PrimordialAbyss.registerModifications();
         HasturianWastes.registerModifications();
