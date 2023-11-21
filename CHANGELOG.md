@@ -1,3 +1,7 @@
+## 0.2.12
+- Fixed smithing template recipe
+- Fixed crash on server
+
 ## 0.2.0
 
 - Added Corruption GUI in survival inventory
