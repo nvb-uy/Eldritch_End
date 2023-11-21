@@ -5,7 +5,6 @@ import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
 import elocindev.eldritch_end.api.CorruptionAPI;
-import elocindev.eldritch_end.registry.AttributeRegistry;
 import elocindev.eldritch_end.worldgen.util.TextUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
@@ -27,6 +26,8 @@ public class DummyCI extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        if (!world.isClient()) return;
+        
         MinecraftClient client = MinecraftClient.getInstance();
         if (client.player == null) return;
         
