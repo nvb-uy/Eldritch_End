@@ -6,6 +6,8 @@ import org.jetbrains.annotations.Nullable;
 
 import elocindev.eldritch_end.api.CorruptionAPI;
 import elocindev.eldritch_end.worldgen.util.TextUtils;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
@@ -28,11 +30,8 @@ public class DummyCI extends Item {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         if (!world.isClient()) return;
         
-        MinecraftClient client = MinecraftClient.getInstance();
-        if (client.player == null) return;
-        
-        int resistance = (int)CorruptionAPI.getCorruptionResistanceLevel(client.player);
-        int corruption = (int)CorruptionAPI.getTotalCorruptionLevel(client.player);
+        int resistance = getCorruptionResistanceLevel();
+        int corruption = getCorruptionLevel();
 
         Style descriptionStyle = Style.EMPTY.withColor(0xc95f1c);
 
@@ -44,5 +43,21 @@ public class DummyCI extends Item {
         tooltip.add(Text.empty());
         tooltip.add(resistText);
         tooltip.add(corruptionText);
-   }
+    }
+
+    @Environment(EnvType.CLIENT)
+    private int getCorruptionLevel() {
+        MinecraftClient client = MinecraftClient.getInstance();
+        if (client.player == null) return -1;
+
+        return (int)CorruptionAPI.getTotalCorruptionLevel(client.player);
+    }
+
+    @Environment(EnvType.CLIENT)
+    private int getCorruptionResistanceLevel() {
+        MinecraftClient client = MinecraftClient.getInstance();
+        if (client.player == null) return -1;
+
+        return (int)CorruptionAPI.getCorruptionResistanceLevel(client.player);
+    }
 }

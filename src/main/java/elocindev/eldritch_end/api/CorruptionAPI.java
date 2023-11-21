@@ -7,19 +7,42 @@ import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 
 public class CorruptionAPI {
+    /**
+     * Gets the total corruption level of an entity, taking into account their corruption resistance.
+     * 
+     * @param   entity      The entity to get the total corruption level of.
+     * @return              The total corruption level of the entity.
+     */
     public static double getTotalCorruptionLevel(LivingEntity entity) {
-        double corruption = getCorruptionLevel(entity);
-        return corruption / getCorruptionResistanceMult(entity);
+        return getCorruptionLevel(entity) / getCorruptionResistanceMult(entity);
     }
 
+    /**
+     * Gets the raw corruption resistance level (attribute) of an entity.
+     * 
+     * @param entity        The entity to get the corruption resistance level of.
+     * @return              The corruption resistance level of the entity.
+     */
     public static double getCorruptionResistanceLevel(LivingEntity entity) {
         return entity.getAttributeInstance(AttributeRegistry.CORRUPTION_RESISTANCE).getValue();
     }
 
+    /**
+     * Gets the corruption resistance multiplier of an entity.
+     * 
+     * @param entity        The entity to get the corruption resistance multiplier of.
+     * @return              The corruption resistance multiplier of the entity.
+     */
     public static double getCorruptionResistanceMult(LivingEntity entity) {
         return 1 + (entity.getAttributeInstance(AttributeRegistry.CORRUPTION_RESISTANCE).getValue() / 100);
     }
 
+    /**
+     * Gets the raw corruption level (attribute) of an entity.
+     * 
+     * @param entity        The entity to get the corruption level of.
+     * @return              The corruption level of the entity.
+     */
     public static double getCorruptionLevel(LivingEntity entity) {
         return entity.getAttributeInstance(AttributeRegistry.CORRUPTION).getValue();
     }
