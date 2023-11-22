@@ -24,15 +24,11 @@ public class HasturianWastes {
 		return compose(builder);
 	}
 
-	public static void addDendlers(SpawnSettings.Builder builder) {
-    	builder.spawn(SpawnGroup.CREATURE, new SpawnEntry(EntityRegistry.DENDLER, 1, 1, 1));
-    }
-
 	private static Biome compose(GenerationSettings.Builder builder) {
 		SpawnSettings.Builder settings = new SpawnSettings.Builder();
 	
 		if (Configs.Biome.HASTURIAN_WASTES.spawn_dendlers)
-			addDendlers(settings);
+			settings.spawn(SpawnGroup.CREATURE, new SpawnEntry(EntityRegistry.DENDLER, 1, 1, 2));
 
 		return (new Biome.Builder())
 		.precipitation(false)
