@@ -1,3 +1,7 @@
+## 0.2.13
+- Added Dendler
+- Dendlers now naturally spawn in the hasturian wastes
+
 ## 0.2.12
 - Fixed smithing template recipe
 - Fixed crash on server
