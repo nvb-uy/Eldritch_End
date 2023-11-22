@@ -19,4 +19,5 @@ public class HasturianWastesConfig {
     public int etyr_spawn_chance_per_block = 2;
     public boolean enable_grass_generation = true;
     public int grass_generation_chance = 10;
+    public boolean spawn_dendlers = true;
 }
