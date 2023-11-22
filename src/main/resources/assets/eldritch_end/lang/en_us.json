@@ -126,6 +126,7 @@
     "item.eldritch_end.undead_tentacle_spawn_egg": "Undead Tentacle Spawn Egg",
     "item.eldritch_end.chorb_spawn_egg": "Chorb Spawn Egg",
     "item.eldritch_end.hastur_crown": "Hastur's Lost Crown",
+    "item.eldritch_end.dendler_spawn_egg": "Dendler Spawn Egg",
 
     "effect.eldritch_end.corruption": "Corruption",
     "effect.eldritch_end.hastur_presence": "Hastur's Presence",
@@ -133,6 +134,9 @@
     "entity.eldritch_end.aberration": "Aberration",
     "entity.eldritch_end.tentacle": "Tentacle",
     "entity.eldritch_end.undead_tentacle": "Undead Tentacle",
+    "entity.eldritch_end.dendler": "Dendler",
+
     "entity.eldritch_end.the_faceless_one": "The Faceless One",
-    "entity.eldritch_end.hastur": "Hastur's Image"
+    "entity.eldritch_end.hastur": "Hastur's Image",
+    "entity.eldritch_end.chorb": "Chorb"        
 }
