@@ -11,7 +11,7 @@ public class DendlerConfig {
         return ConfigFolder.getNestedFile("dendler.json", "entities");
     }
 
-    public double HEALTH_ATTRIBUTE = 20;
+    public double HEALTH_ATTRIBUTE = 40;
     public double MOVEMENT_SPEED_ATTRIBUTE = 0.3;
-    public double WANDER_SPEED = 0.3;
+    public double WANDER_SPEED = 0.6;
 }

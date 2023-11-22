@@ -36,7 +36,7 @@ public class DendlerEntity extends PassiveEntity implements GeoEntity {
 
     @Override
     protected void initGoals() {
-        this.goalSelector.add(7, new WanderAroundFarGoal(this, Configs.Entity.ABERRATION.WANDER_SPEED));
+        this.goalSelector.add(7, new WanderAroundFarGoal(this, Configs.Entity.DENDLER.WANDER_SPEED));
         this.goalSelector.add(8, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.add(8, new LookAroundGoal(this));
     }
