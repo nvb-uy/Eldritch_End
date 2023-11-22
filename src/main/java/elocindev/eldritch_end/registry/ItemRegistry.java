@@ -23,6 +23,7 @@ import elocindev.eldritch_end.item.Necronomicon;
 import elocindev.eldritch_end.item.SilverKey;
 import elocindev.eldritch_end.item.artifacts.Xalarath;
 import elocindev.eldritch_end.item.spawneggs.AberrationEgg;
+import elocindev.eldritch_end.item.spawneggs.DendlerEgg;
 import elocindev.eldritch_end.item.spawneggs.TentacleEgg;
 import elocindev.necronomicon.api.text.TextAPI;
 import elocindev.eldritch_end.item.Chorb;
@@ -33,6 +34,8 @@ public class ItemRegistry {
     public static final Item ABERRATION_SPAWN_EGG = new AberrationEgg(EntityRegistry.ABERRATION, 0x54496f, 0xC76800, new FabricItemSettings());
     public static final Item TENTACLE_SPAWN_EGG = new TentacleEgg(EntityRegistry.TENTACLE, 0x54496f, 0x9a87b0, new FabricItemSettings());
     public static final Item UNDEAD_TENTACLE_SPAWN_EGG = new TentacleEgg(EntityRegistry.UNDEAD_TENTACLE, 0x29221D, 0x816445,  new FabricItemSettings());
+    public static final Item DENDLER_SPAWN_EGG = reg(new DendlerEgg(EntityRegistry.DENDLER, 0x29221D, 0xcca64e, new FabricItemSettings()), "dendler_spawn_egg");
+    
     // public static final Item HASTUR_CROWN = new HastursCrown(EntityRegistry.HASTUR, 0xFFFFFF, 0xFFFFFF, new FabricItemSettings());
 
     public static final Item NECRONOMICON = new Necronomicon(new FabricItemSettings());

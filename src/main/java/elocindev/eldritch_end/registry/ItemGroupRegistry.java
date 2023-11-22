@@ -119,8 +119,9 @@ public class ItemGroupRegistry {
 
             // -- ENTITY EGGS --
             entries.add(new ItemStack(ItemRegistry.ABERRATION_SPAWN_EGG));
-            entries.add(new ItemStack(ItemRegistry.UNDEAD_TENTACLE_SPAWN_EGG));
             entries.add(new ItemStack(ItemRegistry.TENTACLE_SPAWN_EGG));
+            entries.add(new ItemStack(ItemRegistry.UNDEAD_TENTACLE_SPAWN_EGG));
+            entries.add(new ItemStack(ItemRegistry.DENDLER_SPAWN_EGG));
             // entries.add(new ItemStack(ItemRegistry.HASTUR_CROWN));
 
     }).texture("eldritchend.png").noRenderedName().build());
