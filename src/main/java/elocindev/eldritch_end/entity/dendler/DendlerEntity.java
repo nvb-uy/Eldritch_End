@@ -1,7 +1,6 @@
 package elocindev.eldritch_end.entity.dendler;
 
 import elocindev.eldritch_end.config.Configs;
-import elocindev.eldritch_end.registry.BlockRegistry;
 import mod.azure.azurelib.animatable.GeoEntity;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
 import mod.azure.azurelib.core.animation.AnimatableManager;
@@ -45,10 +44,6 @@ public class DendlerEntity extends PassiveEntity implements GeoEntity {
     @Override
     public void tickMovement() {
         super.tickMovement();
-
-        if (this.age % 20 == 0 && this.getWorld().getBlockState(new BlockPos(this.getBlockX(), this.getBlockY() - 1, this.getBlockZ())).getBlock() == BlockRegistry.ABYSMAL_FRONDS) {
-            this.heal(this.getMaxHealth() / 10);
-        }
     }
 
     public static DefaultAttributeContainer.Builder setAttributes() {
