@@ -11,6 +11,7 @@ import com.anthonyhilyard.prism.util.ColorUtil;
 
 import elocindev.eldritch_end.config.ConfigLoader;
 import elocindev.eldritch_end.entity.client.aberration.AberrationRenderer;
+import elocindev.eldritch_end.entity.client.dendler.DendlerRenderer;
 import elocindev.eldritch_end.entity.client.tentacle.TentacleRenderer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -27,6 +28,7 @@ public class EldritchEndClient implements ClientModInitializer {
         EntityRendererRegistry.register(EntityRegistry.ABERRATION, AberrationRenderer::new);
         EntityRendererRegistry.register(EntityRegistry.TENTACLE, TentacleRenderer::new);
         EntityRendererRegistry.register(EntityRegistry.UNDEAD_TENTACLE, UndeadTentacleRenderer::new);
+        EntityRendererRegistry.register(EntityRegistry.DENDLER, DendlerRenderer::new);
         
         // EntityRendererRegistry.register(EntityRegistry.HASTUR, HasturRenderer::new);
 

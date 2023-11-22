@@ -5,6 +5,7 @@ import elocindev.eldritch_end.config.entries.CorruptionConfig;
 import elocindev.eldritch_end.config.entries.biomes.HasturianWastesConfig;
 import elocindev.eldritch_end.config.entries.biomes.PrimordialAbyssConfig;
 import elocindev.eldritch_end.config.entries.entities.AberrationConfig;
+import elocindev.eldritch_end.config.entries.entities.DendlerConfig;
 import elocindev.eldritch_end.config.entries.entities.HasturConfig;
 import elocindev.eldritch_end.config.entries.entities.TentacleConfig;
 
@@ -21,6 +22,8 @@ public class Configs {
     public class Entity {
         public static AberrationConfig ABERRATION = AberrationConfig.INSTANCE;
         public static TentacleConfig TENTACLE = TentacleConfig.INSTANCE;
+        public static DendlerConfig DENDLER = DendlerConfig.INSTANCE;
+
         public static HasturConfig HASTUR = HasturConfig.INSTANCE;
     }
 
