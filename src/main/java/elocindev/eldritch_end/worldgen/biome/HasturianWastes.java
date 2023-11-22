@@ -2,15 +2,18 @@ package elocindev.eldritch_end.worldgen.biome;
 
 import elocindev.eldritch_end.config.Configs;
 import elocindev.eldritch_end.registry.BiomeRegistry;
+import elocindev.eldritch_end.registry.EntityRegistry;
 import elocindev.eldritch_end.registry.WorldgenRegistry;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.minecraft.entity.SpawnGroup;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
+import net.minecraft.world.biome.SpawnSettings.SpawnEntry;
 import net.minecraft.world.gen.GenerationStep.Feature;
 
 public class HasturianWastes {
@@ -21,8 +24,15 @@ public class HasturianWastes {
 		return compose(builder);
 	}
 
+	public static void addDendlers(SpawnSettings.Builder builder) {
+    	builder.spawn(SpawnGroup.CREATURE, new SpawnEntry(EntityRegistry.DENDLER, 1, 1, 1));
+    }
+
 	private static Biome compose(GenerationSettings.Builder builder) {
 		SpawnSettings.Builder settings = new SpawnSettings.Builder();
+	
+		if (Configs.Biome.HASTURIAN_WASTES.spawn_dendlers)
+			addDendlers(settings);
 
 		return (new Biome.Builder())
 		.precipitation(false)
