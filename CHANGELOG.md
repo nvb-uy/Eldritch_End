@@ -1,6 +1,7 @@
 ## 0.2.13
 - Added Dendler
 - Dendlers now naturally spawn in the hasturian wastes
+- Added config for dendlers natural spawning in biomes/hasturian_wastes.json
 
 ## 0.2.12
 - Fixed smithing template recipe
