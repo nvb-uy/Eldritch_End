@@ -1,3 +1,5 @@
+See the full changelog in https://github.com/nvb-uy/Eldritch_End/blob/1.20.1/CHANGELOG.md
+
 ## 0.2.13
 - Added Dendler
 - Dendlers now naturally spawn in the hasturian wastes
