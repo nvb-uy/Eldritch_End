@@ -2,9 +2,9 @@
 	"credit": "Made with Blockbench",
 	"parent": "pedestal",
 	"textures": {
-		"4": "pedestal/pedestal_eye",
-		"5": "pedestal/pedestal",
-		"7": "pedestal/pedestal_chains"
+		"4": "eldritch_end:block/pedestal/pedestal_eye",
+		"5": "eldritch_end:block/pedestal/pedestal",
+		"7": "eldritch_end:block/pedestal/pedestal_chains"
 	},
 	"elements": [
 		{
