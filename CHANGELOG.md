@@ -1,11 +1,12 @@
 See the full changelog in https://github.com/nvb-uy/Eldritch_End/blob/1.20.1/CHANGELOG.md
 
 ## IN DEVELOPMENT
-- Add 
+- Add The Faceless
 
 ## 0.3.0 [INDEV]
 - Added Abysmal Pedestal
 - Added Eldritch Pedestal
+- Added a better walking animation for the dendler
 
 ## 0.2.13 (Acolyte Release)
 - Added Dendler
