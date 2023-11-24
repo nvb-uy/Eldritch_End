@@ -63,8 +63,9 @@ public class EldritchEndClient implements ClientModInitializer {
                 List.of(
                     "eldritch_end:xalarath",
                     "eldritch_end:necronomicon",
-                    "eldritch_end:corruption"
-                    )
+                    "eldritch_end:corruption",
+                    "eldritch_end:eldritch_pedestal"
+                )
             );
     }
 }
