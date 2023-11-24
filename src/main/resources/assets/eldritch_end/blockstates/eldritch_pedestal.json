@@ -1,7 +1,7 @@
 {
     "variants": {
       "": {
-        "model": "eldritch_end:block/eldritch_pedestalks"
+        "model": "eldritch_end:block/eldritch_pedestal"
       }
     }
 }

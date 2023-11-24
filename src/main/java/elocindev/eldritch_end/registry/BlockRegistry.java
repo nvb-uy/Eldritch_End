@@ -33,6 +33,13 @@ public class BlockRegistry {
     public static final Block ABYSMAL_ROOTS = new AbysmalRoots(FabricBlockSettings.copyOf(Blocks.GRASS).sounds(BlockSoundGroup.ROOTS));
     	public static final BlockItem ABYSMAL_ROOTS_ITEM = new BlockItem(ABYSMAL_ROOTS, new FabricItemSettings());
 
+    public static final Block ABYSMAL_PEDESTAL = new Block(FabricBlockSettings.copyOf(ABYSMAL_TENDRILS));
+        public static final BlockItem ABYSMAL_PEDESTAL_ITEM = new BlockItem(ABYSMAL_PEDESTAL, new FabricItemSettings());
+
+    public static final Block ELDRITCH_PEDESTAL = new Block(FabricBlockSettings.copyOf(ABYSMAL_TENDRILS));
+        public static final BlockItem ELDRITCH_PEDESTAL_ITEM = new BlockItem(ELDRITCH_PEDESTAL, new FabricItemSettings());
+
+
     public static final Block PRIMORDIAL_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG).sounds(BlockSoundGroup.WOOD));
     	public static final BlockItem PRIMORDIAL_LOG_ITEM = new BlockItem(PRIMORDIAL_LOG, new FabricItemSettings());
 
@@ -250,7 +257,7 @@ public class BlockRegistry {
 
     public static final Block CRACKED_POLISHED_SPIRE_STONE_TILES = new Block(FabricBlockSettings.copyOf(Blocks.STONE));
     public static final BlockItem CRACKED_POLISHED_SPIRE_STONE_TILES_ITEM = new BlockItem(CRACKED_POLISHED_SPIRE_STONE_TILES, new FabricItemSettings());
-
+  
     // Slabs
     public static final Block SPIRE_STONE_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.STONE_SLAB).sounds(BlockSoundGroup.STONE));
     public static final BlockItem SPIRE_STONE_SLAB_ITEM = new BlockItem(SPIRE_STONE_SLAB, new FabricItemSettings());
@@ -283,6 +290,9 @@ public class BlockRegistry {
         registerFullBlock("suspicious_fronds", SUSPICIOUS_FRONDS, SUSPICIOUS_FRONDS_ITEM);
         registerFullBlock("abysmal_tendrils", ABYSMAL_TENDRILS, ABYSMAL_TENDRILS_ITEM);
         registerFullBlock("abysmal_roots", ABYSMAL_ROOTS, ABYSMAL_ROOTS_ITEM);
+        registerFullBlock("abysmal_pedestal", ABYSMAL_PEDESTAL, ABYSMAL_PEDESTAL_ITEM);
+        registerFullBlock("eldritch_pedestal", ELDRITCH_PEDESTAL, ELDRITCH_PEDESTAL_ITEM);
+
         registerFullBlock("primordial_button", PRIMORDIAL_BUTTON, PRIMORDIAL_BUTTON_ITEM);
 
         // Primordial woodset
@@ -301,6 +311,8 @@ public class BlockRegistry {
         registerFullBlock("primordial_fence_gate", PRIMORDIAL_FENCE_GATE, PRIMORDIAL_FENCE_GATE_ITEM);
         registerSign("primordial", PRIMORDIAL_SIGN, PRIMORDIAL_WALL_SIGN);
     
+
+
         registerFullBlock("hasturian_moss", HASTURIAN_MOSS, HASTURIAN_MOSS_ITEM);
 
         registerFullBlock("spire_stone", SPIRE_STONE, SPIRE_STONE_ITEM);

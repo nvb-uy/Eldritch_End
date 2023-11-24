@@ -36,6 +36,8 @@ public class ItemGroupRegistry {
             entries.add(new ItemStack(BlockRegistry.SUSPICIOUS_FRONDS_ITEM));
             entries.add(new ItemStack(BlockRegistry.ABYSMAL_TENDRILS_ITEM));
             entries.add(new ItemStack(BlockRegistry.ABYSMAL_ROOTS_ITEM));
+            entries.add(new ItemStack(BlockRegistry.ABYSMAL_PEDESTAL_ITEM));
+            entries.add(new ItemStack(BlockRegistry.ELDRITCH_PEDESTAL_ITEM));
 
             entries.add(new ItemStack(BlockRegistry.PRIMORDIAL_LOG_ITEM));
             entries.add(new ItemStack(BlockRegistry.PRIMORDIAL_LEAVES_ITEM));
