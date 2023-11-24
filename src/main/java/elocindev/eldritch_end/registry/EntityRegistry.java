@@ -3,6 +3,7 @@ package elocindev.eldritch_end.registry;
 import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.entity.aberration.AberrationEntity;
 import elocindev.eldritch_end.entity.dendler.DendlerEntity;
+import elocindev.eldritch_end.entity.faceless.FacelessEntity;
 import elocindev.eldritch_end.entity.tentacle.TentacleEntity;
 import elocindev.eldritch_end.entity.tentacle.UndeadTentacleEntity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
@@ -37,6 +38,11 @@ public class EntityRegistry {
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, DendlerEntity::new).dimensions(EntityDimensions.fixed(1, 2)).build());
 
 
+    public static final EntityType<FacelessEntity> THE_FACELESS = Registry.register(
+            Registries.ENTITY_TYPE, new Identifier(EldritchEnd.MODID, "the_faceless"),
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, FacelessEntity::new).dimensions(EntityDimensions.fixed(3, 3)).build());
+
+
 //     public static final EntityType<HasturEntity> HASTUR = Registry.register(
 //             Registries.ENTITY_TYPE, new Identifier(EldritchEnd.MODID, "hastur"),
 //             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, HasturEntity::new).dimensions(EntityDimensions.fixed(2, 3)).build());
@@ -49,6 +55,7 @@ public class EntityRegistry {
         FabricDefaultAttributeRegistry.register(EntityRegistry.TENTACLE, TentacleEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(EntityRegistry.UNDEAD_TENTACLE, UndeadTentacleEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(EntityRegistry.DENDLER, AberrationEntity.setAttributes());
+        FabricDefaultAttributeRegistry.register(EntityRegistry.THE_FACELESS, FacelessEntity.setAttributes());
         //FabricDefaultAttributeRegistry.register(EntityRegistry.HASTUR, HasturEntity.setAttributes());
     }
 }

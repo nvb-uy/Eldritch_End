@@ -15,23 +15,16 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 
-public class DendlerEntity extends PassiveEntity implements GeoEntity {
+public class DendlerEntity extends HostileEntity implements GeoEntity {
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
 
-    public DendlerEntity(EntityType<? extends PassiveEntity> entityType, World world) {
+    public DendlerEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
-    }
-
-    @Override
-    public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
-        return null;
     }
 
     @Override

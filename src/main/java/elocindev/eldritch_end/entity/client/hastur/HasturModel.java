@@ -1,7 +1,7 @@
 package elocindev.eldritch_end.entity.client.hastur;
 
 import elocindev.eldritch_end.EldritchEnd;
-import elocindev.eldritch_end.entity.hastur.HasturEntity;
+import elocindev.eldritch_end.entity.faceless.HasturEntity;
 import mod.azure.azurelib.model.GeoModel;
 import net.minecraft.util.Identifier;
 
