@@ -22,6 +22,11 @@
     "block.eldritch_end.abysmal_roots": "Abysmal Roots",
     "block.eldritch_end.suspicious_fronds":"Suspicious Fronds",
     "block.eldritch_end.abysmal_tendrils":"Abysmal Tendrils",
+    "block.eldritch_end.abysmal_pedestal":"Abysmal Pedestal",
+    
+    "block.eldritch_end.eldritch_pedestal":"Eldritch Pedestal",
+    "block.eldritch_end.eldritch_pedestal.type": "Summoning Altar",
+
     "block.eldritch_end.primordial_log":"Primordial Log",
     "block.eldritch_end.primordial_leaves":"Primordial Leaves",
     "block.eldritch_end.primordial_wood":"Primordial Wood",

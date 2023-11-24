@@ -8,6 +8,7 @@ import elocindev.eldritch_end.block.HasturianGrass;
 import elocindev.eldritch_end.block.HasturianMoss;
 import elocindev.eldritch_end.block.PrimordialLeaves;
 import elocindev.eldritch_end.block.SuspiciousFronds;
+import elocindev.eldritch_end.block.artifact.EldritchPedestal;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
@@ -37,8 +38,7 @@ public class BlockRegistry {
         public static final BlockItem ABYSMAL_PEDESTAL_ITEM = new BlockItem(ABYSMAL_PEDESTAL, new FabricItemSettings());
 
     public static final Block ELDRITCH_PEDESTAL = new Block(FabricBlockSettings.copyOf(ABYSMAL_TENDRILS));
-        public static final BlockItem ELDRITCH_PEDESTAL_ITEM = new BlockItem(ELDRITCH_PEDESTAL, new FabricItemSettings());
-
+        public static final BlockItem ELDRITCH_PEDESTAL_ITEM = new EldritchPedestal(ELDRITCH_PEDESTAL, new FabricItemSettings());
 
     public static final Block PRIMORDIAL_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG).sounds(BlockSoundGroup.WOOD));
     	public static final BlockItem PRIMORDIAL_LOG_ITEM = new BlockItem(PRIMORDIAL_LOG, new FabricItemSettings());
