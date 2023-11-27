@@ -28,7 +28,7 @@ public class HasturianWastes {
 		SpawnSettings.Builder settings = new SpawnSettings.Builder();
 	
 		if (Configs.Biome.HASTURIAN_WASTES.spawn_dendlers)
-			settings.spawn(SpawnGroup.CREATURE, new SpawnEntry(EntityRegistry.DENDLER, 1, 1, 2));
+			settings.spawn(SpawnGroup.MONSTER, new SpawnEntry(EntityRegistry.DENDLER, 1, 1, 3));
 
 		return (new Biome.Builder())
 		.precipitation(false)

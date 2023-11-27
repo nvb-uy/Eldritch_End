@@ -4,6 +4,8 @@ See the full changelog in https://github.com/nvb-uy/Eldritch_End/blob/1.20.1/CHA
 - The Faceless bossfight
 
 ## 0.2.20 (Public Release)
+RELOAD YOUR HASTURIAN WASTES CONFIG TO BE ABLE TO CHANGE THE DENDLER SPAWN!
+
 - Added Abysmal Pedestal
 - Added Eldritch Pedestal
 - Added Dendler

@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 
 public class DendlerEntity extends HostileEntity implements GeoEntity {
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
-
+ 
     public DendlerEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
     }

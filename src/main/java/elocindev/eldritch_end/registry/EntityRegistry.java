@@ -35,7 +35,7 @@ public class EntityRegistry {
 
     public static final EntityType<DendlerEntity> DENDLER = Registry.register(
             Registries.ENTITY_TYPE, new Identifier(EldritchEnd.MODID, "dendler"),
-            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, DendlerEntity::new).dimensions(EntityDimensions.fixed(1, 2)).build());
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, DendlerEntity::new).dimensions(EntityDimensions.fixed(1, 2)).build());
 
 
     public static final EntityType<FacelessEntity> THE_FACELESS = Registry.register(
