@@ -49,7 +49,7 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
 
     @Override
     protected void initGoals() {
-        this.goalSelector.add(2, new MeleeAttackGoal(this, 0.4, false));
+        this.goalSelector.add(2, new MeleeAttackGoal(this, 0.3, false));
         this.goalSelector.add(8, new LookAtEntityGoal(this, PlayerEntity.class, 16.0F));
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
     }
@@ -60,7 +60,7 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
         //     this.applyDamage(source, amount);
         // }
 
-        return false;
+        return true;
     }
 
     @Override
@@ -85,7 +85,7 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
         // TODO: REPLACE THIS WITH CUSTOM FACELESS CONFIG
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 1024)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 1.0)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5)
                 .add(EntityAttributes.GENERIC_ATTACK_SPEED, 0.4)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1000);
     }
@@ -122,7 +122,7 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "animationPredicate", 10, event -> {
-            if (this.isAttacking() || this.handSwinging) {
+            if (this.handSwinging) {
                 event.getController().setAnimationSpeed(2.0F);
                 event.getController().setAnimation(RawAnimation.begin().then("attack", Animation.LoopType.LOOP));
                 return PlayState.CONTINUE;

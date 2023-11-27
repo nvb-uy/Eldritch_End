@@ -8,6 +8,13 @@
         },
         {
             "type": "bitmap",
+            "file": "eldritch_end:bossbar/faceless_bossbar.png",
+            "ascent": 13, "height": 52,
+            "chars": ["\uC892"]
+        },
+        
+        {
+            "type": "bitmap",
             "file": "eldritch_end:icon/mouse.png",
             "ascent": 9, "height": 9,
             "chars": ["\uA996"]
