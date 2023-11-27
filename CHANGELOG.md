@@ -1,11 +1,14 @@
 See the full changelog in https://github.com/nvb-uy/Eldritch_End/blob/1.20.1/CHANGELOG.md
 
 ## IN DEVELOPMENT
-- Add The Faceless
+- The Faceless bossfight
 
-## 0.3.0 [INDEV]
+## 0.2.20 (Public Release)
 - Added Abysmal Pedestal
 - Added Eldritch Pedestal
+- Added Dendler
+- Dendlers now naturally spawn in the hasturian wastes
+- Added config for dendlers natural spawning in biomes/hasturian_wastes.json
 - Added a better walking animation for the dendler
 
 ## 0.2.13 (Acolyte Release)
