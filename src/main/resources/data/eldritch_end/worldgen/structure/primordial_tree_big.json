@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:jigsaw",
+    "start_pool": "eldritch_end:primordial_tree_big/start_pool",
+    "size": 2,
+    "biomes": "#eldritch_end:has_structure/primordial_trees",
+    "adapt_noise": false,
+    "spawn_overrides": {},
+    "max_distance_from_center": 1,
+    "step": "surface_structures",
+    "project_start_to_heightmap": "WORLD_SURFACE_WG",
+    "start_height": {
+      "absolute": 0
+    },
+    "use_expansion_hack": false
+}
