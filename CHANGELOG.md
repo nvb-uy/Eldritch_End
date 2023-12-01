@@ -2,6 +2,12 @@ See the full changelog in https://github.com/nvb-uy/Eldritch_End/blob/1.20.1/CHA
 
 ## IN DEVELOPMENT
 - The Faceless bossfight
+- Better trees for the Primordial Abyss
+
+## 0.2.30 (Acolyte Release)
+- Fixed dendler not spawning properly in the hasturian wastes
+- Added new variations of trees
+- Changed Primordial Abyss' default weight from 1.5 to 4.0 
 
 ## 0.2.20 (Public Release)
 RELOAD YOUR HASTURIAN WASTES CONFIG TO BE ABLE TO CHANGE THE DENDLER SPAWN!
