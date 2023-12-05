@@ -1,14 +1,14 @@
 See the full changelog in https://github.com/nvb-uy/Eldritch_End/blob/1.20.1/CHANGELOG.md
 
 ## IN DEVELOPMENT
-- The Faceless bossfight
-- Better trees for the Primordial Abyss
+- The Faceless bossfight [ElocinDev]
+- Better trees for the Primordial Abyss [ElocinDev]
 
 ## 0.2.30 (Public Release)
-- Fixed dendler not spawning properly in the hasturian wastes
-- Added config to enable or disable primordial abyss' midland biome generation
-- Added new variations of trees
-- Changed Primordial Abyss' default weight from 1.5 to 4.0 
+- Fixed dendler not spawning properly in the hasturian wastes [ElocinDev]
+- Added config to enable or disable primordial abyss' midland biome generation [ElocinDev]
+- Added new variations of trees [ElocinDev, Wendu]
+- Changed Primordial Abyss' default weight from 1.5 to 4.0 [ElocinDev]
 
 ## 0.2.20 (Public Release)
 RELOAD YOUR HASTURIAN WASTES CONFIG TO BE ABLE TO CHANGE THE DENDLER SPAWN!
