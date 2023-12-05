@@ -1,5 +1,5 @@
 {
-    "type": "minecraft:jigsaw",
+    "type": "eldritch_end:tree",
     "start_pool": "eldritch_end:primordial_tree_big/start_pool",
     "size": 2,
     "biomes": "#eldritch_end:has_structure/primordial_trees",
