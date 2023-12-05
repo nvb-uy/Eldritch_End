@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "eldritch_end:primordial_tree_big",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 4901248154856,
+    "spacing": 2,
+    "separation": 1
+  }
+}

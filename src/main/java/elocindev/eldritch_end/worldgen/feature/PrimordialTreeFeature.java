@@ -1,11 +1,24 @@
 package elocindev.eldritch_end.worldgen.feature;
 
+import java.util.Optional;
+
 import com.mojang.serialization.Codec;
 
 import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.worldgen.util.TreeFactory;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.structure.StructurePlacementData;
+import net.minecraft.structure.StructureTemplate;
+import net.minecraft.structure.StructureTemplateManager;
+import net.minecraft.structure.processor.StructureProcessorList;
+import net.minecraft.util.BlockRotation;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.StructureWorldAccess;
@@ -20,33 +33,46 @@ public class PrimordialTreeFeature extends Feature<TreeConfig> {
     public static boolean canBePlaced(StructureWorldAccess world, BlockPos position) {
         return world.getBlockState(position).getBlock() == BlockRegistry.ABYSMAL_FRONDS;
     }
-   
+
     @Override
     public boolean generate(FeatureContext<TreeConfig> context) {
         boolean generated = false;
         StructureWorldAccess world = context.getWorld();
         BlockPos origin = context.getOrigin();
 
-        TreeConfig config = context.getConfig();
-        BlockState primordial_log = Registries.BLOCK.get(config.blockID()).getDefaultState();
 
-        BlockPos topPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, new BlockPos(origin.getX(), origin.getY(), origin.getZ()));
+        Identifier TREE_TYPE = new Identifier("eldritch_end", "primordial_tree_big");
+    
+        StructureTemplateManager structureManager = world.getServer().getStructureTemplateManager();
+                    
+        Optional<StructureTemplate> template = structureManager.getTemplate(TREE_TYPE);
+        if(template.isEmpty())
+            return false;
         
+        BlockRotation rotation = BlockRotation.random(context.getRandom());
 
-        if (canBePlaced(world, topPos.down())) {
-            int ranX = world.getRandom().nextBetween(-9, 9); int ranZ = world.getRandom().nextBetween(-9, 9);
-            
-            if (world.getBlockState(topPos.down()).isOf(BlockRegistry.ABYSMAL_FRONDS))
-                TreeFactory.addRandomMedium(world, topPos.add(ranX, 0, ranZ), primordial_log);
+        // For proper offsetting the feature so it rotate properly around position parameter.
+        BlockPos halfLengths = new BlockPos(
+                template.get().getSize().getX() / 2,
+                template.get().getSize().getY() / 2,
+                template.get().getSize().getZ() / 2);
 
-            ranX += world.getRandom().nextBetween(-9, 9); ranZ += world.getRandom().nextBetween(-9, 9);
-            BlockPos smallTreePos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, origin.add(ranX, 0, ranZ));
+        BlockPos.Mutable mutable = new BlockPos.Mutable().set(origin);
 
-            if (canBePlaced(world, smallTreePos.down()))
-                TreeFactory.placeSmallDeadTree(world, smallTreePos, primordial_log);
-            
-            generated = true;
-        }
+        BlockPos position = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, new BlockPos(origin.getX(), origin.getY(), origin.getZ()));
+
+        StructurePlacementData placementsettings = (new StructurePlacementData()).setRotation(rotation).setPosition(halfLengths).setIgnoreEntities(false);
+    
+        mutable.set(position).move(-halfLengths.getX(), 0, -halfLengths.getZ()); // pivot
+
+        // template.get().place(world, mutable, mutable, placementsettings, context.getRandom(), Block.NO_REDRAW);
+        
+        // if (canBePlaced(world, position.down())) {
+        //     template.get().place(world, mutable, mutable, placementsettings, context.getRandom(), Block.NO_REDRAW);
+
+        //     generated = true;
+        // }
+        
 
         return generated;
     }

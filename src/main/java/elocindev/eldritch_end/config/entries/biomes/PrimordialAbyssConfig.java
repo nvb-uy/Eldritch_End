@@ -12,9 +12,10 @@ public class PrimordialAbyssConfig {
     }
 
     public boolean enabled = true;
+    public boolean enable_midlands = true;
     public boolean spawn_endermen = false;
     public boolean spawn_aberrations = true;
-    public float biome_weight = 3.0F;
+    public float biome_weight = 2.0F;
     public float biome_temperature = 1.0F;
     public boolean enable_tendril_patches = true;
     public int tendril_patch_chance = 10;

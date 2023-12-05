@@ -32,6 +32,9 @@ public class BiomeRegistry {
         TheEndBiomes.addHighlandsBiome(HASTURIAN_WASTES, Configs.Biome.HASTURIAN_WASTES.biome_weight);
         TheEndBiomes.addHighlandsBiome(PRIMORDIAL_ABYSS, Configs.Biome.PRIMORDIAL_ABYSS.biome_weight);
         
+        if (Configs.Biome.PRIMORDIAL_ABYSS.enable_midlands)
+            TheEndBiomes.addMidlandsBiome(PRIMORDIAL_ABYSS, PRIMORDIAL_ABYSS, Configs.Biome.PRIMORDIAL_ABYSS.biome_weight);
+
         PrimordialAbyss.registerModifications();
         HasturianWastes.registerModifications();
     }
