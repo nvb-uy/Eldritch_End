@@ -83,8 +83,6 @@ public class TreeGenerator extends Structure {
             mutable.getZ()
         );
 
-        System.out.println("finalPos: " + finalPos);
-
         // if (context.chunkGenerator().getHeightInGround(
         //         mutable.getX(),
         //         mutable.getZ(),
