@@ -12,7 +12,7 @@ public class PrimordialAbyssConfig {
     }
 
     public boolean enabled = true;
-    public boolean enable_midlands = true;
+    public boolean enable_midlands = false;
     public boolean spawn_endermen = false;
     public boolean spawn_aberrations = true;
     public float biome_weight = 4.0F;
