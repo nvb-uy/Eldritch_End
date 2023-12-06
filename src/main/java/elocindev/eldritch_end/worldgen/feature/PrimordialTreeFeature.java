@@ -5,18 +5,10 @@ import java.util.Optional;
 import com.mojang.serialization.Codec;
 
 import elocindev.eldritch_end.registry.BlockRegistry;
-import elocindev.eldritch_end.worldgen.util.TreeFactory;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.structure.StructurePlacementData;
 import net.minecraft.structure.StructureTemplate;
 import net.minecraft.structure.StructureTemplateManager;
-import net.minecraft.structure.processor.StructureProcessorList;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -30,17 +22,37 @@ public class PrimordialTreeFeature extends Feature<TreeConfig> {
       super(configCodec);
     }
 
-    public static boolean canBePlaced(StructureWorldAccess world, BlockPos position) {
-        return world.getBlockState(position).getBlock() == BlockRegistry.ABYSMAL_FRONDS;
+    public static boolean canBePlaced(StructureWorldAccess world, BlockPos position, String type) {
+        if (type == "small") {
+            if (world.getBlockState(position).getBlock() != BlockRegistry.ABYSMAL_FRONDS) {
+                return false;
+            }
+        }
+        
+        else  {
+            for (int x = -1; x <= 1; x++) {
+                for (int z = -1; z <= 1; z++) {
+                    if (world.getBlockState(position.add(x, 0, z)).getBlock() != BlockRegistry.ABYSMAL_FRONDS) {
+                        return false;
+                    }
+                }
+            }
+        }
+        
+        return true;
     }
 
     @Override
     public boolean generate(FeatureContext<TreeConfig> context) {
         boolean generated = false;
+        String type;
         StructureWorldAccess world = context.getWorld();
         BlockPos origin = context.getOrigin();
 
-        Identifier TREE_TYPE = new Identifier("eldritch_end", "primordial_tree_big/variation_1");
+        int variation = context.getRandom().nextInt(2) + 1;
+        if(context.getRandom().nextBoolean()) type = "big"; else type = "small";
+
+        Identifier TREE_TYPE = new Identifier("eldritch_end", "primordial_tree_"+type+"/variation_"+variation);
     
         StructureTemplateManager structureManager = world.getServer().getStructureTemplateManager();
                     
@@ -63,7 +75,7 @@ public class PrimordialTreeFeature extends Feature<TreeConfig> {
     
         mutable.set(position).move(-halfLengths.getX(), 0, -halfLengths.getZ()); // pivot
         
-        if (canBePlaced(world, position.down())) {
+        if (canBePlaced(world, position.down(), type)) {
             template.get().place(world, mutable, mutable, placementsettings, context.getRandom(), Block.NO_REDRAW);
 
             generated = true;
