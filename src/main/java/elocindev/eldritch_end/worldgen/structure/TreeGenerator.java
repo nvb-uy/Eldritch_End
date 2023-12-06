@@ -5,6 +5,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import elocindev.eldritch_end.registry.StructureRegistry;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.structure.StructureTemplate;
 import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -52,28 +53,46 @@ public class TreeGenerator extends Structure {
         this.maxDistanceFromCenter = maxDistanceFromCenter;
     }
 
-    private static boolean extraSpawningChecks(Structure.Context context) {
-        ChunkPos chunkpos = context.chunkPos();
-
-        return context.chunkGenerator().getHeightInGround(
-                chunkpos.getStartX(),
-                chunkpos.getStartZ(),
-                Heightmap.Type.WORLD_SURFACE_WG,
-                context.world(),
-                context.noiseConfig()) > 10;
-    }
-
     @Override
-    public Optional<Structure.StructurePosition> getStructurePosition(Structure.Context context) {
-
-        if (!TreeGenerator.extraSpawningChecks(context)) {
-            return Optional.empty();
-        }
-        
+    public Optional<Structure.StructurePosition> getStructurePosition(Structure.Context context) {      
         int startY = this.startHeight.get(context.random(), new HeightContext(context.chunkGenerator(), context.world()));
 
         ChunkPos chunkPos = context.chunkPos();
-        BlockPos blockPos = new BlockPos(chunkPos.getStartX(), startY, chunkPos.getStartZ());
+        BlockPos origin = new BlockPos(chunkPos.getStartX(), startY, chunkPos.getStartZ());
+        
+        Optional<StructureTemplate> template = context.structureTemplateManager().getTemplate(new Identifier("eldritch_end", "primordial_tree_big/variation_1"));
+        
+        BlockPos halfLengths = new BlockPos(
+                template.get().getSize().getX() / 2,
+                template.get().getSize().getY() / 2,
+                template.get().getSize().getZ() / 2);
+
+        BlockPos.Mutable mutable = new BlockPos.Mutable().set(origin);
+        BlockPos position = new BlockPos(origin.getX(), startY, origin.getZ());
+    
+        mutable.set(position).move(-halfLengths.getX(), 0, -halfLengths.getZ());
+
+        BlockPos finalPos = new BlockPos(
+            mutable.getX(),                
+            context.chunkGenerator().getHeightInGround(
+                mutable.getX(),
+                mutable.getZ(),
+                Heightmap.Type.WORLD_SURFACE_WG,
+                context.world(),
+                context.noiseConfig()),
+            mutable.getZ()
+        );
+
+        System.out.println("finalPos: " + finalPos);
+
+        // if (context.chunkGenerator().getHeightInGround(
+        //         mutable.getX(),
+        //         mutable.getZ(),
+        //         Heightmap.Type.WORLD_SURFACE_WG,
+        //         context.world(),
+        //         context.noiseConfig()) < 5) {
+        //     return Optional.empty();
+        // }
 
         Optional<StructurePosition> structurePiecesGenerator =
                 TreePoolGenerator.generate(
@@ -81,14 +100,13 @@ public class TreeGenerator extends Structure {
                         this.startPool,
                         this.startJigsawName,
                         this.size,
-                        blockPos,
+                        finalPos,
                         false,
                         this.projectStartToHeightmap,
                         this.maxDistanceFromCenter);
 
         return structurePiecesGenerator;
     }
-
 
     @Override
     public StructureType<?> getType() {

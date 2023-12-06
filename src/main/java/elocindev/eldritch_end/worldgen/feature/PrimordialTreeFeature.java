@@ -40,37 +40,34 @@ public class PrimordialTreeFeature extends Feature<TreeConfig> {
         StructureWorldAccess world = context.getWorld();
         BlockPos origin = context.getOrigin();
 
-
-        // Identifier TREE_TYPE = new Identifier("eldritch_end", "primordial_tree_big");
+        Identifier TREE_TYPE = new Identifier("eldritch_end", "primordial_tree_big/variation_1");
     
-        // StructureTemplateManager structureManager = world.getServer().getStructureTemplateManager();
+        StructureTemplateManager structureManager = world.getServer().getStructureTemplateManager();
                     
-        // Optional<StructureTemplate> template = structureManager.getTemplate(TREE_TYPE);
-        // if(template.isEmpty())
-        //     return false;
+        Optional<StructureTemplate> template = structureManager.getTemplate(TREE_TYPE);
+        if(template.isEmpty())
+            return false;
         
-        // BlockRotation rotation = BlockRotation.random(context.getRandom());
+        BlockRotation rotation = BlockRotation.random(context.getRandom());
 
-        // BlockPos halfLengths = new BlockPos(
-        //         template.get().getSize().getX() / 2,
-        //         template.get().getSize().getY() / 2,
-        //         template.get().getSize().getZ() / 2);
+        BlockPos halfLengths = new BlockPos(
+                template.get().getSize().getX() / 2,
+                template.get().getSize().getY() / 2,
+                template.get().getSize().getZ() / 2);
 
-        // BlockPos.Mutable mutable = new BlockPos.Mutable().set(origin);
+        BlockPos.Mutable mutable = new BlockPos.Mutable().set(origin);
 
-        // BlockPos position = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, new BlockPos(origin.getX(), origin.getY(), origin.getZ()));
+        BlockPos position = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, new BlockPos(origin.getX(), origin.getY(), origin.getZ()));
 
-        // StructurePlacementData placementsettings = (new StructurePlacementData()).setRotation(rotation).setPosition(halfLengths).setIgnoreEntities(false);
+        StructurePlacementData placementsettings = (new StructurePlacementData()).setRotation(rotation).setPosition(halfLengths).setIgnoreEntities(false);
     
-        // mutable.set(position).move(-halfLengths.getX(), 0, -halfLengths.getZ()); // pivot
-
-        // template.get().place(world, mutable, mutable, placementsettings, context.getRandom(), Block.NO_REDRAW);
+        mutable.set(position).move(-halfLengths.getX(), 0, -halfLengths.getZ()); // pivot
         
-        // if (canBePlaced(world, position.down())) {
-        //     template.get().place(world, mutable, mutable, placementsettings, context.getRandom(), Block.NO_REDRAW);
+        if (canBePlaced(world, position.down())) {
+            template.get().place(world, mutable, mutable, placementsettings, context.getRandom(), Block.NO_REDRAW);
 
-        //     generated = true;
-        // }
+            generated = true;
+        }
         
         return generated;
     }
