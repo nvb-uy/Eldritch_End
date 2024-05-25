@@ -11,6 +11,7 @@ public class ParticleS2CPacket {
     public static void receive(MinecraftClient client, ClientPlayNetworkHandler handler,
                                PacketByteBuf buf, PacketSender responseSender) {
 
+        if (client.world == null) return;
         Entity targetEntity = client.world.getEntityById(buf.readInt());
         String particleEffect = buf.readString();
         if (particleEffect.equals("teleportationRing")) {
