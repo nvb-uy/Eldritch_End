@@ -22,6 +22,9 @@ import net.minecraft.entity.boss.ServerBossBar;
 import net.minecraft.entity.boss.BossBar.Color;
 import net.minecraft.entity.boss.BossBar.Style;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffectUtil;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.DustParticleEffect;
@@ -49,6 +52,8 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
 
     private static final float ALLOWED_DISTANCE = 15f;
     private static final float SURGE_RADIUS = 15f;
+    private static final float DARKNESS_RANGE = 15f;
+
 
     private int attackTicksLeft;
 
@@ -88,7 +93,9 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
         if (this.age % 20 == 0) {
             curse((PlayerEntity) this.getWorld().getClosestPlayer(this, 32));
         }
-        if (this.age % 100 == 0) {
+        if (this.age % 100 == 0 && !this.getWorld().isClient) {
+            StatusEffectUtil.addEffectToPlayersWithinDistance((ServerWorld) this.getWorld(), this, this.getPos(), (double)DARKNESS_RANGE, new StatusEffectInstance(StatusEffects.DARKNESS, 280, 0, false, false), 180);
+            StatusEffectUtil.addEffectToPlayersWithinDistance((ServerWorld) this.getWorld(), this, this.getPos(), (double)DARKNESS_RANGE, new StatusEffectInstance(StatusEffects.SLOWNESS, 280, 1, false, false), 180);
             shadowSurge((PlayerEntity) this.getWorld().getClosestPlayer(this, 32));
         }
     }
