@@ -1,8 +1,12 @@
 See the full changelog in https://github.com/nvb-uy/Eldritch_End/blob/1.20.1/CHANGELOG.md
 
 ## IN DEVELOPMENT
-- The Faceless bossfight [ElocinDev]
-- Better trees for the Primordial Abyss [ElocinDev]
+- The Faceless bossfight [ElocinDev, Joespeph]
+- Corruption Mechanics [ElocinDev, Joespeph]
+
+## 0.3.0 (Indev)
+- Added The Faceless Boss
+- Added Corruption System
 
 ## 0.2.30 (Public Release)
 - Fixed dendler not spawning properly in the hasturian wastes [ElocinDev]
