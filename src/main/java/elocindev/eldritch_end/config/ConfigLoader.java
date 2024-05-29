@@ -7,8 +7,8 @@ import elocindev.eldritch_end.config.entries.biomes.HasturianWastesConfig;
 import elocindev.eldritch_end.config.entries.biomes.PrimordialAbyssConfig;
 import elocindev.eldritch_end.config.entries.entities.AberrationConfig;
 import elocindev.eldritch_end.config.entries.entities.DendlerConfig;
-import elocindev.eldritch_end.config.entries.entities.HasturConfig;
 import elocindev.eldritch_end.config.entries.entities.TentacleConfig;
+import elocindev.eldritch_end.config.entries.entities.boss.HasturConfig;
 import elocindev.necronomicon.api.config.v1.NecConfigAPI;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 

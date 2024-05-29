@@ -1,4 +1,4 @@
-package elocindev.eldritch_end.config.entries.entities;
+package elocindev.eldritch_end.config.entries.entities.boss;
 
 import elocindev.eldritch_end.config.ConfigFolder;
 import elocindev.necronomicon.config.NecConfig;

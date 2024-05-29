@@ -5,8 +5,10 @@ See the full changelog in https://github.com/nvb-uy/Eldritch_End/blob/1.20.1/CHA
 - Corruption Mechanics [ElocinDev, Joespeph]
 
 ## 0.3.0 (Indev)
-- Added The Faceless Boss
-- Added Corruption System
+- Added The Faceless Boss [ElocinDev, Joespeph]
+- Added Corruption System [ElocinDev, Joespeph]
+- Fixed faceless texture covering the health bar in some parts [ElocinDev]
+- Renamed Xal'arath to just "Xal"
 
 ## 0.2.30 (Public Release)
 - Fixed dendler not spawning properly in the hasturian wastes [ElocinDev]
