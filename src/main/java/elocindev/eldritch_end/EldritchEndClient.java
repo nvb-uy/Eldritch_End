@@ -1,5 +1,6 @@
 package elocindev.eldritch_end;
 
+import elocindev.eldritch_end.corruption.CorruptionOverlay;
 import elocindev.eldritch_end.entity.client.undead_tentacle.UndeadTentacleRenderer;
 import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.registry.EntityRegistry;
@@ -18,6 +19,7 @@ import elocindev.eldritch_end.registry.PacketRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.util.Identifier;
@@ -27,6 +29,7 @@ public class EldritchEndClient implements ClientModInitializer {
     public void onInitializeClient() {
         ConfigLoader.initClient();
 
+        HudRenderCallback.EVENT.register(new CorruptionOverlay());
         PacketRegistry.registerS2CPackets();
 
         EntityRendererRegistry.register(EntityRegistry.ABERRATION, AberrationRenderer::new);

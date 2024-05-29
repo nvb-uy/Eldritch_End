@@ -22,6 +22,9 @@ import net.minecraft.entity.boss.ServerBossBar;
 import net.minecraft.entity.boss.BossBar.Color;
 import net.minecraft.entity.boss.BossBar.Style;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffectUtil;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.DustParticleEffect;
@@ -34,21 +37,24 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.TypeFilter;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.entity.EntityLookup;
 
 public class FacelessEntity extends HostileEntity implements GeoEntity {
-    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
-    private final ServerBossBar bossBar;
-
+    /*
     protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("walk");
     protected static final RawAnimation ATTACK = RawAnimation.begin().thenLoop("attack");
     protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("idle");
+     */
 
-    private static final float ALLOWED_DISTANCE = 15f;
-    private static final float SURGE_RADIUS = 15f;
+    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
+    private final ServerBossBar bossBar;
+    private static final float SURGE_RADIUS = 16f;
+    private static final float DARKNESS_RANGE = 15f;
+    private static final int SURGE_RATE_TICKS = 4;
 
     private int attackTicksLeft;
 
@@ -62,17 +68,12 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
     }
 
     private void shadowSurge(PlayerEntity target) {
-        if (target == null || target.distanceTo(this) < ALLOWED_DISTANCE) return;
+        if (target == null || target.distanceTo(this) < SURGE_RADIUS) return;
+        EldritchEnd.LOGGER.info(String.valueOf(target.distanceTo(this)));
         if (!this.getWorld().isClient) {
             ParticleUtils.sendParticlesToAll(this, "teleportationRing");
             ParticleUtils.sendParticlesToAll(target, "teleportationRing");
-            this.teleport(target.getX() + 2, target.getY(), target.getZ() + 2);
-
-            float missingHealth = (this.getMaxHealth() - this.getHealth()) / 2;
-
-            for (LivingEntity entity: target.getWorld().getEntitiesByClass(LivingEntity.class, target.getBoundingBox().expand(SURGE_RADIUS), entity -> true)) {
-                entity.damage(entity.getDamageSources().generic(), missingHealth);
-            }
+            target.teleport(this.getX() + 2, this.getY(), this.getZ() + 2);
         }
     }
 
@@ -85,11 +86,23 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
     @Override
     public void tick() {
         super.tick();
-        if (this.age % 20 == 0) {
-            curse((PlayerEntity) this.getWorld().getClosestPlayer(this, 32));
+        if (this.getWorld().isClient) return;
+        if (this.age % SURGE_RATE_TICKS == 0) {
+            for (PlayerEntity playerEntity: this.getWorld().getEntitiesByClass(PlayerEntity.class, new Box(this.getBlockPos()).expand(SURGE_RADIUS*1.5f), entity -> true)) {
+                curse(playerEntity);
+                shadowSurge(playerEntity);
+            }
         }
+
         if (this.age % 100 == 0) {
-            shadowSurge((PlayerEntity) this.getWorld().getClosestPlayer(this, 32));
+            StatusEffectUtil.addEffectToPlayersWithinDistance((ServerWorld) this.getWorld(), this, this.getPos(), (double)DARKNESS_RANGE, new StatusEffectInstance(StatusEffects.DARKNESS, 280, 0, false, false), 180);
+            StatusEffectUtil.addEffectToPlayersWithinDistance((ServerWorld) this.getWorld(), this, this.getPos(), (double)DARKNESS_RANGE, new StatusEffectInstance(StatusEffects.SLOWNESS, 280, 1, false, false), 180);
+
+            float missingHealth = (this.getMaxHealth() - this.getHealth()) / 2;
+
+            for (PlayerEntity playerEntity: this.getWorld().getEntitiesByClass(PlayerEntity.class, new Box(this.getBlockPos()).expand(SURGE_RADIUS), entity -> true)) {
+                playerEntity.damage(playerEntity.getDamageSources().generic(), missingHealth);
+            }
         }
     }
 
