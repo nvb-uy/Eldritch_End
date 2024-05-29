@@ -88,9 +88,8 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
         super.tick();
         if (this.getWorld().isClient) return;
         if (this.age % SURGE_RATE_TICKS == 0) {
-            curse((PlayerEntity) this.getWorld().getClosestPlayer(this, 32));
-
-            for (PlayerEntity playerEntity: this.getWorld().getEntitiesByClass(PlayerEntity.class, new Box(this.getBlockPos()).expand(SURGE_RADIUS*2), entity -> true)) {
+            for (PlayerEntity playerEntity: this.getWorld().getEntitiesByClass(PlayerEntity.class, new Box(this.getBlockPos()).expand(SURGE_RADIUS*1.5f), entity -> true)) {
+                curse(playerEntity);
                 shadowSurge(playerEntity);
             }
         }
@@ -101,10 +100,8 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
 
             float missingHealth = (this.getMaxHealth() - this.getHealth()) / 2;
 
-            for (LivingEntity entity: this.getWorld().getEntitiesByClass(LivingEntity.class, new Box(this.getBlockPos()).expand(SURGE_RADIUS), entity -> true)) {
-                if (!entity.equals(this)) {
-                    entity.damage(entity.getDamageSources().generic(), missingHealth);
-                }
+            for (PlayerEntity playerEntity: this.getWorld().getEntitiesByClass(PlayerEntity.class, new Box(this.getBlockPos()).expand(SURGE_RADIUS), entity -> true)) {
+                playerEntity.damage(playerEntity.getDamageSources().generic(), missingHealth);
             }
         }
     }
