@@ -4,6 +4,7 @@ import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.entity.aberration.AberrationEntity;
 import elocindev.eldritch_end.entity.dendler.DendlerEntity;
 import elocindev.eldritch_end.entity.faceless.FacelessEntity;
+import elocindev.eldritch_end.entity.ominous_eye.OminousEyeEntity;
 import elocindev.eldritch_end.entity.tentacle.TentacleEntity;
 import elocindev.eldritch_end.entity.tentacle.UndeadTentacleEntity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
@@ -20,6 +21,10 @@ public class EntityRegistry {
     static {
         BoatEntity.Type.values();
     }
+
+    public static final EntityType<OminousEyeEntity> OMINOUS_EYE = Registry.register(
+            Registries.ENTITY_TYPE, new Identifier(EldritchEnd.MODID, "ominous_eye"),
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, OminousEyeEntity::new).dimensions(EntityDimensions.fixed(1, 1)).build());
 
     public static final EntityType<AberrationEntity> ABERRATION = Registry.register(
             Registries.ENTITY_TYPE, new Identifier(EldritchEnd.MODID, "aberration"),
@@ -51,6 +56,7 @@ public class EntityRegistry {
     public static BoatEntity.Type PRIMORDIAL;
 
     public static void register() {
+        FabricDefaultAttributeRegistry.register(EntityRegistry.OMINOUS_EYE, AberrationEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(EntityRegistry.ABERRATION, AberrationEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(EntityRegistry.TENTACLE, TentacleEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(EntityRegistry.UNDEAD_TENTACLE, UndeadTentacleEntity.setAttributes());

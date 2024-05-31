@@ -1,12 +1,9 @@
 package elocindev.eldritch_end.entity.faceless;
 
 import elocindev.eldritch_end.EldritchEnd;
-import elocindev.eldritch_end.config.Configs;
 import elocindev.eldritch_end.utils.ParticleUtils;
 import mod.azure.azurelib.ai.pathing.AzureNavigation;
 import mod.azure.azurelib.animatable.GeoEntity;
-import mod.azure.azurelib.constant.DefaultAnimations;
-import mod.azure.azurelib.core.animatable.GeoAnimatable;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
 import mod.azure.azurelib.core.animation.*;
 import mod.azure.azurelib.core.object.PlayState;
@@ -14,49 +11,37 @@ import mod.azure.azurelib.util.AzureLibUtil;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.boss.ServerBossBar;
 import net.minecraft.entity.boss.BossBar.Color;
 import net.minecraft.entity.boss.BossBar.Style;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffectUtil;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.particle.DustParticleEffect;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.particle.ParticleType;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.util.TypeFilter;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
-import net.minecraft.world.entity.EntityLookup;
 
 public class FacelessEntity extends HostileEntity implements GeoEntity {
+    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
+    private final ServerBossBar bossBar;
     /*
     protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("walk");
     protected static final RawAnimation ATTACK = RawAnimation.begin().thenLoop("attack");
     protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("idle");
      */
 
-    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
-    private final ServerBossBar bossBar;
     private static final float SURGE_RADIUS = 16f;
     private static final float DARKNESS_RANGE = 15f;
     private static final int SURGE_RATE_TICKS = 4;
-
-    private int attackTicksLeft;
 
     public FacelessEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
