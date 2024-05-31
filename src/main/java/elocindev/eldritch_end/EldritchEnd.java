@@ -1,9 +1,11 @@
 package elocindev.eldritch_end;
 
+import elocindev.eldritch_end.events.PlayerTickEventHandler;
 import elocindev.eldritch_end.registry.*;
 import mod.azure.azurelib.AzureLib;
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,6 +34,7 @@ public class EldritchEnd implements ModInitializer {
 		WorldgenRegistry.register();
 		StructureRegistry.register();
 
-		EtyrAttributeBuilder.buildItemTag();		
+		EtyrAttributeBuilder.buildItemTag();
+		ServerTickEvents.START_SERVER_TICK.register(new PlayerTickEventHandler());
 	}
 }
