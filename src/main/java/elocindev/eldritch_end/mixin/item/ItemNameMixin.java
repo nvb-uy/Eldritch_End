@@ -10,9 +10,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import elocindev.eldritch_end.api.CorruptionAPI;
-import elocindev.eldritch_end.corruption.DummyCI;
-import elocindev.eldritch_end.item.artifacts.base.Artifact;
-import elocindev.eldritch_end.item.artifacts.base.CorruptionArtifact;
+import elocindev.eldritch_end.corruption.CorruptionDisplayTooltip;
+import elocindev.eldritch_end.item.relics.base.CorruptionRelic;
+import elocindev.eldritch_end.item.relics.base.Relic;
 import elocindev.necronomicon.api.text.TextAPI;
 
 
@@ -27,12 +27,12 @@ public abstract class ItemNameMixin {
         MutableText gradient;
         Object item = (Object)stack.getItem();
 
-        if(item instanceof Artifact || (Object) stack.getItem() instanceof DummyCI) {
+        if(item instanceof Relic || (Object) stack.getItem() instanceof CorruptionDisplayTooltip) {
 
             NbtCompound nbtCompound = stack.getSubNbt("display");
 
-            if (item instanceof CorruptionArtifact) gradient = TextAPI.Styles.getGradient(name.setStyle(bold), 1, 0x5c3885, 0xb8731a, 1.0F);
-            else if (item instanceof Artifact) gradient = TextAPI.Styles.getGradient(name.setStyle(bold), 1, 0x5d378c, 0xa89532, 1.0F);
+            if (item instanceof CorruptionRelic) gradient = TextAPI.Styles.getGradient(name.setStyle(bold), 1, 0x5c3885, 0xb8731a, 1.0F);
+            else if (item instanceof Relic) gradient = TextAPI.Styles.getGradient(name.setStyle(bold), 1, 0x5d378c, 0xa89532, 1.0F);
             else gradient = CorruptionAPI.getCMenuTitle();
 
             if (nbtCompound != null && nbtCompound.contains("Name", 8)) {

@@ -28,8 +28,8 @@ public class ItemGroupRegistry {
             entries.add(new ItemStack(ArmorRegistry.ETYRITE_LEGGINGS));
             entries.add(new ItemStack(ArmorRegistry.ETYRITE_BOOTS));
 
-            // -- ARTIFACTS --
-            entries.add(new ItemStack(ItemRegistry.XALARATH));
+            // -- RELICS --
+            entries.add(new ItemStack(ItemRegistry.XAL));
 
             // -- BLOCKS --
             entries.add(new ItemStack(BlockRegistry.ABYSMAL_FRONDS_ITEM));

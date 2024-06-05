@@ -18,10 +18,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import elocindev.eldritch_end.EldritchEnd;
-import elocindev.eldritch_end.corruption.DummyCI;
+import elocindev.eldritch_end.corruption.CorruptionDisplayTooltip;
 import elocindev.eldritch_end.item.Necronomicon;
 import elocindev.eldritch_end.item.SilverKey;
-import elocindev.eldritch_end.item.artifacts.Xalarath;
+import elocindev.eldritch_end.item.relics.Xal;
 import elocindev.eldritch_end.item.spawneggs.AberrationEgg;
 import elocindev.eldritch_end.item.spawneggs.DendlerEgg;
 import elocindev.eldritch_end.item.spawneggs.TentacleEgg;
@@ -43,7 +43,7 @@ public class ItemRegistry {
     public static final Item ABERRATION_LIMB = new Item(new FabricItemSettings());
     public static final Item ABERRATION_HEART = new Item(new FabricItemSettings());
 
-    public static final Item XALARATH = new Xalarath(new FabricItemSettings().maxCount(1).fireproof());
+    public static final Item XAL = new Xal(new FabricItemSettings().maxCount(1).fireproof());
 
     public static final Item PRIMORDIAL_BOAT = new BoatItem(false, EntityRegistry.PRIMORDIAL, new FabricItemSettings());
     public static final Item PRIMORDIAL_CHEST_BOAT = new BoatItem(true, EntityRegistry.PRIMORDIAL, new FabricItemSettings());
@@ -52,7 +52,7 @@ public class ItemRegistry {
     // Well that's because this is an easter egg. Please don't tell anyone and just enjoy it ingame :thisisthesunglassescat:
     public static final Item CHORB_SPAWN_EGG = new Chorb(EntityType.GIANT, 0xfcba03, 0xfce703, new FabricItemSettings());
 
-    public static final Item CORRUPTION_MENU = new DummyCI(new FabricItemSettings());
+    public static final Item CORRUPTION_MENU = new CorruptionDisplayTooltip(new FabricItemSettings());
 
     public static final Item RAW_ETYR = new Item(new FabricItemSettings());
     public static final Item ETYR_INGOT = new Item(new FabricItemSettings());
@@ -76,7 +76,7 @@ public class ItemRegistry {
         reg(ABERRATION_LIMB, "aberration_limb");
         reg(ABERRATION_HEART, "aberration_heart");
         
-        reg(XALARATH, "xalarath");
+        reg(XAL, "xal");
 
         reg(PRIMORDIAL_BOAT, "primordial_boat");
         reg(PRIMORDIAL_CHEST_BOAT, "primordial_chest_boat");
