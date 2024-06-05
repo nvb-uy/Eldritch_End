@@ -18,7 +18,7 @@ public class CorruptionAPI {
      * @return              The total corruption level of the entity.
      */
     public static double getTotalCorruptionLevel(LivingEntity entity) {
-        return getCorruptionLevel(entity) / getCorruptionResistanceMult(entity);
+        return getCorruptionLevel(entity) - getCorruptionResistanceLevel(entity);
     }
 
     /**
@@ -29,16 +29,6 @@ public class CorruptionAPI {
      */
     public static double getCorruptionResistanceLevel(LivingEntity entity) {
         return entity.getAttributeInstance(AttributeRegistry.CORRUPTION_RESISTANCE).getValue();
-    }
-
-    /**
-     * Gets the corruption resistance multiplier of an entity.
-     * 
-     * @param entity        The entity to get the corruption resistance multiplier of.
-     * @return              The corruption resistance multiplier of the entity.
-     */
-    public static double getCorruptionResistanceMult(LivingEntity entity) {
-        return 1 + (entity.getAttributeInstance(AttributeRegistry.CORRUPTION_RESISTANCE).getValue() / 100);
     }
 
     /**
