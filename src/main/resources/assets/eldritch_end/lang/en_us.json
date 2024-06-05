@@ -4,9 +4,9 @@
     "death.attack.corruption": "%1$s fell victim to corruption.",
     "death.attack.corruption.player": "%1$s fell victim to corruption.",
 
-    "eldritch_end.corruption": "Corruption",
+    "eldritch_end.corruption": "§f\uA999§r Corruption",
     "eldritch_end.corruption.desc": "The amount of corruption a player has.",
-    "eldritch_end.corruption_resistance": "Corruption Resistance",
+    "eldritch_end.corruption_resistance": "§f\uAB01§r Corruption Resistance",
     "eldritch_end.corruption_resistance.desc": "The amount of corruption resistance a player has.",
     "eldritch_end.corruption.gui.player": "Player Corruption",
     "eldritch_end.corruption.gui.desc.1": "Empower your corruption based abilities,",
