@@ -1,13 +1,21 @@
 package elocindev.eldritch_end.item.relics;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.jetbrains.annotations.Nullable;
 
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
+
 import elocindev.eldritch_end.item.relics.base.CorruptionRelic;
+import elocindev.eldritch_end.registry.AttributeRegistry;
 import elocindev.eldritch_end.worldgen.util.TextUtils;
 import elocindev.necronomicon.api.text.TextAPI;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.attribute.EntityAttribute;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
@@ -43,13 +51,29 @@ public class Xal extends CorruptionRelic {
         tooltip.add(Text.literal(" ").append(description2));
 
         tooltip.add(emptyLine());
-
-        tooltip.add(Text.literal("\uA999 ").append(Text.literal("+10 Corruption").setStyle(TextUtils.Styles.DAMAGE_CORRUPTION)));
-        
-        tooltip.add(Text.literal("This item is not yet implemented!").setStyle(TextUtils.Styles.NOT_IMPLEMENTED));
     }
 
     private Text emptyLine() {
-        return Text.empty();
+        return Text.literal(" ");
+    }
+
+    @Override
+    public Multimap<EntityAttribute, EntityAttributeModifier> getAttributeModifiers(EquipmentSlot slot) {
+        Multimap<EntityAttribute, EntityAttributeModifier> modifiers = HashMultimap.create(super.getAttributeModifiers(slot));
+        
+        UUID uuid = UUID.fromString("399fe278-8564-11ee-b9d1-0242ac120002");
+
+        if (slot == EquipmentSlot.MAINHAND)
+            modifiers.put(
+                AttributeRegistry.CORRUPTION,
+                new EntityAttributeModifier(
+                    uuid, 
+                    "Corruption modifier", 
+                    10.0, 
+                    EntityAttributeModifier.Operation.ADDITION
+                )
+            );
+        
+        return modifiers;
     }
 }

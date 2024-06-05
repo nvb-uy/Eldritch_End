@@ -134,7 +134,7 @@
 
     "item.eldritch_end.xal": "X'al, The Faceless Eye",
     "item.eldritch_end.xal.type": "Corruption Relic",
-    "item.eldritch_end.xal.shadowburst.1": "Creates an explosion that deals %DAMAGE%",
+    "item.eldritch_end.xal.shadowburst.1": "Creates an explosion that deals",
     "item.eldritch_end.xal.shadowburst.2": "divided between all nearby entities.",
 
     "item.eldritch_end.aberration_spawn_egg": "Aberration Spawn Egg",
