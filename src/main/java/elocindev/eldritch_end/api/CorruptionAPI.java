@@ -1,5 +1,7 @@
 package elocindev.eldritch_end.api;
 
+import elocindev.eldritch_end.config.Configs;
+import elocindev.eldritch_end.config.entries.CorruptionConfig;
 import elocindev.eldritch_end.registry.AttributeRegistry;
 import elocindev.necronomicon.api.text.TextAPI;
 import net.minecraft.entity.LivingEntity;
@@ -7,6 +9,8 @@ import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 
 public class CorruptionAPI {
+    public static CorruptionConfig CONFIG = Configs.Mechanics.CORRUPTION;
+
     /**
      * Gets the total corruption level of an entity, taking into account their corruption resistance.
      * 
