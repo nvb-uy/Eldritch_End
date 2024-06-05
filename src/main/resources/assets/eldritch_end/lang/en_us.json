@@ -132,7 +132,7 @@
     "item.eldritch_end.raw_etyr": "Raw Etyr",
     "item.eldritch_end.etyr_ingot": "Etyr Ingot",    
 
-    "item.eldritch_end.xal": "Xal, The Faceless Eye",
+    "item.eldritch_end.xal": "X'al, The Faceless Eye",
     "item.eldritch_end.xal.type": "Corruption Relic",
     "item.eldritch_end.xal.shadowburst.1": "Creates an explosion that deals %DAMAGE%",
     "item.eldritch_end.xal.shadowburst.2": "divided between all nearby entities.",
