@@ -5,10 +5,14 @@ See the full changelog in https://github.com/nvb-uy/Eldritch_End/blob/1.20.1/CHA
 - Corruption Mechanics [ElocinDev, Joespeph]
 
 ## 0.3.0 (Indev)
-- Added The Faceless Boss [ElocinDev, Joespeph]
+- Added The Faceless Boss [Joespeph, ElocinDev]
 - Added Corruption System [ElocinDev, Joespeph]
+- API BREAKING CHANGE! Corruption Resistance is no longer percentile and instead it is flat
+- Etyrite armor now gives +5 corruption resistance per piece
 - Fixed faceless texture covering the health bar in some parts [ElocinDev]
-- Renamed Xal'arath to just "Xal"
+- Renamed Xal'arath to just "Xal" [ElocinDev]
+- Corruption config now uses JSON5 format. Please update your config! [ElocinDev]
+- Overhauled Corruption Config, included configs for the corruption system's effects [ElocinDev]
 
 ## 0.2.30 (Public Release)
 - Fixed dendler not spawning properly in the hasturian wastes [ElocinDev]
