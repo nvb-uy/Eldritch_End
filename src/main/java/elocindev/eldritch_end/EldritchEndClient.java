@@ -1,6 +1,7 @@
 package elocindev.eldritch_end;
 
 import elocindev.eldritch_end.corruption.CorruptionOverlay;
+import elocindev.eldritch_end.entity.client.ominous_eye.OminousEyeRenderer;
 import elocindev.eldritch_end.entity.client.undead_tentacle.UndeadTentacleRenderer;
 import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.registry.EntityRegistry;
@@ -32,6 +33,7 @@ public class EldritchEndClient implements ClientModInitializer {
         HudRenderCallback.EVENT.register(new CorruptionOverlay());
         PacketRegistry.registerS2CPackets();
 
+        EntityRendererRegistry.register(EntityRegistry.OMINOUS_EYE, OminousEyeRenderer::new);
         EntityRendererRegistry.register(EntityRegistry.ABERRATION, AberrationRenderer::new);
         EntityRendererRegistry.register(EntityRegistry.TENTACLE, TentacleRenderer::new);
         EntityRendererRegistry.register(EntityRegistry.UNDEAD_TENTACLE, UndeadTentacleRenderer::new);
