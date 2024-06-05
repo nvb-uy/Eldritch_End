@@ -62,7 +62,7 @@ public class EtyriteArmorPiece extends ArmorItem {
                 new EntityAttributeModifier(
                     slotUUID, 
                     "Corruption resistance modifier", 
-                    10.0, 
+                    5.0, 
                     EntityAttributeModifier.Operation.ADDITION
                 )
             );
