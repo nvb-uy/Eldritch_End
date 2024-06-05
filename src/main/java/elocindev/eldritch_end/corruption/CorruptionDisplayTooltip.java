@@ -31,7 +31,8 @@ public class CorruptionDisplayTooltip extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        if (!world.isClient()) return;
+        if (world == null || !world.isClient()) return;
+        
         CorruptionConfig.CorruptionEffects effects = CorruptionAPI.CONFIG.corruption_effects;
         String effectKey = "eldritch_end.corruption.gui.effect.name.";
 
