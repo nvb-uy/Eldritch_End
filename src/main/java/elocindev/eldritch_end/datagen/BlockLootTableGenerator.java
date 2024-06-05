@@ -98,7 +98,5 @@ public class BlockLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(BlockRegistry.POLISHED_SPIRE_STONE_BRICK_SLAB, drops(BlockRegistry.POLISHED_SPIRE_STONE_BRICK_SLAB_ITEM));
         addDrop(BlockRegistry.POLISHED_SPIRE_STONE_TILE_STAIRS, drops(BlockRegistry.POLISHED_SPIRE_STONE_TILE_STAIRS_ITEM));
         addDrop(BlockRegistry.POLISHED_SPIRE_STONE_TILE_SLAB, drops(BlockRegistry.POLISHED_SPIRE_STONE_TILE_SLAB_ITEM));
-
-        addLeafDrop(BlockRegistry.PRIMORDIAL_LEAVES, BlockRegistry.PRIMORDIAL_LEAVES);
     }
 }
