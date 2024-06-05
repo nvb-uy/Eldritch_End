@@ -50,6 +50,10 @@ repositories {
             includeGroup "curse.maven"
         }
     }
+	
+	maven {
+		url "https://api.modrinth.com/maven"
+	}
 }
 
 dependencies {
@@ -62,7 +66,7 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	modImplementation "curse.maven:azurelib-817423:${project.azurelib}"
-	modImplementation "curse.maven:necronomicon-586157:${project.necronomicon_api}"
+	modImplementation "maven.modrinth:necronomicon:${project.necronomicon_version}-fabric"
 
 	// Optional, compats
 	modImplementation "curse.maven:legendary-tooltips-fabric-542478:4650438"
