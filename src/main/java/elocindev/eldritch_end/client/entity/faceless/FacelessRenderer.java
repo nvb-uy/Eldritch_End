@@ -1,4 +1,4 @@
-package elocindev.eldritch_end.entity.client.faceless;
+package elocindev.eldritch_end.client.entity.faceless;
 
 import elocindev.eldritch_end.entity.faceless.FacelessEntity;
 import mod.azure.azurelib.renderer.GeoEntityRenderer;

@@ -1,8 +1,6 @@
 package elocindev.eldritch_end;
 
 import elocindev.eldritch_end.corruption.CorruptionOverlay;
-import elocindev.eldritch_end.entity.client.ominous_eye.OminousEyeRenderer;
-import elocindev.eldritch_end.entity.client.undead_tentacle.UndeadTentacleRenderer;
 import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.registry.EntityRegistry;
 
@@ -11,11 +9,13 @@ import java.util.List;
 import com.anthonyhilyard.legendarytooltips.config.LegendaryTooltipsConfig;
 import com.anthonyhilyard.prism.util.ColorUtil;
 
+import elocindev.eldritch_end.client.entity.aberration.AberrationRenderer;
+import elocindev.eldritch_end.client.entity.dendler.DendlerRenderer;
+import elocindev.eldritch_end.client.entity.faceless.FacelessRenderer;
+import elocindev.eldritch_end.client.entity.ominous_eye.OminousEyeRenderer;
+import elocindev.eldritch_end.client.entity.tentacle.TentacleRenderer;
+import elocindev.eldritch_end.client.entity.undead_tentacle.UndeadTentacleRenderer;
 import elocindev.eldritch_end.config.ConfigLoader;
-import elocindev.eldritch_end.entity.client.aberration.AberrationRenderer;
-import elocindev.eldritch_end.entity.client.dendler.DendlerRenderer;
-import elocindev.eldritch_end.entity.client.faceless.FacelessRenderer;
-import elocindev.eldritch_end.entity.client.tentacle.TentacleRenderer;
 import elocindev.eldritch_end.registry.PacketRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;

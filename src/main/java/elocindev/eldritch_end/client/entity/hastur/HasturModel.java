@@ -1,4 +1,4 @@
-package elocindev.eldritch_end.entity.client.hastur;
+package elocindev.eldritch_end.client.entity.hastur;
 
 import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.entity.hastur.HasturEntity;

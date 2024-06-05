@@ -1,4 +1,4 @@
-package elocindev.eldritch_end.entity.client.aberration;
+package elocindev.eldritch_end.client.entity.aberration;
 
 import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.entity.aberration.AberrationEntity;

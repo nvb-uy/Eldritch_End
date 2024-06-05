@@ -1,4 +1,4 @@
-package elocindev.eldritch_end.entity.client.dendler;
+package elocindev.eldritch_end.client.entity.dendler;
 
 import elocindev.eldritch_end.entity.dendler.DendlerEntity;
 import mod.azure.azurelib.renderer.GeoEntityRenderer;

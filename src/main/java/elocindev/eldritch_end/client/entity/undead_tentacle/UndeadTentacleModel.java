@@ -1,4 +1,4 @@
-package elocindev.eldritch_end.entity.client.undead_tentacle;
+package elocindev.eldritch_end.client.entity.undead_tentacle;
 
 import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.entity.tentacle.TentacleEntity;

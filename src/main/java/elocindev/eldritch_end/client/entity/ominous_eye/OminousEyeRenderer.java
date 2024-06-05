@@ -1,4 +1,4 @@
-package elocindev.eldritch_end.entity.client.ominous_eye;
+package elocindev.eldritch_end.client.entity.ominous_eye;
 
 import elocindev.eldritch_end.entity.ominous_eye.OminousEyeEntity;
 import mod.azure.azurelib.renderer.GeoEntityRenderer;
