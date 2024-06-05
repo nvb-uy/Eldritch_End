@@ -1,10 +1,8 @@
 {
     "itemGroup.eldritch_end":"Eldritch End",
 
-    
-
-    "death.attack.corruption": "%1$s fell victim to the corruption.",
-    "death.attack.corruption.player": "%1$s fell victim to the corruption.",
+    "death.attack.corruption": "%1$s fell victim to corruption.",
+    "death.attack.corruption.player": "%1$s fell victim to corruption.",
 
     "eldritch_end.corruption": "Corruption",
     "eldritch_end.corruption.desc": "The amount of corruption a player has.",
@@ -14,6 +12,19 @@
     "eldritch_end.corruption.gui.desc.1": "Empower your corruption based abilities,",
     "eldritch_end.corruption.gui.desc.2": "but descend into madness in the process.",
 
+    "eldritch_end.corruption.gui.effect.name.1": "%COST%: Awakening",
+    "eldritch_end.corruption.gui.effect.description.1": "%COST%: You take %TAKEN_DAMAGE% extra damage from all sources except corruption.",
+    "eldritch_end.corruption.gui.effect.name.2": "%COST%: Whispers From Below",
+    "eldritch_end.corruption.gui.effect.description.2": "%COST%: While in combat, tentacles can appear from the ground with a %TENTACLE_CHANCE% chance every %TENTACLE_UPDATE_RATE% seconds.",
+    "eldritch_end.corruption.gui.effect.name.3": "%COST%: Madness Within",
+    "eldritch_end.corruption.gui.effect.description.3": "%COST%: Corruption starts affecting your vision, you start seeing everything with a slight purple tint that increases with your corruption.",
+    "eldritch_end.corruption.gui.effect.name.4": "%COST%: Void's Embrace",
+    "eldritch_end.corruption.gui.effect.description.4": "%COST%: You do %DAMAGE_REDUCTION% less damage from all sources except corruption.",
+    "eldritch_end.corruption.gui.effect.name.5": "%COST%: All-Seeing Eyes",
+    "eldritch_end.corruption.gui.effect.description.5": "%COST%: Every %EYES_TENTACLE_RATE% seconds, Ominous Eyes will have a %EYES_CHANCE% chance to haunt you while in combat.",
+    "eldritch_end.corruption.gui.effect.name.6": "%COST%: Fall Into Madness",
+    "eldritch_end.corruption.gui.effect.description.6": "%COST%: Madness starts consuming you, making you take %MADNESS_DAMAGE% of your max health as true damage every second.",
+    "eldritch_end.corruption.gui.shift": "Press SHIFT for more info",
 
     "biome.eldritch_end.hasturian_wastes": "Hasturian Wastes",
     "biome.eldritch_end.primordial_abyss": "Primordial Abyss",
@@ -113,7 +124,7 @@
     "item.eldritch_end.etyrite_leggings": "Etyrite Leggings",
     "item.eldritch_end.etyrite_boots": "Etyrite Boots",
 
-    "item.eldritch_end.necronomicon": "\u00A72Necronomicon",
+    "item.eldritch_end.necronomicon": "Necronomicon",
     "item.eldritch_end.necronomicon.type": "Eldritch Artifact",
     "item.eldritch_end.aberration_limb": "Aberration's Limb",
     "item.eldritch_end.aberration_heart": "Aberration's Heart",
@@ -121,10 +132,10 @@
     "item.eldritch_end.raw_etyr": "Raw Etyr",
     "item.eldritch_end.etyr_ingot": "Etyr Ingot",    
 
-    "item.eldritch_end.xalarath": "Xal'arath, The Faceless Eye",
-    "item.eldritch_end.xalarath.type": "Corruption Artifact",
-    "item.eldritch_end.xalarath.shadowburst.1": "Creates an explosion that deals",
-    "item.eldritch_end.xalarath.shadowburst.2": "divided between all nearby entities.",
+    "item.eldritch_end.xal": "Xal, The Faceless Eye",
+    "item.eldritch_end.xal.type": "Corruption Relic",
+    "item.eldritch_end.xal.shadowburst.1": "Creates an explosion that deals %DAMAGE%",
+    "item.eldritch_end.xal.shadowburst.2": "divided between all nearby entities.",
 
     "item.eldritch_end.aberration_spawn_egg": "Aberration Spawn Egg",
     "item.eldritch_end.tentacle_spawn_egg": "Tentacle Spawn Egg",
