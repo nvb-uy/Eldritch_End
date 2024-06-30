@@ -1,4 +1,4 @@
-// 1.20.1	2024-06-05T07:02:11.4896281	Eldritch End/Block Loot Tables
+// 1.20.1	2024-06-30T17:11:53.8864508	Eldritch End/Block Loot Tables
 0d95516c9a971f29861491fae7ccd7a9de518831 data\eldritch_end\loot_tables\blocks\chiseled_polished_spire_stone.json
 aff5907c268cdea39549ba8f249fd0c81ff01dc4 data\eldritch_end\loot_tables\blocks\polished_spire_stone_tile_slab.json
 04b968475140670635543e24d87cb014cadc3bab data\eldritch_end\loot_tables\blocks\hasturian_sand.json
@@ -15,7 +15,6 @@ caa3fc1c5bbd1782171be72c2107bf54a0bc64b7 data\eldritch_end\loot_tables\blocks\ha
 02420695224674c11ea9c6d41f2483a350348493 data\eldritch_end\loot_tables\blocks\primordial_trapdoor.json
 4706794d2b2c70cc5f9a0d661b9efe14e82803b9 data\eldritch_end\loot_tables\blocks\corrupted_etyr_bars.json
 3e6259265f372b0aecebf039fdeadf21f88b1328 data\eldritch_end\loot_tables\blocks\decadent_etyr_bars.json
-33c98cd5d29185948c21ad98afc03495834b631d data\eldritch_end\loot_tables\blocks\primordial_leaves.json
 3dca3bd6a43c14c714858f59c9a8dad155f2b772 data\eldritch_end\loot_tables\blocks\perturbed_etyr_pillar.json
 da1d46b326c3f44789c0ec565a4191843a7b8da9 data\eldritch_end\loot_tables\blocks\corrupted_etyr_door.json
 727f233ca0d43114aa0c690a89d662be2fdf9482 data\eldritch_end\loot_tables\blocks\decadent_etyr_tiles.json

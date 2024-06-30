@@ -8,6 +8,7 @@ import org.jetbrains.annotations.Nullable;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
+import elocindev.eldritch_end.client.particle.EldritchParticles;
 import elocindev.eldritch_end.item.relics.base.CorruptionRelic;
 import elocindev.eldritch_end.registry.AttributeRegistry;
 import elocindev.eldritch_end.worldgen.util.TextUtils;
@@ -16,9 +17,14 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsageContext;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
 public class Xal extends CorruptionRelic {
@@ -76,4 +82,12 @@ public class Xal extends CorruptionRelic {
         
         return modifiers;
     }
+
+    @Override
+    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+        EldritchParticles.playEffek("shadowsurge", world, user.getPos(), true, 0.30F);
+
+        return TypedActionResult.success(user.getStackInHand(hand));
+    }
+
 }
