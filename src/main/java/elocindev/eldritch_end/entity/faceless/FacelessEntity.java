@@ -30,6 +30,7 @@ import net.minecraft.util.math.Box;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 
+@SuppressWarnings("resource")
 public class FacelessEntity extends HostileEntity implements GeoEntity {
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
     private final ServerBossBar bossBar;
@@ -63,6 +64,7 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
         }
     }
 
+    
     private void curse(PlayerEntity target) {
         if (target == null || Math.abs(this.getPos().y - target.getPos().y) < 3 || target.getWorld().isClient) return;
         target.damage(target.getDamageSources().generic(), target.getMaxHealth() * 0.25f);
