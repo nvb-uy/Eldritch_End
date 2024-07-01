@@ -58,12 +58,13 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
         if (!this.getWorld().isClient) {
             ParticleUtils.sendParticlesToAll(this, "teleportationRing");
             ParticleUtils.sendParticlesToAll(target, "teleportationRing");
+
             target.teleport(this.getX() + 2, this.getY(), this.getZ() + 2);
         }
     }
 
     private void curse(PlayerEntity target) {
-        if (target == null || Math.abs(this.getPos().y - target.getPos().y)  < 3 || target.getWorld().isClient) return;
+        if (target == null || Math.abs(this.getPos().y - target.getPos().y) < 3 || target.getWorld().isClient) return;
         target.damage(target.getDamageSources().generic(), target.getMaxHealth() * 0.25f);
         ParticleUtils.sendParticlesToAll(target, "distanceWarningParticles");
     }
@@ -72,6 +73,7 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
     public void tick() {
         super.tick();
         if (this.getWorld().isClient) return;
+
         if (this.age % SURGE_RATE_TICKS == 0) {
             for (PlayerEntity playerEntity: this.getWorld().getEntitiesByClass(PlayerEntity.class, new Box(this.getBlockPos()).expand(SURGE_RADIUS*1.5f), entity -> true)) {
                 curse(playerEntity);
@@ -106,7 +108,6 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
 
     @Override
     public boolean tryAttack(Entity target) {
-        EldritchEnd.LOGGER.info("Attack!");
         triggerAnim("attackAnim", "attack");
         this.handSwinging = false;
         return super.tryAttack(target);
@@ -144,7 +145,7 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
     }
 
     @Override
-    protected void playStepSound(BlockPos pos, BlockState state) { }
+    protected void playStepSound(BlockPos pos, BlockState state) {}
 
     @Override
     public boolean isCollidable() {
