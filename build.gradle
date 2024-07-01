@@ -69,7 +69,7 @@ dependencies {
 
 	modImplementation "maven.modrinth:necronomicon:${project.necronomicon_version}-fabric"
 	
-	include(modImplementation "maven.modrinth:aaa-particles:1.20.1-${project.aaa_particles_version}-fabric")
+	modCompileOnly "maven.modrinth:aaa-particles:1.20.1-${project.aaa_particles_version}-fabric"
 	modImplementation "maven.modrinth:architectury-api:9.2.14+fabric"
 
 	// Optional, compats

@@ -85,7 +85,8 @@ public class Xal extends CorruptionRelic {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        EldritchParticles.playEffek("shadowsurge", world, user.getPos(), true, 0.30F);
+        EldritchParticles.playEffek("shadowsurge", world, user.getPos(), true, 0.30F)
+            .bindOnEntity(user);
 
         return TypedActionResult.success(user.getStackInHand(hand));
     }

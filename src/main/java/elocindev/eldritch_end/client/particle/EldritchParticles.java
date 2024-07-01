@@ -13,16 +13,17 @@ public class EldritchParticles {
         return new Identifier(EldritchEnd.MODID, particleId);
     }
 
-    public static void playEffek(String id, World world, Vec3d pos, boolean forced, float scale) {
+    public static ParticleEmitterInfo playEffek(String id, World world, Vec3d pos, boolean forced, float scale) {
         ParticleEmitterInfo instance = new ParticleEmitterInfo(get(id))
             .clone()
             .position(pos)
             .scale(scale);
         
         AAALevel.addParticle(world, forced, instance);
+        return instance;
     }
 
-    public static void playEffek(String id, World world, Vec3d pos) {
-        playEffek(id, world, pos, true, 1.0F);
+    public static ParticleEmitterInfo playEffek(String id, World world, Vec3d pos) {
+        return playEffek(id, world, pos, true, 1.0F);
     }
 }
