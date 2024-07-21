@@ -1,48 +1,73 @@
 package elocindev.eldritch_end.entity.faceless;
 
 import elocindev.eldritch_end.EldritchEnd;
-import elocindev.eldritch_end.utils.ParticleUtils;
+import elocindev.eldritch_end.client.particle.EldritchParticles;
+import elocindev.eldritch_end.registry.SoundEffectRegistry;
 import mod.azure.azurelib.ai.pathing.AzureNavigation;
 import mod.azure.azurelib.animatable.GeoEntity;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
-import mod.azure.azurelib.core.animation.*;
+import mod.azure.azurelib.core.animation.AnimatableManager;
+import mod.azure.azurelib.core.animation.Animation;
+import mod.azure.azurelib.core.animation.AnimationController;
+import mod.azure.azurelib.core.animation.RawAnimation;
 import mod.azure.azurelib.core.object.PlayState;
 import mod.azure.azurelib.util.AzureLibUtil;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.boss.ServerBossBar;
 import net.minecraft.entity.boss.BossBar.Color;
 import net.minecraft.entity.boss.BossBar.Style;
+import net.minecraft.entity.boss.ServerBossBar;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffectUtil;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
+import org.joml.Math;
+
+import java.util.HashMap;
 
 @SuppressWarnings("resource")
 public class FacelessEntity extends HostileEntity implements GeoEntity {
+
+    // Todo: make drop 30xp
+    // Todo: make give xal to every player in 32 block radius on death
+    // Todo: smooth transition instead of teleport
+
+    @Nullable Entity entityToPull;
+    @Nullable HashMap<PlayerEntity, Integer> pullTargets = new HashMap<>();
+    
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
     private final ServerBossBar bossBar;
-    /*
-    protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("walk");
-    protected static final RawAnimation ATTACK = RawAnimation.begin().thenLoop("attack");
-    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("idle");
-     */
+    private float animationProgressTicks = 0;
+    private float animationDuration = 40;
 
-    private static final float SURGE_RADIUS = 16f;
-    private static final float DARKNESS_RANGE = 15f;
-    private static final int SURGE_RATE_TICKS = 4;
+    /** curse variables **/
+    private int curseThreshold = 5;
+
+    /** shadow surge variables **/
+    private boolean shouldSurge = false;
+    private float shadowSurgeProgress = 0;
+    private float shadowSurgeDuration = 94;
+    private float firstImpactTicks = 43;
+    private float secondImpactTicks = 52;
+    private float thirdImpactTicks = 63;
+    private static final float SURGE_RADIUS = 24f;
+
+    /** shadow pull variables **/
+    private float pullDuration = 40;
 
     public FacelessEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
@@ -51,46 +76,108 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
             .setThickenFog(true);
         navigation = new AzureNavigation(this, world);
         this.setStepHeight(1.0F);
+        this.animationProgressTicks = 0;
     }
 
-    private void shadowSurge(PlayerEntity target) {
-        if (target == null || target.distanceTo(this) < SURGE_RADIUS) return;
-        EldritchEnd.LOGGER.info(String.valueOf(target.distanceTo(this)));
-        if (!this.getWorld().isClient) {
-            ParticleUtils.sendParticlesToAll(this, "teleportationRing");
-            ParticleUtils.sendParticlesToAll(target, "teleportationRing");
+    private void curse(PlayerEntity target) {
+        if (target == null || Math.abs(this.getPos().y - target.getPos().y) < curseThreshold || target.getWorld().isClient) return;
 
-            target.teleport(this.getX() + 2, this.getY(), this.getZ() + 2);
+        Vec3d rotationVector = this.getRotationVector().normalize();
+        target.teleport(this.getX() + rotationVector.multiply(2).x, this.getY(), this.getZ() + rotationVector.multiply(2).z);
+    }
+
+    private void shadowSurge() {
+        this.setStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, (int) shadowSurgeDuration, 255, false, false, false), null);
+        this.shadowSurgeProgress = 0;
+        this.shouldSurge = true;
+        EldritchParticles.playEffek("shadowsurge", this.getWorld(), this.getPos(),
+                true, 0.60F).bindOnEntity(this);
+    }
+
+    private void meleeLogic() {
+        if (animationProgressTicks < animationDuration) animationProgressTicks++;
+        if (animationProgressTicks == 1) this.getWorld().playSound((PlayerEntity)null, this.getX(), this.getY(), this.getZ(), SoundEffectRegistry.PUNCH_EVENT, this.getSoundCategory(), 1F, 1.0f);
+        if (animationProgressTicks == 3) performKeyframeAttack(this.getTarget());
+    }
+
+    private void shadowSurgeLogic() {
+        if (shadowSurgeProgress < shadowSurgeDuration) {
+            shadowSurgeProgress++;
+        } else {
+            this.shouldSurge = false;
+            this.shadowSurgeProgress = 0;
+        }
+
+        if (shadowSurgeProgress == 0 && shouldSurge) shadowSurge();
+        else if (shadowSurgeProgress == firstImpactTicks && shouldSurge) shadowSurgeAttack();
+        else if (shadowSurgeProgress == secondImpactTicks && shouldSurge) shadowSurgeAttack();
+        else if (shadowSurgeProgress == thirdImpactTicks && shouldSurge) shadowSurgeAttack();
+    }
+
+    private void shadowSurgeAttack() {
+        float missingHealth = (this.getMaxHealth() - this.getHealth()) / 2;
+        this.getWorld().playSound((PlayerEntity)null, this.getX(), this.getY(), this.getZ(), SoundEffectRegistry.ORB_EVENT, this.getSoundCategory(), 1F, 1.0f);
+        for (PlayerEntity playerEntity: this.getWorld().getEntitiesByClass(PlayerEntity.class, new Box(this.getBlockPos()).expand(9, 0, 9), entity -> true)) {
+            playerEntity.damage(this.getDamageSources().generic(), missingHealth / 3f);
         }
     }
 
-    
-    private void curse(PlayerEntity target) {
-        if (target == null || Math.abs(this.getPos().y - target.getPos().y) < 3 || target.getWorld().isClient) return;
-        target.damage(target.getDamageSources().generic(), target.getMaxHealth() * 0.25f);
-        ParticleUtils.sendParticlesToAll(target, "distanceWarningParticles");
+    private void shadowSurgeTeleport(Entity target) {
+        if (target == null || this.getWorld().isClient
+           || target.distanceTo(this) < SURGE_RADIUS) return;
+
+        Vec3d rotationVector = this.getRotationVector().normalize();
+        target.teleport(this.getX() + rotationVector.multiply(2).x, this.getY(), this.getZ() + rotationVector.multiply(2).z);
+
+        this.shadowSurge();
+        if (!(target instanceof LivingEntity livingEntity)) return;
+        livingEntity.setStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 40, 1, false, false, false), null);
+    }
+
+
+    public static Vec3d lerpedPosition(Vec3d current, Vec3d desired, float timeDelta) {
+        return new Vec3d(Math.lerp(current.x, desired.x, timeDelta), Math.lerp(current.y, desired.y, timeDelta), Math.lerp(current.z, desired.z, timeDelta));
+    }
+
+
+    private void pullMove(PlayerEntity target, int elapsedTicks) {
+        pullTargets.put(target, (elapsedTicks <= pullDuration) ? elapsedTicks + 1 : 0);
+        Vec3d lerpedPos = lerpedPosition(target.getPos(), this.getPos(), pullTargets.get(target) / pullDuration);
+        target.teleport(lerpedPos.x, lerpedPos.y, lerpedPos.z);
+    }
+
+    private void pullLogic(PlayerEntity target, int elapsedTicks) {
+        if (elapsedTicks < pullDuration && !target.getBlockPos().isWithinDistance(this.getPos(), 2)) {
+            pullMove(target, elapsedTicks);
+            this.setVelocity(0, 0, 0);
+            target.setVelocity(0, 0,0);
+        } else {
+            target.setStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 40, 1, false, false, false), null);
+            pullTargets.remove(target);
+            if (!this.shouldSurge) this.shadowSurge();
+        }
+        this.velocityDirty = true;
     }
 
     @Override
     public void tick() {
         super.tick();
         if (this.getWorld().isClient) return;
+        this.meleeLogic();
+        this.shadowSurgeLogic();
 
-        if (this.age % SURGE_RATE_TICKS == 0) {
-            for (PlayerEntity playerEntity: this.getWorld().getEntitiesByClass(PlayerEntity.class, new Box(this.getBlockPos()).expand(SURGE_RADIUS*1.5f), entity -> true)) {
-                curse(playerEntity);
-                shadowSurge(playerEntity);
+        if (pullTargets != null) {
+            for (PlayerEntity key: pullTargets.keySet()) {
+                pullLogic(key, pullTargets.get(key));
             }
         }
 
-        if (this.age % 100 == 0) {
-            StatusEffectUtil.addEffectToPlayersWithinDistance((ServerWorld) this.getWorld(), this, this.getPos(), (double)DARKNESS_RANGE, new StatusEffectInstance(StatusEffects.DARKNESS, 280, 0, false, false), 180);
-            StatusEffectUtil.addEffectToPlayersWithinDistance((ServerWorld) this.getWorld(), this, this.getPos(), (double)DARKNESS_RANGE, new StatusEffectInstance(StatusEffects.SLOWNESS, 280, 1, false, false), 180);
-
-            float missingHealth = (this.getMaxHealth() - this.getHealth()) / 2;
-
-            for (PlayerEntity playerEntity: this.getWorld().getEntitiesByClass(PlayerEntity.class, new Box(this.getBlockPos()).expand(SURGE_RADIUS), entity -> true)) {
-                playerEntity.damage(playerEntity.getDamageSources().generic(), missingHealth);
+        if (this.age % 10 != 0) return;
+        for (PlayerEntity playerEntity: this.getWorld().getEntitiesByClass(PlayerEntity.class, new Box(this.getBlockPos()).expand(64), entity -> true)) {
+            if (!playerEntity.isCreative() && playerEntity.distanceTo(this) > SURGE_RADIUS) {
+                pullTargets.put(playerEntity, 0);
+                    //shadowSurgeTeleport(playerEntity);
+                    //curse(playerEntity);
             }
         }
     }
@@ -104,15 +191,20 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
         }));
 
         controllers.add(new AnimationController<>(this, "attackAnim", event -> PlayState.CONTINUE)
-                .triggerableAnim("attack",
-                RawAnimation.begin().then("attack", Animation.LoopType.PLAY_ONCE)));
+                .triggerableAnim("slam",
+                RawAnimation.begin().then("slam", Animation.LoopType.PLAY_ONCE)));
     }
 
     @Override
     public boolean tryAttack(Entity target) {
-        triggerAnim("attackAnim", "attack");
-        this.handSwinging = false;
-        return super.tryAttack(target);
+        if (target.getWorld().isClient) return false;
+        if (this.animationProgressTicks == animationDuration && !shouldSurge) {
+            this.animationProgressTicks = 0;
+            triggerAnim("attackAnim", "slam");
+            this.handSwinging = false;
+        }
+        EldritchEnd.LOGGER.info("Attack!");
+        return false;
     }
 
 
@@ -134,16 +226,6 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
     public void mobTick() {
         super.mobTick();
         this.bossBar.setPercent(this.getHealth() / this.getMaxHealth());
-    }
-
-    public static DefaultAttributeContainer.Builder setAttributes() {
-        return HostileEntity.createMobAttributes()
-        // TODO: REPLACE THIS WITH CUSTOM FACELESS CONFIG
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 1024)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5)
-                .add(EntityAttributes.GENERIC_ATTACK_SPEED, 1)
-                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1000);
     }
 
     @Override
@@ -176,8 +258,37 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
         }
     }
 
+
+    public static DefaultAttributeContainer.Builder setAttributes() {
+        return HostileEntity.createMobAttributes()
+                // TODO: REPLACE THIS WITH CUSTOM FACELESS CONFIG
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 1024)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 10)
+                .add(EntityAttributes.GENERIC_ATTACK_SPEED, 1)
+                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1000);
+    }
+
+    @Override
+    @Nullable
+    protected SoundEvent getAmbientSound() {
+        return SoundEffectRegistry.GROWL_EVENT;
+    }
+
+
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return cache;
+    }
+
+    private float getAttackDamage() {
+        return (float)this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE);
+    }
+
+
+    private void performKeyframeAttack(Entity target) {
+        if (target != null && !target.getWorld().isClient) {
+            target.damage(this.getDamageSources().mobAttack(this), this.getAttackDamage());
+        }
     }
 }
