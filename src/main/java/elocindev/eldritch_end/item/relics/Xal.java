@@ -138,7 +138,7 @@ public class Xal extends CorruptionRelic {
 
         EldritchParticles.playEffek("shadowsurge", world, user.getPos(), true, 0.30F)
             .bindOnEntity(user);
-        user.getItemCooldownManager().set(this, 40);
+        user.getItemCooldownManager().set(this, 190);
 
         return TypedActionResult.success(user.getStackInHand(hand));
     }
