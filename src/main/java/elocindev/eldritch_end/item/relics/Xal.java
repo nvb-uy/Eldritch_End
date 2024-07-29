@@ -7,6 +7,7 @@ import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.registry.SoundEffectRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import org.jetbrains.annotations.Nullable;
 
@@ -34,6 +35,9 @@ public class Xal extends CorruptionRelic {
     public static int shadowburst_damage = 10;
 
     private final String ATTACK_PROGRESS = "attackProgress";
+    private final String TARGET_X = "targetX";
+    private final String TARGET_Y = "targetY";
+    private final String TARGET_Z = "targetZ";
     private final int ATTACK_DURATION = 94;
 
     public Xal(Settings settings) {
@@ -44,9 +48,13 @@ public class Xal extends CorruptionRelic {
         return stack.getNbt().getInt(ATTACK_PROGRESS);
     }
 
-    private void shadowSurge(PlayerEntity player, World world) {
-        world.playSound((PlayerEntity)null, player.getX(), player.getY(), player.getZ(), SoundEffectRegistry.ORB_EVENT, player.getSoundCategory(), 1F, 1.0f);
-        for (Entity entity: world.getEntitiesByClass(Entity.class, new Box(player.getBlockPos()).expand(6, 3, 6), entity -> true)) {
+    private void shadowSurge(PlayerEntity player, ItemStack stack, World world) {
+        int targetX = stack.getNbt().getInt(TARGET_X);
+        int targetY = stack.getNbt().getInt(TARGET_Y);
+        int targetZ = stack.getNbt().getInt(TARGET_Z);
+
+        world.playSound((PlayerEntity)null, targetX, targetY, targetZ, SoundEffectRegistry.ORB_EVENT, player.getSoundCategory(), 1F, 1.0f);
+        for (Entity entity: world.getEntitiesByClass(Entity.class, new Box(new BlockPos(targetX, targetY, targetZ)).expand(6, 3, 6), entity -> true)) {
             entity.damage(entity.getDamageSources().generic(), 100);
         }
     }
@@ -59,8 +67,7 @@ public class Xal extends CorruptionRelic {
         super.inventoryTick(stack, world, entity, slot, selected);
         if (stack.getNbt() == null || entity.getWorld().isClient || !(entity instanceof PlayerEntity player)) return;
         if (getSurgeProgress(stack) == 43 || getSurgeProgress(stack) == 52 || getSurgeProgress(stack) == 63) {
-            shadowSurge(player, world);
-            EldritchEnd.LOGGER.info("Attack!");
+            shadowSurge(player, stack, world);
         }
         if (getSurgeProgress(stack) < ATTACK_DURATION) {
             stack.getNbt().putInt(ATTACK_PROGRESS, getSurgeProgress(stack) + 1);
@@ -123,6 +130,10 @@ public class Xal extends CorruptionRelic {
 
         if (itemStack.getNbt().getInt(ATTACK_PROGRESS) == ATTACK_DURATION) {
             itemStack.getNbt().putInt(ATTACK_PROGRESS, 0);
+
+            itemStack.getNbt().putInt(TARGET_X, (int) user.getPos().x);
+            itemStack.getNbt().putInt(TARGET_Y, (int) user.getPos().y);
+            itemStack.getNbt().putInt(TARGET_Z, (int) user.getPos().z);
         }
 
         EldritchParticles.playEffek("shadowsurge", world, user.getPos(), true, 0.30F)
