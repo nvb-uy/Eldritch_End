@@ -118,7 +118,7 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
         float missingHealth = (this.getMaxHealth() - this.getHealth()) / 2;
         this.getWorld().playSound((PlayerEntity)null, this.getX(), this.getY(), this.getZ(), SoundEffectRegistry.ORB_EVENT, this.getSoundCategory(), 1F, 1.0f);
         for (PlayerEntity playerEntity: this.getWorld().getEntitiesByClass(PlayerEntity.class, new Box(this.getBlockPos()).expand(9, 0, 9), entity -> true)) {
-            playerEntity.damage(this.getDamageSources().generic(), missingHealth / 3f);
+            playerEntity.damage(this.getDamageSources().generic(), playerEntity.getMaxHealth() / 3f);
         }
     }
 

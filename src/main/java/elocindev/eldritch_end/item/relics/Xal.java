@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import elocindev.eldritch_end.EldritchEnd;
+import elocindev.eldritch_end.effects.Corruption;
 import elocindev.eldritch_end.registry.SoundEffectRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NbtCompound;
@@ -32,8 +33,7 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
 public class Xal extends CorruptionRelic {
-    public static int shadowburst_damage = 10;
-
+    public static int shadowburst_damage = 40;
     private final String ATTACK_PROGRESS = "attackProgress";
     private final String TARGET_X = "targetX";
     private final String TARGET_Y = "targetY";
@@ -55,7 +55,8 @@ public class Xal extends CorruptionRelic {
 
         world.playSound((PlayerEntity)null, targetX, targetY, targetZ, SoundEffectRegistry.ORB_EVENT, player.getSoundCategory(), 1F, 1.0f);
         for (Entity entity: world.getEntitiesByClass(Entity.class, new Box(new BlockPos(targetX, targetY, targetZ)).expand(6, 3, 6), entity -> true)) {
-            entity.damage(entity.getDamageSources().generic(), 100);
+            // Todo: Make configurable
+            entity.damage(Corruption.of(world, Corruption.DAMAGE), shadowburst_damage / 3f);
         }
     }
 
@@ -109,7 +110,7 @@ public class Xal extends CorruptionRelic {
 
         UUID uuid = UUID.fromString("399fe278-8564-11ee-b9d1-0242ac120002");
 
-        if (slot == EquipmentSlot.MAINHAND)
+        if (slot == EquipmentSlot.MAINHAND || slot == EquipmentSlot.OFFHAND)
             modifiers.put(
                     AttributeRegistry.CORRUPTION,
                     new EntityAttributeModifier(
@@ -138,7 +139,8 @@ public class Xal extends CorruptionRelic {
 
         EldritchParticles.playEffek("shadowsurge", world, user.getPos(), true, 0.30F)
             .bindOnEntity(user);
-        user.getItemCooldownManager().set(this, 190);
+        // Todo: make configurable
+        user.getItemCooldownManager().set(this, 800);
 
         return TypedActionResult.success(user.getStackInHand(hand));
     }
