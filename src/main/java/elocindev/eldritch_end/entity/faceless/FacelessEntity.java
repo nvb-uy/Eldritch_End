@@ -2,6 +2,8 @@ package elocindev.eldritch_end.entity.faceless;
 
 import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.client.particle.EldritchParticles;
+import elocindev.eldritch_end.item.relics.Xal;
+import elocindev.eldritch_end.registry.ItemRegistry;
 import elocindev.eldritch_end.registry.SoundEffectRegistry;
 import mod.azure.azurelib.ai.pathing.AzureNavigation;
 import mod.azure.azurelib.animatable.GeoEntity;
@@ -22,10 +24,12 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.boss.BossBar.Color;
 import net.minecraft.entity.boss.BossBar.Style;
 import net.minecraft.entity.boss.ServerBossBar;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
@@ -42,11 +46,19 @@ import java.util.HashMap;
 @SuppressWarnings("resource")
 public class FacelessEntity extends HostileEntity implements GeoEntity {
 
-    // Todo: make drop 30xp
-    // Todo: make give xal to every player in 32 block radius on death
     // Todo: smooth transition instead of teleport
 
-    @Nullable Entity entityToPull;
+    @Override
+    public void onDeath(DamageSource damageSource) {
+        super.onDeath(damageSource);
+        if (this.getWorld().isClient) return;
+        for (PlayerEntity playerEntity : this.getWorld().getEntitiesByClass(PlayerEntity.class, new Box(this.getBlockPos()).expand(32), entity -> true)) {
+            playerEntity.addExperience(30);
+            playerEntity.giveItemStack(new ItemStack(ItemRegistry.XAL));
+        }
+    }
+
+        @Nullable Entity entityToPull;
     @Nullable HashMap<PlayerEntity, Integer> pullTargets = new HashMap<>();
     
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
