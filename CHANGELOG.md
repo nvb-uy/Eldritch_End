@@ -7,9 +7,10 @@ See the full changelog in https://github.com/nvb-uy/Eldritch_End/blob/1.20.1/CHA
 - Added The Faceless Boss [Joespeph, ElocinDev]
 - Added Corruption System [ElocinDev, Joespeph]
 - Renamed Xal'arath to "X'al" [ElocinDev]
-- X'al is implemented now: the Stormsurge ability from The Faceless is casted on interact
-- Etyrite armor now gives +5 corruption resistance per piece [ElocinDev]
+- X'al is implemented now: the Stormsurge ability from The Faceless is casted on interact [ElocinDev]
+- Etyrite armor now gives flat +5 corruption resistance per piece [ElocinDev]
 - Fixed faceless texture covering the health bar in some parts [ElocinDev]
+- Fixed crash caused by FTB Ultimine due to missing chances in the primordial leaves' loot table [ElocinDev]
 - Corruption config now uses JSON5 format. Please update your config! [ElocinDev]
 - Overhauled Corruption Config, included configs for the corruption system's effects [ElocinDev]
 - The corruption icon now has a blinking animation [ElocinDev]
