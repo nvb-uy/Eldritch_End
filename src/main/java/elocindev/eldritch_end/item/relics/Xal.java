@@ -3,6 +3,13 @@ package elocindev.eldritch_end.item.relics;
 import java.util.List;
 import java.util.UUID;
 
+import elocindev.eldritch_end.EldritchEnd;
+import elocindev.eldritch_end.effects.Corruption;
+import elocindev.eldritch_end.registry.SoundEffectRegistry;
+import net.minecraft.entity.Entity;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
 import org.jetbrains.annotations.Nullable;
 
 import com.google.common.collect.HashMultimap;
@@ -26,10 +33,46 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
 public class Xal extends CorruptionRelic {
-    public static int shadowburst_damage = 10;
+    public static int shadowburst_damage = 40;
+    private final String ATTACK_PROGRESS = "attackProgress";
+    private final String TARGET_X = "targetX";
+    private final String TARGET_Y = "targetY";
+    private final String TARGET_Z = "targetZ";
+    private final int ATTACK_DURATION = 94;
 
     public Xal(Settings settings) {
         super(settings);
+    }
+
+    private int getSurgeProgress(ItemStack stack) {
+        return stack.getNbt().getInt(ATTACK_PROGRESS);
+    }
+
+    private void shadowSurge(PlayerEntity player, ItemStack stack, World world) {
+        int targetX = stack.getNbt().getInt(TARGET_X);
+        int targetY = stack.getNbt().getInt(TARGET_Y);
+        int targetZ = stack.getNbt().getInt(TARGET_Z);
+
+        world.playSound((PlayerEntity)null, targetX, targetY, targetZ, SoundEffectRegistry.ORB_EVENT, player.getSoundCategory(), 1F, 1.0f);
+        for (Entity entity: world.getEntitiesByClass(Entity.class, new Box(new BlockPos(targetX, targetY, targetZ)).expand(6, 3, 6), entity -> true)) {
+            // Todo: Make configurable
+            entity.damage(Corruption.of(world, Corruption.DAMAGE), shadowburst_damage / 3f);
+        }
+    }
+
+
+    // Hits occur at 43, 52, 63
+
+    @Override
+    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
+        super.inventoryTick(stack, world, entity, slot, selected);
+        if (stack.getNbt() == null || entity.getWorld().isClient || !(entity instanceof PlayerEntity player)) return;
+        if (getSurgeProgress(stack) == 43 || getSurgeProgress(stack) == 52 || getSurgeProgress(stack) == 63) {
+            shadowSurge(player, stack, world);
+        }
+        if (getSurgeProgress(stack) < ATTACK_DURATION) {
+            stack.getNbt().putInt(ATTACK_PROGRESS, getSurgeProgress(stack) + 1);
+        }
     }
     
     @Override
@@ -64,29 +107,47 @@ public class Xal extends CorruptionRelic {
     @Override
     public Multimap<EntityAttribute, EntityAttributeModifier> getAttributeModifiers(EquipmentSlot slot) {
         Multimap<EntityAttribute, EntityAttributeModifier> modifiers = HashMultimap.create(super.getAttributeModifiers(slot));
-        
+
         UUID uuid = UUID.fromString("399fe278-8564-11ee-b9d1-0242ac120002");
 
-        if (slot == EquipmentSlot.MAINHAND)
+        if (slot == EquipmentSlot.MAINHAND || slot == EquipmentSlot.OFFHAND)
             modifiers.put(
-                AttributeRegistry.CORRUPTION,
-                new EntityAttributeModifier(
-                    uuid, 
-                    "Corruption modifier", 
-                    10.0, 
-                    EntityAttributeModifier.Operation.ADDITION
-                )
+                    AttributeRegistry.CORRUPTION,
+                    new EntityAttributeModifier(
+                            uuid,
+                            "Corruption modifier",
+                            10.0,
+                            EntityAttributeModifier.Operation.ADDITION
+                    )
             );
-        
+
         return modifiers;
     }
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+        ItemStack itemStack = user.getStackInHand(hand);
+        if (itemStack.getNbt() == null) createStackNBT(itemStack);
+
+        if (itemStack.getNbt().getInt(ATTACK_PROGRESS) == ATTACK_DURATION) {
+            itemStack.getNbt().putInt(ATTACK_PROGRESS, 0);
+
+            itemStack.getNbt().putInt(TARGET_X, (int) user.getPos().x);
+            itemStack.getNbt().putInt(TARGET_Y, (int) user.getPos().y);
+            itemStack.getNbt().putInt(TARGET_Z, (int) user.getPos().z);
+        }
+
         EldritchParticles.playEffek("shadowsurge", world, user.getPos(), true, 0.30F)
             .bindOnEntity(user);
+        // Todo: make configurable
+        user.getItemCooldownManager().set(this, 800);
 
         return TypedActionResult.success(user.getStackInHand(hand));
+    }
+
+    private void createStackNBT(ItemStack stack) {
+        NbtCompound nbtCompound = stack.getOrCreateNbt();
+        nbtCompound.putInt(ATTACK_PROGRESS, 0);
     }
 
 }
