@@ -58,7 +58,7 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
         }
     }
 
-        @Nullable Entity entityToPull;
+    @Nullable Entity entityToPull;
     @Nullable HashMap<PlayerEntity, Integer> pullTargets = new HashMap<>();
     
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
@@ -184,13 +184,18 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
             }
         }
 
-        if (this.age % 10 != 0) return;
-        for (PlayerEntity playerEntity: this.getWorld().getEntitiesByClass(PlayerEntity.class, new Box(this.getBlockPos()).expand(64), entity -> true)) {
-            if (!playerEntity.isCreative() && playerEntity.distanceTo(this) > SURGE_RADIUS) {
-                pullTargets.put(playerEntity, 0);
+        if (this.age % 10 != 0) {
+            for (PlayerEntity playerEntity : this.getWorld().getEntitiesByClass(PlayerEntity.class, new Box(this.getBlockPos()).expand(64), entity -> true)) {
+                if (!playerEntity.isCreative() && playerEntity.distanceTo(this) > SURGE_RADIUS) {
+                    pullTargets.put(playerEntity, 0);
                     //shadowSurgeTeleport(playerEntity);
                     //curse(playerEntity);
+                }
             }
+        }
+
+        if (this.age % 400 == 0 && !this.shouldSurge) {
+            shadowSurge();
         }
     }
 
