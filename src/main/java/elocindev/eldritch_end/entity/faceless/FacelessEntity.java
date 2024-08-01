@@ -53,8 +53,10 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
         super.onDeath(damageSource);
         if (this.getWorld().isClient) return;
         for (PlayerEntity playerEntity : this.getWorld().getEntitiesByClass(PlayerEntity.class, new Box(this.getBlockPos()).expand(32), entity -> true)) {
-            playerEntity.addExperience(1400);
-            playerEntity.giveItemStack(new ItemStack(ItemRegistry.XAL));
+            if (!playerEntity.isDead()) {
+                playerEntity.addExperience(1400);
+                playerEntity.giveItemStack(new ItemStack(ItemRegistry.XAL));
+            }
         }
     }
 
