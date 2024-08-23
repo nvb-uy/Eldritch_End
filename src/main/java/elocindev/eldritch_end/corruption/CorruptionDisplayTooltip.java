@@ -96,16 +96,16 @@ public class CorruptionDisplayTooltip extends Item {
         CorruptionConfig.CorruptionEffects effects = CorruptionAPI.CONFIG.corruption_effects;
 
         String placeholders = text.getString()
-        .replace("%COST%", effectThreshold < 100 ? " "+String.valueOf(effectThreshold) : String.valueOf(effectThreshold))
-        .replace("%CORRUPTION%", String.valueOf(ClientCorruption.getCorruptionLevel()))
-        .replace("%CORRUPTION_RESISTANCE%", String.valueOf(ClientCorruption.getCorruptionResistanceLevel()))
-        .replace("%TAKEN_DAMAGE%", effects.received_damage_increment.getStartingLevel() + "%")
-        .replace("%TENTACLE_CHANCE%", (int)effects.tentacle_spawn.getSpawnChance()*100 + "%")
-        .replace("%TENTACLE_UPDATE_RATE%", effects.tentacle_spawn.getEffectRateSeconds() + "")
-        .replace("%DAMAGE_REDUCTION%", (int)effects.non_corruption_damage_reduction.getDamagePercentage()*100 + "%")
-        .replace("%EYES_TENTACLE_RATE%", effects.ominous_eye_spawn.getEffectRateSeconds() + "")
-        .replace("%EYES_CHANCE%", (int)effects.ominous_eye_spawn.getSpawnChance()*100 + "%")
-        .replace("%MADNESS_DAMAGE%", effects.madness_consumed.getStartingLevel() + "%");
+                .replace("%COST%", effectThreshold < 100 ? " "+String.valueOf(effectThreshold) : String.valueOf(effectThreshold))
+                .replace("%CORRUPTION%", String.valueOf(ClientCorruption.getCorruptionLevel()))
+                .replace("%CORRUPTION_RESISTANCE%", String.valueOf(ClientCorruption.getCorruptionResistanceLevel()))
+                .replace("%TAKEN_DAMAGE%", effects.received_damage_increment.getStartingLevel() + "%")
+                .replace("%TENTACLE_CHANCE%", (int) Math.round(effects.tentacle_spawn.getSpawnChance()*100) + "%")
+                .replace("%TENTACLE_UPDATE_RATE%", effects.tentacle_spawn.getEffectRateSeconds() + "")
+                .replace("%DAMAGE_REDUCTION%", Math.round(effects.non_corruption_damage_reduction.getDamagePercentage()*100) + "%")
+                .replace("%EYES_TENTACLE_RATE%", effects.ominous_eye_spawn.getEffectRateSeconds() + "")
+                .replace("%EYES_CHANCE%", (int) Math.round(effects.ominous_eye_spawn.getSpawnChance()*100) + "%")
+                .replace("%MADNESS_DAMAGE%", Math.round(effects.madness_consumed.getMaxHealthPerSecond()*100) + "%");
 
         return Text.literal(placeholders).setStyle(text.getStyle());
     }
