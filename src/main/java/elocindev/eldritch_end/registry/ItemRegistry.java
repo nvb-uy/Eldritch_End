@@ -44,7 +44,7 @@ public class ItemRegistry {
     public static final Item SILVER_KEY = reg(new SilverKey(new FabricItemSettings()), "silver_key");
     public static final Item ABERRATION_LIMB = reg(new Item(new FabricItemSettings()), "aberration_limb");
 
-    public static final Item ABERRATION_HEART = reg(new SummonPartItem(new FabricItemSettings(), RitualStructure.BASIC, EntityRegistry.THE_FACELESS), "aberration_heart");
+    public static final Item ABERRATION_HEART = reg(new SummonPartItem(new FabricItemSettings(), RitualStructure.BASIC, BlockRegistry.ELDRITCH_PEDESTAL, BlockRegistry.ABYSMAL_PEDESTAL.getDefaultState(), EntityRegistry.THE_FACELESS), "aberration_heart");
 
     public static final Item XAL = reg(new Xal(new FabricItemSettings().maxCount(1).fireproof()), "xal");
 
