@@ -26,6 +26,7 @@ import net.minecraft.item.ArmorItem;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
+import net.minecraft.item.ToolItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.Registries;
 import net.minecraft.screen.SmithingScreenHandler;
@@ -113,7 +114,7 @@ public class InfusionSmithingTableMixin {
         if (addition.getItem() instanceof InfusableItemMaterial material) {
             if (material.getInfusionTemplate() != base.getItem()) return;
             if (candidate.getItem() instanceof ArmorItem && !material.applyToArmor()
-            || (candidate.getItem() instanceof SwordItem || candidate.getItem() instanceof AxeItem) && !material.applyToWeapons()
+            || (candidate.getItem() instanceof SwordItem || candidate.getItem() instanceof AxeItem || candidate.getItem() instanceof ToolItem) && !material.applyToWeapons()
             || (!material.isInfusable())) return;
 
             boolean isAlreadyInfused = candidate.copy().getOrCreateSubNbt("eldritch_infusions").getBoolean("isInfused");

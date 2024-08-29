@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "eldritch_end:aberration_heart"
+  },
+  "base": {
+    "item": "minecraft:diamond_sword"
+  },
+  "result": {
+    "item": "minecraft:diamond_sword"
+  },
+  "template": {
+    "item": "eldritch_end:corruption_upgrade_pattern"
+  }
+}

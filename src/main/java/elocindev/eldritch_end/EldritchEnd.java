@@ -36,6 +36,7 @@ public class EldritchEnd implements ModInitializer {
 		WorldgenRegistry.register();
 		StructureRegistry.register();
 		SoundEffectRegistry.register();
+		LootRegistry.register();
 
 		EtyrAttributeBuilder.buildItemTag();
 		ServerTickEvents.START_SERVER_TICK.register(new PlayerTickEventHandler());

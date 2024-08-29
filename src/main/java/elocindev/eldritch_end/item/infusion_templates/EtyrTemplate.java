@@ -20,7 +20,7 @@ public class EtyrTemplate extends SmithingTemplateItem implements InfusionTempla
     @Override
     public boolean isEquipmentAllowed(ItemStack stack) {
         if (stack.getItem() instanceof ArmorItem && Configs.Mechanics.INFUSIONS.etyr_infusion.can_apply_to_armor
-        || (stack.getItem() instanceof SwordItem || stack.getItem() instanceof AxeItem) && Configs.Mechanics.INFUSIONS.etyr_infusion.can_apply_to_weapons) {
+            || (stack.getItem() instanceof SwordItem || stack.getItem() instanceof AxeItem) && Configs.Mechanics.INFUSIONS.etyr_infusion.can_apply_to_weapons) {
             return true;
         }
 

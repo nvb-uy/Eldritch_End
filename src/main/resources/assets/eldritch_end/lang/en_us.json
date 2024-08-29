@@ -123,6 +123,7 @@
     "infusion.eldritch_end.aberration_heart":   "Corruption Infusion II",
     "infusion.eldritch_end.xal":                "Corruption Infusion III",
 
+    "infusion.eldritch_end.infusable": "Infusable in ",
     "infusion.eldritch_end.applies_to_all": "Weapons or Armor Pieces",
     "infusion.eldritch_end.applies_to_armor": "Armor Pieces",
     "infusion.eldritch_end.applies_to_weapons": "Weapons",
@@ -143,8 +144,8 @@
 
     "item.eldritch_end.xal": "X'al, The Faceless Eye",
     "item.eldritch_end.xal.type": "Corruption Relic",
-    "item.eldritch_end.xal.shadowburst.1": "Creates an explosion that creates void clouds that deal",
-    "item.eldritch_end.xal.shadowburst.2": "damage up to three times in a large area.",
+    "item.eldritch_end.xal.shadowburst.1": "Summons the void's energy, striking 3 times and dealing",
+    "item.eldritch_end.xal.shadowburst.2": "damage to all enemies in a large area.",
 
     "item.eldritch_end.aberration_spawn_egg": "Aberration Spawn Egg",
     "item.eldritch_end.tentacle_spawn_egg": "Tentacle Spawn Egg",

@@ -17,7 +17,6 @@ public class CorruptionUtils {
                 resistance += 0.1f;
             }
         }
-        // TODO LATER: Add resistance from other sources like artifacts
         
         return resistance > 0 ? damage - (damage * resistance) : damage;
     }

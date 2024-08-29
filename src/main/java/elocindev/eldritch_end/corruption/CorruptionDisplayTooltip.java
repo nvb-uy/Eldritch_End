@@ -1,5 +1,7 @@
 package elocindev.eldritch_end.corruption;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import org.jetbrains.annotations.Nullable;
@@ -17,6 +19,7 @@ import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Pair;
 import net.minecraft.world.World;
 
 public class CorruptionDisplayTooltip extends Item {
@@ -49,7 +52,9 @@ public class CorruptionDisplayTooltip extends Item {
         
 
         Text resistText = Text.literal("\uAB01 ").append(Text.literal(resistance+" Corruption Resistance").setStyle(TextUtils.Styles.CORRUPTION_RESISTANCE));
-        Text corruptionText = Text.literal("\uA999 ").append(Text.literal(corruption+" Total Corruption").setStyle(TextUtils.Styles.DAMAGE_CORRUPTION).append(baseCorruption));
+        Text corruptionText = Text.literal("\uA999 ").append(Text.literal(ClientCorruption.getCorruptionLevel()+" Corruption").setStyle(TextUtils.Styles.DAMAGE_CORRUPTION));
+
+        Text totalCorruptionText = Text.literal("\uA999 ").append(Text.literal(corruption+" Affected Corruption").setStyle(TextUtils.Styles.DAMAGE_CORRUPTION).append(baseCorruption));
         
         tooltip.add(Text.translatable("eldritch_end.corruption.gui.desc.1").setStyle(descriptionStyle));
         tooltip.add(Text.translatable("eldritch_end.corruption.gui.desc.2").setStyle(descriptionStyle));
@@ -58,15 +63,24 @@ public class CorruptionDisplayTooltip extends Item {
         
         tooltip.add(resistText);
         tooltip.add(corruptionText);
+        tooltip.add(newLine());
+        tooltip.add(totalCorruptionText);
         
         tooltip.add(newLine());
         
-        addCorruptionEffect(tooltip, effectKey+"1", corruption, effects.received_damage_increment.getStartingLevel());
-        addCorruptionEffect(tooltip, effectKey+"2", corruption, effects.tentacle_spawn.getStartingLevel());
-        addCorruptionEffect(tooltip, effectKey+"3", corruption, effects.madness_vision.getStartingLevel());
-        addCorruptionEffect(tooltip, effectKey+"4", corruption, effects.non_corruption_damage_reduction.getStartingLevel());
-        addCorruptionEffect(tooltip, effectKey+"5", corruption, effects.ominous_eye_spawn.getStartingLevel());
-        addCorruptionEffect(tooltip, effectKey+"6", corruption, effects.madness_consumed.getStartingLevel());
+        List<Pair<String, Integer>> effectsList = new ArrayList<>();
+        effectsList.add(new Pair<>(effectKey + "1", effects.received_damage_increment.getStartingLevel()));
+        effectsList.add(new Pair<>(effectKey + "2", effects.tentacle_spawn.getStartingLevel()));
+        effectsList.add(new Pair<>(effectKey + "3", effects.madness_vision.getStartingLevel()));
+        effectsList.add(new Pair<>(effectKey + "4", effects.non_corruption_damage_reduction.getStartingLevel()));
+        effectsList.add(new Pair<>(effectKey + "5", effects.ominous_eye_spawn.getStartingLevel()));
+        effectsList.add(new Pair<>(effectKey + "6", effects.madness_consumed.getStartingLevel()));
+
+        effectsList.sort(Comparator.comparingInt(Pair::getRight));
+
+        for (Pair<String, Integer> effect : effectsList) {
+            addCorruptionEffect(tooltip, effect.getLeft(), corruption, effect.getRight());
+        }
 
         tooltip.add(newLine());
         
@@ -102,7 +116,7 @@ public class CorruptionDisplayTooltip extends Item {
                 .replace("%TAKEN_DAMAGE%", effects.received_damage_increment.getStartingLevel() + "%")
                 .replace("%TENTACLE_CHANCE%", (int) Math.round(effects.tentacle_spawn.getSpawnChance()*100) + "%")
                 .replace("%TENTACLE_UPDATE_RATE%", effects.tentacle_spawn.getEffectRateSeconds() + "")
-                .replace("%DAMAGE_REDUCTION%", Math.round(effects.non_corruption_damage_reduction.getDamagePercentage()*100) + "%")
+                .replace("%DAMAGE_REDUCTION%", (100 - Math.round(effects.non_corruption_damage_reduction.getDamagePercentage()*100)) + "%")
                 .replace("%EYES_TENTACLE_RATE%", effects.ominous_eye_spawn.getEffectRateSeconds() + "")
                 .replace("%EYES_CHANCE%", (int) Math.round(effects.ominous_eye_spawn.getSpawnChance()*100) + "%")
                 .replace("%MADNESS_DAMAGE%", Math.round(effects.madness_consumed.getMaxHealthPerSecond()*100) + "%");

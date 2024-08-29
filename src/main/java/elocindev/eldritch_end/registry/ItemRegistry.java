@@ -24,6 +24,7 @@ import elocindev.eldritch_end.item.Necronomicon;
 import elocindev.eldritch_end.item.SilverKey;
 import elocindev.eldritch_end.item.infusion_materials.AberrationHeartItem;
 import elocindev.eldritch_end.item.infusion_materials.EtyrIngot;
+import elocindev.eldritch_end.item.infusion_templates.CorruptionTemplate;
 import elocindev.eldritch_end.item.infusion_templates.EtyrTemplate;
 import elocindev.eldritch_end.item.relics.Xal;
 import elocindev.eldritch_end.item.spawneggs.AberrationEgg;
@@ -69,17 +70,30 @@ public class ItemRegistry {
         "all" : 
         (Configs.Mechanics.INFUSIONS.etyr_infusion.can_apply_to_armor ? "armor" : 
         (Configs.Mechanics.INFUSIONS.etyr_infusion.can_apply_to_weapons ? "weapons" : "none"));
+    private static String corruption_appliesto = 
+        Configs.Mechanics.INFUSIONS.corruption_infusion.can_apply_to_armor && Configs.Mechanics.INFUSIONS.corruption_infusion.can_apply_to_weapons ? 
+        "all" : 
+        (Configs.Mechanics.INFUSIONS.corruption_infusion.can_apply_to_armor ? "armor" : 
+        (Configs.Mechanics.INFUSIONS.corruption_infusion.can_apply_to_weapons ? "weapons" : "none"));
     public static final Item ETYR_UPGRADE_TEMPLATE = reg(new EtyrTemplate(
             Text.translatable("infusion.eldritch_end.applies_to_"+etyr_appliesto).setStyle(Style.EMPTY.withColor(Formatting.BLUE)),
-            Text.translatable("item.eldritch_end.etyr_ingot").setStyle(Style.EMPTY.withColor(Formatting.BLUE)),
-            TextAPI.Styles.getStaticGradient(Text.literal("Etyr Infusion"), 0x4c6956, 0x7aa187),
+            Text.translatable("item.eldritch_end.etyr_ingot").setStyle(Style.EMPTY.withColor(Formatting.BLUE)).append(Text.literal(" (Tier I)").setStyle(Style.EMPTY.withColor(Formatting.DARK_GRAY))),
+            TextAPI.Styles.getStaticGradient(Text.literal("Etyr Infusion"), 0x728062, 0x7a966b),
             Text.empty(),
             Text.empty(),
             List.of(new Identifier("minecraft:item/empty_slot_smithing_template_netherite_upgrade")),
             List.of()
         ), "etyr_upgrade_pattern");
-
-    // TODO: Add corrupted template
+        
+    public static final Item CORRUPTION_UPGRADE_PATTERN = reg(new CorruptionTemplate(
+            Text.translatable("infusion.eldritch_end.applies_to_"+corruption_appliesto).setStyle(Style.EMPTY.withColor(Formatting.BLUE)),
+            (Text.translatable("item.eldritch_end.aberration_limb")).setStyle(Style.EMPTY.withColor(Formatting.BLUE)).append(Text.literal(" (Tier I)").setStyle(Style.EMPTY.withColor(Formatting.DARK_GRAY))),
+            TextAPI.Styles.getStaticGradient(Text.literal("Corruption Infusion"), 0x604bb8, 0x6541bf),
+            Text.empty(),
+            Text.empty(),
+            List.of(new Identifier("minecraft:item/empty_slot_smithing_template_netherite_upgrade")),
+            List.of()
+        ), "corruption_upgrade_pattern");
 
     public static Item reg(Item instance, String id) {
         return Registry.register(Registries.ITEM, new Identifier(EldritchEnd.MODID, id), instance);

@@ -14,11 +14,17 @@ public class InfusionConfig {
     public class EtyrInfusion {
         public boolean can_apply_to_weapons = false;
         public boolean can_apply_to_armor = true;
+        public double tier_1 = 10.0;
+        public double tier_2 = 15.0;
+        public double tier_3 = 20.0;
     }
 
     public class CorruptionInfusion {
         public boolean can_apply_to_weapons = true;
         public boolean can_apply_to_armor = false;
+        public double tier_1 = 10.0;
+        public double tier_2 = 15.0;
+        public double tier_3 = 35.0;
     }
 
     public EtyrInfusion etyr_infusion = new EtyrInfusion();

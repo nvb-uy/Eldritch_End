@@ -11,14 +11,14 @@
             "item": "minecraft:end_stone"
         },
         "c": {
-            "item": "eldritch_end:etyr_ingot"
+            "item": "eldritch_end:aberration_limb"
         },
         "p": {
-            "item": "eldritch_end:etyr_upgrade_pattern"
+            "item": "eldritch_end:corruption_upgrade_pattern"
         }
     },
     "result": {
-        "item": "eldritch_end:etyr_upgrade_pattern",
+        "item": "eldritch_end:corruption_upgrade_pattern",
         "count": 2
     }
 }
