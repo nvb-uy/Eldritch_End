@@ -16,16 +16,17 @@ import com.google.common.collect.Multimap;
 
 import elocindev.eldritch_end.api.infusion.InfusableItemMaterial;
 import elocindev.eldritch_end.api.infusion.InfusionTemplate;
+import elocindev.eldritch_end.mixin.item.ItemAttributeAccessor;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtList;
 import net.minecraft.registry.Registries;
 import net.minecraft.screen.SmithingScreenHandler;
 import net.minecraft.screen.slot.Slot;
@@ -150,25 +151,30 @@ public class InfusionSmithingTableMixin {
                     holder.operation
                 );
 
-                for (EntityAttributeModifier existingModifier : mergedModifiers.get(holder.attribute)) {
-                    if (existingModifier.getId().equals(holder.uuid)) {
-                        NbtList list = potentialResult.getSubNbt("AttributeModifiers").getList("AttributeModifiers", 10);
-
-                        for (int i = 0; i < list.size(); i++) {
-                            NbtCompound compound = list.getCompound(i);
-                            if (compound.getString("Name").equals("Infusion modifier") && compound.getString("UUID").equals(holder.uuid.toString())) {
-                                list.remove(i);
-                                break;
-                            }
-                        }
-                    }
-                }
-
                 mergedModifiers.put(holder.attribute, modifier);
             }
 
             for (var entry : mergedModifiers.entries()) {
-                potentialResult.addAttributeModifier(entry.getKey(), entry.getValue(), slot);
+                EntityAttribute attribute = entry.getKey();
+                EntityAttributeModifier modifier = entry.getValue();
+                
+                if (attribute.equals(EntityAttributes.GENERIC_ATTACK_DAMAGE)) {
+                    modifier = new EntityAttributeModifier(
+                        ItemAttributeAccessor.getAttackDamageModifierId(),
+                        modifier.getName(),
+                        modifier.getValue(),
+                        modifier.getOperation()
+                    );
+                } else if (attribute.equals(EntityAttributes.GENERIC_ATTACK_SPEED)) {
+                    modifier = new EntityAttributeModifier(
+                        ItemAttributeAccessor.getAttackSpeedModifierId(),
+                        modifier.getName(),
+                        modifier.getValue(),
+                        modifier.getOperation()
+                    );
+                }
+                
+                potentialResult.addAttributeModifier(attribute, modifier, slot);
             }
 
             ((ForgingScreenHandlerAccessor) ths).getOutput().setStack(3, potentialResult);

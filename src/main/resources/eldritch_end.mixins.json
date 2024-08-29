@@ -10,6 +10,7 @@
     "sign.BlockEntityTypeMixin",
     "boat.BoatTypeMixin",
     "item.ItemNameMixin",
+    "item.ItemAttributeAccessor",
     "entity.attribute.AttributeApplyMixin",
     "entity.attribute.CorruptionDamageMixin",
     "smithing.ForgingScreenHandlerAccessor",
