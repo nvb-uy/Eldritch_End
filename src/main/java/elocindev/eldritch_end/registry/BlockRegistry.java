@@ -8,7 +8,9 @@ import elocindev.eldritch_end.block.HasturianGrass;
 import elocindev.eldritch_end.block.HasturianMoss;
 import elocindev.eldritch_end.block.PrimordialLeaves;
 import elocindev.eldritch_end.block.SuspiciousFronds;
-import elocindev.eldritch_end.block.artifact.EldritchPedestal;
+import elocindev.eldritch_end.block.dark_magic.pedestal.GreatSummoningPedestal;
+import elocindev.eldritch_end.block.dark_magic.pedestal.LesserSummoningPedestal;
+import elocindev.eldritch_end.block.dark_magic.pedestal.SummoningAltarBlockItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
@@ -34,11 +36,11 @@ public class BlockRegistry {
     public static final Block ABYSMAL_ROOTS = new AbysmalRoots(FabricBlockSettings.copyOf(Blocks.GRASS).sounds(BlockSoundGroup.ROOTS));
     	public static final BlockItem ABYSMAL_ROOTS_ITEM = new BlockItem(ABYSMAL_ROOTS, new FabricItemSettings());
 
-    public static final Block ABYSMAL_PEDESTAL = new Block(FabricBlockSettings.copyOf(ABYSMAL_TENDRILS));
+    public static final Block ABYSMAL_PEDESTAL = new LesserSummoningPedestal(FabricBlockSettings.copyOf(ABYSMAL_TENDRILS));
         public static final BlockItem ABYSMAL_PEDESTAL_ITEM = new BlockItem(ABYSMAL_PEDESTAL, new FabricItemSettings());
 
-    public static final Block ELDRITCH_PEDESTAL = new Block(FabricBlockSettings.copyOf(ABYSMAL_TENDRILS));
-        public static final BlockItem ELDRITCH_PEDESTAL_ITEM = new EldritchPedestal(ELDRITCH_PEDESTAL, new FabricItemSettings());
+    public static final Block ELDRITCH_PEDESTAL = new GreatSummoningPedestal(FabricBlockSettings.copyOf(ABYSMAL_TENDRILS));
+        public static final BlockItem ELDRITCH_PEDESTAL_ITEM = new SummoningAltarBlockItem(ELDRITCH_PEDESTAL, new FabricItemSettings());
 
     public static final Block PRIMORDIAL_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG).sounds(BlockSoundGroup.WOOD));
     	public static final BlockItem PRIMORDIAL_LOG_ITEM = new BlockItem(PRIMORDIAL_LOG, new FabricItemSettings());

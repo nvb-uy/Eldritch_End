@@ -1,4 +1,4 @@
-package elocindev.eldritch_end.block.artifact;
+package elocindev.eldritch_end.block.dark_magic.pedestal;
 
 import java.util.List;
 
@@ -14,9 +14,9 @@ import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.world.World;
 
-public class EldritchPedestal extends BlockItem {
+public class SummoningAltarBlockItem extends BlockItem {
 
-    public EldritchPedestal(Block block, Settings settings) {
+    public SummoningAltarBlockItem(Block block, Settings settings) {
         super(block, settings);
     }
 
