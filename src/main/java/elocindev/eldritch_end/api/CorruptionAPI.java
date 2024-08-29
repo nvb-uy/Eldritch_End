@@ -1,7 +1,7 @@
 package elocindev.eldritch_end.api;
 
 import elocindev.eldritch_end.config.Configs;
-import elocindev.eldritch_end.config.entries.CorruptionConfig;
+import elocindev.eldritch_end.config.entries.mechanics.CorruptionConfig;
 import elocindev.eldritch_end.registry.AttributeRegistry;
 import elocindev.necronomicon.api.text.TextAPI;
 import net.minecraft.entity.LivingEntity;

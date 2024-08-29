@@ -117,7 +117,16 @@
     "block.eldritch_end.polished_spire_stone_brick_slab": "Polished Spire Stone Brick Slab",
     "block.eldritch_end.polished_spire_stone_tile_stairs": "Polished Spire Stone Tile Stairs",
 
-    "item.eldritch_end.etyr_upgrade_template": "Etyr Upgrade",
+    "infusion.eldritch_end.etyr_ingot":         "Etyr Infusion I",
+
+    "infusion.eldritch_end.aberration_limb":    "Corruption Infusion I",
+    "infusion.eldritch_end.aberration_heart":   "Corruption Infusion II",
+    "infusion.eldritch_end.xal":                "Corruption Infusion III",
+
+    "infusion.eldritch_end.applies_to_all": "Weapons or Armor Pieces",
+    "infusion.eldritch_end.applies_to_armor": "Armor Pieces",
+    "infusion.eldritch_end.applies_to_weapons": "Weapons",
+    "infusion.eldritch_end.applies_to_none": "None",
 
     "item.eldritch_end.etyrite_helmet": "Etyrite Helmet",
     "item.eldritch_end.etyrite_chestplate": "Etyrite Chestplate",

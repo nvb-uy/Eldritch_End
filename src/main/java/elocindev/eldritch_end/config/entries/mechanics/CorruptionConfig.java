@@ -1,4 +1,4 @@
-package elocindev.eldritch_end.config.entries;
+package elocindev.eldritch_end.config.entries.mechanics;
 
 import elocindev.eldritch_end.config.ConfigFolder;
 import elocindev.eldritch_end.corruption.corruption_effect.CEDamageTaken;

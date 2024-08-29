@@ -11,7 +11,9 @@
     "boat.BoatTypeMixin",
     "item.ItemNameMixin",
     "entity.attribute.AttributeApplyMixin",
-    "entity.attribute.CorruptionDamageMixin"
+    "entity.attribute.CorruptionDamageMixin",
+    "smithing.ForgingScreenHandlerAccessor",
+    "smithing.InfusionSmithingTableMixin"
   ],
   "client": [
     "client.BackgroundRendererMixin",

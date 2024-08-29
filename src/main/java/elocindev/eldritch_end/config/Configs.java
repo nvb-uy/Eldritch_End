@@ -1,7 +1,6 @@
 package elocindev.eldritch_end.config;
 
 import elocindev.eldritch_end.config.entries.ClientConfig;
-import elocindev.eldritch_end.config.entries.CorruptionConfig;
 import elocindev.eldritch_end.config.entries.biomes.HasturianWastesConfig;
 import elocindev.eldritch_end.config.entries.biomes.PrimordialAbyssConfig;
 import elocindev.eldritch_end.config.entries.entities.AberrationConfig;
@@ -9,6 +8,8 @@ import elocindev.eldritch_end.config.entries.entities.DendlerConfig;
 import elocindev.eldritch_end.config.entries.entities.TentacleConfig;
 import elocindev.eldritch_end.config.entries.entities.boss.HasturConfig;
 import elocindev.eldritch_end.config.entries.item.XalConfig;
+import elocindev.eldritch_end.config.entries.mechanics.CorruptionConfig;
+import elocindev.eldritch_end.config.entries.mechanics.InfusionConfig;
 
 public class Configs {
     public class Client {
@@ -30,6 +31,7 @@ public class Configs {
 
     public class Mechanics {
         public static CorruptionConfig CORRUPTION = CorruptionConfig.INSTANCE;
+        public static InfusionConfig INFUSIONS = InfusionConfig.INSTANCE;
     }
 
     public class Items {

@@ -5,7 +5,7 @@ import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
 import elocindev.eldritch_end.api.CorruptionAPI;
-import elocindev.eldritch_end.config.entries.CorruptionConfig;
+import elocindev.eldritch_end.config.entries.mechanics.CorruptionConfig;
 import elocindev.eldritch_end.worldgen.util.TextUtils;
 import elocindev.eldritch_end.worldgen.util.TextUtils.Styles;
 import net.minecraft.client.gui.screen.Screen;

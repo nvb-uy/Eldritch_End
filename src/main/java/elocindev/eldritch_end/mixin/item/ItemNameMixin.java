@@ -1,9 +1,16 @@
 package elocindev.eldritch_end.mixin.item;
 
+import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
+
+import java.util.List;
+
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -19,7 +26,7 @@ import elocindev.necronomicon.api.text.TextAPI;
 @Mixin(ItemStack.class)
 public abstract class ItemNameMixin {
     @Inject(method="getName", at = @At(value = "HEAD"), cancellable = true)
-    private void getName(CallbackInfoReturnable<Text> cir) {
+    private void eldritch_end$getName(CallbackInfoReturnable<Text> cir) {
         ItemStack stack = (ItemStack)(Object)this;
 
         var name = Text.translatable(stack.getTranslationKey());
@@ -53,6 +60,21 @@ public abstract class ItemNameMixin {
             }
 
             cir.setReturnValue(gradient);
+        }
+    }
+
+    @Inject(method = "getTooltip", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isSectionVisible(ILnet/minecraft/item/ItemStack$TooltipSection;)Z", ordinal = 2))
+    private void eldritch_end$injectInfusionTooltip(@Nullable PlayerEntity player, TooltipContext context, CallbackInfoReturnable<List<Text>> cir) {
+        ItemStack ths = (ItemStack) (Object) this;
+        List<Text> newTooltip = cir.getReturnValue();
+
+        if (newTooltip == null) return;
+        var nbt = ths.getSubNbt("eldritch_infusions");
+        
+        if (nbt != null && nbt.getBoolean("isInfused")) {
+            String currentInfusion = nbt.getString("currentInfusion");
+            newTooltip.add(Text.translatable("infusion.eldritch_end." + currentInfusion).formatted(Formatting.GOLD));
+            cir.setReturnValue(newTooltip);
         }
     }
 }
