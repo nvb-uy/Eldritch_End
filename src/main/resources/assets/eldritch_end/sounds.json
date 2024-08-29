@@ -1,0 +1,19 @@
+{
+  "faceless_growls": {
+    "sounds": [
+      "eldritch_end:faceless/growl_1",
+      "eldritch_end:faceless/growl_2"
+    ]
+  },
+  "faceless_punches": {
+    "sounds": [
+        "eldritch_end:faceless/punch"
+      ]
+  },
+  "orb_smash": {
+    "sounds": [
+        "eldritch_end:faceless/orb_hit"
+    ]
+  }
+}
+
