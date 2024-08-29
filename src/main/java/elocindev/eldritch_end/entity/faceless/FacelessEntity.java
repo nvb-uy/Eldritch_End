@@ -2,7 +2,6 @@ package elocindev.eldritch_end.entity.faceless;
 
 import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.client.particle.EldritchParticles;
-import elocindev.eldritch_end.item.relics.Xal;
 import elocindev.eldritch_end.registry.ItemRegistry;
 import elocindev.eldritch_end.registry.SoundEffectRegistry;
 import mod.azure.azurelib.ai.pathing.AzureNavigation;
@@ -66,7 +65,7 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
     private final ServerBossBar bossBar;
     private float animationProgressTicks = 0;
-    private float animationDuration = 40;
+    private float animationDuration = 42;
 
     /** curse variables **/
     private int curseThreshold = 5;
@@ -110,8 +109,10 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
 
     private void meleeLogic() {
         if (animationProgressTicks < animationDuration) animationProgressTicks++;
-        if (animationProgressTicks == 1) this.getWorld().playSound((PlayerEntity)null, this.getX(), this.getY(), this.getZ(), SoundEffectRegistry.PUNCH_EVENT, this.getSoundCategory(), 1F, 1.0f);
-        if (animationProgressTicks == 3) performKeyframeAttack(this.getTarget());
+        if (animationProgressTicks == 18)  {
+            this.getWorld().playSound((PlayerEntity)null, this.getX(), this.getY(), this.getZ(), SoundEffectRegistry.PUNCH_EVENT, this.getSoundCategory(), 1F, 1.0f);
+            performKeyframeAttack(this.getTarget());
+        }
     }
 
     private void shadowSurgeLogic() {
@@ -227,6 +228,7 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
     }
 
 
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     protected void initGoals() {
         this.goalSelector.add(1, new MeleeAttackGoal(this, 1, true));
@@ -281,10 +283,10 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
     public static DefaultAttributeContainer.Builder setAttributes() {
         return HostileEntity.createMobAttributes()
                 // TODO: REPLACE THIS WITH CUSTOM FACELESS CONFIG
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 1024)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 10)
-                .add(EntityAttributes.GENERIC_ATTACK_SPEED, 1)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 800)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.37)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 12)
+                .add(EntityAttributes.GENERIC_ATTACK_SPEED, 0.7)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1000);
     }
 
