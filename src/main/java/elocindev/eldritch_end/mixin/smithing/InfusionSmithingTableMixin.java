@@ -111,6 +111,9 @@ public class InfusionSmithingTableMixin {
 
         if (addition.getItem() instanceof InfusableItemMaterial material) {
             if (material.getInfusionTemplate() != base.getItem()) return;
+            if (candidate.getItem() instanceof ArmorItem && !material.applyToArmor()
+            || (candidate.getItem() instanceof SwordItem || candidate.getItem() instanceof AxeItem) && !material.applyToWeapons()
+            || (!material.isInfusable())) return;
 
             boolean isAlreadyInfused = candidate.copy().getOrCreateSubNbt("eldritch_infusions").getBoolean("isInfused");
 
