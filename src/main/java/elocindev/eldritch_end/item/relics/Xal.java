@@ -3,7 +3,6 @@ package elocindev.eldritch_end.item.relics;
 import java.util.List;
 import java.util.UUID;
 
-import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.effects.Corruption;
 import elocindev.eldritch_end.registry.SoundEffectRegistry;
 import net.minecraft.entity.Entity;
@@ -16,6 +15,7 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
 import elocindev.eldritch_end.client.particle.EldritchParticles;
+import elocindev.eldritch_end.config.Configs;
 import elocindev.eldritch_end.item.relics.base.CorruptionRelic;
 import elocindev.eldritch_end.registry.AttributeRegistry;
 import elocindev.eldritch_end.worldgen.util.TextUtils;
@@ -33,7 +33,6 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
 public class Xal extends CorruptionRelic {
-    public static int shadowburst_damage = 40;
     private final String ATTACK_PROGRESS = "attackProgress";
     private final String TARGET_X = "targetX";
     private final String TARGET_Y = "targetY";
@@ -55,14 +54,14 @@ public class Xal extends CorruptionRelic {
 
         world.playSound((PlayerEntity)null, targetX, targetY, targetZ, SoundEffectRegistry.ORB_EVENT, player.getSoundCategory(), 1F, 1.0f);
         for (Entity entity: world.getEntitiesByClass(Entity.class, new Box(new BlockPos(targetX, targetY, targetZ)).expand(6, 3, 6), entity -> true)) {
-            // Todo: Make configurable
-            entity.damage(Corruption.of(world, Corruption.DAMAGE), shadowburst_damage / 3f);
+            entity.damage(Corruption.of(world, Corruption.DAMAGE), Configs.Items.XAL.DAMAGE_PER_STRIKE);
         }
     }
 
-
     // Hits occur at 43, 52, 63
+    // hi joe nicole was here :D
 
+    @SuppressWarnings("resource")
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
         super.inventoryTick(stack, world, entity, slot, selected);
@@ -79,7 +78,7 @@ public class Xal extends CorruptionRelic {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         MutableText type = TextAPI.Styles.getGradient(Text.translatable("item.eldritch_end.xal.type"), 1, 0x5c3885, 0x8e4ecf, 1.0F);
         MutableText ability_icon = Text.empty().append("\uA996 ");
-        MutableText ability_damage = Text.empty().append(shadowburst_damage+" damage").setStyle(TextUtils.Styles.DAMAGE_CORRUPTION);
+        MutableText ability_damage = Text.empty().append(Configs.Items.XAL.DAMAGE_PER_STRIKE+" damage").setStyle(TextUtils.Styles.DAMAGE_CORRUPTION);
 
         tooltip.add(type.fillStyle(type.getStyle().withUnderline(true)));
 
@@ -139,8 +138,7 @@ public class Xal extends CorruptionRelic {
 
         EldritchParticles.playEffek("shadowsurge", world, user.getPos(), true, 0.30F)
             .bindOnEntity(user);
-        // Todo: make configurable
-        user.getItemCooldownManager().set(this, 800);
+        user.getItemCooldownManager().set(this, Configs.Items.XAL.COOLDOWN_TICKS);
 
         return TypedActionResult.success(user.getStackInHand(hand));
     }

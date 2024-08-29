@@ -8,6 +8,7 @@ import elocindev.eldritch_end.config.entries.entities.AberrationConfig;
 import elocindev.eldritch_end.config.entries.entities.DendlerConfig;
 import elocindev.eldritch_end.config.entries.entities.TentacleConfig;
 import elocindev.eldritch_end.config.entries.entities.boss.HasturConfig;
+import elocindev.eldritch_end.config.entries.item.XalConfig;
 
 public class Configs {
     public class Client {
@@ -29,5 +30,9 @@ public class Configs {
 
     public class Mechanics {
         public static CorruptionConfig CORRUPTION = CorruptionConfig.INSTANCE;
+    }
+
+    public class Items {
+        public static XalConfig XAL = XalConfig.INSTANCE;
     }
 }

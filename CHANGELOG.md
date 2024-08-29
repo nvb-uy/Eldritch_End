@@ -6,6 +6,8 @@ See the full changelog in https://github.com/nvb-uy/Eldritch_End/blob/1.20.1/CHA
 - API BREAKING CHANGE! Corruption Resistance is no longer percentile and instead it is flat
 - Added The Faceless Boss [Joespeph, ElocinDev]
 - Added Corruption System [ElocinDev, Joespeph]
+- Added Ritual System, used to summon The Faceless at the moment [ElocinDev]
+- Added new model for The Faceless [Mim1q]
 - Renamed Xal'arath to "X'al" [ElocinDev]
 - X'al is implemented now: the Stormsurge ability from The Faceless is casted on interact [ElocinDev]
 - Etyrite armor now gives flat +5 corruption resistance per piece [ElocinDev]

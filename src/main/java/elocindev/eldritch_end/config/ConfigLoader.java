@@ -9,20 +9,28 @@ import elocindev.eldritch_end.config.entries.entities.AberrationConfig;
 import elocindev.eldritch_end.config.entries.entities.DendlerConfig;
 import elocindev.eldritch_end.config.entries.entities.TentacleConfig;
 import elocindev.eldritch_end.config.entries.entities.boss.HasturConfig;
+import elocindev.eldritch_end.config.entries.item.XalConfig;
 import elocindev.necronomicon.api.config.v1.NecConfigAPI;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 
 public class ConfigLoader {
 
     public static void register() {
-        NecConfigAPI.registerConfig(CorruptionConfig.class);
+        // Misc
         NecConfigAPI.registerConfig(PrimordialAbyssConfig.class);
         NecConfigAPI.registerConfig(HasturianWastesConfig.class);
+
+        // Entities
         NecConfigAPI.registerConfig(AberrationConfig.class);
         NecConfigAPI.registerConfig(TentacleConfig.class);
         NecConfigAPI.registerConfig(DendlerConfig.class);
-
         NecConfigAPI.registerConfig(HasturConfig.class);
+
+        // Misc
+        NecConfigAPI.registerConfig(CorruptionConfig.class);
+
+        // Items
+        NecConfigAPI.registerConfig(XalConfig.class);
     }
 
     public static void initDatapack(boolean started) {
