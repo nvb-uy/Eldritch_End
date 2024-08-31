@@ -23,6 +23,7 @@ import elocindev.eldritch_end.corruption.CorruptionDisplayTooltip;
 import elocindev.eldritch_end.item.Necronomicon;
 import elocindev.eldritch_end.item.SilverKey;
 import elocindev.eldritch_end.item.infusion_materials.AberrationHeartItem;
+import elocindev.eldritch_end.item.infusion_materials.AberrationLimbItem;
 import elocindev.eldritch_end.item.infusion_materials.EtyrIngot;
 import elocindev.eldritch_end.item.infusion_templates.CorruptionTemplate;
 import elocindev.eldritch_end.item.infusion_templates.EtyrTemplate;
@@ -46,7 +47,7 @@ public class ItemRegistry {
 
     public static final Item NECRONOMICON = reg(new Necronomicon(new FabricItemSettings()), "necronomicon");
     public static final Item SILVER_KEY = reg(new SilverKey(new FabricItemSettings()), "silver_key");
-    public static final Item ABERRATION_LIMB = reg(new Item(new FabricItemSettings()), "aberration_limb");
+    public static final Item ABERRATION_LIMB = reg(new AberrationLimbItem(new FabricItemSettings()), "aberration_limb");
 
     
 
@@ -63,7 +64,7 @@ public class ItemRegistry {
 
     // Infusion materials
     public static final Item ETYR_INGOT = reg(new EtyrIngot(new FabricItemSettings()), "etyr_ingot");
-    public static final Item ABERRATION_HEART = reg(new AberrationHeartItem(new FabricItemSettings(), RitualStructure.BASIC, BlockRegistry.ELDRITCH_PEDESTAL, BlockRegistry.ABYSMAL_PEDESTAL.getDefaultState(), EntityRegistry.THE_FACELESS), "aberration_heart");
+    public static final Item ABERRATION_HEART = reg(new AberrationHeartItem(new FabricItemSettings(), RitualStructure.BASIC, BlockRegistry.ELDRITCH_PEDESTAL, BlockRegistry.ABYSMAL_PEDESTAL.getDefaultState(), EntityRegistry.THE_FACELESS, true, List.of(new Identifier("eldritch_end:primordial_abyss"))), "aberration_heart");
 
     private static String etyr_appliesto = 
         Configs.Mechanics.INFUSIONS.etyr_infusion.can_apply_to_armor && Configs.Mechanics.INFUSIONS.etyr_infusion.can_apply_to_weapons ? 

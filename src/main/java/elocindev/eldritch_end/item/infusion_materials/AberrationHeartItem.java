@@ -6,9 +6,9 @@ import org.jetbrains.annotations.Nullable;
 
 import elocindev.eldritch_end.api.infusion.InfusionAttributeHolder;
 import elocindev.eldritch_end.api.RitualAPI.RitualStructure;
+import elocindev.eldritch_end.api.dark_magic.SummonPartItem;
 import elocindev.eldritch_end.api.infusion.InfusableItemMaterial;
 import elocindev.eldritch_end.config.Configs;
-import elocindev.eldritch_end.item.dark_magic.SummonPartItem;
 import elocindev.eldritch_end.registry.AttributeRegistry;
 import elocindev.eldritch_end.registry.ItemRegistry;
 import net.minecraft.block.Block;
@@ -20,12 +20,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class AberrationHeartItem extends SummonPartItem implements InfusableItemMaterial {
 
-    public AberrationHeartItem(Settings settings, RitualStructure ritualStructure, Block mainSummonBlock, BlockState aftermathBlock, EntityType<?> summon) {
-        super(settings, ritualStructure, mainSummonBlock, aftermathBlock, summon);
+    public AberrationHeartItem(Settings settings, RitualStructure ritualStructure, Block mainSummonBlock, BlockState aftermathBlock, EntityType<?> summon, boolean shouldSpawnLightning, List<Identifier> allowed_biomes) {
+        super(settings, ritualStructure, mainSummonBlock, aftermathBlock, summon, shouldSpawnLightning, allowed_biomes);
     }
 
     @Override
