@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+        "cec",
+        "epe",
+        "cec"
+    ],
+    "key": {
+        "p": {
+            "item": "eldritch_end:abysmal_pedestal"
+        },
+        "c": {
+            "item": "minecraft:chain"
+        },
+        "e": {
+            "item": "eldritch_end:ominous_eye"
+        }
+    },
+    "result": {
+        "item": "eldritch_end:eldritch_pedestal",
+        "count": 1
+    }
+}

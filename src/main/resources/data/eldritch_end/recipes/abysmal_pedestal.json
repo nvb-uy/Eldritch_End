@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+        "###",
+        " # ",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "eldritch_end:aberration_limb"
+        }
+    },
+    "result": {
+        "item": "eldritch_end:abysmal_pedestal",
+        "count": 1
+    }
+}
