@@ -17,6 +17,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import elocindev.eldritch_end.api.CorruptionAPI;
+import elocindev.eldritch_end.block.dark_magic.pedestal.GreatSummoningPedestal;
 import elocindev.eldritch_end.corruption.CorruptionDisplayTooltip;
 import elocindev.eldritch_end.item.relics.base.CorruptionRelic;
 import elocindev.eldritch_end.item.relics.base.Relic;
@@ -38,7 +39,7 @@ public abstract class ItemNameMixin {
 
             NbtCompound nbtCompound = stack.getSubNbt("display");
 
-            if (item instanceof CorruptionRelic) gradient = TextAPI.Styles.getGradient(name.setStyle(bold), 1, 0x5c3885, 0xb8731a, 1.0F);
+            if (item instanceof CorruptionRelic || item instanceof GreatSummoningPedestal) gradient = TextAPI.Styles.getGradient(name.setStyle(bold), 1, 0x5c3885, 0xb8731a, 1.0F);
             else if (item instanceof Relic) gradient = TextAPI.Styles.getGradient(name.setStyle(bold), 1, 0x5d378c, 0xa89532, 1.0F);
             else gradient = CorruptionAPI.getCMenuTitle();
 
@@ -73,7 +74,7 @@ public abstract class ItemNameMixin {
         
         if (nbt != null && nbt.getBoolean("isInfused")) {
             String currentInfusion = nbt.getString("currentInfusion");
-            newTooltip.add(Text.translatable("infusion.eldritch_end." + currentInfusion).formatted(Formatting.GOLD));
+            newTooltip.add(Text.translatable("infusion.eldritch_end." + currentInfusion).formatted(Formatting.BLUE));
             cir.setReturnValue(newTooltip);
         }
     }
