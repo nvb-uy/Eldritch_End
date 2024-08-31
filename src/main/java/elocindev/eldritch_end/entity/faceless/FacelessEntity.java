@@ -37,6 +37,7 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
+
 import org.jetbrains.annotations.Nullable;
 import org.joml.Math;
 
@@ -203,6 +204,11 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
     }
 
     @Override
+    public boolean isFireImmune() {
+        return true;
+    }
+
+    @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "baseAnim", 5, event -> {
             return event.setAndContinue(
@@ -284,7 +290,7 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
         return HostileEntity.createMobAttributes()
                 // TODO: REPLACE THIS WITH CUSTOM FACELESS CONFIG
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 800)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.37)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 12)
                 .add(EntityAttributes.GENERIC_ATTACK_SPEED, 0.7)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1000);
