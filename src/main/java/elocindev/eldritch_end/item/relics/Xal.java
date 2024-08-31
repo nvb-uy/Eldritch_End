@@ -14,10 +14,13 @@ import org.jetbrains.annotations.Nullable;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
+import elocindev.eldritch_end.api.infusion.InfusableItemMaterial;
+import elocindev.eldritch_end.api.infusion.InfusionAttributeHolder;
 import elocindev.eldritch_end.client.particle.EldritchParticles;
 import elocindev.eldritch_end.config.Configs;
 import elocindev.eldritch_end.item.relics.base.CorruptionRelic;
 import elocindev.eldritch_end.registry.AttributeRegistry;
+import elocindev.eldritch_end.registry.ItemRegistry;
 import elocindev.eldritch_end.worldgen.util.TextUtils;
 import elocindev.necronomicon.api.text.TextAPI;
 import net.minecraft.client.item.TooltipContext;
@@ -25,14 +28,17 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.MutableText;
+import net.minecraft.text.Style;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
-public class Xal extends CorruptionRelic {
+public class Xal extends CorruptionRelic implements InfusableItemMaterial {
     private final String ATTACK_PROGRESS = "attackProgress";
     private final String TARGET_X = "targetX";
     private final String TARGET_Y = "targetY";
@@ -97,6 +103,14 @@ public class Xal extends CorruptionRelic {
         tooltip.add(Text.literal(" ").append(description2));
 
         tooltip.add(emptyLine());
+
+        var appliesto = Configs.Mechanics.INFUSIONS.corruption_infusion.can_apply_to_armor && Configs.Mechanics.INFUSIONS.corruption_infusion.can_apply_to_weapons ? 
+            "infusion.eldritch_end.applies_to_all" : 
+            Configs.Mechanics.INFUSIONS.corruption_infusion.can_apply_to_armor ? 
+                "infusion.eldritch_end.applies_to_armor" : 
+                "infusion.eldritch_end.applies_to_weapons";
+
+        tooltip.add(Text.translatable("infusion.eldritch_end.infusable").append(Text.translatable(appliesto)).append(" (Tier III)").setStyle(Style.EMPTY.withColor(Formatting.GRAY)));
     }
 
     private Text emptyLine() {
@@ -148,4 +162,31 @@ public class Xal extends CorruptionRelic {
         nbtCompound.putInt(ATTACK_PROGRESS, 0);
     }
 
+    @Override
+    public List<InfusionAttributeHolder> getInfusionAttributes() {
+        return List.of(new InfusionAttributeHolder(AttributeRegistry.CORRUPTION, 35, InfusionAttributeHolder.Presets.CORRUPTION));
+    }
+
+    @Override
+    public Item getInfusionTemplate() {
+        return ItemRegistry.CORRUPTION_UPGRADE_PATTERN;
+    }
+
+    @Override
+    public boolean applyToArmor() {
+        return Configs.Mechanics.INFUSIONS.corruption_infusion.can_apply_to_armor;
+    }
+
+    @Override
+    public boolean applyToWeapons() {
+        return Configs.Mechanics.INFUSIONS.corruption_infusion.can_apply_to_weapons;
+    }
+
+    @Override
+    public List<String> canSwapInfusionTo() {
+        return List.of(
+            "eldritch_end:aberration_heart",
+            "eldritch_end:aberration_limb"
+        );
+    }
 }

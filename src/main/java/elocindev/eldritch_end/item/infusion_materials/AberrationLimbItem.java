@@ -5,16 +5,11 @@ import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
 import elocindev.eldritch_end.api.infusion.InfusionAttributeHolder;
-import elocindev.eldritch_end.api.RitualAPI.RitualStructure;
 import elocindev.eldritch_end.api.infusion.InfusableItemMaterial;
 import elocindev.eldritch_end.config.Configs;
-import elocindev.eldritch_end.item.dark_magic.SummonPartItem;
 import elocindev.eldritch_end.registry.AttributeRegistry;
 import elocindev.eldritch_end.registry.ItemRegistry;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Style;
@@ -22,15 +17,15 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 
-public class AberrationHeartItem extends SummonPartItem implements InfusableItemMaterial {
+public class AberrationLimbItem extends Item implements InfusableItemMaterial {
 
-    public AberrationHeartItem(Settings settings, RitualStructure ritualStructure, Block mainSummonBlock, BlockState aftermathBlock, EntityType<?> summon) {
-        super(settings, ritualStructure, mainSummonBlock, aftermathBlock, summon);
+    public AberrationLimbItem(Settings settings) {
+        super(settings);
     }
 
     @Override
     public List<InfusionAttributeHolder> getInfusionAttributes() {
-        return List.of(new InfusionAttributeHolder(AttributeRegistry.CORRUPTION, 15, InfusionAttributeHolder.Presets.CORRUPTION));
+        return List.of(new InfusionAttributeHolder(AttributeRegistry.CORRUPTION, 10, InfusionAttributeHolder.Presets.CORRUPTION));
     }
 
     @Override
@@ -51,7 +46,7 @@ public class AberrationHeartItem extends SummonPartItem implements InfusableItem
     @Override
     public List<String> canSwapInfusionTo() {
         return List.of(
-            "eldritch_end:aberration_limb",
+            "eldritch_end:aberration_heart",
             "eldritch_end:xal"
         );
     }
@@ -66,6 +61,6 @@ public class AberrationHeartItem extends SummonPartItem implements InfusableItem
                 "infusion.eldritch_end.applies_to_armor" : 
                 "infusion.eldritch_end.applies_to_weapons";
 
-        tooltip.add(Text.translatable("infusion.eldritch_end.infusable").append(Text.translatable(appliesto)).append(" (Tier II)").setStyle(Style.EMPTY.withColor(Formatting.GRAY)));
+        tooltip.add(Text.translatable("infusion.eldritch_end.infusable").append(Text.translatable(appliesto)).append(" (Tier I)").setStyle(Style.EMPTY.withColor(Formatting.GRAY)));
     }
 }

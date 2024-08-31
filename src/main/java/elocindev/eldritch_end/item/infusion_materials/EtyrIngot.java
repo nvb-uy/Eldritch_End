@@ -24,7 +24,7 @@ public class EtyrIngot extends Item implements InfusableItemMaterial {
 
     @Override
     public List<InfusionAttributeHolder> getInfusionAttributes() {
-        return List.of(new InfusionAttributeHolder(AttributeRegistry.CORRUPTION_RESISTANCE, Configs.Mechanics.INFUSIONS.etyr_infusion.tier_1, InfusionAttributeHolder.Presets.ETYR));
+        return List.of(new InfusionAttributeHolder(AttributeRegistry.CORRUPTION_RESISTANCE, 10, InfusionAttributeHolder.Presets.ETYR));
     }
 
     @Override
