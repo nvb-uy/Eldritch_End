@@ -74,6 +74,10 @@ public class SummonPartItem extends Item {
         return aftermathBlock;
     }
 
+    public boolean getSummoningConditions(BlockPos pos, World world) {
+        return RitualAPI.isBasicRitual(pos, world);
+    }
+
     public static void playInteractionEffect(BlockPos pos, World world) {
         world.addParticle(ParticleTypes.SQUID_INK, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 0, 0.05F, 0);
         world.playSound(null, pos, net.minecraft.sound.SoundEvents.BLOCK_MUD_HIT, net.minecraft.sound.SoundCategory.BLOCKS, 1.0F, 1.3F);
@@ -87,7 +91,7 @@ public class SummonPartItem extends Item {
         playInteractionEffect(context.getBlockPos(), world);
         context.getStack().decrement(1);
 
-        if (RitualAPI.isBasicRitual(context.getBlockPos(), world)) {
+        if (this.getSummoningConditions(context.getBlockPos(), world)) {
             if (context.getWorld().getBlockState(context.getBlockPos()).isOf(getMainSummonBlock())) {
                 if (allowed_biomes != null) {
                     var biome = world.getBiome(context.getBlockPos());

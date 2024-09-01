@@ -5,6 +5,7 @@ import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
 import elocindev.eldritch_end.api.infusion.InfusionAttributeHolder;
+import elocindev.eldritch_end.api.RitualAPI;
 import elocindev.eldritch_end.api.RitualAPI.RitualStructure;
 import elocindev.eldritch_end.api.dark_magic.SummonPartItem;
 import elocindev.eldritch_end.api.infusion.InfusableItemMaterial;
@@ -13,6 +14,8 @@ import elocindev.eldritch_end.registry.AttributeRegistry;
 import elocindev.eldritch_end.registry.ItemRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.CandleBlock;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
@@ -21,7 +24,9 @@ import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import java.util.ArrayList;
 
 public class AberrationHeartItem extends SummonPartItem implements InfusableItemMaterial {
 
@@ -55,6 +60,38 @@ public class AberrationHeartItem extends SummonPartItem implements InfusableItem
             "eldritch_end:aberration_limb",
             "eldritch_end:xal"
         );
+    }
+
+    @Override
+    public boolean getSummoningConditions(BlockPos pos, World world) {
+        int[][] positions = {
+            {-2, 0},
+            {2, 0},
+            {0, -2},
+            {0, 2}
+        };
+        List<BlockState> blocks = new ArrayList<>();
+    
+        for (int[] offset : positions) {
+            int x = offset[0];
+            int z = offset[1];
+    
+            BlockState state = world.getBlockState(pos.add(x, 1, z));
+    
+            if (state.getBlock() != Blocks.BLACK_CANDLE) {
+                return false;
+            } else {
+                blocks.add(state);
+            }
+        }
+    
+        for (BlockState state : blocks) {
+            if (state.getBlock() instanceof CandleBlock) {
+                if (state.get(CandleBlock.CANDLES) != 4 && !state.get(CandleBlock.LIT)) return false;
+            }
+        }
+    
+        return RitualAPI.isBasicRitual(pos, world);
     }
     
     @Override
