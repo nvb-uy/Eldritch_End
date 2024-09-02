@@ -12,13 +12,13 @@ public class InfusionConfig {
     }
 
     public class EtyrInfusion {
-        public boolean can_apply_to_weapons = false;
+        public boolean can_apply_to_weapons = true;
         public boolean can_apply_to_armor = true;
     }
 
     public class CorruptionInfusion {
         public boolean can_apply_to_weapons = true;
-        public boolean can_apply_to_armor = false;
+        public boolean can_apply_to_armor = true;
     }
 
     public EtyrInfusion etyr_infusion = new EtyrInfusion();

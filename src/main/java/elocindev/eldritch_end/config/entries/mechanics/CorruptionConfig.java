@@ -24,10 +24,10 @@ public class CorruptionConfig {
     public class CorruptionEffects {
         public CEDamageTaken received_damage_increment = new CEDamageTaken(10, 0.10f);
         public CETentacleSpawn tentacle_spawn = new CETentacleSpawn(25, 0.25f, 0.9f, 100, 30 /* Seconds */);
-        public CEOverlay madness_vision = new CEOverlay(40, 100, 1.0f);
-        public CENonCorruptionReduction non_corruption_damage_reduction = new CENonCorruptionReduction(50, 0.15f);
-        public CEEyeSpawn ominous_eye_spawn = new CEEyeSpawn(70, 0.25f, 2, 100, 40);
-        public CELethalThreshold madness_consumed = new CELethalThreshold(100, 0.1f);
+        public CEOverlay madness_vision = new CEOverlay(40, 100, 0.6f);
+        public CENonCorruptionReduction non_corruption_damage_reduction = new CENonCorruptionReduction(70, 0.15f);
+        public CEEyeSpawn ominous_eye_spawn = new CEEyeSpawn(50, 0.50f, 2, 100, 30);
+        public CELethalThreshold madness_consumed = new CELethalThreshold(100, 0.15f);
     }
 
     @Comment("Effects caused by corruption")
