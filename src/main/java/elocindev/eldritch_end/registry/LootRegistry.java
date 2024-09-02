@@ -9,9 +9,8 @@ import net.minecraft.loot.provider.number.BinomialLootNumberProvider;
 public class LootRegistry {
     public static void register() {
         LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
-            if (source.isBuiltin() && LootTables.END_CITY_TREASURE_CHEST.equals(id)) {
+            if (LootTables.END_CITY_TREASURE_CHEST.equals(id)) {
                 LootPool corruption = LootPool.builder().with(ItemEntry.builder(ItemRegistry.CORRUPTION_INFUSION_TEMPLATE).build()).rolls(BinomialLootNumberProvider.create(1, 0.10F)).build();
-
                 LootPool etyr = LootPool.builder().with(ItemEntry.builder(ItemRegistry.ETYR_INFUSION_TEMPLATE).build()).rolls(BinomialLootNumberProvider.create(1, 0.10F)).build();
 
                 tableBuilder.pool(etyr);
