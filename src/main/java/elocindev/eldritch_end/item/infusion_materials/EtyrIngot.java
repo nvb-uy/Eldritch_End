@@ -52,10 +52,10 @@ public class EtyrIngot extends Item implements InfusableItemMaterial {
         super.appendTooltip(stack, world, tooltip, context);
         
         var appliesto = Configs.Mechanics.INFUSIONS.etyr_infusion.can_apply_to_armor && Configs.Mechanics.INFUSIONS.etyr_infusion.can_apply_to_weapons ? 
-            "eldritch_end.infusion.applies_to_all" : 
+            "infusion.eldritch_end.applies_to_all" : 
             Configs.Mechanics.INFUSIONS.etyr_infusion.can_apply_to_armor ? 
-                "eldritch_end.infusion.applies_to_armor" : 
-                "eldritch_end.infusion.applies_to_weapons";
+                "infusion.eldritch_end.applies_to_armor" : 
+                "infusion.eldritch_end.applies_to_weapons";
 
         tooltip.add(Text.translatable("infusion.eldritch_end.infusable").append(Text.translatable(appliesto)).append(" (Tier I)").setStyle(Style.EMPTY.withColor(Formatting.GRAY)));
     }
