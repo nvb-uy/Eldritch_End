@@ -7,6 +7,7 @@ import elocindev.eldritch_end.corruption.corruption_effect.CETentacleSpawn;
 import elocindev.eldritch_end.entity.ominous_eye.OminousEyeEntity;
 import elocindev.eldritch_end.entity.tentacle.TentacleEntity;
 import elocindev.eldritch_end.registry.EntityRegistry;
+import net.minecraft.entity.Entity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.world.World;
@@ -24,14 +25,14 @@ public class ServerUtils {
 
     public static boolean hasValidEyeConditions(ServerPlayerEntity serverPlayer) {
         return CorruptionAPI.getAffectedCorruptionLevel(serverPlayer) >= EYE_CFG.getStartingLevel()
-                && serverPlayer.age - serverPlayer.getLastAttackTime() >= 100
+                && (serverPlayer.age - serverPlayer.getLastAttackTime() >= EYE_CFG.getCombatDurationTicks())
                 && serverPlayer.getRandom().nextFloat() <= EYE_CFG.getSpawnChance();
     }
 
     public static void summonTentacle(ServerPlayerEntity serverPlayer, World world) {
         TentacleEntity tentacle = EntityRegistry.TENTACLE.create(world);
 
-        if (TENTACLE_CFG.getStartingLevel() == -1 || tentacle == null || serverPlayer == null || !serverPlayer.isOnGround()) return;
+        if (TENTACLE_CFG.getStartingLevel() <= -1 || tentacle == null || serverPlayer == null || !serverPlayer.isOnGround()) return;
 
         tentacle.setPosition(serverPlayer.getPos());
         world.spawnEntity(tentacle);
@@ -42,20 +43,23 @@ public class ServerUtils {
 
     public static void summonOminousEye(ServerPlayerEntity serverPlayer, World world) {
         for (int i = 0; i <= EYE_CFG.getEyeAmount(); i++) {
-            OminousEyeEntity ominousEye = EntityRegistry.OMINOUS_EYE.create(world);
+            Entity ominousEye = EntityRegistry.OMINOUS_EYE.create(world);
 
-            if (EYE_CFG.getStartingLevel() == -1 || ominousEye == null || serverPlayer == null) return;
+            if (EYE_CFG.getStartingLevel() <= -1 || ominousEye == null || serverPlayer == null) return;
 
-            ominousEye.setPosition(serverPlayer.getPos().add(0, 1, 0));
+            var pos = serverPlayer.getPos();
+            ominousEye.setPosition(pos.add(0, 3, 0));
             world.spawnEntity(ominousEye);
-            ominousEye.setTarget(serverPlayer);
+            if (ominousEye instanceof OminousEyeEntity livingOminousEye) {
+                livingOminousEye.setTarget(serverPlayer);
+            }
         }
     }
 
     public static void healthDrainCheck(MinecraftServer server) {
         for (ServerPlayerEntity serverPlayer: server.getPlayerManager().getPlayerList()) {
             if (CorruptionAPI.getAffectedCorruptionLevel(serverPlayer) >= Configs.Mechanics.CORRUPTION.corruption_effects.madness_consumed.getStartingLevel()) {
-                serverPlayer.damage(serverPlayer.getDamageSources().generic(), serverPlayer.getMaxHealth() * 0.1f);
+                serverPlayer.damage(serverPlayer.getDamageSources().generic(), serverPlayer.getMaxHealth() * Configs.Mechanics.CORRUPTION.corruption_effects.madness_consumed.getMaxHealthPerSecond());
             }
         }
     }

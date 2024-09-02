@@ -11,19 +11,15 @@ public class PlayerTickEventHandler implements ServerTickEvents.StartTick {
     private static CETentacleSpawn tentacle_config = CorruptionAPI.CONFIG.corruption_effects.tentacle_spawn;
     private static CEEyeSpawn eye_config = CorruptionAPI.CONFIG.corruption_effects.ominous_eye_spawn;
 
-    private int counter = 0;
-
     @Override
     public void onStartTick(MinecraftServer server) {
-        counter++;
-
-        if (counter % 20 == 0)
+        if (server.getTicks() % 20 == 0)
             ServerUtils.healthDrainCheck(server);
 
-        if (counter % tentacle_config.getEffectRateTicks() == 0)
+        if (server.getTicks() % tentacle_config.getEffectRateTicks() == 0)
             ServerUtils.tentacleSummonCheck(server);
 
-        if (counter % eye_config.getEffectRateTicks() == 0)
+        if (server.getTicks() % eye_config.getEffectRateTicks() == 0)
             ServerUtils.ominousEyeSummonCheck(server);
     }
 }
