@@ -1,13 +1,16 @@
 See the full changelog in https://github.com/nvb-uy/Eldritch_End/blob/1.20.1/CHANGELOG.md
 
-## IN DEVELOPMENT
-- The Faceless bossfight [ElocinDev, Joespeph]
-## 0.3.0 (Indev)
+## 0.3.0 (Public Release)
 - API BREAKING CHANGE! Corruption Resistance is no longer percentile and instead it is flat
+- WIKI IS OUT! https://rpg.prominence.wiki/mod/eldritch-end
 - Added The Faceless Boss [Joespeph, ElocinDev]
 - Added Corruption System [ElocinDev, Joespeph]
 - Added Ritual System, used to summon The Faceless at the moment [ElocinDev]
+- Added Infusion System, using Infusion Smithing Templates found in end cities to add corruption or corruption resistance to ANY armor or weapon [ElocinDev]
 - Added new model for The Faceless [Mim1q]
+- Added new model for Ominous Eyes & dynamic rotation [Mim1q]
+- Added recipe for abysmal and eldritch pedestals [ElocinDev]
+- Added summoning for The Faceless, done in a ritual with an eldritch pedestal surrounded of abysmal pedestals, with 4 lit black candles on top of each abysmal pedestal, use an aberration heart on top of the eldritch pedestal to summon The Faceless.[ElocinDev]
 - Renamed Xal'arath to "X'al" [ElocinDev]
 - X'al is implemented now: the Stormsurge ability from The Faceless is casted on interact [ElocinDev]
 - Etyrite armor now gives flat +5 corruption resistance per piece [ElocinDev]
