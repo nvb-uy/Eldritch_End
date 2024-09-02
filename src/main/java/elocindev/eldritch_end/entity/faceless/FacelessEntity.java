@@ -2,6 +2,7 @@ package elocindev.eldritch_end.entity.faceless;
 
 import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.client.particle.EldritchParticles;
+import elocindev.eldritch_end.config.Configs;
 import elocindev.eldritch_end.registry.ItemRegistry;
 import elocindev.eldritch_end.registry.SoundEffectRegistry;
 import mod.azure.azurelib.ai.pathing.AzureNavigation;
@@ -288,11 +289,10 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
 
     public static DefaultAttributeContainer.Builder setAttributes() {
         return HostileEntity.createMobAttributes()
-                // TODO: REPLACE THIS WITH CUSTOM FACELESS CONFIG
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 800)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 12)
-                .add(EntityAttributes.GENERIC_ATTACK_SPEED, 0.7)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, Configs.Entity.FACELESS.attributes.MAX_HEALTH)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, Configs.Entity.FACELESS.attributes.MOVEMENT_SPEED)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, Configs.Entity.FACELESS.attributes.ATTACK_DAMAGE)
+                .add(EntityAttributes.GENERIC_ATTACK_SPEED, Configs.Entity.FACELESS.attributes.ATTACK_SPEED)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1000);
     }
 

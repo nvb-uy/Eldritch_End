@@ -6,6 +6,7 @@ import elocindev.eldritch_end.config.entries.biomes.PrimordialAbyssConfig;
 import elocindev.eldritch_end.config.entries.entities.AberrationConfig;
 import elocindev.eldritch_end.config.entries.entities.DendlerConfig;
 import elocindev.eldritch_end.config.entries.entities.TentacleConfig;
+import elocindev.eldritch_end.config.entries.entities.boss.FacelessConfig;
 import elocindev.eldritch_end.config.entries.entities.boss.HasturConfig;
 import elocindev.eldritch_end.config.entries.item.XalConfig;
 import elocindev.eldritch_end.config.entries.mechanics.CorruptionConfig;
@@ -26,6 +27,7 @@ public class Configs {
         public static TentacleConfig TENTACLE = TentacleConfig.INSTANCE;
         public static DendlerConfig DENDLER = DendlerConfig.INSTANCE;
 
+        public static FacelessConfig FACELESS = FacelessConfig.INSTANCE;
         public static HasturConfig HASTUR = HasturConfig.INSTANCE;
     }
 
