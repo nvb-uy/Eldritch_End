@@ -121,6 +121,7 @@ public class ModelGenerator extends FabricModelProvider {
         
         generator.register(ItemRegistry.ETYR_UPGRADE_TEMPLATE, Models.GENERATED);
         generator.register(ItemRegistry.CORRUPTION_UPGRADE_PATTERN, Models.GENERATED);
+        generator.register(ItemRegistry.OMINOUS_EYE, Models.GENERATED);
         // generator.register(ItemRegistry.HASTUR_CROWN, Models.GENERATED);
     }
 

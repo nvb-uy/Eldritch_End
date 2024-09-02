@@ -29,7 +29,6 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 
 public class AberrationHeartItem extends SummonPartItem implements InfusableItemMaterial {
-
     public AberrationHeartItem(Settings settings, RitualStructure ritualStructure, Block mainSummonBlock, BlockState aftermathBlock, EntityType<?> summon, boolean shouldSpawnLightning, List<Identifier> allowed_biomes) {
         super(settings, ritualStructure, mainSummonBlock, aftermathBlock, summon, shouldSpawnLightning, allowed_biomes);
     }
@@ -99,7 +98,7 @@ public class AberrationHeartItem extends SummonPartItem implements InfusableItem
         super.appendTooltip(stack, world, tooltip, context);
         
         var appliesto = Configs.Mechanics.INFUSIONS.corruption_infusion.can_apply_to_armor && Configs.Mechanics.INFUSIONS.corruption_infusion.can_apply_to_weapons ? 
-            "infusion.eldritch_end.applies_to_all" : 
+                "infusion.eldritch_end.applies_to_all" : 
             Configs.Mechanics.INFUSIONS.corruption_infusion.can_apply_to_armor ? 
                 "infusion.eldritch_end.applies_to_armor" : 
                 "infusion.eldritch_end.applies_to_weapons";

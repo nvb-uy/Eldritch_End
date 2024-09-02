@@ -137,6 +137,7 @@
     "item.eldritch_end.necronomicon": "Necronomicon",
     "item.eldritch_end.necronomicon.type": "Eldritch Artifact",
     "item.eldritch_end.aberration_limb": "Aberration's Limb",
+    "item.eldritch_end.ominous_eye": "Ominous Eye",
     "item.eldritch_end.aberration_heart": "Aberration's Heart",
     "item.eldritch_end.silver_key": "Silver Key",
     "item.eldritch_end.raw_etyr": "Raw Etyr",
@@ -158,11 +159,11 @@
     "effect.eldritch_end.hastur_presence": "Hastur's Presence",
 
     "entity.eldritch_end.aberration": "Aberration",
+    "entity.eldritch_end.ominous_eye": "Ominous Eye",
     "entity.eldritch_end.tentacle": "Tentacle",
     "entity.eldritch_end.undead_tentacle": "Undead Tentacle",
     "entity.eldritch_end.dendler": "Dendler",
 
     "entity.eldritch_end.the_faceless": "The Faceless",
-    "entity.eldritch_end.hastur": "Hastur's Image",
-    "entity.eldritch_end.chorb": "Chorb"        
+    "entity.eldritch_end.hastur": "Hastur's Image"
 }
