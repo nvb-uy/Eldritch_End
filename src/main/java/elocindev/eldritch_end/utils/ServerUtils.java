@@ -44,7 +44,7 @@ public class ServerUtils {
         for (int i = 0; i <= EYE_CFG.getEyeAmount(); i++) {
             OminousEyeEntity ominousEye = EntityRegistry.OMINOUS_EYE.create(world);
 
-            if (EYE_CFG.getStartingLevel() == -1 || ominousEye == null || serverPlayer == null || !serverPlayer.isOnGround()) return;
+            if (EYE_CFG.getStartingLevel() == -1 || ominousEye == null || serverPlayer == null) return;
 
             ominousEye.setPosition(serverPlayer.getPos().add(0, 1, 0));
             world.spawnEntity(ominousEye);
