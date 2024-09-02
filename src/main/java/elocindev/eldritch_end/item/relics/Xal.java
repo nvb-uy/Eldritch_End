@@ -169,7 +169,7 @@ public class Xal extends CorruptionRelic implements InfusableItemMaterial {
 
     @Override
     public Item getInfusionTemplate() {
-        return ItemRegistry.CORRUPTION_UPGRADE_PATTERN;
+        return ItemRegistry.CORRUPTION_INFUSION_TEMPLATE;
     }
 
     @Override

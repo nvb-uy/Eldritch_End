@@ -29,7 +29,7 @@ public class EtyrIngot extends Item implements InfusableItemMaterial {
 
     @Override
     public Item getInfusionTemplate() {
-        return ItemRegistry.ETYR_UPGRADE_TEMPLATE;
+        return ItemRegistry.ETYR_INFUSION_TEMPLATE;
     }
 
     @Override

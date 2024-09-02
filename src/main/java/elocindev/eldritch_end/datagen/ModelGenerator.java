@@ -119,8 +119,8 @@ public class ModelGenerator extends FabricModelProvider {
         generator.register(ArmorRegistry.ETYRITE_LEGGINGS, Models.GENERATED);
         generator.register(ArmorRegistry.ETYRITE_BOOTS, Models.GENERATED);
         
-        generator.register(ItemRegistry.ETYR_UPGRADE_TEMPLATE, Models.GENERATED);
-        generator.register(ItemRegistry.CORRUPTION_UPGRADE_PATTERN, Models.GENERATED);
+        generator.register(ItemRegistry.ETYR_INFUSION_TEMPLATE, Models.GENERATED);
+        generator.register(ItemRegistry.CORRUPTION_INFUSION_TEMPLATE, Models.GENERATED);
         generator.register(ItemRegistry.OMINOUS_EYE, Models.GENERATED);
         // generator.register(ItemRegistry.HASTUR_CROWN, Models.GENERATED);
     }

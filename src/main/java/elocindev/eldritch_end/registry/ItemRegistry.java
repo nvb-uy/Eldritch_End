@@ -75,7 +75,7 @@ public class ItemRegistry {
         "all" : 
         (Configs.Mechanics.INFUSIONS.corruption_infusion.can_apply_to_armor ? "armor" : 
         (Configs.Mechanics.INFUSIONS.corruption_infusion.can_apply_to_weapons ? "weapons" : "none"));
-    public static final Item ETYR_UPGRADE_TEMPLATE = reg(new EtyrTemplate(
+    public static final Item ETYR_INFUSION_TEMPLATE = reg(new EtyrTemplate(
             Text.translatable("infusion.eldritch_end.applies_to_"+etyr_appliesto).setStyle(Style.EMPTY.withColor(Formatting.BLUE)),
             Text.translatable("item.eldritch_end.etyr_ingot").setStyle(Style.EMPTY.withColor(Formatting.BLUE)).append(Text.literal(" (Tier I)").setStyle(Style.EMPTY.withColor(Formatting.DARK_GRAY))),
             TextAPI.Styles.getStaticGradient(Text.literal("Etyr Infusion"), 0x728062, 0x7a966b),
@@ -85,7 +85,7 @@ public class ItemRegistry {
             List.of()
         ), "etyr_upgrade_pattern");
         
-    public static final Item CORRUPTION_UPGRADE_PATTERN = reg(new CorruptionTemplate(
+    public static final Item CORRUPTION_INFUSION_TEMPLATE = reg(new CorruptionTemplate(
             Text.translatable("infusion.eldritch_end.applies_to_"+corruption_appliesto).setStyle(Style.EMPTY.withColor(Formatting.BLUE)),
             (Text.translatable("item.eldritch_end.aberration_limb")).setStyle(Style.EMPTY.withColor(Formatting.BLUE)).append(Text.literal(" (Tier I)").setStyle(Style.EMPTY.withColor(Formatting.DARK_GRAY))),
             TextAPI.Styles.getStaticGradient(Text.literal("Corruption Infusion"), 0x604bb8, 0x6541bf),
