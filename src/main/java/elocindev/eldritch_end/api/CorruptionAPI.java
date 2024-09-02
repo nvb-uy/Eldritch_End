@@ -17,8 +17,20 @@ public class CorruptionAPI {
      * @param   entity      The entity to get the total corruption level of.
      * @return              The total corruption level of the entity.
      */
-    public static double getTotalCorruptionLevel(LivingEntity entity) {
+    public static double getAffectedCorruptionLevel(LivingEntity entity) {
         return getCorruptionLevel(entity) - getCorruptionResistanceLevel(entity);
+    }
+
+    @Deprecated
+    /**
+     * Gets the total corruption level of an entity, taking into account their corruption resistance.
+     * 
+     * @deprecated          Use {@link #getAffectedCorruptionLevel(LivingEntity entity)} instead.
+     * @param   entity      The entity to get the total corruption level of.
+     * @return              The total corruption level of the entity.
+     */
+    public static double getTotalCorruptionLevel(LivingEntity entity) {
+        return getAffectedCorruptionLevel(entity);
     }
 
     /**

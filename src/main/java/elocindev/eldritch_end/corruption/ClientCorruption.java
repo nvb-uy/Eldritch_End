@@ -8,7 +8,7 @@ public class ClientCorruption {
         MinecraftClient client = MinecraftClient.getInstance();
         if (client.player == null) return -1;
 
-        return (int)CorruptionAPI.getTotalCorruptionLevel(client.player);
+        return (int)CorruptionAPI.getAffectedCorruptionLevel(client.player);
     }
 
     public static int getCorruptionLevel() {
