@@ -128,7 +128,7 @@
     "infusion.eldritch_end.applies_to_armor": "Armor Pieces",
     "infusion.eldritch_end.applies_to_weapons": "Weapons",
     "infusion.eldritch_end.applies_to_none": "None",
-
+    
     "item.eldritch_end.etyrite_helmet": "Etyrite Helmet",
     "item.eldritch_end.etyrite_chestplate": "Etyrite Chestplate",
     "item.eldritch_end.etyrite_leggings": "Etyrite Leggings",
@@ -143,6 +143,7 @@
     "item.eldritch_end.raw_etyr": "Raw Etyr",
     "item.eldritch_end.etyr_ingot": "Etyr Ingot",    
 
+    "item.eldritch_end.corrupted_item.type": "Corrupted Relic",
     "item.eldritch_end.xal": "X'al, The Faceless Eye",
     "item.eldritch_end.xal.type": "Corruption Relic",
     "item.eldritch_end.xal.shadowburst.1": "Summons the void's energy, striking 3 times and dealing",
