@@ -18,6 +18,7 @@ public class ItemGroupRegistry {
 
             entries.add(new ItemStack(ItemRegistry.ABERRATION_LIMB));
             entries.add(new ItemStack(ItemRegistry.ABERRATION_HEART));
+            entries.add(new ItemStack(ItemRegistry.OMINOUS_EYE));
 
             entries.add(new ItemStack(ItemRegistry.RAW_ETYR));
             entries.add(new ItemStack(ItemRegistry.ETYR_INGOT));
