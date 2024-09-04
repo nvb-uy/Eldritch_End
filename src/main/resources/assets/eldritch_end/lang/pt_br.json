@@ -128,7 +128,7 @@
     "infusion.eldritch_end.applies_to_armor": "Peças de Armadura",
     "infusion.eldritch_end.applies_to_weapons": "Armas",
     "infusion.eldritch_end.applies_to_none": "Nenhum",
-
+    
     "item.eldritch_end.etyrite_helmet": "Capacete de eterita",
     "item.eldritch_end.etyrite_chestplate": "Peitoral de eterita",
     "item.eldritch_end.etyrite_leggings": "Calças de eterita",
@@ -137,11 +137,13 @@
     "item.eldritch_end.necronomicon": "§2Necronomicon",
     "item.eldritch_end.necronomicon.type": "Artefato de eldritch",
     "item.eldritch_end.aberration_limb": "Membro de aberração",
+    "item.eldritch_end.ominous_eye": "Olho sinistro",
     "item.eldritch_end.aberration_heart": "Coração de aberração",
     "item.eldritch_end.silver_key": "Chave de prata",
     "item.eldritch_end.raw_etyr": "Eterita bruto",
     "item.eldritch_end.etyr_ingot": "Barra de eterita",    
 
+    "item.eldritch_end.corrupted_item.type": "Relíquia corrompida",
     "item.eldritch_end.xal": "X'al, O Olho Inexpressivo",
     "item.eldritch_end.xal.type": "Relíquia corrompida",
     "item.eldritch_end.xal.shadowburst.1": "Convoca a energia do vazio, golpeando três vezes e causando",
@@ -151,18 +153,18 @@
     "item.eldritch_end.tentacle_spawn_egg": "Ovo gerador de tentáculo",
     "item.eldritch_end.undead_tentacle_spawn_egg": "Ovo gerador de tentáculo morto-vivo",
     "item.eldritch_end.chorb_spawn_egg": "Ovo gerador de chorb",
-    "item.eldritch_end.hastur_crown": "Coroa perdida de hastúria",
+    "item.eldritch_end.hastur_crown": "Coroa perdida de hastur",
     "item.eldritch_end.dendler_spawn_egg": "Ovo gerador de dendler",
 
     "effect.eldritch_end.corruption": "Corrupção",
-    "effect.eldritch_end.hastur_presence": "A presença de hastúria",
+    "effect.eldritch_end.hastur_presence": "Presença de hastur",
 
     "entity.eldritch_end.aberration": "Aberração",
+    "entity.eldritch_end.ominous_eye": "Olho sinistro",
     "entity.eldritch_end.tentacle": "Tentáculo",
     "entity.eldritch_end.undead_tentacle": "Tentáculo morto-vivo",
     "entity.eldritch_end.dendler": "Dendler",
 
-    "entity.eldritch_end.the_faceless": "The Faceless",
-    "entity.eldritch_end.hastur": "Imagem de hastúria",
-    "entity.eldritch_end.chorb": "Chorb"        
+    "entity.eldritch_end.the_faceless": "O Inexpressivo",
+    "entity.eldritch_end.hastur": "Imagem de hastur"
 }
