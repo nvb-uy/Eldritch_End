@@ -1,8 +1,10 @@
 package elocindev.eldritch_end.api.infusion;
 
 import java.util.List;
+import java.util.UUID;
 
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 public interface InfusableItemMaterial {
     List<InfusionAttributeHolder> getInfusionAttributes();
@@ -13,6 +15,10 @@ public interface InfusableItemMaterial {
      */
     List<String> canSwapInfusionTo();
     Item getInfusionTemplate();
+
+    default UUID getInfusionUUID(ItemStack stack) {
+        return UUID.nameUUIDFromBytes((stack.toString()).getBytes());
+    }
 
     boolean applyToArmor();
     boolean applyToWeapons();

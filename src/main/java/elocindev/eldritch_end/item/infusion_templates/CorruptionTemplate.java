@@ -6,12 +6,10 @@ import org.jetbrains.annotations.Nullable;
 
 import elocindev.eldritch_end.api.infusion.InfusionTemplate;
 import elocindev.eldritch_end.config.Configs;
+import elocindev.eldritch_end.item.utils.TagUtils;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SmithingTemplateItem;
-import net.minecraft.item.SwordItem;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -25,8 +23,10 @@ public class CorruptionTemplate extends SmithingTemplateItem implements Infusion
 
     @Override
     public boolean isEquipmentAllowed(ItemStack stack) {
-        if (stack.getItem() instanceof ArmorItem && Configs.Mechanics.INFUSIONS.corruption_infusion.can_apply_to_armor
-        || (stack.getItem() instanceof SwordItem || stack.getItem() instanceof AxeItem) && Configs.Mechanics.INFUSIONS.corruption_infusion.can_apply_to_weapons) {
+        if (
+        TagUtils.isArmor(stack) && Configs.Mechanics.INFUSIONS.corruption_infusion.can_apply_to_armor
+            ||
+        TagUtils.isWeapon(stack) && Configs.Mechanics.INFUSIONS.corruption_infusion.can_apply_to_weapons) {
             return true;
         }
 

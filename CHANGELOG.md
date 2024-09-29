@@ -1,5 +1,11 @@
 See the full changelog in https://github.com/nvb-uy/Eldritch_End/blob/1.20.1/CHANGELOG.md
 
+## 0.3.1 (Public Release)
+- Fixed crash on macOS (Apple Sillicon)
+- Fixed crash on Linux when using a NVIDIA GPU
+- Fixed infusions not being applicable to some items (Like bows, other mods' weapons, etc)
+- Fixed Armor Infusions not stacking (ex, all etyr armor set only giving 10 resistance instead of 40)
+
 ## 0.3.0 (Public Release)
 - API BREAKING CHANGE! Corruption Resistance is no longer percentile and instead it is flat
 - WIKI IS OUT! https://rpg.prominence.wiki/mod/eldritch-end
