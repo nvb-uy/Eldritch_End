@@ -2,7 +2,6 @@ package elocindev.eldritch_end.mixin.smithing;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.UUID;
 import java.util.function.Predicate;
 
 import org.spongepowered.asm.mixin.Mixin;
