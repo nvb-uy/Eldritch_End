@@ -106,29 +106,29 @@ public class InfusionSmithingTableMixin {
     @Inject(method = "updateResult", at = @At("HEAD"), cancellable = true)
     private void eldritch_end$updateResult(CallbackInfo ci) {
         SmithingScreenHandler ths = (SmithingScreenHandler) (Object) this;
-
+    
         ItemStack base = getTemplate();
         ItemStack candidate = getEquipment();
         ItemStack addition = getMaterial();
-
+    
         if (addition.isEmpty() || base.isEmpty() || candidate.isEmpty()) return;
-
+    
         if (addition.getItem() instanceof InfusableItemMaterial material) {
             if (material.getInfusionTemplate() != base.getItem()) return;
             if (candidate.getItem() instanceof ArmorItem && !material.applyToArmor()
             || (candidate.getItem() instanceof SwordItem || candidate.getItem() instanceof AxeItem || candidate.getItem() instanceof ToolItem) && !material.applyToWeapons()
             || (!material.isInfusable())) return;
-
+    
             boolean isAlreadyInfused = candidate.copy().getOrCreateSubNbt("eldritch_infusions").getBoolean("isInfused");
-
+    
             if (isAlreadyInfused && (!isUpgradeable(material, candidate.copy()))) return;
-
+    
             ItemStack potentialResult = candidate.copy();
-
+    
             NbtCompound nbt = potentialResult.getOrCreateSubNbt("eldritch_infusions");
-
+    
             EquipmentSlot slot;
-
+    
             if (potentialResult.getItem() instanceof ArmorItem armorItem) {
                 slot = armorItem.getSlotType();
             } else if (potentialResult.getItem() instanceof SwordItem || potentialResult.getItem() instanceof AxeItem) {
@@ -136,75 +136,83 @@ public class InfusionSmithingTableMixin {
             } else {
                 slot = EquipmentSlot.MAINHAND;
             }
-
+    
             nbt.putBoolean("isInfused", true);
             nbt.putString("currentInfusion", Registries.ITEM.getId(addition.getItem()).getPath());
             nbt.putString("materialIdentifier", Registries.ITEM.getId(addition.getItem()).toString());
-
+            
             Multimap<EntityAttribute, EntityAttributeModifier> originalModifiers = HashMultimap.create();
             originalModifiers.putAll(potentialResult.getAttributeModifiers(slot));
-
+            
             Multimap<EntityAttribute, EntityAttributeModifier> mergedModifiers = HashMultimap.create(originalModifiers);
-
+            
             for (var holder : material.getInfusionAttributes()) {
-                EntityAttributeModifier modifier = new EntityAttributeModifier(
+                EntityAttributeModifier newModifier = new EntityAttributeModifier(
                     material.getInfusionUUID(addition),
                     "Infusion modifier",
                     holder.amount,
                     holder.operation
                 );
-
-                Collection<EntityAttributeModifier> existingModifiers = mergedModifiers.get(holder.attribute);
-                boolean replaced = false;
-
-                for (EntityAttributeModifier existingModifier : existingModifiers) {
-                    if (existingModifier.getId().equals(modifier.getId())) {
-                        mergedModifiers.remove(holder.attribute, existingModifier);
-                        mergedModifiers.put(holder.attribute, modifier);
-                        replaced = true;
-                        break;
+    
+                if (holder.attribute.equals(EntityAttributes.GENERIC_ATTACK_DAMAGE) || holder.attribute.equals(EntityAttributes.GENERIC_ATTACK_SPEED)) {
+                    Collection<EntityAttributeModifier> existingModifiers = mergedModifiers.get(holder.attribute);
+                    EntityAttributeModifier toReplace = null;
+    
+                    for (EntityAttributeModifier existingModifier : existingModifiers) {
+                        if (existingModifier.getId().equals(newModifier.getId())) {
+                            toReplace = existingModifier;
+                            break;
+                        }
                     }
-                }
-
-                if (!replaced) {
-                    mergedModifiers.put(holder.attribute, modifier);
+    
+                    if (toReplace != null) {
+                        mergedModifiers.remove(holder.attribute, toReplace);
+                        mergedModifiers.put(holder.attribute, new EntityAttributeModifier(
+                            toReplace.getId(),
+                            toReplace.getName(),
+                            toReplace.getValue() + newModifier.getValue(),
+                            toReplace.getOperation()
+                        ));
+                    } else {
+                        mergedModifiers.put(holder.attribute, newModifier);
+                    }
+                } else {
+                    mergedModifiers.put(holder.attribute, newModifier);
                 }
             }
-
-            boolean useWeaponModifiers = true;
-
-            if (potentialResult.getItem() instanceof ArmorItem) {
-                useWeaponModifiers = false;
-            }
-
+    
+            boolean useWeaponModifiers = !(potentialResult.getItem() instanceof ArmorItem);
+    
             for (var entry : mergedModifiers.entries()) {
                 EntityAttribute attribute = entry.getKey();
                 EntityAttributeModifier modifier = entry.getValue();
-
+    
                 if (attribute.equals(EntityAttributes.GENERIC_ATTACK_DAMAGE)) {
                     modifier = new EntityAttributeModifier(
-                        useWeaponModifiers ? ItemAttributeAccessor.getAttackDamageModifierId() : UUID.nameUUIDFromBytes((modifier.getName() + modifier.getValue()).getBytes()),
+                        useWeaponModifiers ? ItemAttributeAccessor.getAttackDamageModifierId() : modifier.getId(),
                         modifier.getName(),
                         modifier.getValue(),
                         modifier.getOperation()
                     );
                 } else if (attribute.equals(EntityAttributes.GENERIC_ATTACK_SPEED)) {
                     modifier = new EntityAttributeModifier(
-                        useWeaponModifiers ? ItemAttributeAccessor.getAttackSpeedModifierId() : UUID.nameUUIDFromBytes((modifier.getName() + modifier.getValue()).getBytes()),
+                        useWeaponModifiers ? ItemAttributeAccessor.getAttackSpeedModifierId() : modifier.getId(),
                         modifier.getName(),
                         modifier.getValue(),
                         modifier.getOperation()
                     );
                 }
-
+    
                 potentialResult.addAttributeModifier(attribute, modifier, slot);
             }
-
+    
             ((ForgingScreenHandlerAccessor) ths).getOutput().setStack(3, potentialResult);
-
+    
             ci.cancel();
         }
     }
+    
+
 
 
     @Inject(method = "canTakeOutput", at = @At("HEAD"), cancellable = true)
