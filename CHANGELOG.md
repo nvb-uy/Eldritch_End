@@ -1,5 +1,8 @@
 See the full changelog in https://github.com/nvb-uy/Eldritch_End/blob/1.20.1/CHANGELOG.md
 
+## 0.3.2 (Public Release)
+- Fixed armor getting attack damage and speed modifiers when using infusions
+
 ## 0.3.1 (Public Release)
 - Fixed crash on macOS (Apple Sillicon)
 - Fixed crash on Linux when using a NVIDIA GPU

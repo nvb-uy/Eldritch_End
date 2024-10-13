@@ -1,6 +1,8 @@
 package elocindev.eldritch_end.mixin.smithing;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 import java.util.function.Predicate;
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -152,29 +154,49 @@ public class InfusionSmithingTableMixin {
                     holder.operation
                 );
 
-                mergedModifiers.put(holder.attribute, modifier);
+                Collection<EntityAttributeModifier> existingModifiers = mergedModifiers.get(holder.attribute);
+                boolean replaced = false;
+
+                for (EntityAttributeModifier existingModifier : existingModifiers) {
+                    if (existingModifier.getId().equals(modifier.getId())) {
+                        mergedModifiers.remove(holder.attribute, existingModifier);
+                        mergedModifiers.put(holder.attribute, modifier);
+                        replaced = true;
+                        break;
+                    }
+                }
+
+                if (!replaced) {
+                    mergedModifiers.put(holder.attribute, modifier);
+                }
+            }
+
+            boolean useWeaponModifiers = true;
+
+            if (potentialResult.getItem() instanceof ArmorItem) {
+                useWeaponModifiers = false;
             }
 
             for (var entry : mergedModifiers.entries()) {
                 EntityAttribute attribute = entry.getKey();
                 EntityAttributeModifier modifier = entry.getValue();
-                
+
                 if (attribute.equals(EntityAttributes.GENERIC_ATTACK_DAMAGE)) {
                     modifier = new EntityAttributeModifier(
-                        ItemAttributeAccessor.getAttackDamageModifierId(),
+                        useWeaponModifiers ? ItemAttributeAccessor.getAttackDamageModifierId() : UUID.nameUUIDFromBytes((modifier.getName() + modifier.getValue()).getBytes()),
                         modifier.getName(),
                         modifier.getValue(),
                         modifier.getOperation()
                     );
                 } else if (attribute.equals(EntityAttributes.GENERIC_ATTACK_SPEED)) {
                     modifier = new EntityAttributeModifier(
-                        ItemAttributeAccessor.getAttackSpeedModifierId(),
+                        useWeaponModifiers ? ItemAttributeAccessor.getAttackSpeedModifierId() : UUID.nameUUIDFromBytes((modifier.getName() + modifier.getValue()).getBytes()),
                         modifier.getName(),
                         modifier.getValue(),
                         modifier.getOperation()
                     );
                 }
-                
+
                 potentialResult.addAttributeModifier(attribute, modifier, slot);
             }
 
