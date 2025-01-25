@@ -130,8 +130,8 @@ public class InfusionSmithingTableMixin {
     
             if (potentialResult.getItem() instanceof ArmorItem armorItem) {
                 slot = armorItem.getSlotType();
-            } else if (potentialResult.getItem() instanceof SwordItem || potentialResult.getItem() instanceof AxeItem) {
-                slot = EquipmentSlot.MAINHAND;
+            // } else if (potentialResult.getItem() instanceof SwordItem || potentialResult.getItem() instanceof AxeItem) {
+            //     slot = EquipmentSlot.MAINHAND;
             } else {
                 slot = EquipmentSlot.MAINHAND;
             }
