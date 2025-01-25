@@ -54,14 +54,6 @@ public class AberrationHeartItem extends SummonPartItem implements InfusableItem
     }
 
     @Override
-    public List<String> canSwapInfusionTo() {
-        return List.of(
-            "eldritch_end:aberration_limb",
-            "eldritch_end:xal"
-        );
-    }
-
-    @Override
     public boolean getSummoningConditions(BlockPos pos, World world) {
         int[][] positions = {
             {-2, 0},

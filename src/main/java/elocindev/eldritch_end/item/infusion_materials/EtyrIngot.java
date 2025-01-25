@@ -41,11 +41,6 @@ public class EtyrIngot extends Item implements InfusableItemMaterial {
     public boolean applyToWeapons() {
         return Configs.Mechanics.INFUSIONS.etyr_infusion.can_apply_to_weapons;
     }
-
-    @Override
-    public List<String> canSwapInfusionTo() {
-        return List.of();
-    }
     
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {

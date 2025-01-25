@@ -42,14 +42,6 @@ public class AberrationLimbItem extends Item implements InfusableItemMaterial {
     public boolean applyToWeapons() {
         return Configs.Mechanics.INFUSIONS.corruption_infusion.can_apply_to_weapons;
     }
-
-    @Override
-    public List<String> canSwapInfusionTo() {
-        return List.of(
-            "eldritch_end:aberration_heart",
-            "eldritch_end:xal"
-        );
-    }
     
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {

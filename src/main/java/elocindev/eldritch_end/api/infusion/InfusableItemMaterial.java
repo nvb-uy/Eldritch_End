@@ -14,7 +14,9 @@ public interface InfusableItemMaterial {
      * List of item IDs that this material can swap its infusion to, please use the same UUID as these materials so the attributes can be swapped properly, if not they will stack.
      * @see InfusionAttributeHolder.Presets
      */
-    List<String> canSwapInfusionTo();
+    default List<String> canSwapInfusionTo() {
+        return List.of();
+    };
     Item getInfusionTemplate();
 
     default UUID getInfusionUUID(ItemStack stack, EquipmentSlot slot) {

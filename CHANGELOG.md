@@ -1,5 +1,11 @@
 See the full changelog in https://github.com/nvb-uy/Eldritch_End/blob/1.20.1/CHANGELOG.md
 
+## 0.3.3 (Public Release)
+- API CHANGE: InfusableItemMaterial#canSwapInfusionTo now returns an empty list by default.
+- Fixed infusions' attributes only applying once, making things like etyr only give +10 resistance with all 4 pieces instead of +40.
+- Fixed corruption infusions being infinitely stackable.
+- Fixed issues with built-in AAA Particles, namely: Intel Macs not working, breaking some configs
+
 ## 0.3.2 (Public Release)
 - Fixed armor getting attack damage and speed modifiers when using infusions
 

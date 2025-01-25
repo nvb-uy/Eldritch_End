@@ -181,12 +181,4 @@ public class Xal extends CorruptionRelic implements InfusableItemMaterial {
     public boolean applyToWeapons() {
         return Configs.Mechanics.INFUSIONS.corruption_infusion.can_apply_to_weapons;
     }
-
-    @Override
-    public List<String> canSwapInfusionTo() {
-        return List.of(
-            "eldritch_end:aberration_heart",
-            "eldritch_end:aberration_limb"
-        );
-    }
 }
