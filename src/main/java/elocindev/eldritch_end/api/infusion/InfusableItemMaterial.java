@@ -3,6 +3,7 @@ package elocindev.eldritch_end.api.infusion;
 import java.util.List;
 import java.util.UUID;
 
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -16,8 +17,8 @@ public interface InfusableItemMaterial {
     List<String> canSwapInfusionTo();
     Item getInfusionTemplate();
 
-    default UUID getInfusionUUID(ItemStack stack) {
-        return UUID.nameUUIDFromBytes((stack.toString()).getBytes());
+    default UUID getInfusionUUID(ItemStack stack, EquipmentSlot slot) {
+        return UUID.nameUUIDFromBytes((stack.toString()+slot.toString()).getBytes());
     }
 
     boolean applyToArmor();

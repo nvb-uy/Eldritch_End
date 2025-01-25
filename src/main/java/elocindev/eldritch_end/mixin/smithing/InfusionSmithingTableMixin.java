@@ -147,7 +147,7 @@ public class InfusionSmithingTableMixin {
             
             for (var holder : material.getInfusionAttributes()) {
                 EntityAttributeModifier newModifier = new EntityAttributeModifier(
-                    material.getInfusionUUID(addition),
+                    material.getInfusionUUID(addition, slot),
                     "Infusion modifier",
                     holder.amount,
                     holder.operation
