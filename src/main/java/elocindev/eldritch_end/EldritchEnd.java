@@ -1,11 +1,14 @@
 package elocindev.eldritch_end;
 
+import elocindev.eldritch_end.compat.SpellEngineCompat;
+import elocindev.eldritch_end.compat.SpellEngineCompatClient;
 import elocindev.eldritch_end.events.PlayerTickEventHandler;
 import elocindev.eldritch_end.registry.*;
 import mod.azure.azurelib.AzureLib;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.loader.api.FabricLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,7 +38,9 @@ public class EldritchEnd implements ModInitializer {
 		StructureRegistry.register();
 		SoundEffectRegistry.register();
 		LootRegistry.register();
-
+		if (FabricLoader.getInstance().isModLoaded("spell_engine")) {
+			SpellEngineCompat.register();
+		}
 		EtyrAttributeBuilder.buildItemTag();
 		ServerTickEvents.START_SERVER_TICK.register(new PlayerTickEventHandler());
 	}

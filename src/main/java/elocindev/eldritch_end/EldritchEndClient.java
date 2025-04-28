@@ -8,6 +8,8 @@ import elocindev.eldritch_end.client.entity.tentacle.TentacleRenderer;
 import elocindev.eldritch_end.client.entity.undead_tentacle.UndeadTentacleRenderer;
 import elocindev.eldritch_end.client.render.screen.CorruptionOverlay;
 import elocindev.eldritch_end.compat.LegendaryTooltipsIntegration;
+import elocindev.eldritch_end.compat.SpellEngineCompat;
+import elocindev.eldritch_end.compat.SpellEngineCompatClient;
 import elocindev.eldritch_end.config.ConfigLoader;
 import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.registry.EntityRegistry;
@@ -61,7 +63,9 @@ public class EldritchEndClient implements ClientModInitializer {
         if (FabricLoader.getInstance().isModLoaded("legendarytooltips")) {
             LegendaryTooltipsIntegration.init();
         }
-
+        if (FabricLoader.getInstance().isModLoaded("spell_engine")) {
+            SpellEngineCompatClient.registerClient();
+        }
         ModelLoadingPlugin.register(context -> context.addModels(
             new Identifier(EldritchEnd.MODID, "entity/ominous_eye")
         ));

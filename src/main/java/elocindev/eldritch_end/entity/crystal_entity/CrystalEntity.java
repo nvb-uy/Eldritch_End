@@ -1,0 +1,242 @@
+package elocindev.eldritch_end.entity.crystal_entity;
+
+import elocindev.eldritch_end.EldritchEnd;
+import elocindev.eldritch_end.entity.eye_remastered.EyeEntity;
+import mod.azure.azurelib.animatable.GeoEntity;
+import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
+import mod.azure.azurelib.core.animation.AnimatableManager;
+import mod.azure.azurelib.core.animation.AnimationController;
+import mod.azure.azurelib.core.animation.RawAnimation;
+import mod.azure.azurelib.core.object.PlayState;
+import mod.azure.azurelib.util.AzureLibUtil;
+import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
+import net.minecraft.entity.*;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.projectile.ProjectileEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.Arm;
+import net.minecraft.util.Identifier;
+import net.minecraft.world.World;
+import net.spell_engine.api.spell.ParticleBatch;
+import net.spell_engine.api.spell.Spell;
+import net.spell_engine.api.spell.SpellInfo;
+import net.spell_engine.internals.SpellHelper;
+import net.spell_engine.internals.SpellRegistry;
+import net.spell_engine.particle.Particles;
+import net.spell_engine.utils.SoundHelper;
+import net.spell_engine.utils.TargetHelper;
+import net.spell_power.api.SpellPower;
+import net.spell_power.api.SpellSchool;
+import net.spell_power.api.SpellSchools;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.UUID;
+
+import static elocindev.eldritch_end.entity.eye_remastered.EyeEntity.sendBatches;
+import static net.spell_power.api.SpellSchools.*;
+import static net.spell_power.api.SpellSchools.ARCANE;
+
+public class CrystalEntity extends HostileEntity implements Ownable, GeoEntity {
+    public static ParticleBatch glyph_release(float scale, float angle, ParticleBatch.Origin origin, ParticleBatch.Rotation rotate, SpellSchool school, boolean follow){
+        if(school.equals(FROST)){
+            return  new ParticleBatch(Particles.snowflake.id.toString(), ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.2F,0.2F,angle,0,20,false);
+        }
+
+        if(school.equals(FIRE)){
+            return  new ParticleBatch(Particles.flame.id.toString(), ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.2F,0.2F,angle,0,20,false);
+        }
+        return  new ParticleBatch(Particles.arcane_spell.id.toString(), ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,100,0.2F,0.2F,angle,0,20,false);
+
+    }
+    public static ParticleBatch glyph_outer_release(float scale, float angle, ParticleBatch.Origin origin, ParticleBatch.Rotation rotate, SpellSchool school, boolean follow){
+        if(school.equals(FROST)){
+            return  new ParticleBatch(Particles.frost_shard.id.toString(), ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,100,false);
+        }
+        if(school.equals(FIRE)){
+            return  new ParticleBatch(Particles.flame_medium_a.id.toString(), ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,100,false);
+        }
+        return  new ParticleBatch(Particles.arcane_spell.id.toString(), ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,100,false);
+
+    }
+    public static ParticleBatch glyph_center_release(float scale, float angle, ParticleBatch.Origin origin, ParticleBatch.Rotation rotate, SpellSchool school, boolean follow){
+        if(school.equals(FROST)){
+            return  new ParticleBatch(Particles.frost_shard.id.toString(), ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,150,false);
+        }
+        if(school.equals(FIRE)){
+            return  new ParticleBatch(Particles.flame_spark.id.toString(), ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,150,false);
+        }
+        return  new ParticleBatch(Particles.arcane_hit.id.toString(), ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,150,false);
+
+    }
+    public CrystalEntity(EntityType<? extends HostileEntity> entityType, World world) {
+        super(entityType, world);
+    }
+
+    public CrystalEntity(EntityType<? extends HostileEntity> entityType, World world, Entity owner) {
+        super(entityType, world);
+    }
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar animationData) {
+
+        animationData.add(
+                new AnimationController<>(this, "fall", event -> PlayState.CONTINUE)
+                        .triggerableAnim("fall", FALL));
+    }
+    public static final RawAnimation FALL = RawAnimation.begin().thenPlay("animation.crystal.fall");
+
+    public static final TrackedData<Integer> OWNER;
+
+    public AnimatableInstanceCache instanceCache = AzureLibUtil.createInstanceCache(this);
+
+    static {
+
+    OWNER =DataTracker.registerData(CrystalEntity .class,TrackedDataHandlerRegistry.INTEGER);
+}
+    private UUID ownerUuid;
+
+    private Entity owner;
+
+    protected void initDataTracker() {
+        super.initDataTracker();
+        this.dataTracker.startTracking(OWNER, -1);
+
+
+    }
+
+    public void writeCustomDataToNbt(NbtCompound nbt) {
+        if (this.ownerUuid != null) {
+            nbt.putUuid("Owner", this.ownerUuid);
+        }
+
+
+    }
+    public void readCustomDataFromNbt(NbtCompound nbt) {
+        if (nbt.containsUuid("Owner")) {
+            this.ownerUuid = nbt.getUuid("Owner");
+            this.owner = null;
+        }
+
+    }
+
+    @Nullable
+
+    public Entity getOwner() {
+        if (this.owner != null && !this.owner.isRemoved()) {
+            return this.owner;
+        } else if (this.ownerUuid != null && this.getWorld() instanceof ServerWorld) {
+            this.owner = ((ServerWorld)this.getWorld()).getEntity(this.ownerUuid);
+            return this.owner;
+        } else {
+            return null;
+        }
+    }
+
+    public void setOwner(@Nullable Entity entity) {
+        if (entity != null) {
+            this.ownerUuid = entity.getUuid();
+            this.owner = entity;
+        }
+
+    }
+
+
+    @Override
+    public void pushAwayFrom(Entity entity) {
+
+    }
+
+    @Override
+    protected void pushAway(Entity entity) {
+
+    }
+
+    @Override
+    protected void onKilledBy(@Nullable LivingEntity adversary) {
+        if(this.getOwner() != null && adversary != null){
+            this.getOwner().damage(adversary.getDamageSources().mobAttack(adversary),50);
+        }
+        else if(this.getOwner() != null && this.getLastAttacker() != null){
+            this.getOwner().damage(this.getDamageSources().mobAttack(this.getLastAttacker()),50);
+
+        } else if(this.getOwner() != null ){
+            this.getOwner().damage(this.getDamageSources().generic(),50);
+
+        }
+
+        super.onKilledBy(adversary);
+    }
+    @Override
+    public boolean damage(DamageSource source, float amount) {
+        if(this.getOwner() != null && source.getAttacker() != null && this.getOwner().equals(source.getAttacker())){
+            return false;
+        }
+        if(this.getOwner() != null && !source.isOf(DamageTypes.THORNS)){
+            DamageSource source1 = new DamageSource(source.getTypeRegistryEntry(),source.getSource(),source.getAttacker());
+            this.getOwner().damage(source1,amount);
+        }
+
+        return super.damage(source, amount);
+    }
+
+    @Override
+    protected void applyDamage(DamageSource source, float amount) {
+
+        super.applyDamage(source, amount);
+    }
+
+    @Override
+    public void tick() {
+        if(this.firstUpdate && !this.getWorld().isClient()){
+            (this).triggerAnim("fall","fall");
+            SoundHelper.playSound(this.getWorld(),this,SpellRegistry.getSpell(new Identifier(EldritchEnd.MODID,"arcane_missile")).release.sound);
+
+        }
+        if(this.age == 40 && !this.getWorld().isClient()){
+            SoundHelper.playSound(this.getWorld(),this,SpellRegistry.getSpell(new Identifier(EldritchEnd.MODID,"arcane_missile")).release.sound);
+
+            Spell.Release.Target.Area area = new Spell.Release.Target.Area();
+            area.angle_degrees = 360;
+            for(Entity target: TargetHelper.targetsFromArea(this,this.getPos(),6,area,entity ->
+                entity != this.getOwner() && !(entity instanceof CrystalEntity))) {
+                SpellHelper.performImpacts(this.getWorld(),this,target,this,new SpellInfo(SpellRegistry.getSpell(Identifier.of(EldritchEnd.MODID, "arcane_missile")), Identifier.of(EldritchEnd.MODID, "arcane_missile"))
+                        ,new SpellHelper.ImpactContext().power(SpellPower.getSpellPower(ARCANE,this)).position(target.getPos()),false);
+            }
+            sendBatches(this,new ParticleBatch[]{glyph_center_release(1,0, ParticleBatch.Origin.FEET,null, ARCANE,true)},this.getYaw(),this.getPitch(),1, PlayerLookup.tracking(this),false);
+            sendBatches(this,new ParticleBatch[]{glyph_outer_release(1,0, ParticleBatch.Origin.FEET, null, ARCANE,true)},this.getYaw(),this.getPitch(),1,PlayerLookup.tracking(this),false);
+            sendBatches(this,new ParticleBatch[]{glyph_release(1,0, ParticleBatch.Origin.FEET, null, ARCANE,true)},this.getYaw(),this.getPitch(),1,PlayerLookup.tracking(this),false);
+        }
+        if(this.age > 240 && !this.getWorld().isClient()){
+            SoundHelper.playSound(this.getWorld(),this,SpellRegistry.getSpell(new Identifier(EldritchEnd.MODID,"arcane_missile")).release.sound);
+
+            Spell.Release.Target.Area area = new Spell.Release.Target.Area();
+            area.angle_degrees = 360;
+            for(Entity target: TargetHelper.targetsFromArea(this,this.getPos(),6,area,entity ->
+                    entity != this.getOwner() && !(entity instanceof CrystalEntity))) {
+                SpellHelper.performImpacts(this.getWorld(),this,target,this,new SpellInfo(SpellRegistry.getSpell(Identifier.of(EldritchEnd.MODID, "arcane_missile")), Identifier.of(EldritchEnd.MODID, "arcane_missile"))
+                        ,new SpellHelper.ImpactContext().power(SpellPower.getSpellPower(ARCANE,this)).position(target.getPos()),false);
+            }
+            sendBatches(this,new ParticleBatch[]{glyph_center_release(1,0, ParticleBatch.Origin.FEET, null, ARCANE,true)},this.getYaw(),this.getPitch(),1, PlayerLookup.tracking(this),false);
+            sendBatches(this,new ParticleBatch[]{glyph_outer_release(1,0, ParticleBatch.Origin.FEET, null, ARCANE,true)},this.getYaw(),this.getPitch(),1,PlayerLookup.tracking(this),false);
+            sendBatches(this,new ParticleBatch[]{glyph_release(1,0, ParticleBatch.Origin.FEET, null, ARCANE,true)},this.getYaw(),this.getPitch(),1,PlayerLookup.tracking(this),false);
+
+            this.discard();
+
+        }
+        super.tick();
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return instanceCache;
+    }
+
+
+}
