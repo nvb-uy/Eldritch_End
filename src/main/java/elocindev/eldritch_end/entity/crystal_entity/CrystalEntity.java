@@ -9,6 +9,7 @@ import mod.azure.azurelib.animatable.GeoEntity;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
 import mod.azure.azurelib.core.animation.AnimatableManager;
 import mod.azure.azurelib.core.animation.AnimationController;
+import mod.azure.azurelib.core.animation.AnimationState;
 import mod.azure.azurelib.core.animation.RawAnimation;
 import mod.azure.azurelib.core.object.PlayState;
 import mod.azure.azurelib.util.AzureLibUtil;
@@ -40,6 +41,8 @@ import static elocindev.eldritch_end.entity.eye_remastered.EyeEntity.sendBatches
 import static elocindev.eldritch_end.registry.EffectRegistry.CORRUPTION;
 
 public class CrystalEntity extends HostileEntity implements Ownable, GeoEntity {
+    public static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.crystal.idle");
+
     public static ParticleBatch glyph_release(float scale, float angle, ParticleBatch.Origin origin, ParticleBatch.Rotation rotate, SpellSchools school, boolean follow){
         if(school.equals(FROST)){
             return  new ParticleBatch("minecraft:snowflake_particle", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.2F,0.2F,angle,0,20,false);
@@ -78,10 +81,16 @@ public class CrystalEntity extends HostileEntity implements Ownable, GeoEntity {
     public CrystalEntity(EntityType<? extends HostileEntity> entityType, World world, Entity owner) {
         super(entityType, world);
     }
+    private PlayState predicate2(AnimationState<CrystalEntity> state) {
 
+        return state.setAndContinue(IDLE);
+
+    }
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar animationData) {
-
+        animationData.add(new AnimationController<CrystalEntity>(this, "walk",
+                0, this::predicate2)
+        );
         animationData.add(
                 new AnimationController<>(this, "fall", event -> PlayState.CONTINUE)
                         .triggerableAnim("fall", FALL));

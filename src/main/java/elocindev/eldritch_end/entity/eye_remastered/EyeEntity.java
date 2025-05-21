@@ -208,6 +208,10 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
             TargetHelper.Area area = new TargetHelper.Area();
             area.angle_degrees = 120;
             List<Entity> list = TargetHelper.targetsFromArea(this,64,area, entity ->  entity instanceof LivingEntity && !(entity instanceof CrystalEntity));
+            ((WorldSchedulerEldritch) this.getWorld()).scheduleEldritch(30, () -> {
+                ( this).triggerAnim("attack", "attack");
+
+            });
             for(int i = 0; i < 3; i++){
                 int ii = 0;
                 for(Entity entity: list) {
@@ -246,6 +250,10 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
             TargetHelper.Area area = new TargetHelper.Area();
             area.angle_degrees = 120;
             List<Entity> list = TargetHelper.targetsFromArea(this,64,area, entity ->  entity instanceof LivingEntity && !(entity instanceof CrystalEntity));
+            ((WorldSchedulerEldritch) this.getWorld()).scheduleEldritch(+ 30, () -> {
+                ( this).triggerAnim("attack", "attack");
+
+            });
             for(int i = 0; i < 3; i++){
                 int ii = 0;
                 for(Entity entity: list) {
@@ -256,6 +264,7 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
                     ((WorldSchedulerEldritch) this.getWorld()).scheduleEldritch((i * 5) + 5, () -> {
                         lineParticles(this,pos,pos,64);
                     });
+
                     ((WorldSchedulerEldritch) this.getWorld()).scheduleEldritch((ii * 2) + 1, () -> {
 
                                 ((WorldSchedulerEldritch) this.getWorld()).scheduleEldritch((finalI * 10) + 20, () -> {
@@ -480,12 +489,16 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
         }
         return super.damage(source, amount);
     }
+    public static final RawAnimation ATTACK = RawAnimation.begin().thenPlay("animation.eye.attack");
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar animationData) {
         animationData.add(new AnimationController<EyeEntity>(this, "walk",
                 0, this::predicate2)
         );
+        animationData.add(
+                new AnimationController<>(this, "attack", event -> PlayState.CONTINUE)
+                        .triggerableAnim("attack", ATTACK));
     }
     public AnimatableInstanceCache instanceCache = AzureLibUtil.createInstanceCache(this);
 

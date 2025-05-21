@@ -44,7 +44,7 @@ public class SpellEngineCompat {
                 ENTITY_TYPE,
                 Identifier.of(EldritchEnd.MODID, "eye"),
                 FabricEntityTypeBuilder.<EyeEntity>create(SpawnGroup.MONSTER, EyeEntity::new)
-                        .dimensions(EntityDimensions.fixed(4F, 4F)) // dimensions in Minecraft units of the render
+                        .dimensions(EntityDimensions.fixed(8F, 8F)) // dimensions in Minecraft units of the render
                         .trackRangeBlocks(128)
                         .trackedUpdateRate(1)
                         .build()

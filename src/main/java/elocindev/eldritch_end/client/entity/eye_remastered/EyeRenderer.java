@@ -53,13 +53,15 @@ public class EyeRenderer<T extends EyeEntity> extends DynamicGeoEntityRenderer<T
 
     @Override
     public void renderRecursively(MatrixStack poseStack, T animatable, GeoBone bone, RenderLayer renderType, VertexConsumerProvider bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-        if(bone.getName().equals("center")){
             poseStack.push();
-            RenderUtils.translateMatrixToBone(poseStack, bone);
+            if(bone.getParent()== null) {
+                poseStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(-animatable.getPitch(partialTick)));
+
+            }
+        RenderUtils.translateMatrixToBone(poseStack, bone);
             RenderUtils.translateToPivotPoint(poseStack, bone);
             RenderUtils.rotateMatrixAroundBone(poseStack, bone);
             RenderUtils.scaleMatrixForBone(poseStack, bone);
-            poseStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(-animatable.getPitch(partialTick)));
 
             if (bone.isTrackingMatrices()) {
                 Matrix4f poseState = new Matrix4f(poseStack.peek().getPositionMatrix());
@@ -95,10 +97,8 @@ public class EyeRenderer<T extends EyeEntity> extends DynamicGeoEntityRenderer<T
 
             super.renderChildBones(poseStack, animatable, bone, renderType, bufferSource, buffer, false, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
             poseStack.pop();
-        }
-        else {
-            super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
-        }
+
+
     }
 
     @Override
