@@ -38,9 +38,8 @@ public class EldritchEnd implements ModInitializer {
 		StructureRegistry.register();
 		SoundEffectRegistry.register();
 		LootRegistry.register();
-		if (FabricLoader.getInstance().isModLoaded("spell_engine")) {
 			SpellEngineCompat.register();
-		}
+
 		EtyrAttributeBuilder.buildItemTag();
 		ServerTickEvents.START_SERVER_TICK.register(new PlayerTickEventHandler());
 	}

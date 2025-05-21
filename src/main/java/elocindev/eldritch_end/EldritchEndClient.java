@@ -1,5 +1,7 @@
 package elocindev.eldritch_end;
 
+import elocindev.eldritch_end.api.particles.ParticleHelper;
+import elocindev.eldritch_end.api.particles.packets.ParticlePackets;
 import elocindev.eldritch_end.client.entity.aberration.AberrationRenderer;
 import elocindev.eldritch_end.client.entity.dendler.DendlerRenderer;
 import elocindev.eldritch_end.client.entity.faceless.FacelessRenderer;
@@ -17,11 +19,15 @@ import elocindev.eldritch_end.registry.PacketRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.util.Identifier;
+
+import java.util.Iterator;
+import java.util.List;
 
 public class EldritchEndClient implements ClientModInitializer {
     @Override
@@ -63,11 +69,22 @@ public class EldritchEndClient implements ClientModInitializer {
         if (FabricLoader.getInstance().isModLoaded("legendarytooltips")) {
             LegendaryTooltipsIntegration.init();
         }
-        if (FabricLoader.getInstance().isModLoaded("spell_engine")) {
             SpellEngineCompatClient.registerClient();
-        }
         ModelLoadingPlugin.register(context -> context.addModels(
             new Identifier(EldritchEnd.MODID, "entity/ominous_eye")
         ));
+        ClientPlayNetworking.registerGlobalReceiver(ParticlePackets.ParticleBatches.ID, (client, handler, buf, responseSender) -> {
+            ParticlePackets.ParticleBatches packet = ParticlePackets.ParticleBatches.read(buf);
+            List<ParticleHelper.SpawnInstruction> instructions = ParticleHelper.convertToInstructions(client.world, packet);
+            client.execute(() -> {
+                Iterator var2 = instructions.iterator();
+
+                while(var2.hasNext()) {
+                    ParticleHelper.SpawnInstruction instruction = (ParticleHelper.SpawnInstruction)var2.next();
+                    instruction.perform(client.world);
+                }
+
+            });
+        });
     }
 }

@@ -1,6 +1,9 @@
 package elocindev.eldritch_end.entity.crystal_entity;
 
 import elocindev.eldritch_end.EldritchEnd;
+import elocindev.eldritch_end.api.particles.ParticleBatch;
+import elocindev.eldritch_end.api.particles.SpellSchools;
+import elocindev.eldritch_end.api.targeting.TargetHelper;
 import elocindev.eldritch_end.entity.eye_remastered.EyeEntity;
 import mod.azure.azurelib.animatable.GeoEntity;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
@@ -11,6 +14,7 @@ import mod.azure.azurelib.core.object.PlayState;
 import mod.azure.azurelib.util.AzureLibUtil;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.minecraft.entity.*;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.data.DataTracker;
@@ -21,58 +25,50 @@ import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Arm;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
-import net.spell_engine.api.spell.ParticleBatch;
-import net.spell_engine.api.spell.Spell;
-import net.spell_engine.api.spell.SpellInfo;
-import net.spell_engine.internals.SpellHelper;
-import net.spell_engine.internals.SpellRegistry;
-import net.spell_engine.particle.Particles;
-import net.spell_engine.utils.SoundHelper;
-import net.spell_engine.utils.TargetHelper;
-import net.spell_power.api.SpellPower;
-import net.spell_power.api.SpellSchool;
-import net.spell_power.api.SpellSchools;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
+import static elocindev.eldritch_end.api.particles.SpellSchools.ARCANE;
+import static elocindev.eldritch_end.api.particles.SpellSchools.FIRE;
+import static elocindev.eldritch_end.api.particles.SpellSchools.FROST;
 import static elocindev.eldritch_end.entity.eye_remastered.EyeEntity.sendBatches;
-import static net.spell_power.api.SpellSchools.*;
-import static net.spell_power.api.SpellSchools.ARCANE;
+import static elocindev.eldritch_end.registry.EffectRegistry.CORRUPTION;
 
 public class CrystalEntity extends HostileEntity implements Ownable, GeoEntity {
-    public static ParticleBatch glyph_release(float scale, float angle, ParticleBatch.Origin origin, ParticleBatch.Rotation rotate, SpellSchool school, boolean follow){
+    public static ParticleBatch glyph_release(float scale, float angle, ParticleBatch.Origin origin, ParticleBatch.Rotation rotate, SpellSchools school, boolean follow){
         if(school.equals(FROST)){
-            return  new ParticleBatch(Particles.snowflake.id.toString(), ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.2F,0.2F,angle,0,20,false);
+            return  new ParticleBatch("minecraft:snowflake_particle", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.2F,0.2F,angle,0,20,false);
         }
 
         if(school.equals(FIRE)){
-            return  new ParticleBatch(Particles.flame.id.toString(), ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.2F,0.2F,angle,0,20,false);
+            return  new ParticleBatch("minecraft:flame", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.2F,0.2F,angle,0,20,false);
         }
-        return  new ParticleBatch(Particles.arcane_spell.id.toString(), ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,100,0.2F,0.2F,angle,0,20,false);
-
-    }
-    public static ParticleBatch glyph_outer_release(float scale, float angle, ParticleBatch.Origin origin, ParticleBatch.Rotation rotate, SpellSchool school, boolean follow){
-        if(school.equals(FROST)){
-            return  new ParticleBatch(Particles.frost_shard.id.toString(), ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,100,false);
-        }
-        if(school.equals(FIRE)){
-            return  new ParticleBatch(Particles.flame_medium_a.id.toString(), ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,100,false);
-        }
-        return  new ParticleBatch(Particles.arcane_spell.id.toString(), ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,100,false);
+        return  new ParticleBatch("minecraft:dragon_breath", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,100,0.2F,0.2F,angle,0,20,false);
 
     }
-    public static ParticleBatch glyph_center_release(float scale, float angle, ParticleBatch.Origin origin, ParticleBatch.Rotation rotate, SpellSchool school, boolean follow){
+    public static ParticleBatch glyph_outer_release(float scale, float angle, ParticleBatch.Origin origin, ParticleBatch.Rotation rotate, SpellSchools school, boolean follow){
         if(school.equals(FROST)){
-            return  new ParticleBatch(Particles.frost_shard.id.toString(), ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,150,false);
+            return  new ParticleBatch("minecraft:snowflake_particle", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,100,false);
         }
         if(school.equals(FIRE)){
-            return  new ParticleBatch(Particles.flame_spark.id.toString(), ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,150,false);
+            return  new ParticleBatch("minecraft:flame", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,100,false);
         }
-        return  new ParticleBatch(Particles.arcane_hit.id.toString(), ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,150,false);
+        return  new ParticleBatch("minecraft:dragon_breath", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,100,false);
+
+    }
+    public static ParticleBatch glyph_center_release(float scale, float angle, ParticleBatch.Origin origin, ParticleBatch.Rotation rotate, SpellSchools school, boolean follow){
+        if(school.equals(FROST)){
+            return  new ParticleBatch("minecraft:snowflake_particle", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,150,false);
+        }
+        if(school.equals(FIRE)){
+            return  new ParticleBatch("minecraft:flame", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,150,false);
+        }
+        return  new ParticleBatch("minecraft:dragon_breath", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,150,false);
 
     }
     public CrystalEntity(EntityType<? extends HostileEntity> entityType, World world) {
@@ -196,32 +192,29 @@ public class CrystalEntity extends HostileEntity implements Ownable, GeoEntity {
     public void tick() {
         if(this.firstUpdate && !this.getWorld().isClient()){
             (this).triggerAnim("fall","fall");
-            SoundHelper.playSound(this.getWorld(),this,SpellRegistry.getSpell(new Identifier(EldritchEnd.MODID,"arcane_missile")).release.sound);
-
+            this.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL,5,1);
         }
         if(this.age == 40 && !this.getWorld().isClient()){
-            SoundHelper.playSound(this.getWorld(),this,SpellRegistry.getSpell(new Identifier(EldritchEnd.MODID,"arcane_missile")).release.sound);
 
-            Spell.Release.Target.Area area = new Spell.Release.Target.Area();
+            this.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL,5,1);
+            TargetHelper.Area area = new TargetHelper.Area();
             area.angle_degrees = 360;
             for(Entity target: TargetHelper.targetsFromArea(this,this.getPos(),6,area,entity ->
                 entity != this.getOwner() && !(entity instanceof CrystalEntity))) {
-                SpellHelper.performImpacts(this.getWorld(),this,target,this,new SpellInfo(SpellRegistry.getSpell(Identifier.of(EldritchEnd.MODID, "arcane_missile")), Identifier.of(EldritchEnd.MODID, "arcane_missile"))
-                        ,new SpellHelper.ImpactContext().power(SpellPower.getSpellPower(ARCANE,this)).position(target.getPos()),false);
+                target.damage(this.getDamageSources().mobAttack(this), (float) this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE));
             }
             sendBatches(this,new ParticleBatch[]{glyph_center_release(1,0, ParticleBatch.Origin.FEET,null, ARCANE,true)},this.getYaw(),this.getPitch(),1, PlayerLookup.tracking(this),false);
             sendBatches(this,new ParticleBatch[]{glyph_outer_release(1,0, ParticleBatch.Origin.FEET, null, ARCANE,true)},this.getYaw(),this.getPitch(),1,PlayerLookup.tracking(this),false);
             sendBatches(this,new ParticleBatch[]{glyph_release(1,0, ParticleBatch.Origin.FEET, null, ARCANE,true)},this.getYaw(),this.getPitch(),1,PlayerLookup.tracking(this),false);
         }
         if(this.age > 240 && !this.getWorld().isClient()){
-            SoundHelper.playSound(this.getWorld(),this,SpellRegistry.getSpell(new Identifier(EldritchEnd.MODID,"arcane_missile")).release.sound);
 
-            Spell.Release.Target.Area area = new Spell.Release.Target.Area();
+            this.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL,5,1);
+            TargetHelper.Area area = new TargetHelper.Area();
             area.angle_degrees = 360;
             for(Entity target: TargetHelper.targetsFromArea(this,this.getPos(),6,area,entity ->
                     entity != this.getOwner() && !(entity instanceof CrystalEntity))) {
-                SpellHelper.performImpacts(this.getWorld(),this,target,this,new SpellInfo(SpellRegistry.getSpell(Identifier.of(EldritchEnd.MODID, "arcane_missile")), Identifier.of(EldritchEnd.MODID, "arcane_missile"))
-                        ,new SpellHelper.ImpactContext().power(SpellPower.getSpellPower(ARCANE,this)).position(target.getPos()),false);
+                target.damage(this.getDamageSources().mobAttack(this), (float) this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE));
             }
             sendBatches(this,new ParticleBatch[]{glyph_center_release(1,0, ParticleBatch.Origin.FEET, null, ARCANE,true)},this.getYaw(),this.getPitch(),1, PlayerLookup.tracking(this),false);
             sendBatches(this,new ParticleBatch[]{glyph_outer_release(1,0, ParticleBatch.Origin.FEET, null, ARCANE,true)},this.getYaw(),this.getPitch(),1,PlayerLookup.tracking(this),false);

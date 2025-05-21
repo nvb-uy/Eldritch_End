@@ -106,19 +106,7 @@ dependencies {
 	modImplementation "curse.maven:forge-config-api-port-fabric-547434:4583000"
 	modImplementation "curse.maven:prism-fabric-665526:4650327"
 
-	implementation include("com.github.ZsoltMolnarrr:TinyConfig:${project.tiny_config_version}")
-	modImplementation "mod.azure.azurelib:azurelib-fabric-1.20.1:1.0.29"
-	modImplementation("maven.modrinth:spell-power:${project.spell_power_version}-fabric")
-	modImplementation("maven.modrinth:spell-engine:${project.spell_engine_version}")
 
-	modImplementation("maven.modrinth:runes:${project.runes_version}-fabric")
-	modImplementation("dev.kosmx.player-anim:player-animation-lib-fabric:${project.player_anim_version}")
-	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
-		exclude(group: "net.fabricmc.fabric-api")
-	}
-
-	include(implementation("com.github.LlamaLad7:MixinExtras:${project.mixin_extras_version}"))
-	modImplementation("dev.emi:trinkets:${project.trinkets_version}")
 	//modImplementation "curse.maven:sodium-394468:3669187"
 	//modImplementation "curse.maven:iris-455508:3770305"
 

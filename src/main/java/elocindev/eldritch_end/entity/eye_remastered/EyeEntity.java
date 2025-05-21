@@ -1,7 +1,13 @@
 package elocindev.eldritch_end.entity.eye_remastered;
 
-import elocindev.eldritch_end.EldritchEnd;
+import elocindev.eldritch_end.WorldSchedulerEldritch;
+import elocindev.eldritch_end.api.particles.ParticleBatch;
+import elocindev.eldritch_end.api.particles.SpellSchools;
+import elocindev.eldritch_end.api.particles.packets.ParticlePackets;
+import elocindev.eldritch_end.api.targeting.TargetHelper;
 import elocindev.eldritch_end.compat.SpellEngineCompat;
+import elocindev.eldritch_end.config.Configs;
+import elocindev.eldritch_end.entity.arcane_missile.ArcaneMissile;
 import elocindev.eldritch_end.entity.crystal_entity.CrystalEntity;
 import mod.azure.azurelib.animatable.GeoEntity;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
@@ -22,14 +28,20 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.control.LookControl;
 import net.minecraft.entity.ai.control.MoveControl;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.attribute.DefaultAttributeContainer;
+import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.boss.BossBar;
+import net.minecraft.entity.boss.ServerBossBar;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.mob.EndermanEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.predicate.entity.EntityPredicates;
+import net.minecraft.registry.Registries;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -41,65 +53,57 @@ import net.minecraft.util.math.*;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
-import net.spell_engine.api.spell.ParticleBatch;
-import net.spell_engine.api.spell.Sound;
-import net.spell_engine.api.spell.Spell;
-import net.spell_engine.api.spell.SpellInfo;
-import net.spell_engine.internals.SpellHelper;
-import net.spell_engine.internals.SpellRegistry;
-import net.spell_engine.internals.WorldScheduler;
-import net.spell_engine.network.Packets;
-import net.spell_engine.particle.Particles;
-import net.spell_engine.utils.SoundHelper;
-import net.spell_engine.utils.TargetHelper;
-import net.spell_power.api.SpellPower;
-import net.spell_power.api.SpellSchool;
-import net.spell_power.api.SpellSchools;
+
 
 import java.util.*;
 
+import static elocindev.eldritch_end.api.particles.SpellSchools.*;
+import static elocindev.eldritch_end.api.targeting.TargetHelper.launchPoint;
 import static java.lang.StrictMath.asin;
 import static java.lang.StrictMath.atan2;
-import static net.spell_power.api.SpellSchools.*;
 
 public class EyeEntity extends HostileEntity implements GeoEntity {
-    public static ParticleBatch glyph_release(float scale, float angle, ParticleBatch.Origin origin, ParticleBatch.Rotation rotate, SpellSchool school, boolean follow){
+    public static ParticleBatch glyph_release(float scale, float angle, ParticleBatch.Origin origin, ParticleBatch.Rotation rotate, SpellSchools school, boolean follow){
         if(school.equals(FROST)){
-            return  new ParticleBatch(Particles.snowflake.id.toString(), ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.2F,0.2F,angle,0,45,false);
+            return  new ParticleBatch("minecraft:snowflake_particle", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.2F,0.2F,angle,0,45,false);
         }
 
         if(school.equals(FIRE)){
-            return  new ParticleBatch(Particles.flame.id.toString(), ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.2F,0.2F,angle,0,45,false);
+            return  new ParticleBatch("minecraft:dragon_breath", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.2F,0.2F,angle,0,45,false);
         }
-        return  new ParticleBatch(Particles.arcane_spell.id.toString(), ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,100,0.2F,0.2F,angle,0,45,false);
+        return  new ParticleBatch("minecraft:dragon_breath", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,100,0.2F,0.2F,angle,0,45,false);
 
     }
-    public static ParticleBatch glyph_outer_release(float scale, float angle, ParticleBatch.Origin origin, ParticleBatch.Rotation rotate, SpellSchool school, boolean follow){
+    public static ParticleBatch glyph_outer_release(float scale, float angle, ParticleBatch.Origin origin, ParticleBatch.Rotation rotate, SpellSchools school, boolean follow){
         if(school.equals(FROST)){
-            return  new ParticleBatch(Particles.frost_shard.id.toString(), ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,200,false);
+            return  new ParticleBatch("minecraft:snowflake_particle", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,200,false);
         }
         if(school.equals(FIRE)){
-            return  new ParticleBatch(Particles.flame_medium_a.id.toString(), ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,200,false);
+            return  new ParticleBatch("minecraft:dragon_breath", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,200,false);
         }
-        return  new ParticleBatch(Particles.arcane_spell.id.toString(), ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,200,false);
+        return  new ParticleBatch("minecraft:dragon_breath", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,200,false);
 
     }
-    public static ParticleBatch glyph_center_release(float scale, float angle, ParticleBatch.Origin origin, ParticleBatch.Rotation rotate, SpellSchool school, boolean follow){
+    public static ParticleBatch glyph_center_release(float scale, float angle, ParticleBatch.Origin origin, ParticleBatch.Rotation rotate, SpellSchools school, boolean follow){
         if(school.equals(FROST)){
-            return  new ParticleBatch(Particles.frost_shard.id.toString(), ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,350,false);
+            return  new ParticleBatch("minecraft:snowflake_particle", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,350,false);
         }
         if(school.equals(FIRE)){
-            return  new ParticleBatch(Particles.flame_spark.id.toString(), ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,350,false);
+            return  new ParticleBatch("minecraft:dragon_breath", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,350,false);
         }
-        return  new ParticleBatch(Particles.arcane_hit.id.toString(), ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,350,false);
+        return  new ParticleBatch("minecraft:dragon_breath", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,350,false);
 
     }
+    ParticleBatch FIREBATCH1 =   new ParticleBatch("minecraft:fire", ParticleBatch.Shape.CONE, ParticleBatch.Origin.LAUNCH_POINT, ParticleBatch.Rotation.LOOK,45,45,100,1F,1F,0,15,0,false);
+    ParticleBatch FIREBATCH2 =   new ParticleBatch("minecraft:dragon_breath", ParticleBatch.Shape.CONE, ParticleBatch.Origin.LAUNCH_POINT, ParticleBatch.Rotation.LOOK,45,45,800,0.01F,20F,6,0,0,false);
+    ParticleBatch FIREBATCH3 =   new ParticleBatch("minecraft:sculk_soul", ParticleBatch.Shape.CONE, ParticleBatch.Origin.LAUNCH_POINT, ParticleBatch.Rotation.LOOK,45,45,200,1F,2F,25,0,0,false);
+
     private boolean performing = false;
     private int teleporttimer = 80;
     private int missiletimer = 0;
     private int lasertimer = 0;
     private int crystaltimer = 160;
+    private final ServerBossBar bossBar;
 
     private boolean teleporting;
     private int teleportduration;
@@ -109,7 +113,9 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
         super(entityType, world);
         this.moveControl = new EyeEntityMoveControl(this);
         this.lookControl = new EyeEntityLookControl(this);
-
+        this.bossBar = (ServerBossBar)(new ServerBossBar(this.getDisplayName(), BossBar.Color.GREEN, BossBar.Style.PROGRESS))
+                .setDarkenSky(true)
+                .setThickenFog(true);
     }
 
     @Override
@@ -140,6 +146,8 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
     @Override
     public void tick() {
         super.tick();
+        this.bossBar.setPercent(this.getHealth() / this.getMaxHealth());
+
     }
 
     @Override
@@ -149,11 +157,21 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
         }
         return super.canTarget(type);
     }
+    @Override
+    public void onStartedTrackingBy(ServerPlayerEntity player) {
+        super.onStartedTrackingBy(player);
+        this.bossBar.addPlayer(player);
+    }
 
     @Override
+    public void onStoppedTrackingBy(ServerPlayerEntity player) {
+        super.onStoppedTrackingBy(player);
+        this.bossBar.removePlayer(player);
+    }
+    @Override
     protected void mobTick() {
-        if(!this.getWorld().isClient() && crystaltimer > 200 && !this.teleporting &&  !this.performing && this.getTarget() != null ) {
-            Spell.Release.Target.Area area = new Spell.Release.Target.Area();
+        if(!this.getWorld().isClient() && crystaltimer > Configs.Entity.EYE.cooldowns.COOLDOWN_CRYSTALS && !this.teleporting &&  !this.performing && this.getTarget() != null ) {
+            TargetHelper.Area area = new TargetHelper.Area();
             area.angle_degrees = 120;
             List<Entity> list = TargetHelper.targetsFromArea(this,64,area, entity ->  entity instanceof LivingEntity && !(entity instanceof CrystalEntity));
             int ii = 0;
@@ -179,15 +197,15 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
                             ii++;
 
                         }
-                        SoundHelper.playSound(this.getWorld(),this,SpellRegistry.getSpell(new Identifier(EldritchEnd.MODID,"arcane_missile")).release.sound);
+                        this.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL,5,0);
                     }
 
                 }
 
             crystaltimer = 0;
         }
-        if(!this.getWorld().isClient() && missiletimer > 120 && !this.teleporting &&  !this.performing && this.getTarget() != null ) {
-            Spell.Release.Target.Area area = new Spell.Release.Target.Area();
+        if(!this.getWorld().isClient() && missiletimer > Configs.Entity.EYE.cooldowns.COOLDOWN_MISSILE && !this.teleporting &&  !this.performing && this.getTarget() != null ) {
+            TargetHelper.Area area = new TargetHelper.Area();
             area.angle_degrees = 120;
             List<Entity> list = TargetHelper.targetsFromArea(this,64,area, entity ->  entity instanceof LivingEntity && !(entity instanceof CrystalEntity));
             for(int i = 0; i < 3; i++){
@@ -195,18 +213,25 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
                 for(Entity entity: list) {
                     int finalI = i;
 
-                    ((WorldScheduler) this.getWorld()).schedule((ii * 2) + 1, () -> {
+                    ((WorldSchedulerEldritch) this.getWorld()).scheduleEldritch((ii * 2) + 1, () -> {
 
-                                ((WorldScheduler) this.getWorld()).schedule((finalI * 5) + 5, () -> {
+                                ((WorldSchedulerEldritch) this.getWorld()).scheduleEldritch((finalI * 5) + 5, () -> {
                                     if (entity != null) {
-                                        SpellHelper.shootProjectile(this.getWorld(), this, entity, new SpellInfo(SpellRegistry.getSpell(Identifier.of(EldritchEnd.MODID, "arcane_missile")), Identifier.of(EldritchEnd.MODID, "arcane_missile"))
-                                                , new SpellHelper.ImpactContext().power(SpellPower.getSpellPower(SpellSchools.ARCANE, this)).position(this.getPos()));
+                                        ArcaneMissile missile = new ArcaneMissile(SpellEngineCompat.ARCANEMISSILE,this.getWorld());
+                                        this.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES,entity.getEyePos());
+                                        missile.setPosition(launchPoint(this));
+                                        missile.setOwner(this);
+                                        missile.setVelocity(this, this.getPitch(), this.getYaw(), 0.0F, 1.5F, 1.0F);
+
+                                        missile.homing_angle = 15;
+                                        missile.target = entity;
+                                        this.getWorld().spawnEntity(missile);
                                         sendBatches(this,new ParticleBatch[]{glyph_center_release(1,0, ParticleBatch.Origin.LAUNCH_POINT, ParticleBatch.Rotation.LOOK, ARCANE,true)},this.getYaw(),this.getPitch(),1,PlayerLookup.tracking(this),false);
                                         sendBatches(this,new ParticleBatch[]{glyph_outer_release(1,0, ParticleBatch.Origin.LAUNCH_POINT, ParticleBatch.Rotation.LOOK, ARCANE,true)},this.getYaw(),this.getPitch(),1,PlayerLookup.tracking(this),false);
                                         sendBatches(this,new ParticleBatch[]{glyph_release(1,0, ParticleBatch.Origin.LAUNCH_POINT, ParticleBatch.Rotation.LOOK, ARCANE,true)},this.getYaw(),this.getPitch(),1,PlayerLookup.tracking(this),false);
 
-                                        SoundHelper.playSound(this.getWorld(),this,SpellRegistry.getSpell(new Identifier(EldritchEnd.MODID,"arcane_missile")).release.sound);
 
+                                        this.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL,5,0);
                                     }
 
                                 });
@@ -217,8 +242,8 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
             }
             missiletimer = 0;
         }
-        if(!this.getWorld().isClient() && lasertimer > 160 && !this.teleporting &&  !this.performing && this.getTarget() != null ) {
-            Spell.Release.Target.Area area = new Spell.Release.Target.Area();
+        if(!this.getWorld().isClient() && lasertimer > Configs.Entity.EYE.cooldowns.COOLDOWN_FLAMEBLAST && !this.teleporting &&  !this.performing && this.getTarget() != null ) {
+            TargetHelper.Area area = new TargetHelper.Area();
             area.angle_degrees = 120;
             List<Entity> list = TargetHelper.targetsFromArea(this,64,area, entity ->  entity instanceof LivingEntity && !(entity instanceof CrystalEntity));
             for(int i = 0; i < 3; i++){
@@ -228,21 +253,19 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
 
 
                         Vec3d pos = entity.getBoundingBox().getCenter();
-                    ((WorldScheduler) this.getWorld()).schedule((i * 5) + 5, () -> {
+                    ((WorldSchedulerEldritch) this.getWorld()).scheduleEldritch((i * 5) + 5, () -> {
                         lineParticles(this,pos,pos,64);
                     });
-                    ((WorldScheduler) this.getWorld()).schedule((ii * 2) + 1, () -> {
+                    ((WorldSchedulerEldritch) this.getWorld()).scheduleEldritch((ii * 2) + 1, () -> {
 
-                                ((WorldScheduler) this.getWorld()).schedule((finalI * 10) + 20, () -> {
+                                ((WorldSchedulerEldritch) this.getWorld()).scheduleEldritch((finalI * 10) + 20, () -> {
                                     if (entity != null) {
-                                        Spell.Release.Target.Area area2 = new Spell.Release.Target.Area();
                                         this.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES,pos);
                                         area.angle_degrees = 10;
 
                                         List<Entity> list2 = TargetHelper.targetsFromArea(this,64,area, entity2 ->  entity2 instanceof LivingEntity );
                                         for(Entity entity1 : list2){
-                                            SpellHelper.performImpacts(this.getWorld(),this,entity1,entity1,new SpellInfo(SpellRegistry.getSpell(Identifier.of(EldritchEnd.MODID, "arcane_laser")), Identifier.of(EldritchEnd.MODID, "arcane_laser"))
-                                                    ,new SpellHelper.ImpactContext().power(SpellPower.getSpellPower(SpellSchools.ARCANE, this)).position(this.getPos()),false);
+                                            entity1.damage(this.getDamageSources().mobAttack(this), (float) this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE)*1.2F);
                                         }
                                         Vec3d vec = pos.subtract(this.getBoundingBox().getCenter()).normalize();
                                         float pitch = (float) (180*asin(-(vec.y))/Math.PI);
@@ -250,12 +273,16 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
                                         if ( this.getWorld() instanceof ServerWorld world) {
 
 
-                                            sendBatches(this,SpellRegistry.getSpell(new Identifier(EldritchEnd.MODID,"arcane_laser")).release.particles,yaw,pitch,1,PlayerLookup.tracking(this),false);
+                                           // sendBatches(this,SpellRegistry.getSpell(new Identifier(EldritchEnd.MODID,"arcane_laser")).release.particles,yaw,pitch,1,PlayerLookup.tracking(this),false);
+                                            sendBatches(this,new ParticleBatch[]{this.FIREBATCH1},yaw,pitch,1,PlayerLookup.tracking(this),false);
+                                            sendBatches(this,new ParticleBatch[]{this.FIREBATCH2},yaw,pitch,1,PlayerLookup.tracking(this),false);
+                                            sendBatches(this,new ParticleBatch[]{this.FIREBATCH3},yaw,pitch,1,PlayerLookup.tracking(this),false);
+
                                             sendBatches(this,new ParticleBatch[]{glyph_center_release(1,0, ParticleBatch.Origin.LAUNCH_POINT, ParticleBatch.Rotation.LOOK, FIRE,true)},yaw,pitch,1,PlayerLookup.tracking(this),false);
                                             sendBatches(this,new ParticleBatch[]{glyph_release(1,0, ParticleBatch.Origin.LAUNCH_POINT, ParticleBatch.Rotation.LOOK, FIRE,true)},yaw,pitch,1,PlayerLookup.tracking(this),false);
                                             sendBatches(this,new ParticleBatch[]{glyph_outer_release(1,0, ParticleBatch.Origin.LAUNCH_POINT, ParticleBatch.Rotation.LOOK, FIRE,true)},yaw,pitch,1,PlayerLookup.tracking(this),false);
 
-                                            SoundHelper.playSound(this.getWorld(),this,SpellRegistry.getSpell(new Identifier(EldritchEnd.MODID,"arcane_laser")).release.sound);
+                                            this.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE,5,0);
 
                                         }
                                     }
@@ -268,7 +295,7 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
             }
             lasertimer = 0;
         }
-        if(!this.getWorld().isClient() && teleporttimer > 200 && !this.teleporting &&  !this.performing && this.getTarget() != null ) {
+        if(!this.getWorld().isClient() && teleporttimer > Configs.Entity.EYE.cooldowns.COOLDOWN_TELEPORT && !this.teleporting &&  !this.performing && this.getTarget() != null ) {
 
             Vec3d randomLocation = randomLocation(this.getTarget(),64);
             if(this.getTarget() != null) {
@@ -278,7 +305,7 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
                 this.performing = true;
 
             }
-            this.teleporttimer = this.getRandom().nextInt(80);
+            this.teleporttimer = this.getRandom().nextInt(Configs.Entity.EYE.cooldowns.RANDOM_COOLDOWN_REDUCTION_TELEPORT);
         }
         if(this.getTarget() != null) {
             this.lookControl.lookAt(this.getTarget().getEyePos());
@@ -334,7 +361,7 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
                 return entity.getPos().add(0.0, (double)(entity.getHeight() * 0.5F), 0.0);
             case LAUNCH_POINT:
                 if (entity instanceof LivingEntity livingEntity) {
-                    return SpellHelper.launchPoint(livingEntity);
+                    return launchPoint(livingEntity);
                 }
 
                 return entity.getPos().add(0.0, (double)(entity.getHeight() * 0.5F), 0.0);
@@ -346,8 +373,8 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
     public static void sendBatches(Entity trackedEntity, ParticleBatch[] batches, float yaw, float pitch, float countMultiplier, Collection<ServerPlayerEntity> trackers, boolean includeSourceEntity) {
         if (batches != null && batches.length != 0) {
             int sourceEntityId = trackedEntity.getId();
-            Packets.ParticleBatches.SourceType sourceType = Packets.ParticleBatches.SourceType.COORDINATE;
-            ArrayList<Packets.ParticleBatches.Spawn> spawns = new ArrayList();
+            ParticlePackets.ParticleBatches.SourceType sourceType = ParticlePackets.ParticleBatches.SourceType.COORDINATE;
+            ArrayList<ParticlePackets.ParticleBatches.Spawn> spawns = new ArrayList();
             ParticleBatch[] var8 = batches;
             int var9 = batches.length;
 
@@ -362,10 +389,10 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
                         sourceLocation = origin(trackedEntity, batch.origin);
                 }
 
-                spawns.add(new Packets.ParticleBatches.Spawn(includeSourceEntity ? sourceEntityId : 0, yaw,pitch, sourceLocation, batch));
+                spawns.add(new ParticlePackets.ParticleBatches.Spawn(includeSourceEntity ? sourceEntityId : 0, yaw,pitch, sourceLocation, batch));
             }
 
-            PacketByteBuf packet = (new Packets.ParticleBatches(sourceType, spawns)).write(countMultiplier);
+            PacketByteBuf packet = (new ParticlePackets.ParticleBatches(sourceType, spawns)).write(countMultiplier);
             if (trackedEntity instanceof ServerPlayerEntity) {
                 ServerPlayerEntity serverPlayer = (ServerPlayerEntity)trackedEntity;
                 sendWrittenBatchesToPlayer(serverPlayer, packet);
@@ -378,8 +405,8 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
     }
     private static void sendWrittenBatchesToPlayer(ServerPlayerEntity serverPlayer, PacketByteBuf packet) {
         try {
-            if (ServerPlayNetworking.canSend(serverPlayer, Packets.ParticleBatches.ID)) {
-                ServerPlayNetworking.send(serverPlayer, Packets.ParticleBatches.ID, packet);
+            if (ServerPlayNetworking.canSend(serverPlayer, ParticlePackets.ParticleBatches.ID)) {
+                ServerPlayNetworking.send(serverPlayer, ParticlePackets.ParticleBatches.ID, packet);
             }
         } catch (Exception var3) {
             var3.printStackTrace();
@@ -465,6 +492,21 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
         @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return instanceCache;
+    }
+
+    @Override
+    public void onDeath(DamageSource damageSource) {
+        super.onDeath(damageSource);
+        if(Registries.STATUS_EFFECT.get(Identifier.of("adventurez","fame")) != null){
+            Box box = new Box(this.getBlockPos());
+            List<PlayerEntity> list = this.getWorld().getEntitiesByClass(PlayerEntity.class, box.expand(128D), EntityPredicates.EXCEPT_SPECTATOR);
+            for (PlayerEntity player : list) {
+                if ((PlayerEntity) player != null) {
+                    ((PlayerEntity) player).addStatusEffect(new StatusEffectInstance(Registries.STATUS_EFFECT.get(Identifier.of("adventurez", "fame")), 48000, 0, false, false, true));
+                }
+            }
+        }
+
     }
 
     private class EyeEntityMoveControl extends MoveControl {
@@ -606,5 +648,12 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
             return entity instanceof LivingEntity ? entity.getEyeY() : (entity.getBoundingBox().minY + entity.getBoundingBox().maxY) / 2.0;
         }
     }
+    public static DefaultAttributeContainer.Builder createMobAttributes() {
+        return LivingEntity.createLivingAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH,Configs.Entity.EYE.attributes.MAX_HEALTH)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE,Configs.Entity.EYE.attributes.ATTACK_DAMAGE)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE,128)
+                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE,10);
+    }
+
 
 }
