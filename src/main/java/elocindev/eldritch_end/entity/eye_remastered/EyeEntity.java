@@ -33,7 +33,9 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.boss.BossBar;
 import net.minecraft.entity.boss.ServerBossBar;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.mob.EndermanEntity;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -65,38 +67,38 @@ import static java.lang.StrictMath.atan2;
 public class EyeEntity extends HostileEntity implements GeoEntity {
     public static ParticleBatch glyph_release(float scale, float angle, ParticleBatch.Origin origin, ParticleBatch.Rotation rotate, SpellSchools school, boolean follow){
         if(school.equals(FROST)){
-            return  new ParticleBatch("minecraft:snowflake_particle", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.2F,0.2F,angle,0,45,false);
+            return  new ParticleBatch("minecraft:snowflake_particle", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,100,0.2F,0.2F,angle,0,45,false);
         }
 
         if(school.equals(FIRE)){
-            return  new ParticleBatch("minecraft:dragon_breath", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.2F,0.2F,angle,0,45,false);
+            return  new ParticleBatch("minecraft:dragon_breath", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,100,0.2F,0.2F,angle,0,45,false);
         }
-        return  new ParticleBatch("minecraft:dragon_breath", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,100,0.2F,0.2F,angle,0,45,false);
+        return  new ParticleBatch("minecraft:dragon_breath", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,50,0.2F,0.2F,angle,0,45,false);
 
     }
     public static ParticleBatch glyph_outer_release(float scale, float angle, ParticleBatch.Origin origin, ParticleBatch.Rotation rotate, SpellSchools school, boolean follow){
         if(school.equals(FROST)){
-            return  new ParticleBatch("minecraft:snowflake_particle", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,200,false);
+            return  new ParticleBatch("minecraft:snowflake_particle", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,100,false);
         }
         if(school.equals(FIRE)){
-            return  new ParticleBatch("minecraft:dragon_breath", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,200,false);
+            return  new ParticleBatch("minecraft:dragon_breath", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,100,false);
         }
-        return  new ParticleBatch("minecraft:dragon_breath", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,200,false);
+        return  new ParticleBatch("minecraft:dragon_breath", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,100,false);
 
     }
     public static ParticleBatch glyph_center_release(float scale, float angle, ParticleBatch.Origin origin, ParticleBatch.Rotation rotate, SpellSchools school, boolean follow){
         if(school.equals(FROST)){
-            return  new ParticleBatch("minecraft:snowflake_particle", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,350,false);
+            return  new ParticleBatch("minecraft:snowflake_particle", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,150,false);
         }
         if(school.equals(FIRE)){
-            return  new ParticleBatch("minecraft:dragon_breath", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,350,false);
+            return  new ParticleBatch("minecraft:dragon_breath", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,150,false);
         }
-        return  new ParticleBatch("minecraft:dragon_breath", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,350,false);
+        return  new ParticleBatch("minecraft:dragon_breath", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,200,0.02F,0.02F,angle,0,150,false);
 
     }
-    ParticleBatch FIREBATCH1 =   new ParticleBatch("minecraft:fire", ParticleBatch.Shape.CONE, ParticleBatch.Origin.LAUNCH_POINT, ParticleBatch.Rotation.LOOK,45,45,100,1F,1F,0,15,0,false);
-    ParticleBatch FIREBATCH2 =   new ParticleBatch("minecraft:dragon_breath", ParticleBatch.Shape.CONE, ParticleBatch.Origin.LAUNCH_POINT, ParticleBatch.Rotation.LOOK,45,45,800,0.01F,20F,6,0,0,false);
-    ParticleBatch FIREBATCH3 =   new ParticleBatch("minecraft:sculk_soul", ParticleBatch.Shape.CONE, ParticleBatch.Origin.LAUNCH_POINT, ParticleBatch.Rotation.LOOK,45,45,200,1F,2F,25,0,0,false);
+    ParticleBatch FIREBATCH1 =   new ParticleBatch("minecraft:fire", ParticleBatch.Shape.CONE, ParticleBatch.Origin.LAUNCH_POINT, ParticleBatch.Rotation.LOOK,45,45,50,1F,1F,0,15,0,false);
+    ParticleBatch FIREBATCH2 =   new ParticleBatch("minecraft:dragon_breath", ParticleBatch.Shape.CONE, ParticleBatch.Origin.LAUNCH_POINT, ParticleBatch.Rotation.LOOK,45,45,300,0.01F,20F,3,0,0,false);
+    ParticleBatch FIREBATCH3 =   new ParticleBatch("minecraft:sculk_soul", ParticleBatch.Shape.CONE, ParticleBatch.Origin.LAUNCH_POINT, ParticleBatch.Rotation.LOOK,45,45,100,1F,2F,10,0,0,false);
 
     private boolean performing = false;
     private int teleporttimer = 80;
@@ -104,6 +106,7 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
     private int lasertimer = 0;
     private int crystaltimer = 160;
     private final ServerBossBar bossBar;
+    private BlockPos home;
 
     private boolean teleporting;
     private int teleportduration;
@@ -113,7 +116,7 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
         super(entityType, world);
         this.moveControl = new EyeEntityMoveControl(this);
         this.lookControl = new EyeEntityLookControl(this);
-        this.bossBar = (ServerBossBar)(new ServerBossBar(this.getDisplayName(), BossBar.Color.GREEN, BossBar.Style.PROGRESS))
+        this.bossBar = (ServerBossBar)(new ServerBossBar(this.getDisplayName(), BossBar.Color.PURPLE    , BossBar.Style.PROGRESS))
                 .setDarkenSky(true)
                 .setThickenFog(true);
     }
@@ -129,7 +132,7 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
         this.goalSelector.add(8, new LookAtTargetGoal());
         this.goalSelector.add(1, new LookAtEntityGoal(this, PlayerEntity.class, 3.0F, 1.0F));
         this.goalSelector.add(2, new LookAtEntityGoal(this, MobEntity.class, 8.0F));
-        this.targetSelector.add(1, (new RevengeGoal(this, new Class[]{EyeEntity.class})));
+        this.targetSelector.add(1, (new RevengeGoal(this, new Class[]{EyeEntity.class, EndermanEntity.class})));
         this.targetSelector.add(3, new ActiveTargetGoal(this, PlayerEntity.class, true));
         this.targetSelector.add(4, new ActiveTargetGoal(this, AnimalEntity.class, true));
 
@@ -145,6 +148,9 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
 
     @Override
     public void tick() {
+        if((this.home == null  && this.firstUpdate) || (this.home != null && !this.home.isWithinDistance(this.getBlockPos(),150))){
+            this.home = this.getBlockPos();
+        }
         super.tick();
         this.bossBar.setPercent(this.getHealth() / this.getMaxHealth());
 
@@ -168,12 +174,13 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
         super.onStoppedTrackingBy(player);
         this.bossBar.removePlayer(player);
     }
+
     @Override
     protected void mobTick() {
         if(!this.getWorld().isClient() && crystaltimer > Configs.Entity.EYE.cooldowns.COOLDOWN_CRYSTALS && !this.teleporting &&  !this.performing && this.getTarget() != null ) {
             TargetHelper.Area area = new TargetHelper.Area();
             area.angle_degrees = 120;
-            List<Entity> list = TargetHelper.targetsFromArea(this,64,area, entity ->  entity instanceof LivingEntity && !(entity instanceof CrystalEntity));
+            List<Entity> list = TargetHelper.targetsFromArea(this,64,area, entity ->  entity instanceof LivingEntity && !(entity instanceof CrystalEntity) && !(entity instanceof EndermanEntity));
             int ii = 0;
             for(Entity entity: list) {
                 if(ii > 6){
@@ -207,7 +214,7 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
         if(!this.getWorld().isClient() && missiletimer > Configs.Entity.EYE.cooldowns.COOLDOWN_MISSILE && !this.teleporting &&  !this.performing && this.getTarget() != null ) {
             TargetHelper.Area area = new TargetHelper.Area();
             area.angle_degrees = 120;
-            List<Entity> list = TargetHelper.targetsFromArea(this,64,area, entity ->  entity instanceof LivingEntity && !(entity instanceof CrystalEntity));
+            List<Entity> list = TargetHelper.targetsFromArea(this,64,area, entity ->  entity instanceof LivingEntity && !(entity instanceof CrystalEntity) && !(entity instanceof EndermanEntity));
             ((WorldSchedulerEldritch) this.getWorld()).scheduleEldritch(30, () -> {
                 ( this).triggerAnim("attack", "attack");
 
@@ -249,7 +256,7 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
         if(!this.getWorld().isClient() && lasertimer > Configs.Entity.EYE.cooldowns.COOLDOWN_FLAMEBLAST && !this.teleporting &&  !this.performing && this.getTarget() != null ) {
             TargetHelper.Area area = new TargetHelper.Area();
             area.angle_degrees = 120;
-            List<Entity> list = TargetHelper.targetsFromArea(this,64,area, entity ->  entity instanceof LivingEntity && !(entity instanceof CrystalEntity));
+            List<Entity> list = TargetHelper.targetsFromArea(this,64,area, entity ->  entity instanceof LivingEntity && !(entity instanceof CrystalEntity) && !(entity instanceof EndermanEntity));
             ((WorldSchedulerEldritch) this.getWorld()).scheduleEldritch(+ 30, () -> {
                 ( this).triggerAnim("attack", "attack");
 
@@ -272,7 +279,7 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
                                         this.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES,pos);
                                         area.angle_degrees = 10;
 
-                                        List<Entity> list2 = TargetHelper.targetsFromArea(this,64,area, entity2 ->  entity2 instanceof LivingEntity );
+                                        List<Entity> list2 = TargetHelper.targetsFromArea(this,64,area, entity2 ->  entity2 instanceof LivingEntity && this.canSee(entity2));
                                         for(Entity entity1 : list2){
                                             entity1.damage(this.getDamageSources().mobAttack(this), (float) this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE)*1.2F);
                                         }
@@ -439,8 +446,10 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
                     BlockState blockState = this.getWorld().getBlockState(pos);
                     return !blockState.isAir() && blockState.shouldSuffocate(this.getWorld(), pos) && VoxelShapes.matchesAnywhere(blockState.getCollisionShape(this.getWorld(), pos).offset((double)pos.getX(), (double)pos.getY(), (double)pos.getZ()), VoxelShapes.cuboid(box), BooleanBiFunction.AND);
                 })){
-                    System.out.println(new Vec3d(e,f,g));
-                    break;
+                    if(home.isWithinDistance(new Vec3i((int)e,(int)f,(int)g),150)){
+                        break;
+
+                    }
                 }
             }
             e = entity.getX();
@@ -484,9 +493,10 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
 
     @Override
     public boolean damage(DamageSource source, float amount) {
-        if(source.equals(this.getDamageSources().fall())){
+        if(!source.isOf(DamageTypes.GENERIC_KILL) &&(!(source.getAttacker() instanceof PlayerEntity) || source.equals(this.getDamageSources().fall()))){
             return false;
         }
+
         return super.damage(source, amount);
     }
     public static final RawAnimation ATTACK = RawAnimation.begin().thenPlay("animation.eye.attack");
