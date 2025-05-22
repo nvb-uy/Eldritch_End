@@ -34,6 +34,9 @@ import net.minecraft.entity.boss.BossBar;
 import net.minecraft.entity.boss.ServerBossBar;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageTypes;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.EndermanEntity;
 import net.minecraft.entity.mob.HostileEntity;
@@ -66,7 +69,6 @@ import static java.lang.StrictMath.asin;
 import static java.lang.StrictMath.atan2;
 
 public class EyeEntity extends HostileEntity implements GeoEntity {
-    private final ServerBossBar crystalBossBar;
     private boolean hasCrystals;
     private int crystalsTime;
 
@@ -124,7 +126,6 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
         this.bossBar = (ServerBossBar)(new ServerBossBar(this.getDisplayName(), BossBar.Color.PURPLE    , BossBar.Style.PROGRESS))
                 .setDarkenSky(true)
                 .setThickenFog(true);
-        this.crystalBossBar = (ServerBossBar)(new ServerBossBar(Text.translatable("entity.eldritch_end.crystal"), BossBar.Color.PURPLE    , BossBar.Style.PROGRESS));
     }
 
     @Override
@@ -180,9 +181,7 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
     public void onStoppedTrackingBy(ServerPlayerEntity player) {
         super.onStoppedTrackingBy(player);
         this.bossBar.removePlayer(player);
-        if(this.crystalBossBar != null){
-            this.crystalBossBar.removePlayer(player);
-        }
+
     }
 
     @Override
@@ -195,15 +194,13 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
                 ( this).triggerAnim("attack", "attack");
                 this.hasCrystals = true;
                 this.crystalsTime = 0;
-                for(ServerPlayerEntity player: PlayerLookup.tracking(this)) {
-                    this.crystalBossBar.addPlayer(player);
-                }
+
             ((WorldSchedulerEldritch) this.getWorld()).scheduleEldritch(240, () -> {
                 this.hasCrystals = false;
                 this.crystalsTime = 0;
-                for(ServerPlayerEntity player: PlayerLookup.tracking(this)) {
-                    this.crystalBossBar.removePlayer(player);
-                }
+
+                this.dataTracker.set(NUMBER_OF_CRYSTALS,0);
+                this.dataTracker.set(CRYSTAL_TIME,0);
 
             }   );
             for(Entity entity: list) {
@@ -226,7 +223,7 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
                             crystalEntity.setPosition(mutable.getX(),mutable.getY()+1,mutable.getZ());
                             this.getWorld().spawnEntity(crystalEntity);
                             ii++;
-
+                            this.dataTracker.set(NUMBER_OF_CRYSTALS,this.dataTracker.get(NUMBER_OF_CRYSTALS)+1);
                         }
                         this.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL,5,0);
                     }
@@ -276,11 +273,10 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
         }
         if(this.hasCrystals){
             this.crystalsTime++;
-        }
-        if(this.crystalBossBar != null){
-            this.crystalBossBar.setPercent((240F-this.crystalsTime) /240F );
+            this.dataTracker.set(CRYSTAL_TIME,this.dataTracker.get(CRYSTAL_TIME)+1);
 
         }
+
         if(!this.getWorld().isClient() && lasertimer > Configs.Entity.EYE.cooldowns.COOLDOWN_FLAMEBLAST && !this.teleporting &&  !this.performing && this.getTarget() != null ) {
             TargetHelper.Area area = new TargetHelper.Area();
             area.angle_degrees = 120;
@@ -529,6 +525,21 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
         return super.damage(source, amount);
     }
     public static final RawAnimation ATTACK = RawAnimation.begin().thenPlay("animation.eye.attack");
+    public static final TrackedData<Integer> NUMBER_OF_CRYSTALS ;
+    public static final TrackedData<Integer> CRYSTAL_TIME ;
+
+    static {
+        NUMBER_OF_CRYSTALS = DataTracker.registerData(EyeEntity.class, TrackedDataHandlerRegistry.INTEGER);
+        CRYSTAL_TIME = DataTracker.registerData(EyeEntity.class, TrackedDataHandlerRegistry.INTEGER);
+
+    }
+    @Override
+    protected void initDataTracker() {
+        super.initDataTracker();
+        this.dataTracker.startTracking(NUMBER_OF_CRYSTALS, 0);
+        this.dataTracker.startTracking(CRYSTAL_TIME, 0);
+
+    }
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar animationData) {
