@@ -18,6 +18,7 @@ public class EyeConfig {
     public class Attributes {
         public double MAX_HEALTH = 800;
         public double ATTACK_DAMAGE = 12;
+        public double ARMOR = 12;
 
     }
 

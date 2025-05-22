@@ -48,6 +48,7 @@ import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.hit.HitResult;
@@ -65,6 +66,10 @@ import static java.lang.StrictMath.asin;
 import static java.lang.StrictMath.atan2;
 
 public class EyeEntity extends HostileEntity implements GeoEntity {
+    private final ServerBossBar crystalBossBar;
+    private boolean hasCrystals;
+    private int crystalsTime;
+
     public static ParticleBatch glyph_release(float scale, float angle, ParticleBatch.Origin origin, ParticleBatch.Rotation rotate, SpellSchools school, boolean follow){
         if(school.equals(FROST)){
             return  new ParticleBatch("minecraft:snowflake_particle", ParticleBatch.Shape.CIRCLE, origin, rotate,45,45,100,0.2F,0.2F,angle,0,45,false);
@@ -119,6 +124,7 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
         this.bossBar = (ServerBossBar)(new ServerBossBar(this.getDisplayName(), BossBar.Color.PURPLE    , BossBar.Style.PROGRESS))
                 .setDarkenSky(true)
                 .setThickenFog(true);
+        this.crystalBossBar = (ServerBossBar)(new ServerBossBar(Text.translatable("entity.eldritch_end.crystal"), BossBar.Color.PURPLE    , BossBar.Style.PROGRESS));
     }
 
     @Override
@@ -167,12 +173,16 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
     public void onStartedTrackingBy(ServerPlayerEntity player) {
         super.onStartedTrackingBy(player);
         this.bossBar.addPlayer(player);
+
     }
 
     @Override
     public void onStoppedTrackingBy(ServerPlayerEntity player) {
         super.onStoppedTrackingBy(player);
         this.bossBar.removePlayer(player);
+        if(this.crystalBossBar != null){
+            this.crystalBossBar.removePlayer(player);
+        }
     }
 
     @Override
@@ -182,6 +192,20 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
             area.angle_degrees = 120;
             List<Entity> list = TargetHelper.targetsFromArea(this,64,area, entity ->  entity instanceof LivingEntity && !(entity instanceof CrystalEntity) && !(entity instanceof EndermanEntity));
             int ii = 0;
+                ( this).triggerAnim("attack", "attack");
+                this.hasCrystals = true;
+                this.crystalsTime = 0;
+                for(ServerPlayerEntity player: PlayerLookup.tracking(this)) {
+                    this.crystalBossBar.addPlayer(player);
+                }
+            ((WorldSchedulerEldritch) this.getWorld()).scheduleEldritch(240, () -> {
+                this.hasCrystals = false;
+                this.crystalsTime = 0;
+                for(ServerPlayerEntity player: PlayerLookup.tracking(this)) {
+                    this.crystalBossBar.removePlayer(player);
+                }
+
+            }   );
             for(Entity entity: list) {
                 if(ii > 6){
                     break;
@@ -215,10 +239,7 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
             TargetHelper.Area area = new TargetHelper.Area();
             area.angle_degrees = 120;
             List<Entity> list = TargetHelper.targetsFromArea(this,64,area, entity ->  entity instanceof LivingEntity && !(entity instanceof CrystalEntity) && !(entity instanceof EndermanEntity));
-            ((WorldSchedulerEldritch) this.getWorld()).scheduleEldritch(30, () -> {
-                ( this).triggerAnim("attack", "attack");
 
-            });
             for(int i = 0; i < 3; i++){
                 int ii = 0;
                 for(Entity entity: list) {
@@ -253,6 +274,13 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
             }
             missiletimer = 0;
         }
+        if(this.hasCrystals){
+            this.crystalsTime++;
+        }
+        if(this.crystalBossBar != null){
+            this.crystalBossBar.setPercent((240F-this.crystalsTime) /240F );
+
+        }
         if(!this.getWorld().isClient() && lasertimer > Configs.Entity.EYE.cooldowns.COOLDOWN_FLAMEBLAST && !this.teleporting &&  !this.performing && this.getTarget() != null ) {
             TargetHelper.Area area = new TargetHelper.Area();
             area.angle_degrees = 120;
@@ -261,6 +289,7 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
                 ( this).triggerAnim("attack", "attack");
 
             });
+
             for(int i = 0; i < 3; i++){
                 int ii = 0;
                 for(Entity entity: list) {
@@ -675,7 +704,8 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
         return LivingEntity.createLivingAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH,Configs.Entity.EYE.attributes.MAX_HEALTH)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE,Configs.Entity.EYE.attributes.ATTACK_DAMAGE)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE,128)
-                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE,10);
+                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE,10)
+                .add(EntityAttributes.GENERIC_ARMOR,Configs.Entity.EYE.attributes.ARMOR);
     }
 
 

@@ -165,14 +165,14 @@ public class CrystalEntity extends HostileEntity implements Ownable, GeoEntity {
 
     @Override
     protected void onKilledBy(@Nullable LivingEntity adversary) {
-        if(this.getOwner() != null && adversary != null){
-            this.getOwner().damage(adversary.getDamageSources().mobAttack(adversary),50);
+        if(this.getOwner() instanceof LivingEntity living && adversary != null){
+            this.getOwner().damage(adversary.getDamageSources().create(DamageTypes.GENERIC,adversary),living.getMaxHealth()*0.04F);
         }
-        else if(this.getOwner() != null && this.getLastAttacker() != null){
-            this.getOwner().damage(this.getDamageSources().mobAttack(this.getLastAttacker()),50);
+        else if(this.getOwner() instanceof LivingEntity living && this.getLastAttacker() != null){
+            this.getOwner().damage(this.getDamageSources().create(DamageTypes.GENERIC,this.getLastAttacker()),living.getMaxHealth()*0.04F);
 
-        } else if(this.getOwner() != null ){
-            this.getOwner().damage(this.getDamageSources().generic(),50);
+        } else if(this.getOwner() instanceof LivingEntity living ){
+            this.getOwner().damage(this.getDamageSources().generic(),living.getMaxHealth()*0.04F);
 
         }
 
@@ -223,7 +223,9 @@ public class CrystalEntity extends HostileEntity implements Ownable, GeoEntity {
             area.angle_degrees = 360;
             for(Entity target: TargetHelper.targetsFromArea(this,this.getPos(),6,area,entity ->
                     entity != this.getOwner() && !(entity instanceof CrystalEntity))) {
-                target.damage(this.getDamageSources().mobAttack(this), (float) this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE));
+                if(target instanceof LivingEntity living) {
+                    target.damage(this.getDamageSources().create(DamageTypes.GENERIC,this), ( float)living.getMaxHealth()*0.01F);
+                }
             }
             sendBatches(this,new ParticleBatch[]{glyph_center_release(1,0, ParticleBatch.Origin.FEET, null, ARCANE,true)},this.getYaw(),this.getPitch(),1, PlayerLookup.tracking(this),false);
             sendBatches(this,new ParticleBatch[]{glyph_outer_release(1,0, ParticleBatch.Origin.FEET, null, ARCANE,true)},this.getYaw(),this.getPitch(),1,PlayerLookup.tracking(this),false);

@@ -72,7 +72,7 @@ public class SpellEngineCompat {
             content.add(EYE_SPAWN_EGG);
         });
         FabricDefaultAttributeRegistry.register(EYE,EyeEntity.createMobAttributes());
-        FabricDefaultAttributeRegistry.register(CRYSTAL,EyeEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH,100).add(EntityAttributes.GENERIC_ATTACK_DAMAGE,8).add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE,10));
+        FabricDefaultAttributeRegistry.register(CRYSTAL,EyeEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH,200).add(EntityAttributes.GENERIC_ATTACK_DAMAGE,8).add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE,10));
 
     }
 
