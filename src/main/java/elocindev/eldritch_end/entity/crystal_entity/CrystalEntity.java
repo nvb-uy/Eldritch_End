@@ -4,6 +4,7 @@ import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.api.particles.ParticleBatch;
 import elocindev.eldritch_end.api.particles.SpellSchools;
 import elocindev.eldritch_end.api.targeting.TargetHelper;
+import elocindev.eldritch_end.config.Configs;
 import elocindev.eldritch_end.entity.eye_remastered.EyeEntity;
 import mod.azure.azurelib.animatable.GeoEntity;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
@@ -216,7 +217,7 @@ public class CrystalEntity extends HostileEntity implements Ownable, GeoEntity {
             sendBatches(this,new ParticleBatch[]{glyph_outer_release(1,0, ParticleBatch.Origin.FEET, null, ARCANE,true)},this.getYaw(),this.getPitch(),1,PlayerLookup.tracking(this),false);
             sendBatches(this,new ParticleBatch[]{glyph_release(1,0, ParticleBatch.Origin.FEET, null, ARCANE,true)},this.getYaw(),this.getPitch(),1,PlayerLookup.tracking(this),false);
         }
-        if(this.age > 240 && !this.getWorld().isClient()){
+        if(this.age > Configs.Entity.EYE.cooldowns.CRYSTALS_TIME && !this.getWorld().isClient()){
 
             this.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL,5,1);
             TargetHelper.Area area = new TargetHelper.Area();

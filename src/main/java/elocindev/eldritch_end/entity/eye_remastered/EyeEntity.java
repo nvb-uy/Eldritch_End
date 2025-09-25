@@ -119,6 +119,11 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
     private int teleportduration;
     private Vec3d teleportLocation;
 
+    @Override
+    public boolean isPersistent() {
+        return true;
+    }
+
     public EyeEntity(EntityType<? extends EyeEntity> entityType, World world) {
         super(entityType, world);
         this.moveControl = new EyeEntityMoveControl(this);
@@ -195,7 +200,7 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
                 this.hasCrystals = true;
                 this.crystalsTime = 0;
 
-            ((WorldSchedulerEldritch) this.getWorld()).scheduleEldritch(240, () -> {
+            ((WorldSchedulerEldritch) this.getWorld()).scheduleEldritch(Configs.Entity.EYE.cooldowns.CRYSTALS_TIME, () -> {
                 this.hasCrystals = false;
                 this.crystalsTime = 0;
 

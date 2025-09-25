@@ -3,6 +3,7 @@ package elocindev.eldritch_end.client.render.screen;
 import com.mojang.blaze3d.systems.RenderSystem;
 import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.api.CorruptionAPI;
+import elocindev.eldritch_end.config.Configs;
 import elocindev.eldritch_end.corruption.corruption_effect.CEOverlay;
 import elocindev.eldritch_end.entity.eye_remastered.EyeEntity;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
@@ -29,7 +30,7 @@ public class IconOverlay implements HudRenderCallback {
         }
         for(int ii = 0; ii < crystals; ii++) {
             drawContext.drawTexture(CRYSTAL_ICON, (int) (drawContext.getScaledWindowWidth() / 2F - (crystals*20)/2 + ii * 20),20,0,0,16,16,16,16);
-            drawContext.drawTexture(CRYSTAL_BAR, (int) (drawContext.getScaledWindowWidth() / 2F - (crystals*20)/2 + ii * 20), 38,0, 0,16-(int)((crystalTime * 16f) /240f),3,32,32);
+            drawContext.drawTexture(CRYSTAL_BAR, (int) (drawContext.getScaledWindowWidth() / 2F - (crystals*20)/2 + ii * 20), 38,0, 0,16-(int)((crystalTime * 16f) / (float)Configs.Entity.EYE.cooldowns.CRYSTALS_TIME),3,32,32);
 
         }
 

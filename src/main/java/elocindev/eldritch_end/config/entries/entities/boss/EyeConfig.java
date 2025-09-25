@@ -8,7 +8,7 @@ public class EyeConfig {
     public static EyeConfig INSTANCE;
 
     public static String getFile() {
-        return ConfigFolder.getNestedFile("the_eye.json5", "bosses");
+        return ConfigFolder.getNestedFile("the_eye_v2.json5", "bosses");
     }
 
     public EyeConfig.Attributes attributes = new EyeConfig.Attributes();
@@ -26,7 +26,9 @@ public class EyeConfig {
 
         public int COOLDOWN_MISSILE = 120;
         public int COOLDOWN_FLAMEBLAST = 200;
-        public int COOLDOWN_CRYSTALS = 400;
+        public int COOLDOWN_CRYSTALS = 600;
+        public int CRYSTALS_TIME = 500;
+
         public int COOLDOWN_TELEPORT = 200;
         public int RANDOM_COOLDOWN_REDUCTION_TELEPORT = 80;
     }
