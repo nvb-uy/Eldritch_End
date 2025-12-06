@@ -1,0 +1,93 @@
+{
+  "school": "FIRE",
+  "range": 96,
+  "learn": {
+    "tier": 4
+  },
+  "cast": {
+    "duration": 2,
+    "animation": "cleannarsenal:aim",
+
+    "sound": {
+      "id": "entity.warden.sonic_charge",
+      "randomness": 0
+    },
+    "particles": [
+      {
+        "particle_id": "spell_engine:flame",
+        "shape": "PIPE",
+        "origin": "FEET",
+        "count": 1.0,
+        "min_speed": 0.05,
+        "max_speed": 0.1
+      }
+    ]
+  },
+  "release": {
+    "target": {
+      "type": "BEAM"
+    },
+    "particles": [
+      {
+        "particle_id": "spell_engine:flame",
+        "angle": 5,
+        "shape": "CONE",
+        "rotation": "LOOK",
+        "origin": "LAUNCH_POINT",
+        "count": 400.0,
+        "min_speed":0.1,
+        "max_speed": 20
+      },
+      {
+        "particle_id": "spell_engine:flame_medium_a",
+        "angle": 5,
+        "shape": "CONE",
+        "rotation": "LOOK",
+        "origin": "LAUNCH_POINT",
+        "count": 200.0,
+        "min_speed": 0.1,
+        "max_speed": 20
+      },
+      {
+        "particle_id": "spell_engine:flame_medium_b",
+        "angle": 30,
+        "shape": "CONE",
+        "rotation": "LOOK",
+        "origin": "LAUNCH_POINT",
+        "count": 100.0,
+        "min_speed": 1,
+        "max_speed": 1
+      }
+    ],
+    "animation": "cleannarsenal:recoil",
+    "sound": {
+      "id": "minecraft:entity.generic.explode",
+      "volume": 5
+    }
+  },
+  "impact": [
+    {
+      "action": {
+        "type": "DAMAGE",
+        "damage": {
+          "spell_power_coefficient": 3.0
+        }
+      },
+      "particles": [
+        {
+          "particle_id": "lava",
+          "shape": "CIRCLE",
+          "origin": "CENTER",
+          "count": 100.0,
+          "min_speed": 3.0,
+          "max_speed": 18.0
+        }
+      ]
+    }
+  ],
+  "cost": {
+    "item_id": "runes:fire_stone",
+    "cooldown_duration": 12
+
+  }
+}

@@ -7,6 +7,7 @@ import elocindev.eldritch_end.config.entries.biomes.PrimordialAbyssConfig;
 import elocindev.eldritch_end.config.entries.entities.AberrationConfig;
 import elocindev.eldritch_end.config.entries.entities.DendlerConfig;
 import elocindev.eldritch_end.config.entries.entities.TentacleConfig;
+import elocindev.eldritch_end.config.entries.entities.boss.EyeConfig;
 import elocindev.eldritch_end.config.entries.entities.boss.FacelessConfig;
 import elocindev.eldritch_end.config.entries.entities.boss.HasturConfig;
 import elocindev.eldritch_end.config.entries.item.XalConfig;
@@ -29,6 +30,7 @@ public class ConfigLoader {
         
         NecConfigAPI.registerConfig(FacelessConfig.class);
         NecConfigAPI.registerConfig(HasturConfig.class);
+        NecConfigAPI.registerConfig(EyeConfig.class);
 
         // Mechanics
         NecConfigAPI.registerConfig(CorruptionConfig.class);

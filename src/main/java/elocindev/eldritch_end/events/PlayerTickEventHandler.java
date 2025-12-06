@@ -21,5 +21,6 @@ public class PlayerTickEventHandler implements ServerTickEvents.StartTick {
 
         if (server.getTicks() % eye_config.getEffectRateTicks() == 0)
             ServerUtils.ominousEyeSummonCheck(server);
+
     }
 }
