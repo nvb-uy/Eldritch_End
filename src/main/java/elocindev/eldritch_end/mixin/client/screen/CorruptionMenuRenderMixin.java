@@ -25,8 +25,8 @@ public abstract class CorruptionMenuRenderMixin extends AbstractInventoryScreen<
 
     public ItemStack dummy = new ItemStack(ItemRegistry.CORRUPTION_MENU);
 
-    @Inject(method = "drawBackground", at = @At("TAIL"), cancellable = true)
-    protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY, CallbackInfo info) {  
+    @Inject(method = "render", at = @At("TAIL"))
+    protected void render(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo info) {
         String texturePath = "textures/icon/corruption_menu/";
         long currentTime = System.currentTimeMillis();
         long animationCycle = 200;
