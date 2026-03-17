@@ -15,7 +15,8 @@
     "entity.attribute.AttributeApplyMixin",
     "entity.attribute.CorruptionDamageMixin",
     "smithing.ForgingScreenHandlerAccessor",
-    "smithing.InfusionSmithingTableMixin"
+    "smithing.InfusionSmithingTableMixin",
+    "recipe.SmithingTransformRecipeMixin"
   ],
   "client": [
     "client.BackgroundRendererMixin",
