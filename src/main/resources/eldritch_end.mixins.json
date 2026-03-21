@@ -4,18 +4,19 @@
   "package": "elocindev.eldritch_end.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "worldgen.EntFixerMixin",
-    "worldgen.biome.SurfaceRuleAccessor",
+    "boat.BoatTypeMixin",
+    "entity.attribute.AttributeApplyMixin",
+    "entity.attribute.CorruptionDamageMixin",
+    "item.InfusionItemAttributeMixin",
+    "item.ItemAttributeAccessor",
+    "item.ItemNameMixin",
     "server.BiomeMixin",
     "server.ServerWorldMixin",
     "sign.BlockEntityTypeMixin",
-    "boat.BoatTypeMixin",
-    "item.ItemNameMixin",
-    "item.ItemAttributeAccessor",
-    "entity.attribute.AttributeApplyMixin",
-    "entity.attribute.CorruptionDamageMixin",
     "smithing.ForgingScreenHandlerAccessor",
-    "smithing.InfusionSmithingTableMixin"
+    "smithing.InfusionSmithingTableMixin",
+    "worldgen.EntFixerMixin",
+    "worldgen.biome.SurfaceRuleAccessor"
   ],
   "client": [
     "client.BackgroundRendererMixin",
