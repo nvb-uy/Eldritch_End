@@ -1,7 +1,6 @@
 package elocindev.eldritch_end.compat;
 
 import elocindev.eldritch_end.EldritchEnd;
-import elocindev.eldritch_end.client.entity.eye_remastered.EyeModel;
 import elocindev.eldritch_end.client.entity.eye_remastered.EyeRenderer;
 import elocindev.eldritch_end.entity.arcane_missile.ArcaneMissile;
 import elocindev.eldritch_end.entity.crystal_entity.CrystalEntity;

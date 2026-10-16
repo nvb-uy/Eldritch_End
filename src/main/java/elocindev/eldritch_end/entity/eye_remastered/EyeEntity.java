@@ -1,5 +1,8 @@
 package elocindev.eldritch_end.entity.eye_remastered;
 
+import elocindev.eldritch_end.entity.EntityAnimations;
+import mod.azure.azurelib.animation.dispatch.command.AzCommand;
+import mod.azure.azurelib.animation.play_behavior.AzPlayBehaviors;
 import elocindev.eldritch_end.WorldSchedulerEldritch;
 import elocindev.eldritch_end.api.particles.ParticleBatch;
 import elocindev.eldritch_end.api.particles.SpellSchools;
@@ -9,15 +12,6 @@ import elocindev.eldritch_end.compat.SpellEngineCompat;
 import elocindev.eldritch_end.config.Configs;
 import elocindev.eldritch_end.entity.arcane_missile.ArcaneMissile;
 import elocindev.eldritch_end.entity.crystal_entity.CrystalEntity;
-import mod.azure.azurelib.animatable.GeoEntity;
-import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
-import mod.azure.azurelib.core.animation.AnimatableManager;
-import mod.azure.azurelib.core.animation.AnimationController;
-import mod.azure.azurelib.core.animation.AnimationState;
-import mod.azure.azurelib.core.animation.RawAnimation;
-import mod.azure.azurelib.core.object.PlayState;
-import mod.azure.azurelib.util.AzureLibUtil;
-import mod.azure.azurelib.util.RenderUtils;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.BlockState;
@@ -68,7 +62,7 @@ import static elocindev.eldritch_end.api.targeting.TargetHelper.launchPoint;
 import static java.lang.StrictMath.asin;
 import static java.lang.StrictMath.atan2;
 
-public class EyeEntity extends HostileEntity implements GeoEntity {
+public class EyeEntity extends HostileEntity {
     private boolean hasCrystals;
     private int crystalsTime;
 
@@ -134,11 +128,6 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
     }
 
     @Override
-    public double getTick(Object entity) {
-        return RenderUtils.getCurrentTick();
-    }
-
-    @Override
     protected void initGoals() {
         this.goalSelector.add(0, new SwimGoal(this));
         this.goalSelector.add(8, new LookAtTargetGoal());
@@ -156,10 +145,10 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
         return true;
     }
 
-    public static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.eye.idle");
 
     @Override
     public void tick() {
+        this.tickAnimations();
         if((this.home == null  && this.firstUpdate) || (this.home != null && !this.home.isWithinDistance(this.getBlockPos(),150))){
             this.home = this.getBlockPos();
         }
@@ -196,7 +185,7 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
             area.angle_degrees = 120;
             List<Entity> list = TargetHelper.targetsFromArea(this,64,area, entity ->  entity instanceof LivingEntity && !(entity instanceof CrystalEntity) && !(entity instanceof EndermanEntity));
             int ii = 0;
-                ( this).triggerAnim("attack", "attack");
+                AzCommand.create("attack", "attack", AzPlayBehaviors.PLAY_ONCE).sendForEntity(this);
                 this.hasCrystals = true;
                 this.crystalsTime = 0;
 
@@ -287,7 +276,7 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
             area.angle_degrees = 120;
             List<Entity> list = TargetHelper.targetsFromArea(this,64,area, entity ->  entity instanceof LivingEntity && !(entity instanceof CrystalEntity) && !(entity instanceof EndermanEntity));
             ((WorldSchedulerEldritch) this.getWorld()).scheduleEldritch(+ 30, () -> {
-                ( this).triggerAnim("attack", "attack");
+                AzCommand.create("attack", "attack", AzPlayBehaviors.PLAY_ONCE).sendForEntity(this);
 
             });
 
@@ -379,11 +368,6 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
         super.mobTick();
     }
 
-    private PlayState predicate2(AnimationState<EyeEntity> state) {
-
-        return state.setAndContinue(IDLE);
-
-    }
     public void lineParticles(LivingEntity caster, Vec3d start, Vec3d end, int range){
         for (int i = 0; i < range; i++) {
             Vec3d pos2 = this.getBoundingBox().getCenter().add((
@@ -529,7 +513,6 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
 
         return super.damage(source, amount);
     }
-    public static final RawAnimation ATTACK = RawAnimation.begin().thenPlay("animation.eye.attack");
     public static final TrackedData<Integer> NUMBER_OF_CRYSTALS ;
     public static final TrackedData<Integer> CRYSTAL_TIME ;
 
@@ -546,21 +529,7 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
 
     }
 
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar animationData) {
-        animationData.add(new AnimationController<EyeEntity>(this, "walk",
-                0, this::predicate2)
-        );
-        animationData.add(
-                new AnimationController<>(this, "attack", event -> PlayState.CONTINUE)
-                        .triggerableAnim("attack", ATTACK));
-    }
-    public AnimatableInstanceCache instanceCache = AzureLibUtil.createInstanceCache(this);
 
-        @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return instanceCache;
-    }
 
     @Override
     public void onDeath(DamageSource damageSource) {
@@ -724,5 +693,13 @@ public class EyeEntity extends HostileEntity implements GeoEntity {
                 .add(EntityAttributes.GENERIC_ARMOR,Configs.Entity.EYE.attributes.ARMOR);
     }
 
+    private String lastAnimation = "";
 
+    private void tickAnimations() {
+        if (!this.getWorld().isClient) {
+            return;
+        }
+        lastAnimation = EntityAnimations.sendIfChanged(this, lastAnimation, "idle",
+                AzCommand.create(EntityAnimations.BASE_CONTROLLER, "idle", AzPlayBehaviors.LOOP));
+    }
 }

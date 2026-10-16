@@ -1,18 +1,13 @@
 package elocindev.eldritch_end.entity.aberration;
 
+import elocindev.eldritch_end.entity.EntityAnimations;
+import mod.azure.azurelib.animation.dispatch.command.AzCommand;
+import mod.azure.azurelib.animation.play_behavior.AzPlayBehaviors;
 import elocindev.eldritch_end.config.Configs;
 import elocindev.eldritch_end.corruption.CorruptionUtils;
 import elocindev.eldritch_end.effects.Corruption;
 import elocindev.eldritch_end.registry.BlockRegistry;
 import elocindev.eldritch_end.registry.EffectRegistry;
-import mod.azure.azurelib.animatable.GeoEntity;
-import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
-import mod.azure.azurelib.core.animation.AnimatableManager;
-import mod.azure.azurelib.core.animation.Animation;
-import mod.azure.azurelib.core.animation.AnimationController;
-import mod.azure.azurelib.core.animation.RawAnimation;
-import mod.azure.azurelib.core.object.PlayState;
-import mod.azure.azurelib.util.AzureLibUtil;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -27,8 +22,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 
-public class AberrationEntity extends HostileEntity implements GeoEntity {
-    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
+public class AberrationEntity extends HostileEntity {
 
     public AberrationEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
@@ -81,31 +75,35 @@ public class AberrationEntity extends HostileEntity implements GeoEntity {
     @Override
     protected void playStepSound(BlockPos pos, BlockState state) { }
 
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "animationPredicate", 10, event -> {
-            if (this.handSwinging) {
-                event.getController().setAnimation(RawAnimation.begin().then("attack", Animation.LoopType.PLAY_ONCE));
-                this.handSwinging = false;
-                return PlayState.CONTINUE;
-            }
+    private String lastAnimation = "";
 
-            if (event.isMoving() && this.isOnGround()) {
-                // TODO: Make this scale with the movement attribute
-                event.getController().setAnimationSpeed(3.0F);
-
-                event.getController().setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
-                return PlayState.CONTINUE;
-            }
-
-            event.getController().setAnimationSpeed(1.0F);
-            event.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
-            return PlayState.CONTINUE;
-        }));
+    private void tickAnimations() {
+        if (!this.getWorld().isClient) {
+            return;
+        }
+        if (this.handSwinging) {
+            this.handSwinging = false;
+            lastAnimation = "attack";
+            AzCommand.create(EntityAnimations.BASE_CONTROLLER, "attack", AzPlayBehaviors.PLAY_ONCE).sendForEntity(this);
+            return;
+        }
+        if (this.isOnGround() && EntityAnimations.isMovingHorizontally(this)) {
+            // Walk plays at 3x speed, as in the old predicate.
+            lastAnimation = EntityAnimations.sendIfChanged(this, lastAnimation, "walk",
+                    AzCommand.compose(
+                            AzCommand.create(EntityAnimations.BASE_CONTROLLER, "walk", AzPlayBehaviors.LOOP),
+                            AzCommand.controllerBuilder().setSpeed(EntityAnimations.BASE_CONTROLLER, 3.0F).build()));
+        } else {
+            lastAnimation = EntityAnimations.sendIfChanged(this, lastAnimation, "idle",
+                    AzCommand.compose(
+                            AzCommand.create(EntityAnimations.BASE_CONTROLLER, "idle", AzPlayBehaviors.LOOP),
+                            AzCommand.controllerBuilder().setSpeed(EntityAnimations.BASE_CONTROLLER, 1.0F).build()));
+        }
     }
 
     @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return cache;
+    public void tick() {
+        super.tick();
+        this.tickAnimations();
     }
 }

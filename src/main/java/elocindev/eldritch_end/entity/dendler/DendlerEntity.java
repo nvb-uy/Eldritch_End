@@ -1,14 +1,9 @@
 package elocindev.eldritch_end.entity.dendler;
 
+import elocindev.eldritch_end.entity.EntityAnimations;
+import mod.azure.azurelib.animation.dispatch.command.AzCommand;
+import mod.azure.azurelib.animation.play_behavior.AzPlayBehaviors;
 import elocindev.eldritch_end.config.Configs;
-import mod.azure.azurelib.animatable.GeoEntity;
-import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
-import mod.azure.azurelib.core.animation.AnimatableManager;
-import mod.azure.azurelib.core.animation.Animation;
-import mod.azure.azurelib.core.animation.AnimationController;
-import mod.azure.azurelib.core.animation.RawAnimation;
-import mod.azure.azurelib.core.object.PlayState;
-import mod.azure.azurelib.util.AzureLibUtil;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
@@ -20,8 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 
-public class DendlerEntity extends HostileEntity implements GeoEntity {
-    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
+public class DendlerEntity extends HostileEntity {
  
     public DendlerEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
@@ -48,22 +42,20 @@ public class DendlerEntity extends HostileEntity implements GeoEntity {
     @Override
     protected void playStepSound(BlockPos pos, BlockState state) { }
 
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "animationPredicate", 10, event -> {
-            if (event.isMoving() && this.isOnGround()) {
-                event.getController().setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
-                return PlayState.CONTINUE;
-            }
+    private String lastAnimation = "";
 
-            event.getController().setAnimationSpeed(1.0F);
-            event.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
-            return PlayState.CONTINUE;
-        }));
+    private void tickAnimations() {
+        if (!this.getWorld().isClient) {
+            return;
+        }
+        String animation = this.isOnGround() && EntityAnimations.isMovingHorizontally(this) ? "walk" : "idle";
+        lastAnimation = EntityAnimations.sendIfChanged(this, lastAnimation, animation,
+                AzCommand.create(EntityAnimations.BASE_CONTROLLER, animation, AzPlayBehaviors.LOOP));
     }
 
     @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return cache;
+    public void tick() {
+        super.tick();
+        this.tickAnimations();
     }
 }

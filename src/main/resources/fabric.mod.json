@@ -34,6 +34,6 @@
     "fabricloader": ">=0.14.19",
     "java": ">=17",
     "necronomicon": ">=1.4.2",
-    "azurelib": "*"
+    "azurelib": ">=3.1.23"
   }
 }
