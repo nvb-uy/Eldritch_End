@@ -1,9 +1,7 @@
 package elocindev.eldritch_end.compat;
 
 import elocindev.eldritch_end.EldritchEnd;
-import elocindev.eldritch_end.client.entity.crystal.CrystalModel;
 import elocindev.eldritch_end.client.entity.crystal.CrystalRenderer;
-import elocindev.eldritch_end.client.entity.eye_remastered.EyeModel;
 import elocindev.eldritch_end.client.entity.eye_remastered.EyeRenderer;
 import elocindev.eldritch_end.entity.eye_remastered.EyeEntity;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
@@ -25,8 +23,8 @@ import static net.minecraft.registry.Registries.ENTITY_TYPE;
 public class SpellEngineCompatClient {
 
     public static void registerClient(){
-        EntityRendererRegistry.register(EYE, (context) ->  new EyeRenderer<>(context, new EyeModel<>()));
-        EntityRendererRegistry.register(CRYSTAL, (context) ->  new CrystalRenderer<>(context, new CrystalModel<>()));
+        EntityRendererRegistry.register(EYE, (context) ->  new EyeRenderer(context));
+        EntityRendererRegistry.register(CRYSTAL, (context) ->  new CrystalRenderer(context));
         EntityRendererRegistry.register(ARCANEMISSILE, (context) ->  new FlyingItemEntityRenderer<>(context,1.0F,false));
 
     }

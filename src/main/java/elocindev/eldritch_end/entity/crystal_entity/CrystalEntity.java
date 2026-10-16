@@ -1,19 +1,14 @@
 package elocindev.eldritch_end.entity.crystal_entity;
 
+import elocindev.eldritch_end.entity.EntityAnimations;
+import mod.azure.azurelib.animation.dispatch.command.AzCommand;
+import mod.azure.azurelib.animation.play_behavior.AzPlayBehaviors;
 import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.api.particles.ParticleBatch;
 import elocindev.eldritch_end.api.particles.SpellSchools;
 import elocindev.eldritch_end.api.targeting.TargetHelper;
 import elocindev.eldritch_end.config.Configs;
 import elocindev.eldritch_end.entity.eye_remastered.EyeEntity;
-import mod.azure.azurelib.animatable.GeoEntity;
-import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
-import mod.azure.azurelib.core.animation.AnimatableManager;
-import mod.azure.azurelib.core.animation.AnimationController;
-import mod.azure.azurelib.core.animation.AnimationState;
-import mod.azure.azurelib.core.animation.RawAnimation;
-import mod.azure.azurelib.core.object.PlayState;
-import mod.azure.azurelib.util.AzureLibUtil;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -41,8 +36,7 @@ import static elocindev.eldritch_end.api.particles.SpellSchools.FROST;
 import static elocindev.eldritch_end.entity.eye_remastered.EyeEntity.sendBatches;
 import static elocindev.eldritch_end.registry.EffectRegistry.CORRUPTION;
 
-public class CrystalEntity extends HostileEntity implements Ownable, GeoEntity {
-    public static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.crystal.idle");
+public class CrystalEntity extends HostileEntity implements Ownable {
 
     public static ParticleBatch glyph_release(float scale, float angle, ParticleBatch.Origin origin, ParticleBatch.Rotation rotate, SpellSchools school, boolean follow){
         if(school.equals(FROST)){
@@ -82,25 +76,9 @@ public class CrystalEntity extends HostileEntity implements Ownable, GeoEntity {
     public CrystalEntity(EntityType<? extends HostileEntity> entityType, World world, Entity owner) {
         super(entityType, world);
     }
-    private PlayState predicate2(AnimationState<CrystalEntity> state) {
-
-        return state.setAndContinue(IDLE);
-
-    }
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar animationData) {
-        animationData.add(new AnimationController<CrystalEntity>(this, "walk",
-                0, this::predicate2)
-        );
-        animationData.add(
-                new AnimationController<>(this, "fall", event -> PlayState.CONTINUE)
-                        .triggerableAnim("fall", FALL));
-    }
-    public static final RawAnimation FALL = RawAnimation.begin().thenPlay("animation.crystal.fall");
 
     public static final TrackedData<Integer> OWNER;
 
-    public AnimatableInstanceCache instanceCache = AzureLibUtil.createInstanceCache(this);
 
     static {
 
@@ -200,8 +178,9 @@ public class CrystalEntity extends HostileEntity implements Ownable, GeoEntity {
 
     @Override
     public void tick() {
+        this.tickAnimations();
         if(this.firstUpdate && !this.getWorld().isClient()){
-            (this).triggerAnim("fall","fall");
+            AzCommand.create("fall", "fall", AzPlayBehaviors.PLAY_ONCE).sendForEntity(this);
             this.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL,5,1);
         }
         if(this.age == 40 && !this.getWorld().isClient()){
@@ -238,10 +217,13 @@ public class CrystalEntity extends HostileEntity implements Ownable, GeoEntity {
         super.tick();
     }
 
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return instanceCache;
+    private String lastAnimation = "";
+
+    private void tickAnimations() {
+        if (!this.getWorld().isClient) {
+            return;
+        }
+        lastAnimation = EntityAnimations.sendIfChanged(this, lastAnimation, "idle",
+                AzCommand.create(EntityAnimations.BASE_CONTROLLER, "idle", AzPlayBehaviors.LOOP));
     }
-
-
 }

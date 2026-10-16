@@ -1,19 +1,14 @@
 package elocindev.eldritch_end.entity.faceless;
 
+import elocindev.eldritch_end.entity.EntityAnimations;
+import mod.azure.azurelib.animation.dispatch.command.AzCommand;
+import mod.azure.azurelib.animation.play_behavior.AzPlayBehaviors;
 import elocindev.eldritch_end.EldritchEnd;
 import elocindev.eldritch_end.client.particle.EldritchParticles;
 import elocindev.eldritch_end.config.Configs;
 import elocindev.eldritch_end.registry.ItemRegistry;
 import elocindev.eldritch_end.registry.SoundEffectRegistry;
 import mod.azure.azurelib.ai.pathing.AzureNavigation;
-import mod.azure.azurelib.animatable.GeoEntity;
-import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
-import mod.azure.azurelib.core.animation.AnimatableManager;
-import mod.azure.azurelib.core.animation.Animation;
-import mod.azure.azurelib.core.animation.AnimationController;
-import mod.azure.azurelib.core.animation.RawAnimation;
-import mod.azure.azurelib.core.object.PlayState;
-import mod.azure.azurelib.util.AzureLibUtil;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -45,7 +40,7 @@ import org.joml.Math;
 import java.util.HashMap;
 
 @SuppressWarnings("resource")
-public class FacelessEntity extends HostileEntity implements GeoEntity {
+public class FacelessEntity extends HostileEntity {
 
     // Todo: smooth transition instead of teleport
 
@@ -64,7 +59,6 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
     @Nullable Entity entityToPull;
     @Nullable HashMap<PlayerEntity, Integer> pullTargets = new HashMap<>();
     
-    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
     private final ServerBossBar bossBar;
     private float animationProgressTicks = 0;
     private float animationDuration = 42;
@@ -178,6 +172,7 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
 
     @Override
     public void tick() {
+        this.tickAnimations();
         super.tick();
         if (this.getWorld().isClient) return;
         this.meleeLogic();
@@ -209,25 +204,13 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
         return true;
     }
 
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "baseAnim", 5, event -> {
-            return event.setAndContinue(
-                    event.isMoving() ? RawAnimation.begin().thenLoop("walk")
-                    : RawAnimation.begin().thenLoop("idle"));
-        }));
-
-        controllers.add(new AnimationController<>(this, "attackAnim", event -> PlayState.CONTINUE)
-                .triggerableAnim("slam",
-                RawAnimation.begin().then("slam", Animation.LoopType.PLAY_ONCE)));
-    }
 
     @Override
     public boolean tryAttack(Entity target) {
         if (target.getWorld().isClient) return false;
         if (this.animationProgressTicks == animationDuration && !shouldSurge) {
             this.animationProgressTicks = 0;
-            triggerAnim("attackAnim", "slam");
+            AzCommand.create("attackAnim", "slam", AzPlayBehaviors.PLAY_ONCE).sendForEntity(this);
             this.handSwinging = false;
         }
         EldritchEnd.LOGGER.info("Attack!");
@@ -303,10 +286,6 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
     }
 
 
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return cache;
-    }
 
     private float getAttackDamage() {
         return (float)this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE);
@@ -317,5 +296,16 @@ public class FacelessEntity extends HostileEntity implements GeoEntity {
         if (target != null && !target.getWorld().isClient) {
             target.damage(this.getDamageSources().mobAttack(this), this.getAttackDamage());
         }
+    }
+
+    private String lastAnimation = "";
+
+    private void tickAnimations() {
+        if (!this.getWorld().isClient) {
+            return;
+        }
+        String animation = EntityAnimations.isMovingHorizontally(this) ? "walk" : "idle";
+        lastAnimation = EntityAnimations.sendIfChanged(this, lastAnimation, animation,
+                AzCommand.create(EntityAnimations.BASE_CONTROLLER, animation, AzPlayBehaviors.LOOP));
     }
 }

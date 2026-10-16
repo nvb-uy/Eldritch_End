@@ -1,17 +1,12 @@
 package elocindev.eldritch_end.entity.tentacle;
 
+import elocindev.eldritch_end.entity.EntityAnimations;
+import mod.azure.azurelib.animation.dispatch.command.AzCommand;
+import mod.azure.azurelib.animation.play_behavior.AzPlayBehaviors;
 import elocindev.eldritch_end.config.Configs;
 import elocindev.eldritch_end.effects.Corruption;
 import elocindev.eldritch_end.registry.EffectRegistry;
 import elocindev.eldritch_end.registry.EntityRegistry;
-import mod.azure.azurelib.animatable.GeoEntity;
-import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
-import mod.azure.azurelib.core.animation.AnimatableManager;
-import mod.azure.azurelib.core.animation.Animation;
-import mod.azure.azurelib.core.animation.AnimationController;
-import mod.azure.azurelib.core.animation.RawAnimation;
-import mod.azure.azurelib.core.object.PlayState;
-import mod.azure.azurelib.util.AzureLibUtil;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
@@ -26,8 +21,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 
-public class TentacleEntity extends HostileEntity implements GeoEntity {
-    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
+public class TentacleEntity extends HostileEntity {
 
     public TentacleEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
@@ -41,6 +35,7 @@ public class TentacleEntity extends HostileEntity implements GeoEntity {
 
     @Override
     public void tick() {
+        this.tickAnimations();
         super.tick();
         if (this.getWorld().getBlockState(this.getBlockPos().down()) == Blocks.AIR.getDefaultState()) {
             this.kill();
@@ -103,38 +98,33 @@ public class TentacleEntity extends HostileEntity implements GeoEntity {
     @Override
     protected void playStepSound(BlockPos pos, BlockState state) { }
 
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "animationPredicate", 10, event -> {
-            if (this.age < 20) {
-                event.getController().setTransitionLength(0);
-                event.getController().setAnimation(RawAnimation.begin().then("appear", Animation.LoopType.PLAY_ONCE));
+    private String lastAnimation = "";
+    private boolean wasAttacking = false;
 
-                return PlayState.CONTINUE;
-            }
-            if (this.handSwinging) {
-                this.handSwinging = false;
-                event.getController().setAnimation(RawAnimation.begin().then("attack", Animation.LoopType.LOOP));
+    private void tickAnimations() {
+        if (!this.getWorld().isClient) {
+            return;
+        }
+        // Base controller: appear on spawn, swing when handSwinging, otherwise idle.
+        if (this.age < 20) {
+            lastAnimation = EntityAnimations.sendIfChanged(this, lastAnimation, "appear",
+                    AzCommand.create(EntityAnimations.BASE_CONTROLLER, "appear", AzPlayBehaviors.PLAY_ONCE));
+        } else if (this.handSwinging) {
+            this.handSwinging = false;
+            lastAnimation = EntityAnimations.sendIfChanged(this, lastAnimation, "attack",
+                    AzCommand.create(EntityAnimations.BASE_CONTROLLER, "attack", AzPlayBehaviors.LOOP));
+        } else {
+            lastAnimation = EntityAnimations.sendIfChanged(this, lastAnimation, "idle",
+                    AzCommand.create(EntityAnimations.BASE_CONTROLLER, "idle", AzPlayBehaviors.LOOP));
+        }
 
-                return PlayState.CONTINUE;
-            }
-
-            event.getController().setAnimationSpeed(1.0F);
-            event.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
-            return PlayState.CONTINUE;
-
-        })).add(new AnimationController<>(this, "attackAnimationPredicate", 10, event -> {
-            if (this.isAttacking()) {
-                event.getController().setAnimationSpeed(4.0F);
-                event.getController().forceAnimationReset();
-                event.getController().setAnimation(RawAnimation.begin().then("attack", Animation.LoopType.PLAY_ONCE));
-            }
-            return PlayState.CONTINUE;
-        }));
-    }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return cache;
+        // Attack controller: restart the attack at 4x speed when the attack starts.
+        boolean attacking = this.isAttacking();
+        if (attacking && !this.wasAttacking) {
+            AzCommand.compose(
+                    AzCommand.create("attack", "attack", AzPlayBehaviors.PLAY_ONCE),
+                    AzCommand.controllerBuilder().setSpeed("attack", 4.0F).build()).sendForEntity(this);
+        }
+        this.wasAttacking = attacking;
     }
 }

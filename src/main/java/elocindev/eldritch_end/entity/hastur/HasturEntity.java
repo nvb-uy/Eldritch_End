@@ -1,14 +1,9 @@
 package elocindev.eldritch_end.entity.hastur;
 
+import elocindev.eldritch_end.entity.EntityAnimations;
+import mod.azure.azurelib.animation.dispatch.command.AzCommand;
+import mod.azure.azurelib.animation.play_behavior.AzPlayBehaviors;
 import elocindev.eldritch_end.config.Configs;
-import mod.azure.azurelib.animatable.GeoEntity;
-import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
-import mod.azure.azurelib.core.animation.AnimatableManager;
-import mod.azure.azurelib.core.animation.Animation;
-import mod.azure.azurelib.core.animation.AnimationController;
-import mod.azure.azurelib.core.animation.RawAnimation;
-import mod.azure.azurelib.core.object.PlayState;
-import mod.azure.azurelib.util.AzureLibUtil;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -30,8 +25,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 
-public class HasturEntity extends HostileEntity implements GeoEntity {
-    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
+public class HasturEntity extends HostileEntity {
 
     private final ServerBossBar bossBar;
 
@@ -150,18 +144,19 @@ public class HasturEntity extends HostileEntity implements GeoEntity {
         }
     }
 
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "animationPredicate", 10, event -> {
-            event.getController().setAnimationSpeed(1.0F);
-            event.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
-            return PlayState.CONTINUE;
-        }));
+    private String lastAnimation = "";
+
+    private void tickAnimations() {
+        if (!this.getWorld().isClient) {
+            return;
+        }
+        lastAnimation = EntityAnimations.sendIfChanged(this, lastAnimation, "idle",
+                AzCommand.create(EntityAnimations.BASE_CONTROLLER, "idle", AzPlayBehaviors.LOOP));
     }
 
-
     @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return cache;
+    public void tick() {
+        super.tick();
+        this.tickAnimations();
     }
 }

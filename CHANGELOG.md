@@ -1,5 +1,14 @@
 See the full changelog in https://github.com/nvb-uy/Eldritch_End/blob/1.20.1/CHANGELOG.md
 
+## 0.3.5
+- Fixed a crash on launch with AzureLib 3.1 and newer: the mod used the GeckoLib-style API (mod.azure.azurelib.animatable.GeoEntity), which AzureLib 3.1.0 removed, causing a NoClassDefFoundError at startup.
+- The mod now requires AzureLib 3.1.23 or newer. Older AzureLib versions are not supported.
+- Ported the animated entities (Aberration, Dendler, Faceless, Hastur, Tentacle, Undead Tentacle, Crystal, Eye) to AzureLib 3.x animators. Walk, idle and attack selection follows the same conditions as before; attacks and falls are sent as one-shot AzureLib commands.
+- Eye: the pitch rotation now applies to the whole model, not just its root bone. Check how it looks in game.
+- Crystal and Eye renderers no longer override per-bone rendering. Their renderers now use AzureLib's render pipeline.
+- Removed the per-entity model classes. Model, texture and animation paths are set in each renderer.
+- Build dependency switched from CurseForge to the Modrinth Maven copy of AzureLib.
+
 ## 0.3.3 (Public Release)
 - API CHANGE: InfusableItemMaterial#canSwapInfusionTo now returns an empty list by default.
 - Fixed infusions' attributes only applying once, making things like etyr only give +10 resistance with all 4 pieces instead of +40.
